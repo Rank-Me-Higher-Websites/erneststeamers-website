@@ -131,24 +131,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Map + CTA Banner */}
-      <div className="bg-accent">
-        <div className="container max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-heading font-bold text-foreground text-base md:text-lg max-w-2xl">
-            Just click Book Online button and schedule your carpet, tile, or upholstery cleaning in Chicagoland area today!
-          </p>
-          <QuoteFormDialog>
-            <button className="bg-foreground text-primary-foreground font-heading font-bold px-8 py-3 rounded-lg text-base transition-all hover:opacity-90 flex items-center gap-2 whitespace-nowrap">
-              Book Online <span>→</span>
-            </button>
-          </QuoteFormDialog>
-        </div>
-      </div>
-
-      {/* Google Map */}
-      <div className="w-full h-48">
+      {/* Google Map - compact */}
+      <div className="w-full h-40">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380511.45037386954!2d-88.30718924999999!3d41.833733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880faf9b8f5a1cd1%3A0x9e38c2dd0b87696f!2sErnest%20Steamers!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95000!2d-88.18!3d41.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880faf9b8f5a1cd1%3A0x9e38c2dd0b87696f!2sErnest%20Steamers!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
           width="100%"
           height="100%"
           style={{ border: 0 }}
