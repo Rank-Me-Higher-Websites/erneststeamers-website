@@ -25,13 +25,13 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 bg-primary">
       <div className="container max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">
+          <p className="text-accent-yellow font-heading font-semibold text-sm tracking-widest uppercase mb-3">
             What We Do
           </p>
-          <h2 className="font-heading font-bold text-2xl md:text-4xl">
+          <h2 className="font-heading font-bold text-2xl md:text-4xl text-primary-foreground">
             Services That Deliver Results
           </h2>
         </div>
@@ -40,11 +40,11 @@ const ServicesSection = () => {
           {services.map((s) => (
             <div
               key={s.title}
-              className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+              className="p-6 rounded-xl badge-card hover:border-accent/40 transition-colors group"
             >
-              <s.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-heading font-bold text-xl mb-2">{s.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
+              <s.icon className="w-10 h-10 text-accent-yellow mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="font-heading font-bold text-xl mb-2 text-primary-foreground">{s.title}</h3>
+              <p className="text-primary-foreground/70 leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
