@@ -1,58 +1,62 @@
-import { Home, Sofa, Layers, Building2, Grid3X3, Sparkles } from "lucide-react";
+import { Home, Sofa, Layers, Building2, Grid3X3 } from "lucide-react";
+import vanHouse from "@/assets/van-house.png";
 
 const services = [
   {
     icon: Home,
     title: "Professional Carpet Cleaning",
-    desc: "Our expert carpet cleaning in Chicago eliminates dirt, dust, allergens, and other contaminants, restoring your carpets to their best appearance and feel.",
+    desc: "Our expert carpet cleaning eliminates dirt, dust, allergens, and contaminants, restoring your carpets to their best condition.",
   },
   {
     icon: Sofa,
     title: "Upholstery Cleaning",
-    desc: "Our upholstery cleaning uses advanced deep-cleaning methods to remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
+    desc: "Advanced deep-cleaning methods remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
   },
   {
     icon: Layers,
     title: "Area Rug Cleaning",
-    desc: "Our top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors—while protecting color, texture, and fiber integrity.",
+    desc: "Top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors.",
   },
   {
     icon: Building2,
     title: "Commercial Carpet Cleaning",
-    desc: "Our commercial carpet cleaning services cover Chicago and surrounding areas, offering flexible, cost-effective solutions for businesses of all sizes and types.",
+    desc: "Flexible, cost-effective commercial cleaning solutions for businesses of all sizes across Chicago and surrounding areas.",
   },
   {
     icon: Grid3X3,
     title: "Tile and Grout Cleaning",
-    desc: "Our professional tile and grout cleaning service restores your floors by effectively removing dirt, grime, and stains, leaving your tiles and grout spotless and looking like new.",
+    desc: "Professional tile and grout cleaning restores your floors by effectively removing dirt, grime, and stains.",
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="py-20 px-4 bg-background">
+    <section className="py-12 px-4 bg-background">
       <div className="container max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Intro card */}
-          <div className="bg-cta-orange rounded-xl p-8 flex flex-col justify-center border border-accent/30">
-            <h2 className="font-heading font-bold text-4xl text-primary-foreground mb-4">
-              Our Services
-            </h2>
-            <div className="w-12 h-1 bg-primary-foreground mb-6" />
-            <p className="text-primary-foreground/90 leading-relaxed">
-              We provide residential and commercial cleaning services with tailored solutions for every space. Explore our full range of professional offerings:
-            </p>
+        <div className="grid lg:grid-cols-3 gap-4">
+          {/* Intro card with image */}
+          <div className="bg-cta-orange rounded-xl overflow-hidden border-2 border-accent/30 flex flex-col">
+            <img src={vanHouse} alt="Ernest Steamers service van" className="w-full h-36 object-cover" />
+            <div className="p-6">
+              <h2 className="font-heading font-bold text-3xl text-primary-foreground mb-3">
+                Our Services
+              </h2>
+              <div className="w-12 h-1 bg-primary-foreground mb-4" />
+              <p className="text-primary-foreground/90 leading-relaxed text-sm">
+                We provide residential and commercial cleaning services with tailored solutions for every space.
+              </p>
+            </div>
           </div>
 
           {/* Service cards */}
           {services.map((s) => (
             <div
               key={s.title}
-              className="rounded-xl p-6 border-2 border-muted-foreground/25 bg-background hover:border-accent/50 transition-colors group shadow-sm"
+              className="rounded-xl p-5 border-2 border-muted-foreground/25 bg-background hover:border-accent/50 transition-colors group shadow-sm"
             >
-              <s.icon className="w-10 h-10 text-accent-yellow mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-heading font-bold text-lg mb-3 text-foreground">{s.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{s.desc}</p>
+              <s.icon className="w-8 h-8 text-accent-yellow mb-3 group-hover:scale-110 transition-transform" />
+              <h3 className="font-heading font-bold text-base mb-2 text-foreground">{s.title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-xs">{s.desc}</p>
             </div>
           ))}
         </div>

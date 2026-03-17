@@ -95,3 +95,18 @@
     border: 1px solid hsl(216 40% 30%);
   }
 }
+
+@keyframes flash-yellow {
+  0%, 100% {
+    background-color: hsl(var(--accent));
+    box-shadow: 0 0 8px hsl(var(--accent) / 0.6);
+  }
+  50% {
+    background-color: hsl(36 100% 65%);
+    box-shadow: 0 0 20px hsl(var(--accent) / 0.9);
+  }
+}
+
+.btn-flash-yellow {
+  animation: flash-yellow 1.5s ease-in-out infinite;
+}

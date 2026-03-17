@@ -1,36 +1,46 @@
+import cleaningAction from "@/assets/cleaning-action.png";
+import vanHouse from "@/assets/van-house.png";
+
 const AboutSection = () => {
   return (
-    <section className="py-20 px-4 bg-primary">
+    <section className="py-12 px-4 bg-primary">
       <div className="container max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Photo placeholder */}
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-xl border-4 border-primary-foreground/10 bg-primary-foreground/5 flex items-center justify-center shadow-2xl">
-              <p className="text-primary-foreground/30 font-medium text-sm">Photo placeholder</p>
-            </div>
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          {/* Left: Photos */}
+          <div className="grid grid-cols-2 gap-3">
+            <img
+              src={cleaningAction}
+              alt="Ernest Steamers technician cleaning carpet"
+              className="rounded-xl border-2 border-primary-foreground/10 w-full h-48 md:h-64 object-cover shadow-xl"
+            />
+            <img
+              src={vanHouse}
+              alt="Ernest Steamers van at customer home"
+              className="rounded-xl border-2 border-primary-foreground/10 w-full h-48 md:h-64 object-cover shadow-xl"
+            />
           </div>
 
           {/* Right: Copy */}
           <div>
-            <h2 className="font-heading font-bold text-3xl md:text-5xl text-primary-foreground mb-2">
+            <h2 className="font-heading font-bold text-2xl md:text-4xl text-primary-foreground mb-2">
               Need a Reliable{" "}
               <span className="text-accent-yellow">Carpet Cleaning in Chicago?</span>
             </h2>
-            <div className="w-16 h-1 bg-cta-orange my-6" />
+            <div className="w-16 h-1 bg-cta-orange my-4" />
+
+            <p className="text-primary-foreground/80 text-sm leading-relaxed mb-3">
+              Ernest Steamers provides professional carpet cleaning in Chicago and surrounding suburbs. We specialize in residential and commercial carpet cleaning, upholstery cleaning, area rug cleaning, tile and grout cleaning, and stain removal.
+            </p>
+            <p className="text-primary-foreground/80 text-sm leading-relaxed mb-6">
+              Our certified technicians use industry-grade equipment to deliver deep, effective cleaning that extends the life of your carpets and flooring.
+            </p>
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-8 py-4 rounded-lg text-lg transition-all mb-8"
+              className="inline-flex items-center gap-2 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-6 py-3 rounded-lg text-base transition-all"
             >
-              Read More <span className="text-xl">→</span>
+              Read More <span className="text-lg">→</span>
             </a>
-
-            <p className="text-primary-foreground/80 text-base leading-relaxed mb-4">
-              Ernest Steamers provides professional carpet cleaning in Chicago and surrounding suburbs. We specialize in residential and commercial carpet cleaning, upholstery cleaning, area rug cleaning, tile and grout cleaning, and stain removal.
-            </p>
-            <p className="text-primary-foreground/80 text-base leading-relaxed">
-              Our certified technicians use industry-grade equipment to deliver deep, effective cleaning that extends the life of your carpets and flooring. With hundreds of satisfied clients across the Chicagoland area, we're the go-to choice for high-quality, reliable cleaning services.
-            </p>
           </div>
         </div>
       </div>
