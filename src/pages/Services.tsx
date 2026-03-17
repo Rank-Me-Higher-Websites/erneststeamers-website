@@ -3,10 +3,10 @@ import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import { Home, Sofa, Layers, Building2, Grid3X3, CheckCircle } from "lucide-react";
 import serviceCarpet from "@/assets/service-carpet.png";
-import serviceStain from "@/assets/service-stain.png";
+import serviceUpholstery from "@/assets/service-upholstery.jpg";
+import serviceRug from "@/assets/service-rug.jpg";
 import vanHouse from "@/assets/van-house.png";
-import cleaningAction from "@/assets/cleaning-action.png";
-import equipment from "@/assets/equipment.png";
+import serviceTile from "@/assets/service-tile.jpg";
 
 const services = [
   {
@@ -25,7 +25,7 @@ const services = [
     icon: Sofa,
     title: "Upholstery Cleaning",
     desc: "Advanced deep-cleaning methods remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
-    image: serviceStain,
+    image: serviceUpholstery,
     details: [
       "Fabric-safe cleaning solutions",
       "Stain protection treatment",
@@ -37,7 +37,7 @@ const services = [
     icon: Layers,
     title: "Area Rug Cleaning",
     desc: "Top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors.",
-    image: cleaningAction,
+    image: serviceRug,
     details: [
       "Hand-washing available",
       "Color-safe treatments",
@@ -61,7 +61,7 @@ const services = [
     icon: Grid3X3,
     title: "Tile and Grout Cleaning",
     desc: "Professional tile and grout cleaning restores your floors by effectively removing dirt, grime, and stains.",
-    image: equipment,
+    image: serviceTile,
     details: [
       "High-pressure steam cleaning",
       "Grout sealing available",
