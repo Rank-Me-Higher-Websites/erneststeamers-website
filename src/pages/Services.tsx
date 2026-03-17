@@ -61,7 +61,7 @@ const services = [
     icon: Grid3X3,
     title: "Tile and Grout Cleaning",
     desc: "Professional tile and grout cleaning restores your floors by effectively removing dirt, grime, and stains.",
-    image: equipment,
+    image: serviceTile,
     details: [
       "High-pressure steam cleaning",
       "Grout sealing available",
