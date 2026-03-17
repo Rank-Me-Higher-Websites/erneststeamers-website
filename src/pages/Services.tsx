@@ -25,7 +25,7 @@ const services = [
     icon: Sofa,
     title: "Upholstery Cleaning",
     desc: "Advanced deep-cleaning methods remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
-    image: serviceStain,
+    image: serviceUpholstery,
     details: [
       "Fabric-safe cleaning solutions",
       "Stain protection treatment",
