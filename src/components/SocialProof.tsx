@@ -31,7 +31,7 @@ const SocialProof = () => {
       <div className="container max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center p-6 rounded-xl bg-primary border border-primary-foreground/10">
+            <div key={stat.label} className="text-center p-6 rounded-xl bg-primary border-2 border-primary-foreground/20">
               <div className="font-heading font-bold text-3xl md:text-4xl text-accent-yellow mb-1">
                 {stat.value}
               </div>
@@ -49,7 +49,7 @@ const SocialProof = () => {
 
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
-            <div key={t.name} className="p-6 rounded-xl border border-border bg-background shadow-sm">
+            <div key={t.name} className="p-6 rounded-xl border-2 border-muted-foreground/25 bg-background shadow-sm">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-accent text-accent" />
