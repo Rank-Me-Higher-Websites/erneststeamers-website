@@ -85,6 +85,10 @@
     color: hsl(var(--accent));
   }
 
+  .bg-accent-yellow {
+    background-color: hsl(var(--accent));
+  }
+
   .section-divider {
     @apply w-full h-px;
     background: linear-gradient(90deg, transparent, hsl(216 20% 88%), transparent);
