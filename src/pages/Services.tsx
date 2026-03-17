@@ -2,12 +2,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import { Home, Sofa, Layers, Building2, Grid3X3, CheckCircle } from "lucide-react";
+import serviceCarpet from "@/assets/service-carpet.png";
+import serviceStain from "@/assets/service-stain.png";
+import vanHouse from "@/assets/van-house.png";
+import cleaningAction from "@/assets/cleaning-action.png";
+import equipment from "@/assets/equipment.png";
 
 const services = [
   {
     icon: Home,
     title: "Professional Carpet Cleaning",
     desc: "Our expert carpet cleaning eliminates dirt, dust, allergens, and contaminants, restoring your carpets to their best condition.",
+    image: serviceCarpet,
     details: [
       "Deep steam extraction technology",
       "Pet stain & odor removal",
@@ -19,6 +25,7 @@ const services = [
     icon: Sofa,
     title: "Upholstery Cleaning",
     desc: "Advanced deep-cleaning methods remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
+    image: serviceStain,
     details: [
       "Fabric-safe cleaning solutions",
       "Stain protection treatment",
@@ -30,6 +37,7 @@ const services = [
     icon: Layers,
     title: "Area Rug Cleaning",
     desc: "Top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors.",
+    image: cleaningAction,
     details: [
       "Hand-washing available",
       "Color-safe treatments",
@@ -41,6 +49,7 @@ const services = [
     icon: Building2,
     title: "Commercial Carpet Cleaning",
     desc: "Flexible, cost-effective commercial cleaning solutions for businesses of all sizes across Chicago and surrounding areas.",
+    image: vanHouse,
     details: [
       "After-hours scheduling",
       "Contract & one-time service",
@@ -52,6 +61,7 @@ const services = [
     icon: Grid3X3,
     title: "Tile and Grout Cleaning",
     desc: "Professional tile and grout cleaning restores your floors by effectively removing dirt, grime, and stains.",
+    image: equipment,
     details: [
       "High-pressure steam cleaning",
       "Grout sealing available",
@@ -85,11 +95,11 @@ const Services = () => {
 
       {/* Services List */}
       <section className="py-12 px-4">
-        <div className="container max-w-7xl mx-auto space-y-10">
+        <div className="container max-w-7xl mx-auto space-y-16">
           {services.map((service, i) => (
             <div
               key={service.title}
-              className={`grid md:grid-cols-2 gap-8 items-center ${i % 2 === 1 ? "md:direction-rtl" : ""}`}
+              className={`grid md:grid-cols-2 gap-8 items-center`}
             >
               <div className={`space-y-4 ${i % 2 === 1 ? "md:order-2" : ""}`}>
                 <div className="flex items-center gap-3">
@@ -109,12 +119,16 @@ const Services = () => {
                 </ul>
                 <QuoteFormDialog>
                   <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-6 py-2.5 rounded-lg text-sm transition-all">
-                    Get A Quote for {service.title.split(" ")[0]} →
+                    Get A Quote →
                   </button>
                 </QuoteFormDialog>
               </div>
-              <div className={`rounded-xl bg-muted h-64 flex items-center justify-center ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                <service.icon className="w-20 h-20 text-accent/30" />
+              <div className={`rounded-xl overflow-hidden shadow-lg ${i % 2 === 1 ? "md:order-1" : ""}`}>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-72 object-cover"
+                />
               </div>
             </div>
           ))}
