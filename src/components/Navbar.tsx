@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { Phone, Menu, X } from "lucide-react";
 import QuoteFormDialog from "./QuoteFormDialog";
@@ -8,35 +8,13 @@ const navLinks = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services" },
   { label: "Service Areas", path: "/service-areas" },
-  { label: "About Us", path: "/#about" },
+  { label: "About Us", path: "/about" },
   { label: "Blog", path: "#" },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleNavClick = useCallback(
-    (e: React.MouseEvent, path: string) => {
-      if (path.includes("#")) {
-        e.preventDefault();
-        const hash = path.split("#")[1];
-        if (!hash) return;
-
-        if (location.pathname === "/") {
-          document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
-        } else {
-          navigate("/");
-          setTimeout(() => {
-            document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
-          }, 100);
-        }
-        setMobileOpen(false);
-      }
-    },
-    [location.pathname, navigate]
-  );
 
   return (
     <nav className="bg-accent-yellow sticky top-0 z-50 shadow-sm" style={{ backgroundColor: 'hsl(36, 100%, 55%)' }}>
@@ -50,7 +28,6 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.path}
-                onClick={(e) => handleNavClick(e, link.path)}
                 className={`text-foreground text-xs font-semibold hover:text-primary transition-colors ${
                   location.pathname === link.path ? "underline underline-offset-4" : ""
                 }`}
@@ -81,10 +58,7 @@ const Navbar = () => {
             <Link
               key={link.label}
               to={link.path}
-              onClick={(e) => {
-                handleNavClick(e, link.path);
-                setMobileOpen(false);
-              }}
+              onClick={() => setMobileOpen(false)}
               className="block text-foreground text-sm font-semibold py-2 border-b border-foreground/10"
             >
               {link.label}
