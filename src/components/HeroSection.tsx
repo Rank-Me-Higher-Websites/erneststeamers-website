@@ -1,4 +1,4 @@
-import { Shield, Award, Leaf } from "lucide-react";
+import { Shield, Award, Leaf, Star } from "lucide-react";
 import QuoteFormDialog from "./QuoteFormDialog";
 
 const stats = [
@@ -8,6 +8,12 @@ const stats = [
   { value: "24hr", label: "Response Time" },
 ];
 
+const ratingBadges = [
+  { platform: "Google Rating", score: "5.0" },
+  { platform: "Facebook Rating", score: "5.0" },
+  { platform: "BBB A+ Rating", score: "5.0" },
+];
+
 const HeroSection = () => {
   return (
     <section className="bg-hero h-[calc(100vh-3.5rem)] flex items-center">
@@ -15,6 +21,30 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-10 items-center w-full">
           {/* Left: Copy */}
           <div>
+            {/* Rating trust badges */}
+            <div className="flex flex-wrap gap-4 mb-5">
+              {ratingBadges.map((badge) => (
+                <div key={badge.platform} className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-primary-foreground/15 flex items-center justify-center">
+                    <span className="text-primary-foreground font-bold text-xs">
+                      {badge.platform.charAt(0)}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-primary-foreground font-semibold text-sm leading-tight">{badge.platform}</p>
+                    <div className="flex items-center gap-1">
+                      <span className="text-accent-yellow font-bold text-sm">{badge.score}</span>
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.08] text-primary-foreground mb-5">
               Expert Carpet Cleaning in Chicago &amp; Suburbs
             </h1>
