@@ -1,24 +1,33 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
-import { MapPin, Phone } from "lucide-react";
+import { Phone, ChevronsRight } from "lucide-react";
+
+import areaChicago from "@/assets/area-chicago.jpg";
+import areaWest from "@/assets/area-west.jpg";
+import areaSouth from "@/assets/area-south.jpg";
+import areaNorth from "@/assets/area-north.jpg";
 
 const areas = [
   {
-    region: "Chicago",
-    locations: ["Downtown Chicago", "Lincoln Park", "Lakeview", "Wicker Park", "Hyde Park", "Logan Square", "Bucktown", "Old Town"],
+    region: "Chicago & Cook County",
+    image: areaChicago,
+    locations: ["Chicago", "Wheeling", "Des Plaines", "Morton Grove", "Arlington Hts", "Niles", "Mt Prospect", "Skokie"],
   },
   {
-    region: "West Suburbs",
-    locations: ["Naperville", "Aurora", "Wheaton", "Glen Ellyn", "Lombard", "Downers Grove", "Elmhurst", "Oak Brook"],
+    region: "DuPage County & South Suburbs",
+    image: areaWest,
+    locations: ["Bloomingdale", "Clarendon Hills", "St Charles", "Downers Grove", "Glen Ellyn", "Naperville", "Elmhurst", "Orland Park"],
   },
   {
-    region: "South Suburbs",
-    locations: ["Orland Park", "Tinley Park", "Joliet", "Plainfield", "Bolingbrook", "Romeoville", "Lemont", "Homer Glen"],
+    region: "North Shore Neighborhoods",
+    image: areaNorth,
+    locations: ["Northbrook", "Libertyville", "Northfield", "Lake Forest", "Glencoe", "Evanston", "Deerfield", "Winnetka", "Highland Park", "Wilmette", "Lake Bluff", "Glenview"],
   },
   {
-    region: "North Suburbs",
-    locations: ["Evanston", "Skokie", "Schaumburg", "Arlington Heights", "Des Plaines", "Park Ridge", "Glenview", "Wilmette"],
+    region: "Northwest Lake & Cook Counties",
+    image: areaSouth,
+    locations: ["Barrington", "Long Grove", "Palatine", "Hawthorn Woods", "Elgin", "Vernon Hills", "Schaumburg", "Buffalo Grove"],
   },
 ];
 
@@ -44,50 +53,65 @@ const ServiceAreas = () => {
         </div>
       </section>
 
-      {/* Areas Grid */}
-      <section className="py-12 px-4">
-        <div className="container max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            {areas.map((area) => (
+      {/* Areas Cards */}
+      <section className="py-12 px-4 bg-muted/40">
+        <div className="container max-w-6xl mx-auto space-y-8">
+          {areas.map((area, index) => {
+            const imageFirst = index % 2 === 0;
+            return (
               <div
                 key={area.region}
-                className="rounded-xl border-2 border-muted-foreground/20 p-6 hover:border-accent/50 transition-colors"
+                className="rounded-xl border-2 border-border bg-card overflow-hidden flex flex-col md:flex-row"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-accent" />
-                  </div>
-                  <h2 className="font-heading font-bold text-xl text-foreground">{area.region}</h2>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {area.locations.map((loc) => (
-                    <div key={loc} className="flex items-center gap-2 text-sm text-muted-foreground py-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                      {loc}
+                {imageFirst ? (
+                  <>
+                    <div className="md:w-5/12 h-56 md:h-auto">
+                      <img src={area.image} alt={area.region} className="w-full h-full object-cover" />
                     </div>
-                  ))}
-                </div>
-                <div className="mt-4">
-                  <QuoteFormDialog>
-                    <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2 rounded-lg text-sm transition-all">
-                      Get A Quote in {area.region} →
-                    </button>
-                  </QuoteFormDialog>
-                </div>
+                    <div className="md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
+                      <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-5">{area.region}</h2>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
+                        {area.locations.map((loc) => (
+                          <div key={loc} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <ChevronsRight className="w-4 h-4 text-accent flex-shrink-0" />
+                            {loc}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="md:w-7/12 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1">
+                      <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-5">{area.region}</h2>
+                      <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+                        {area.locations.map((loc) => (
+                          <div key={loc} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <ChevronsRight className="w-4 h-4 text-accent flex-shrink-0" />
+                            {loc}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="md:w-5/12 h-56 md:h-auto order-1 md:order-2">
+                      <img src={area.image} alt={area.region} className="w-full h-full object-cover" />
+                    </div>
+                  </>
+                )}
               </div>
-            ))}
-          </div>
+            );
+          })}
+        </div>
 
-          <div className="mt-10 text-center">
-            <p className="text-muted-foreground mb-2">Don't see your area? Give us a call — we may still be able to help!</p>
-            <a
-              href="tel:+16308309867"
-              className="inline-flex items-center gap-2 text-foreground font-heading font-bold text-lg hover:text-accent transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              630-830-9867
-            </a>
-          </div>
+        <div className="mt-10 text-center">
+          <p className="text-muted-foreground mb-2">Don't see your area? Give us a call — we may still be able to help!</p>
+          <a
+            href="tel:+16308309867"
+            className="inline-flex items-center gap-2 text-foreground font-heading font-bold text-lg hover:text-accent transition-colors"
+          >
+            <Phone className="w-5 h-5" />
+            630-830-9867
+          </a>
         </div>
       </section>
 
