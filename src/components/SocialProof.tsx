@@ -31,7 +31,7 @@ const SocialProof = () => {
       <div className="container max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center p-6 rounded-xl bg-primary border border-primary-foreground/10">
+            <div key={stat.label} className="text-center p-6 rounded-xl bg-primary border-2 border-primary-foreground/20">
               <div className="font-heading font-bold text-3xl md:text-4xl text-accent-yellow mb-1">
                 {stat.value}
               </div>
