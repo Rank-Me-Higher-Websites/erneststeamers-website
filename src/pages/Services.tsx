@@ -3,10 +3,10 @@ import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import { Home, Sofa, Layers, Building2, Grid3X3, CheckCircle } from "lucide-react";
 import serviceCarpet from "@/assets/service-carpet.png";
-import serviceStain from "@/assets/service-stain.png";
+import serviceUpholstery from "@/assets/service-upholstery.jpg";
+import serviceRug from "@/assets/service-rug.jpg";
 import vanHouse from "@/assets/van-house.png";
-import cleaningAction from "@/assets/cleaning-action.png";
-import equipment from "@/assets/equipment.png";
+import serviceTile from "@/assets/service-tile.jpg";
 
 const services = [
   {
