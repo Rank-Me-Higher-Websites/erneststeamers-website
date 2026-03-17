@@ -130,10 +130,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Google Map - compact with pin */}
+      {/* Google Map with pin */}
       <div className="w-full h-44">
         <iframe
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Ernest+Steamers,Franklin+Park,IL&zoom=10"
+          src="https://www.google.com/maps?q=Ernest+Steamers,+10549+Crown+Rd+%234,+Franklin+Park,+IL&output=embed&z=10"
           width="100%"
           height="100%"
           style={{ border: 0 }}
