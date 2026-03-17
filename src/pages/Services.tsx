@@ -37,7 +37,7 @@ const services = [
     icon: Layers,
     title: "Area Rug Cleaning",
     desc: "Top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors.",
-    image: cleaningAction,
+    image: serviceRug,
     details: [
       "Hand-washing available",
       "Color-safe treatments",
