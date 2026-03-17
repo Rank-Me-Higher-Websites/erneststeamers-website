@@ -33,11 +33,15 @@ const ServicesSection = () => {
   return (
     <section className="py-12 px-4 bg-background">
       <div className="container max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-3 gap-4">
-          {/* Intro card with image */}
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-6 items-stretch">
+          {/* Left: Intro card with image */}
           <div className="bg-cta-orange rounded-xl overflow-hidden border-2 border-accent/30 flex flex-col">
-            <img src={vanHouse} alt="Ernest Steamers service van" className="w-full h-36 object-cover" />
-            <div className="p-6">
+            <img
+              src={vanHouse}
+              alt="Ernest Steamers service van"
+              className="w-full h-48 lg:h-56 object-cover"
+            />
+            <div className="p-6 flex flex-col justify-center flex-1">
               <h2 className="font-heading font-bold text-3xl text-primary-foreground mb-3">
                 Our Services
               </h2>
@@ -48,17 +52,19 @@ const ServicesSection = () => {
             </div>
           </div>
 
-          {/* Service cards */}
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="rounded-xl p-5 border-2 border-muted-foreground/25 bg-background hover:border-accent/50 transition-colors group shadow-sm"
-            >
-              <s.icon className="w-8 h-8 text-accent-yellow mb-3 group-hover:scale-110 transition-transform" />
-              <h3 className="font-heading font-bold text-base mb-2 text-foreground">{s.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-xs">{s.desc}</p>
-            </div>
-          ))}
+          {/* Right: Service cards in a 2-col grid, all equal height */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {services.map((s) => (
+              <div
+                key={s.title}
+                className="rounded-xl p-5 border-2 border-muted-foreground/40 bg-background hover:border-accent/50 transition-colors group shadow-sm flex flex-col"
+              >
+                <s.icon className="w-8 h-8 text-accent-yellow mb-3 group-hover:scale-110 transition-transform" />
+                <h3 className="font-heading font-bold text-base mb-2 text-foreground">{s.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-xs">{s.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
