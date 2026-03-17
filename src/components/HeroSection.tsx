@@ -85,14 +85,13 @@ const HeroSection = () => {
           {/* Right: VSL Video + Stats below */}
           <div id="vsl" className="space-y-3">
             <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-cta-orange flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="ml-1">
-                    <path d="M8 5v14l11-7L8 5z" fill="white" />
-                  </svg>
-                </div>
-                <p className="text-primary-foreground/60 text-xs lg:text-sm font-medium">Watch how we transform your space</p>
-              </div>
+              <iframe
+                src="https://iframe.mediadelivery.net/embed/619469/fdc92897-83b6-4c5a-884d-5423d5c9910c?autoplay=false&preload=true"
+                loading="lazy"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
             </div>
 
             <div className="grid grid-cols-4 gap-2.5">
