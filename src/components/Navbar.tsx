@@ -6,10 +6,10 @@ const navLinks = ["Home", "Services", "Service Areas", "About Us", "Blog"];
 
 const Navbar = () => {
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-50">
+    <nav className="bg-accent-yellow border-b border-accent-yellow/80 sticky top-0 z-50">
       <div className="container max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
         <div className="flex items-center gap-6">
-          <img src={logo} alt="Ernest Steamers" className="h-7 brightness-0" />
+          <img src={logo} alt="Ernest Steamers" className="h-7" />
           <div className="hidden md:flex items-center gap-5">
             {navLinks.map((link) => (
               <a
