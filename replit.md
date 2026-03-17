@@ -21,7 +21,6 @@ A marketing website for Ernest Steamers, a carpet cleaning service in Chicago & 
 ## Running the App
 The app runs on port 5000 via the "Start application" workflow (`npm run dev`).
 
-## Replit Migration Notes
-- Removed `lovable-tagger` dev dependency usage from vite.config.ts
-- Set Vite server host to `0.0.0.0` and port to `5000` for Replit compatibility
+## Migration Notes
+- Configured Vite server host to `0.0.0.0` and port to `5000` for Replit compatibility
 - `allowedHosts: true` to support Replit's proxied preview
