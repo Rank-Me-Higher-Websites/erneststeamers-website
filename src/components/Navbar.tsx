@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Services", path: "/services" },
   { label: "Service Areas", path: "/service-areas" },
   { label: "About Us", path: "/about" },
-  { label: "Blog", path: "#" },
+  { label: "Blog", path: "/blog" },
 ];
 
 const Navbar = () => {
