@@ -48,7 +48,7 @@ const ServicesSection = () => {
           {services.map((s) => (
             <div
               key={s.title}
-              className="rounded-xl p-6 border-2 border-border bg-background hover:border-accent/50 transition-colors group"
+              className="rounded-xl p-6 border-2 border-muted-foreground/25 bg-background hover:border-accent/50 transition-colors group shadow-sm"
             >
               <s.icon className="w-10 h-10 text-accent-yellow mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="font-heading font-bold text-lg mb-3 text-foreground">{s.title}</h3>

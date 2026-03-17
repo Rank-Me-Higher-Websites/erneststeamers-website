@@ -49,7 +49,7 @@ const SocialProof = () => {
 
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
-            <div key={t.name} className="p-6 rounded-xl border border-border bg-background shadow-sm">
+            <div key={t.name} className="p-6 rounded-xl border-2 border-muted-foreground/25 bg-background shadow-sm">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-accent text-accent" />
