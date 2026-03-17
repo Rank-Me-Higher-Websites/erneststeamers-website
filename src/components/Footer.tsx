@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucide-react";
+import QuoteFormDialog from "./QuoteFormDialog";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,106 +11,170 @@ const Footer = () => {
       {/* Main footer content */}
       <div className="container max-w-7xl mx-auto px-4 py-12">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          {/* Brand & Contact */}
+          <div>
             <img src={logo} alt="Ernest Steamers" className="h-14 mb-4" />
-            <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Professional carpet cleaning services in Chicago and surrounding suburbs. Trusted by homeowners and businesses since day one.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-heading font-bold text-primary-foreground text-base mb-4">
-              Quick Links
-            </h3>
-            <ul className="space-y-2">
-              {["Home", "Services", "About Us", "Reviews", "Contact"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase().replace(" ", "-")}`}
-                    className="text-primary-foreground/60 hover:text-accent text-sm transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="font-heading font-bold text-primary-foreground text-base mb-4">
-              Our Services
-            </h3>
-            <ul className="space-y-2">
-              {[
-                "Carpet Cleaning",
-                "Upholstery Cleaning",
-                "Area Rug Cleaning",
-                "Tile & Grout Cleaning",
-                "Commercial Cleaning",
-              ].map((service) => (
-                <li key={service}>
-                  <a
-                    href="#services"
-                    className="text-primary-foreground/60 hover:text-accent text-sm transition-colors"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-heading font-bold text-primary-foreground text-base mb-4">
-              Contact Us
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <Phone className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                <a href="tel:+17734980455" className="text-primary-foreground/60 hover:text-accent text-sm transition-colors">
-                  (773) 498-0455
-                </a>
-              </li>
+            <a href="tel:+16308309867" className="block font-heading font-bold text-primary-foreground text-xl mb-3">
+              630-830-9867
+            </a>
+            <ul className="space-y-2.5">
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@erneststeamers.com" className="text-primary-foreground/60 hover:text-accent text-sm transition-colors">
+                <a href="mailto:info@erneststeamers.com" className="text-primary-foreground/70 hover:text-accent text-sm transition-colors">
                   info@erneststeamers.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                <span className="text-primary-foreground/60 text-sm">
-                  Chicago, IL & Surrounding Suburbs
+                <span className="text-primary-foreground/70 text-sm">
+                  1018 Hummingbird Way,<br />Bartlett, IL 60103, United States
                 </span>
+              </li>
+            </ul>
+            <div className="flex items-center gap-3 mt-4">
+              {[Facebook, Linkedin, Instagram].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-8 h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center hover:bg-accent transition-colors"
+                >
+                  <Icon className="w-4 h-4 text-primary-foreground" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Our Services */}
+          <div>
+            <h3 className="font-heading font-bold text-primary-foreground text-base mb-2">
+              Our Services
+            </h3>
+            <div className="w-8 h-0.5 bg-accent mb-4" />
+            <ul className="space-y-2">
+              {[
+                "Carpet Cleaning",
+                "Upholstery Cleaning",
+                "Tile And Grout Cleaning",
+                "Stain Cleaning",
+                "Commercial Carpet Cleaning",
+                "Area Rug Cleaning",
+                "Pet Stain/Odor Removal",
+              ].map((service) => (
+                <li key={service}>
+                  <Link
+                    to="/services"
+                    className="text-primary-foreground/70 hover:text-accent text-sm transition-colors flex items-center gap-1.5"
+                  >
+                    <span className="text-accent text-xs">›</span> {service}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-heading font-bold text-primary-foreground text-base mb-2">
+              Quick Links
+            </h3>
+            <div className="w-8 h-0.5 bg-accent mb-4" />
+            <ul className="space-y-2">
+              {[
+                { label: "Home", path: "/" },
+                { label: "Services", path: "/services" },
+                { label: "Service Areas", path: "/service-areas" },
+                { label: "About Us", path: "/#about" },
+                { label: "Blog", path: "#" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.path}
+                    className="text-primary-foreground/70 hover:text-accent text-sm transition-colors flex items-center gap-1.5"
+                  >
+                    <span className="text-accent text-xs">›</span> {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Business Hours */}
+          <div>
+            <h3 className="font-heading font-bold text-primary-foreground text-base mb-2">
+              Business Hours
+            </h3>
+            <div className="w-8 h-0.5 bg-accent mb-4" />
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-accent font-semibold text-sm">Monday to Friday</p>
+                  <p className="text-primary-foreground/70 text-sm">7 am to 7 pm</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-accent font-semibold text-sm">Saturday</p>
+                  <p className="text-primary-foreground/70 text-sm">9 am to 3 pm</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-accent font-semibold text-sm">Sunday</p>
+                  <p className="text-primary-foreground/70 text-sm">Closed</p>
+                </div>
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-primary-foreground/10">
-        <div className="container max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-primary-foreground/50 text-xs">
-            © {currentYear} Ernest Steamers. All rights reserved.
+      {/* Map + CTA Banner */}
+      <div className="bg-accent">
+        <div className="container max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-heading font-bold text-foreground text-base md:text-lg max-w-2xl">
+            Just click Book Online button and schedule your carpet, tile, or upholstery cleaning in Chicagoland area today!
           </p>
+          <QuoteFormDialog>
+            <button className="bg-foreground text-primary-foreground font-heading font-bold px-8 py-3 rounded-lg text-base transition-all hover:opacity-90 flex items-center gap-2 whitespace-nowrap">
+              Book Online <span>→</span>
+            </button>
+          </QuoteFormDialog>
+        </div>
+      </div>
+
+      {/* Google Map */}
+      <div className="w-full h-48">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380511.45037386954!2d-88.30718924999999!3d41.833733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880faf9b8f5a1cd1%3A0x9e38c2dd0b87696f!2sErnest%20Steamers!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Ernest Steamers location"
+        />
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-primary-foreground/10 bg-primary">
+        <div className="container max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-4">
-            <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground/80 text-xs transition-colors">
+            <a href="#" className="text-accent hover:text-primary-foreground/80 text-xs transition-colors">
               Privacy Policy
             </a>
             <span className="text-primary-foreground/20">|</span>
-            <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground/80 text-xs transition-colors">
-              Terms of Service
-            </a>
-            <span className="text-primary-foreground/20">|</span>
-            <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground/80 text-xs transition-colors">
-              Sitemap
+            <a href="#" className="text-accent hover:text-primary-foreground/80 text-xs transition-colors">
+              Terms & Conditions
             </a>
           </div>
+          <p className="text-primary-foreground/50 text-xs">
+            © Copyright Ernest Steamers. All rights reserved – Website by{" "}
+            <a href="#" className="text-accent hover:underline">HSdigital</a> {currentYear}
+          </p>
         </div>
       </div>
     </footer>
