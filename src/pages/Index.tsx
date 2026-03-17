@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import VSLSection from "@/components/VSLSection";
+
 import SocialProof from "@/components/SocialProof";
 import ServicesSection from "@/components/ServicesSection";
 import CTASection from "@/components/CTASection";
