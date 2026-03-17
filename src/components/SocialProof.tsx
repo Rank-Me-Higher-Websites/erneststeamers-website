@@ -27,23 +27,21 @@ const testimonials = [
 
 const SocialProof = () => {
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 bg-background">
       <div className="container max-w-5xl mx-auto">
-        {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center p-6 rounded-xl bg-card border border-border">
-              <div className="font-heading font-bold text-3xl md:text-4xl text-gradient-gold mb-1">
+            <div key={stat.label} className="text-center p-6 rounded-xl bg-primary border border-primary-foreground/10">
+              <div className="font-heading font-bold text-3xl md:text-4xl text-accent-yellow mb-1">
                 {stat.value}
               </div>
-              <div className="text-muted-foreground text-sm">{stat.label}</div>
+              <div className="text-primary-foreground/70 text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Testimonials */}
         <div className="text-center mb-10">
-          <h2 className="font-heading font-bold text-2xl md:text-4xl mb-2">
+          <h2 className="font-heading font-bold text-2xl md:text-4xl text-foreground mb-2">
             Don't Take Our Word For It
           </h2>
           <p className="text-muted-foreground">See what our clients are saying</p>
@@ -51,15 +49,15 @@ const SocialProof = () => {
 
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
-            <div key={t.name} className="p-6 rounded-xl bg-card border border-border">
+            <div key={t.name} className="p-6 rounded-xl border border-border bg-background shadow-sm">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                  <Star key={i} className="w-4 h-4 fill-accent text-accent" />
                 ))}
               </div>
               <p className="text-foreground mb-4 leading-relaxed">"{t.text}"</p>
               <div>
-                <p className="font-heading font-semibold text-sm">{t.name}</p>
+                <p className="font-heading font-semibold text-sm text-foreground">{t.name}</p>
                 <p className="text-muted-foreground text-xs">{t.role}</p>
               </div>
             </div>
