@@ -47,7 +47,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
   };
 
   const inputClass =
-    "w-full px-3 py-2.5 rounded-lg border-2 border-muted-foreground/30 bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent";
+    "w-full px-3 py-2.5 rounded-lg border-2 border-muted-foreground/60 bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
