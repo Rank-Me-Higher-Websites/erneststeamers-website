@@ -39,11 +39,24 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now just close - can integrate with backend later
-    setOpen(false);
-    alert("Thank you! We'll get back to you within 24 hours with your free quote.");
+    setSubmitting(true);
+    try {
+      await fetch("https://cdlagency.app.n8n.cloud/webhook/b276c9c8-38b7-4058-84b2-11a154d7c943", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      setOpen(false);
+      alert("Thank you! We'll get back to you within 24 hours with your free quote.");
+    } catch {
+      alert("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass =
