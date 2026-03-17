@@ -34,26 +34,28 @@ const ServicesSection = () => {
     <section className="py-12 px-4 bg-background">
       <div className="container max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-6 items-stretch">
-          {/* Left: Intro card with image */}
-          <div className="bg-cta-orange rounded-xl overflow-hidden border-2 border-accent/30 flex flex-col">
+          {/* Left: Photo card */}
+          <div className="rounded-xl overflow-hidden border-2 border-muted-foreground/40 shadow-sm">
             <img
               src={vanHouse}
               alt="Ernest Steamers service van"
-              className="w-full h-48 lg:h-56 object-cover"
+              className="w-full h-full min-h-[300px] lg:min-h-0 object-cover"
             />
-            <div className="p-6 flex flex-col justify-center flex-1">
-              <h2 className="font-heading font-bold text-3xl text-primary-foreground mb-3">
+          </div>
+
+          {/* Right: 3x2 grid — "Our Services" card + 5 service cards */}
+          <div className="grid sm:grid-cols-3 gap-4">
+            {/* Our Services intro card */}
+            <div className="rounded-xl p-5 bg-cta-orange border-2 border-accent/30 flex flex-col justify-center">
+              <h2 className="font-heading font-bold text-2xl text-primary-foreground mb-2">
                 Our Services
               </h2>
-              <div className="w-12 h-1 bg-primary-foreground mb-4" />
-              <p className="text-primary-foreground/90 leading-relaxed text-sm">
+              <div className="w-10 h-1 bg-primary-foreground mb-3" />
+              <p className="text-primary-foreground/90 leading-relaxed text-xs">
                 We provide residential and commercial cleaning services with tailored solutions for every space.
               </p>
             </div>
-          </div>
 
-          {/* Right: Service cards in a 2-col grid, all equal height */}
-          <div className="grid sm:grid-cols-2 gap-4">
             {services.map((s) => (
               <div
                 key={s.title}
