@@ -69,10 +69,10 @@ const ServiceAreas = () => {
                       <img src={area.image} alt={area.region} className="w-full h-full object-cover" />
                     </div>
                     <div className="md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
-                      <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-5">{area.region}</h2>
+                      <h2 className="font-heading font-bold text-xl md:text-2xl text-card-foreground mb-5">{area.region}</h2>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
                         {area.locations.map((loc) => (
-                          <div key={loc} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div key={loc} className="flex items-center gap-2 text-sm text-card-foreground/80">
                             <ChevronsRight className="w-4 h-4 text-accent flex-shrink-0" />
                             {loc}
                           </div>
@@ -83,10 +83,10 @@ const ServiceAreas = () => {
                 ) : (
                   <>
                     <div className="md:w-7/12 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1">
-                      <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-5">{area.region}</h2>
+                      <h2 className="font-heading font-bold text-xl md:text-2xl text-card-foreground mb-5">{area.region}</h2>
                       <div className="grid grid-cols-2 gap-x-8 gap-y-3">
                         {area.locations.map((loc) => (
-                          <div key={loc} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div key={loc} className="flex items-center gap-2 text-sm text-card-foreground/80">
                             <ChevronsRight className="w-4 h-4 text-accent flex-shrink-0" />
                             {loc}
                           </div>
