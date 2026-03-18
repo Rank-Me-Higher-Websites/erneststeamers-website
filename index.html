@@ -6,16 +6,27 @@
     <title>Ernest Steamers - Expert Carpet Cleaning in Chicago</title>
     <meta name="description" content="Ernest Steamers delivers top-quality carpet cleaning services across Chicago and nearby suburbs." />
     <meta name="author" content="Ernest Steamers" />
-
     <meta property="og:title" content="Ernest Steamers - Expert Carpet Cleaning in Chicago" />
     <meta property="og:description" content="Ernest Steamers delivers top-quality carpet cleaning services across Chicago and nearby suburbs." />
     <meta property="og:type" content="website" />
-
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <style>
+      #loading-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: sans-serif;
+        color: #333;
+        font-size: 18px;
+      }
+    </style>
   </head>
-
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="loading-indicator">Loading...</div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
