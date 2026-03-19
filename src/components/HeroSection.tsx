@@ -16,11 +16,11 @@ const ratingBadges = [
 
 const HeroSection = () => {
   return (
-    <section className="bg-hero h-[calc(100dvh-3.5rem)] flex flex-col justify-center py-2 sm:py-4 lg:py-8 overflow-hidden">
-      <div className="container max-w-7xl mx-auto px-3 sm:px-4 flex-1 flex flex-col justify-center min-h-0">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-2 sm:gap-4 lg:gap-10 items-center">
+    <section className="bg-hero py-4 sm:py-6 lg:py-10">
+      <div className="container max-w-7xl mx-auto px-3 sm:px-4">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-3 sm:gap-5 lg:gap-10 items-center">
 
-          <div className="flex flex-col gap-1.5 sm:gap-2 lg:gap-4 order-2 lg:order-1">
+          <div className="flex flex-col gap-2 sm:gap-3 lg:gap-5 order-2 lg:order-1">
             <div className="flex flex-wrap gap-2 sm:gap-3">
               {ratingBadges.map((badge) => (
                 <div key={badge.platform} className="flex items-center gap-1 sm:gap-1.5" data-testid={`badge-${badge.platform.toLowerCase().replace(/\s/g, '-')}`}>
@@ -42,17 +42,17 @@ const HeroSection = () => {
               ))}
             </div>
 
-            <h1 className="font-heading font-bold text-lg sm:text-xl md:text-3xl lg:text-5xl xl:text-[3.25rem] leading-[1.1] text-primary-foreground" data-testid="text-hero-title">
+            <h1 className="font-heading font-bold text-xl sm:text-2xl md:text-4xl lg:text-[3.25rem] xl:text-[3.5rem] leading-[1.1] text-primary-foreground" data-testid="text-hero-title">
               Expert Carpet Cleaning in Chicago &amp; Suburbs
             </h1>
 
             <div className="w-10 sm:w-14 lg:w-16 h-0.5 sm:h-1 bg-cta-orange" />
 
-            <p className="text-primary-foreground/80 text-xs sm:text-sm lg:text-lg leading-snug max-w-xl hidden sm:block" data-testid="text-hero-description">
+            <p className="text-primary-foreground/80 text-xs sm:text-sm lg:text-lg leading-snug max-w-xl" data-testid="text-hero-description">
               Ernest Steamers delivers top-quality carpet cleaning services across Chicago and nearby suburbs, ensuring a deeper, longer-lasting clean.
             </p>
 
-            <div className="hidden sm:flex flex-wrap gap-1.5 sm:gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               <div className="badge-card rounded-md sm:rounded-lg px-2 py-1 sm:px-2.5 sm:py-1.5 lg:px-3 lg:py-2 flex items-center gap-1.5">
                 <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-accent-yellow" />
                 <span className="text-primary-foreground font-semibold text-[10px] sm:text-xs lg:text-sm">Professional</span>
@@ -84,7 +84,7 @@ const HeroSection = () => {
           </div>
 
           <div id="vsl" className="flex flex-col gap-1.5 sm:gap-2 lg:gap-3 order-1 lg:order-2">
-            <div className="relative aspect-video max-h-[35dvh] sm:max-h-[40dvh] lg:max-h-none rounded-lg sm:rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl" data-testid="video-vsl">
+            <div className="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl" data-testid="video-vsl">
               <iframe
                 src="https://iframe.mediadelivery.net/embed/619469/fdc92897-83b6-4c5a-884d-5423d5c9910c?autoplay=true&muted=true&preload=true&loop=true"
                 loading="lazy"
@@ -102,21 +102,6 @@ const HeroSection = () => {
                   <div className="text-primary-foreground/60 text-[7px] sm:text-[9px] lg:text-[11px]">{stat.label}</div>
                 </div>
               ))}
-            </div>
-
-            <div className="flex sm:hidden flex-wrap gap-2 justify-center">
-              <a
-                href="tel:+16308309867"
-                className="inline-flex items-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2 rounded-lg text-xs transition-all flex-1 justify-center"
-                data-testid="link-call-now-mobile"
-              >
-                CALL NOW →
-              </a>
-              <QuoteFormDialog>
-                <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-5 py-2 rounded-lg text-xs transition-all flex-1" data-testid="button-get-quote-mobile">
-                  GET A QUOTE
-                </button>
-              </QuoteFormDialog>
             </div>
           </div>
         </div>
