@@ -83,13 +83,15 @@ const HeroSection = () => {
           </div>
 
           <div id="vsl" className="space-y-3 order-1 lg:order-2">
-            <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl flex items-center justify-center" data-testid="video-vsl">
-              <div className="text-center text-primary-foreground/60 p-8">
-                <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-3 rounded-full bg-primary-foreground/10 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                </div>
-                <p className="font-heading font-semibold text-base lg:text-lg">Video Coming Soon</p>
-              </div>
+            <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl" data-testid="video-vsl">
+              <iframe
+                src="https://iframe.mediadelivery.net/embed/619469/fdc92897-83b6-4c5a-884d-5423d5c9910c?autoplay=true&muted=true&preload=true&loop=true"
+                loading="lazy"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 'none' }}
+              />
             </div>
 
             <div className="grid grid-cols-4 gap-2">
