@@ -18,13 +18,12 @@ const HeroSection = () => {
   return (
     <section className="bg-hero py-6 lg:py-8">
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-7 lg:gap-10 items-start">
-          {/* Left: Copy */}
-          <div className="space-y-4">
-            <div className="flex flex-wrap gap-4">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-5 lg:gap-10 items-start">
+          <div className="space-y-4 order-2 lg:order-1">
+            <div className="flex flex-wrap gap-3 lg:gap-4">
               {ratingBadges.map((badge) => (
-                <div key={badge.platform} className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center">
+                <div key={badge.platform} className="flex items-center gap-2" data-testid={`badge-${badge.platform.toLowerCase().replace(/\s/g, '-')}`}>
+                  <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center">
                     <span className="text-primary-foreground font-bold text-xs">{badge.platform.charAt(0)}</span>
                   </div>
                   <div>
@@ -42,27 +41,27 @@ const HeroSection = () => {
               ))}
             </div>
 
-            <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl leading-[1.08] text-primary-foreground">
+            <h1 className="font-heading font-bold text-2xl md:text-4xl lg:text-5xl leading-[1.08] text-primary-foreground" data-testid="text-hero-title">
               Expert Carpet Cleaning in Chicago &amp; Suburbs
             </h1>
 
             <div className="w-16 h-1 bg-cta-orange" />
 
-            <p className="text-primary-foreground/80 text-base lg:text-lg leading-relaxed max-w-xl">
+            <p className="text-primary-foreground/80 text-sm lg:text-lg leading-relaxed max-w-xl" data-testid="text-hero-description">
               Ernest Steamers delivers top-quality carpet cleaning services across Chicago and nearby suburbs, ensuring a deeper, longer-lasting clean.
             </p>
 
-            <div className="flex flex-wrap gap-2.5">
-              <div className="badge-card rounded-lg px-3 py-2 flex items-center gap-2">
-                <Shield className="w-5 h-5 text-accent-yellow" />
+            <div className="flex flex-wrap gap-2">
+              <div className="badge-card rounded-lg px-2.5 py-1.5 lg:px-3 lg:py-2 flex items-center gap-2">
+                <Shield className="w-4 h-4 lg:w-5 lg:h-5 text-accent-yellow" />
                 <span className="text-primary-foreground font-semibold text-xs lg:text-sm">Professional<br />Services</span>
               </div>
-              <div className="badge-card rounded-lg px-3 py-2 flex items-center gap-2">
-                <Award className="w-5 h-5 text-accent-yellow" />
+              <div className="badge-card rounded-lg px-2.5 py-1.5 lg:px-3 lg:py-2 flex items-center gap-2">
+                <Award className="w-4 h-4 lg:w-5 lg:h-5 text-accent-yellow" />
                 <span className="text-primary-foreground font-semibold text-xs lg:text-sm">Proven<br />Results</span>
               </div>
-              <div className="badge-card rounded-lg px-3 py-2 flex items-center gap-2">
-                <Leaf className="w-5 h-5 text-accent-yellow" />
+              <div className="badge-card rounded-lg px-2.5 py-1.5 lg:px-3 lg:py-2 flex items-center gap-2">
+                <Leaf className="w-4 h-4 lg:w-5 lg:h-5 text-accent-yellow" />
                 <span className="text-primary-foreground font-semibold text-xs lg:text-sm">Eco-Friendly<br />Cleaning</span>
               </div>
             </div>
@@ -70,34 +69,34 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-3 pt-1">
               <a
                 href="tel:+16308309867"
-                className="inline-flex items-center gap-2 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-6 py-3 rounded-lg text-base lg:text-lg transition-all"
+                className="inline-flex items-center gap-2 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2.5 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-lg transition-all"
+                data-testid="link-call-now"
               >
                 CALL NOW <span className="text-lg">→</span>
               </a>
               <QuoteFormDialog>
-                <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-6 py-3 rounded-lg text-base lg:text-lg transition-all">
+                <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-5 py-2.5 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-lg transition-all" data-testid="button-get-quote">
                   GET A QUOTE
                 </button>
               </QuoteFormDialog>
             </div>
           </div>
 
-          {/* Right: VSL Video + Stats below */}
-          <div id="vsl" className="space-y-3">
-            <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl flex items-center justify-center">
+          <div id="vsl" className="space-y-3 order-1 lg:order-2">
+            <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl flex items-center justify-center" data-testid="video-vsl">
               <div className="text-center text-primary-foreground/60 p-8">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary-foreground/10 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-3 rounded-full bg-primary-foreground/10 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
                 </div>
-                <p className="font-heading font-semibold text-lg">Video Coming Soon</p>
+                <p className="font-heading font-semibold text-base lg:text-lg">Video Coming Soon</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-2.5">
+            <div className="grid grid-cols-4 gap-2">
               {stats.map((stat) => (
-                <div key={stat.label} className="badge-card rounded-lg py-2.5 px-2 text-center">
-                  <div className="font-heading font-bold text-base lg:text-xl text-accent-yellow">{stat.value}</div>
-                  <div className="text-primary-foreground/60 text-[11px]">{stat.label}</div>
+                <div key={stat.label} className="badge-card rounded-lg py-2 px-1.5 lg:py-2.5 lg:px-2 text-center" data-testid={`stat-${stat.label.toLowerCase().replace(/\s/g, '-')}`}>
+                  <div className="font-heading font-bold text-sm lg:text-xl text-accent-yellow">{stat.value}</div>
+                  <div className="text-primary-foreground/60 text-[10px] lg:text-[11px]">{stat.label}</div>
                 </div>
               ))}
             </div>

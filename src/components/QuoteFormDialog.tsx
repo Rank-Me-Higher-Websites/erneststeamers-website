@@ -81,7 +81,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto animate-scale-in">
+      <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto animate-scale-in mx-4 sm:mx-auto rounded-xl">
         {submitted ? (
           <div className="flex flex-col items-center justify-center py-12 animate-fade-in">
             <CheckCircle2 className="w-16 h-16 text-green-500 mb-4 animate-scale-in" />
