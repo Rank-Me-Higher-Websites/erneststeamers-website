@@ -96,84 +96,58 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="flex flex-col lg:hidden" style={{ height: 'calc(100dvh - 3.5rem)' }}>
-          <div className="px-1 pt-2 pb-1.5">
-            <div className="flex items-center gap-3 mb-1.5">
-              {ratingBadges.map((badge) => (
-                <div key={badge.platform} className="flex items-center gap-1">
-                  <div className="w-5 h-5 rounded-full bg-primary-foreground/15 flex items-center justify-center">
-                    <span className="text-primary-foreground font-bold text-[8px]">{badge.platform.charAt(0)}</span>
-                  </div>
-                  <div>
-                    <p className="text-primary-foreground font-semibold text-[9px] leading-none">{badge.platform}</p>
-                    <div className="flex items-center gap-0.5">
-                      <span className="text-accent-yellow font-bold text-[9px]">{badge.score}</span>
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-[7px] h-[7px] fill-accent text-accent" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+        <div className="flex flex-col lg:hidden py-4 gap-3">
+          <div className="flex flex-wrap gap-2">
+            {ratingBadges.map((badge) => (
+              <div key={badge.platform} className="badge-card rounded-full px-3 py-1.5 flex items-center gap-1.5">
+                <span className="text-primary-foreground font-semibold text-[11px]">{badge.platform}</span>
+                <span className="text-accent-yellow font-bold text-[11px]">{badge.score}</span>
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-2.5 h-2.5 fill-accent text-accent" />
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <h1 className="font-heading font-bold text-[1.1rem] sm:text-xl leading-[1.15] text-primary-foreground">
-              Expert Carpet Cleaning in Chicago &amp; Suburbs
-            </h1>
+              </div>
+            ))}
           </div>
 
-          <div className="flex-1 flex flex-col min-h-0 px-1">
-            <div className="flex-1 relative rounded-lg overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-2xl min-h-0">
-              <iframe
-                src="https://iframe.mediadelivery.net/embed/619469/fdc92897-83b6-4c5a-884d-5423d5c9910c?autoplay=true&muted=true&preload=true&loop=true"
-                loading="lazy"
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-                style={{ border: 'none' }}
-              />
-            </div>
+          <h1 className="font-heading font-bold text-[1.65rem] sm:text-3xl leading-[1.1] text-primary-foreground">
+            Expert Carpet Cleaning in Chicago &amp; Suburbs
+          </h1>
 
-            <div className="grid grid-cols-4 gap-1 mt-1.5">
-              {stats.map((stat) => (
-                <div key={stat.label} className="badge-card rounded py-1 px-0.5 text-center">
-                  <div className="font-heading font-bold text-xs text-accent-yellow">{stat.value}</div>
-                  <div className="text-primary-foreground/60 text-[7px]">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+          <p className="text-primary-foreground/80 text-sm leading-snug">
+            Top-quality carpet cleaning across Chicago and nearby suburbs — a deeper, longer-lasting clean.
+          </p>
+
+          <div className="flex gap-2.5">
+            <a href="tel:+16308309867" className="inline-flex items-center justify-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold py-3 rounded-xl text-sm transition-all flex-1" data-testid="link-call-now-mobile">
+              CALL NOW →
+            </a>
+            <QuoteFormDialog>
+              <button className="btn-flash-yellow text-accent-foreground font-heading font-bold py-3 rounded-xl text-sm transition-all flex-1" data-testid="button-get-quote-mobile">
+                GET A QUOTE
+              </button>
+            </QuoteFormDialog>
           </div>
 
-          <div className="px-1 pt-1.5 pb-2">
-            <p className="text-primary-foreground/80 text-[11px] leading-tight mb-1.5">
-              Top-quality carpet cleaning across Chicago &amp; nearby suburbs.
-            </p>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="flex items-center gap-1">
-                <Shield className="w-3 h-3 text-accent-yellow" />
-                <span className="text-primary-foreground font-semibold text-[9px]">Professional</span>
+          <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-primary-foreground/10 bg-hero-dark shadow-xl">
+            <iframe
+              src="https://iframe.mediadelivery.net/embed/619469/fdc92897-83b6-4c5a-884d-5423d5c9910c?autoplay=true&muted=true&preload=true&loop=true"
+              loading="lazy"
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+              style={{ border: 'none' }}
+            />
+          </div>
+
+          <div className="grid grid-cols-4 gap-1.5">
+            {stats.map((stat) => (
+              <div key={stat.label} className="badge-card rounded-lg py-2 px-1 text-center">
+                <div className="font-heading font-bold text-sm text-accent-yellow">{stat.value}</div>
+                <div className="text-primary-foreground/60 text-[8px]">{stat.label}</div>
               </div>
-              <div className="flex items-center gap-1">
-                <Award className="w-3 h-3 text-accent-yellow" />
-                <span className="text-primary-foreground font-semibold text-[9px]">Proven Results</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Leaf className="w-3 h-3 text-accent-yellow" />
-                <span className="text-primary-foreground font-semibold text-[9px]">Eco-Friendly</span>
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <a href="tel:+16308309867" className="inline-flex items-center justify-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-4 py-2 rounded-lg text-xs transition-all flex-1" data-testid="link-call-now-mobile">
-                CALL NOW →
-              </a>
-              <QuoteFormDialog>
-                <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-4 py-2 rounded-lg text-xs transition-all flex-1" data-testid="button-get-quote-mobile">
-                  GET A QUOTE
-                </button>
-              </QuoteFormDialog>
-            </div>
+            ))}
           </div>
         </div>
 
