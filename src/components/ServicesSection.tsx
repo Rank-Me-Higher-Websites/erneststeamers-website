@@ -31,27 +31,24 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-12 px-4 bg-background">
+    <section className="py-6 lg:py-12 px-3 lg:px-4 bg-background">
       <div className="container max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-6 items-stretch">
-          {/* Left: Photo card */}
-          <div className="rounded-xl overflow-hidden border-2 border-muted-foreground/40 shadow-sm">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-3 lg:gap-6 items-stretch">
+          <div className="rounded-lg lg:rounded-xl overflow-hidden border-2 border-muted-foreground/40 shadow-sm">
             <img
               src={vanHouse}
               alt="Ernest Steamers service van"
-              className="w-full h-full min-h-[300px] lg:min-h-0 object-cover"
+              className="w-full h-40 sm:h-48 lg:h-full lg:min-h-0 object-cover"
             />
           </div>
 
-          {/* Right: 3x2 grid — "Our Services" card + 5 service cards */}
-          <div className="grid sm:grid-cols-3 gap-4">
-            {/* Our Services intro card */}
-            <div className="rounded-xl p-5 bg-cta-orange border-2 border-accent/30 flex flex-col justify-center">
-              <h2 className="font-heading font-bold text-2xl text-primary-foreground mb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 lg:gap-4">
+            <div className="rounded-lg lg:rounded-xl p-3 lg:p-5 bg-cta-orange border-2 border-accent/30 flex flex-col justify-center col-span-2 sm:col-span-1">
+              <h2 className="font-heading font-bold text-lg lg:text-2xl text-primary-foreground mb-1 lg:mb-2">
                 Our Services
               </h2>
-              <div className="w-10 h-1 bg-primary-foreground mb-3" />
-              <p className="text-primary-foreground/90 leading-relaxed text-xs">
+              <div className="w-8 lg:w-10 h-0.5 lg:h-1 bg-primary-foreground mb-1.5 lg:mb-3" />
+              <p className="text-primary-foreground/90 leading-relaxed text-[10px] lg:text-xs">
                 We provide residential and commercial cleaning services with tailored solutions for every space.
               </p>
             </div>
@@ -59,11 +56,11 @@ const ServicesSection = () => {
             {services.map((s) => (
               <div
                 key={s.title}
-                className="rounded-xl p-5 border-2 border-muted-foreground/40 bg-background hover:border-accent/50 transition-colors group shadow-sm flex flex-col"
+                className="rounded-lg lg:rounded-xl p-3 lg:p-5 border-2 border-muted-foreground/40 bg-background hover:border-accent/50 transition-colors group shadow-sm flex flex-col"
               >
-                <s.icon className="w-8 h-8 text-accent-yellow mb-3 group-hover:scale-110 transition-transform" />
-                <h3 className="font-heading font-bold text-base mb-2 text-foreground">{s.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-xs">{s.desc}</p>
+                <s.icon className="w-5 h-5 lg:w-8 lg:h-8 text-accent-yellow mb-1.5 lg:mb-3 group-hover:scale-110 transition-transform" />
+                <h3 className="font-heading font-bold text-xs lg:text-base mb-1 lg:mb-2 text-foreground">{s.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-[10px] lg:text-xs">{s.desc}</p>
               </div>
             ))}
           </div>
