@@ -16,6 +16,11 @@ const testimonials = [
     role: "Restaurant Owner",
     text: "Our storefront was embarrassing before Ernest Steamers. Now customers compliment how clean it looks. Worth every penny.",
   },
+  {
+    name: "Alanas 21",
+    role: "Homeowner",
+    text: "Ordered the service for my living room carpet and some tile cleaning in the kitchen. Really satisfied with the results, we were considering replacing the carpet altogether, but the steam cleaning gave the carpet a new life. Would recommend.",
+  },
 ];
 
 const SocialProof = () => {
@@ -29,7 +34,7 @@ const SocialProof = () => {
           <p className="text-primary-foreground/60 text-xs lg:text-sm">See what our clients are saying</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
           {testimonials.map((t) => (
             <div key={t.name} className="p-3 lg:p-5 rounded-lg lg:rounded-xl border border-primary-foreground/10 bg-hero-dark shadow-sm">
               <div className="flex gap-0.5 mb-1.5 lg:mb-3">
