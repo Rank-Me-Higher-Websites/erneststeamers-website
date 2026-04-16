@@ -56,11 +56,11 @@ const ServicesSection = () => {
             {services.map((s) => (
               <div
                 key={s.title}
-                className="rounded-lg lg:rounded-xl p-3 lg:p-5 border-2 border-muted-foreground/40 bg-background hover:border-accent/50 transition-colors group shadow-sm flex flex-col"
+                className="rounded-lg lg:rounded-xl p-3 lg:p-5 bg-primary border border-primary-foreground/10 hover:border-accent/50 transition-colors group shadow-sm flex flex-col"
               >
                 <s.icon className="w-5 h-5 lg:w-8 lg:h-8 text-accent-yellow mb-1.5 lg:mb-3 group-hover:scale-110 transition-transform" />
-                <h3 className="font-heading font-bold text-xs lg:text-base mb-1 lg:mb-2 text-foreground">{s.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-[10px] lg:text-xs">{s.desc}</p>
+                <h3 className="font-heading font-bold text-xs lg:text-base mb-1 lg:mb-2 text-primary-foreground">{s.title}</h3>
+                <p className="text-primary-foreground/70 leading-relaxed text-[10px] lg:text-xs">{s.desc}</p>
               </div>
             ))}
           </div>

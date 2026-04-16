@@ -16,7 +16,7 @@ const ratingBadges = [
 
 const HeroSection = () => {
   return (
-    <section className="bg-hero lg:py-10">
+    <section className="bg-hero lg:py-16">
       <div className="container max-w-7xl mx-auto px-3 sm:px-4">
 
         <div className="hidden lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-10 items-center">

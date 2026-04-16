@@ -20,27 +20,27 @@ const testimonials = [
 
 const SocialProof = () => {
   return (
-    <section className="py-6 lg:py-12 px-3 lg:px-4 bg-background">
+    <section className="py-6 lg:py-12 px-3 lg:px-4 bg-primary">
       <div className="container max-w-5xl mx-auto">
         <div className="text-center mb-4 lg:mb-8">
-          <h2 className="font-heading font-bold text-xl lg:text-3xl text-foreground mb-0.5 lg:mb-1">
+          <h2 className="font-heading font-bold text-xl lg:text-3xl text-primary-foreground mb-0.5 lg:mb-1">
             Don't Take Our Word For It
           </h2>
-          <p className="text-muted-foreground text-xs lg:text-sm">See what our clients are saying</p>
+          <p className="text-primary-foreground/60 text-xs lg:text-sm">See what our clients are saying</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-4">
           {testimonials.map((t) => (
-            <div key={t.name} className="p-3 lg:p-5 rounded-lg lg:rounded-xl border-2 border-muted-foreground/40 bg-background shadow-sm">
+            <div key={t.name} className="p-3 lg:p-5 rounded-lg lg:rounded-xl border border-primary-foreground/10 bg-hero-dark shadow-sm">
               <div className="flex gap-0.5 mb-1.5 lg:mb-3">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-foreground mb-2 lg:mb-3 leading-relaxed text-xs lg:text-sm">"{t.text}"</p>
+              <p className="text-primary-foreground/90 mb-2 lg:mb-3 leading-relaxed text-xs lg:text-sm">"{t.text}"</p>
               <div>
-                <p className="font-heading font-semibold text-xs lg:text-sm text-foreground">{t.name}</p>
-                <p className="text-muted-foreground text-[10px] lg:text-xs">{t.role}</p>
+                <p className="font-heading font-semibold text-xs lg:text-sm text-primary-foreground">{t.name}</p>
+                <p className="text-primary-foreground/50 text-[10px] lg:text-xs">{t.role}</p>
               </div>
             </div>
           ))}
