@@ -34,16 +34,18 @@ const SocialProof = () => {
           <p className="text-primary-foreground/60 text-xs lg:text-sm">See what our clients are saying</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 items-start mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mx-auto">
           {testimonials.map((t) => (
-            <div key={t.name} className="p-3 lg:p-5 rounded-lg lg:rounded-xl border border-primary-foreground/10 bg-hero-dark shadow-sm">
-              <div className="flex gap-0.5 mb-1.5 lg:mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <p className="text-primary-foreground/90 mb-2 lg:mb-3 leading-relaxed text-xs lg:text-sm">"{t.text}"</p>
+            <div key={t.name} className="p-3 lg:p-5 rounded-lg lg:rounded-xl border border-primary-foreground/10 bg-hero-dark shadow-sm flex flex-col justify-between">
               <div>
+                <div className="flex gap-0.5 mb-1.5 lg:mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 fill-accent text-accent" />
+                  ))}
+                </div>
+                <p className="text-primary-foreground/90 leading-relaxed text-xs lg:text-sm">"{t.text}"</p>
+              </div>
+              <div className="mt-3 lg:mt-4 pt-2 lg:pt-3 border-t border-primary-foreground/10">
                 <p className="font-heading font-semibold text-xs lg:text-sm text-primary-foreground">{t.name}</p>
                 <p className="text-primary-foreground/50 text-[10px] lg:text-xs">{t.role}</p>
               </div>
