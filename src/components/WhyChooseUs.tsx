@@ -1,6 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import equipment from "@/assets/equipment.png";
 import vanCloseup from "@/assets/van-closeup.png";
+import QuoteFormDialog from "@/components/QuoteFormDialog";
 
 const reasons = [
   "We utilize advanced, professional-grade equipment and innovative techniques to deliver a deep, thorough carpet clean.",
@@ -32,12 +33,11 @@ const WhyChooseUs = () => {
               ))}
             </div>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-4 py-2 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-base hover:brightness-110 transition-all"
-            >
-              Contact Us <span className="text-base lg:text-lg">→</span>
-            </a>
+            <QuoteFormDialog>
+              <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-4 py-2 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-base hover:brightness-110 transition-all" data-testid="button-why-choose-quote">
+                Get A Free Quote <span className="text-base lg:text-lg">→</span>
+              </button>
+            </QuoteFormDialog>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-3">
