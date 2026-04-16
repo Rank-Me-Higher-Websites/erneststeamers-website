@@ -19,7 +19,7 @@ const testimonials = [
   {
     name: "Alanas 21",
     role: "Homeowner",
-    text: "Ordered the service for my living room carpet and some tile cleaning in the kitchen. Really satisfied with the results, we were considering replacing the carpet altogether, but the steam cleaning gave the carpet a new life. Would recommend.",
+    text: "Ordered the service for my living room carpet and some tile cleaning in the kitchen. The steam cleaning gave the carpet a new life. Would recommend.",
   },
 ];
 
