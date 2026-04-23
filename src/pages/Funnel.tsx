@@ -2,9 +2,12 @@ import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucid
 import logo from "@/assets/logo.png";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import HeroSection from "@/components/HeroSection";
+import TrustBadges from "@/components/TrustBadges";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ServicesSection from "@/components/ServicesSection";
 import SocialProof from "@/components/SocialProof";
+import FAQSection from "@/components/FAQSection";
+import StickyMobileBar from "@/components/StickyMobileBar";
 import cleaningAction from "@/assets/cleaning-action.png";
 import vanHouse from "@/assets/van-house.png";
 
@@ -190,15 +193,18 @@ const FunnelFooter = () => {
 
 const Funnel = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20 lg:pb-0">
       <FunnelNav />
       <HeroSection />
+      <TrustBadges />
       <FunnelAbout />
       <WhyChooseUs />
       <ServicesSection />
       <SocialProof />
+      <FAQSection />
       <FunnelCTA />
       <FunnelFooter />
+      <StickyMobileBar />
     </div>
   );
 };
