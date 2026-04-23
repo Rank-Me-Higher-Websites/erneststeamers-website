@@ -102,7 +102,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="space-y-3 mt-2">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="animate-fade-in" style={{ animationDelay: "50ms" }}>
                   <label className="text-xs font-medium text-foreground mb-1 block">Full Name *</label>
                   <input
@@ -153,7 +153,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: "250ms" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: "250ms" }}>
                 <div>
                   <label className="text-xs font-medium text-foreground mb-1 block">Service Needed *</label>
                   <select
@@ -183,7 +183,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: "300ms" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: "300ms" }}>
                 <div>
                   <label className="text-xs font-medium text-foreground mb-1 block">Approx. Sq. Footage</label>
                   <input
