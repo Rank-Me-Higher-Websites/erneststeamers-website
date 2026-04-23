@@ -54,13 +54,13 @@ const FAQSection = () => {
             <AccordionItem
               key={i}
               value={`item-${i}`}
-              className="border border-border rounded-lg mb-2 px-3 lg:px-4 bg-card"
+              className="border border-primary-foreground/15 rounded-lg mb-2 px-3 lg:px-4 bg-primary"
               data-testid={`faq-item-${i}`}
             >
-              <AccordionTrigger className="text-left font-heading font-semibold text-sm lg:text-base text-foreground hover:no-underline py-3 lg:py-4">
+              <AccordionTrigger className="text-left font-heading font-semibold text-sm lg:text-base text-white hover:no-underline py-3 lg:py-4 [&>svg]:text-white">
                 {f.q}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-xs lg:text-sm leading-relaxed pb-3 lg:pb-4">
+              <AccordionContent className="text-white/80 text-xs lg:text-sm leading-relaxed pb-3 lg:pb-4">
                 {f.a}
               </AccordionContent>
             </AccordionItem>
