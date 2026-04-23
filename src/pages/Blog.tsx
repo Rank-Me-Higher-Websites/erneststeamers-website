@@ -36,7 +36,7 @@ const Blog = () => {
                 <Link
                   key={post.slug}
                   to={`/blog/${post.slug}`}
-                  className="rounded-xl border-2 border-border bg-card overflow-hidden flex flex-col hover:border-accent/50 transition-colors group"
+                  className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground overflow-hidden flex flex-col hover:border-accent-yellow transition-colors group"
                 >
                   <div className="h-48 overflow-hidden">
                     <img
@@ -50,15 +50,15 @@ const Blog = () => {
                       <span className="text-xs font-semibold bg-accent/20 text-accent px-2.5 py-1 rounded-full">
                         {post.category}
                       </span>
-                      <span className="flex items-center gap-1 text-xs text-card-foreground/60">
+                      <span className="flex items-center gap-1 text-xs text-primary-foreground/60">
                         <Calendar className="w-3 h-3" />
                         {formattedDate}
                       </span>
                     </div>
-                    <h2 className="font-heading font-bold text-lg text-card-foreground mb-2 leading-tight">
+                    <h2 className="font-heading font-bold text-lg text-primary-foreground mb-2 leading-tight">
                       {post.title}
                     </h2>
-                    <p className="text-card-foreground/70 text-sm leading-relaxed flex-1">
+                    <p className="text-primary-foreground/70 text-sm leading-relaxed flex-1">
                       {post.excerpt}
                     </p>
                     <span className="mt-4 inline-flex items-center gap-1.5 text-accent font-heading font-bold text-sm group-hover:gap-2.5 transition-all">

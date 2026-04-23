@@ -232,7 +232,7 @@ const BlogPost = () => {
       </article>
 
       {/* Related Posts */}
-      <section className="py-12 px-4 bg-muted/40">
+      <section className="py-12 px-4 bg-background">
         <div className="container max-w-7xl mx-auto">
           <h2 className="font-heading font-bold text-2xl text-foreground text-center mb-8">
             More from the Blog
@@ -242,7 +242,7 @@ const BlogPost = () => {
               <Link
                 key={rp.slug}
                 to={`/blog/${rp.slug}`}
-                className="rounded-xl border-2 border-border bg-card overflow-hidden hover:border-accent/50 transition-colors group"
+                className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground overflow-hidden hover:border-accent-yellow transition-colors group"
               >
                 <div className="h-40 overflow-hidden">
                   <img
@@ -255,7 +255,7 @@ const BlogPost = () => {
                   <span className="text-xs font-semibold bg-accent/20 text-accent px-2 py-0.5 rounded-full">
                     {rp.category}
                   </span>
-                  <h3 className="font-heading font-bold text-sm text-card-foreground mt-2 leading-tight">
+                  <h3 className="font-heading font-bold text-sm text-primary-foreground mt-2 leading-tight">
                     {rp.title}
                   </h3>
                 </div>
