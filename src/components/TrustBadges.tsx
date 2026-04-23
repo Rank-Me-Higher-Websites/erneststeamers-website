@@ -1,4 +1,4 @@
-import { ShieldCheck, Award, Leaf, Star, Clock, BadgeCheck } from "lucide-react";
+import { ShieldCheck, Award, Leaf, Star, Clock, BadgeCheck, Sparkles, ThumbsUp } from "lucide-react";
 
 const badges = [
   { icon: ShieldCheck, label: "Insured & Bonded" },
@@ -7,21 +7,24 @@ const badges = [
   { icon: Award, label: "BBB A+ Rating" },
   { icon: Leaf, label: "Eco-Friendly" },
   { icon: Clock, label: "Same-Day Service" },
+  { icon: Sparkles, label: "Pet & Kid Safe" },
+  { icon: ThumbsUp, label: "100% Satisfaction" },
 ];
 
 const TrustBadges = () => {
+  const loop = [...badges, ...badges];
   return (
-    <section className="py-4 lg:py-6 px-3 lg:px-4 bg-background border-y border-border" data-testid="section-trust-badges">
-      <div className="container max-w-6xl mx-auto">
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4">
-          {badges.map((b) => (
+    <section className="py-3 lg:py-4 bg-background border-y border-border overflow-hidden" data-testid="section-trust-badges">
+      <div className="relative w-full">
+        <div className="flex gap-2 lg:gap-3 animate-marquee whitespace-nowrap w-max">
+          {loop.map((b, i) => (
             <div
-              key={b.label}
-              className="flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-2 px-1 py-2 lg:px-3 lg:py-3 rounded-lg bg-card border border-border text-center"
-              data-testid={`badge-${b.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              key={i}
+              className="flex items-center gap-1.5 lg:gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-md bg-white border border-gray-300 flex-shrink-0"
+              data-testid={`badge-${i}`}
             >
-              <b.icon className="w-5 h-5 lg:w-5 lg:h-5 text-cta-orange flex-shrink-0" />
-              <span className="text-[10px] lg:text-sm font-heading font-semibold text-foreground leading-tight">
+              <b.icon className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-black flex-shrink-0" />
+              <span className="text-xs lg:text-sm font-heading font-semibold text-black">
                 {b.label}
               </span>
             </div>
