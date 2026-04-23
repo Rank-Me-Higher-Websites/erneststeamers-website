@@ -12,21 +12,37 @@ const badges = [
 ];
 
 const TrustBadges = () => {
-  const loop = [...badges, ...badges];
+  const loop = [...badges, ...badges, ...badges];
   return (
-    <section className="py-3 lg:py-4 bg-background border-y border-border overflow-hidden" data-testid="section-trust-badges">
+    <section
+      className="py-3 lg:py-4 bg-background border-y border-border overflow-hidden relative"
+      data-testid="section-trust-badges"
+    >
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-12 lg:w-24 z-10"
+        style={{ background: "linear-gradient(to right, hsl(var(--background)), transparent)" }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 w-12 lg:w-24 z-10"
+        style={{ background: "linear-gradient(to left, hsl(var(--background)), transparent)" }}
+      />
+
       <div className="relative w-full">
-        <div className="flex gap-2 lg:gap-3 animate-marquee whitespace-nowrap w-max">
+        <div className="flex items-center gap-2 lg:gap-3 animate-marquee whitespace-nowrap w-max">
           {loop.map((b, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-1.5 lg:gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-md bg-white border border-gray-300 flex-shrink-0"
-              data-testid={`badge-${i}`}
-            >
-              <b.icon className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-black flex-shrink-0" />
-              <span className="text-xs lg:text-sm font-heading font-semibold text-black">
-                {b.label}
-              </span>
+            <div key={i} className="flex items-center gap-2 lg:gap-3 flex-shrink-0">
+              <div
+                className="flex items-center gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-white border border-gray-300 shadow-sm flex-shrink-0"
+                data-testid={`badge-${i}`}
+              >
+                <span className="flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-cta-orange/15 flex-shrink-0">
+                  <b.icon className="w-3 h-3 lg:w-3.5 lg:h-3.5 text-cta-orange" />
+                </span>
+                <span className="text-xs lg:text-sm font-heading font-semibold text-black">
+                  {b.label}
+                </span>
+              </div>
+              <span className="text-cta-orange text-base lg:text-lg flex-shrink-0">✦</span>
             </div>
           ))}
         </div>
