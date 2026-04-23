@@ -69,8 +69,8 @@ export default {
       },
       keyframes: {
         marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
         },
         "accordion-down": {
           from: {
@@ -92,7 +92,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        marquee: "marquee 30s linear infinite",
+        marquee: "marquee 60s linear infinite",
       },
     },
   },

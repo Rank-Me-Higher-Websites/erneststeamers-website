@@ -32,17 +32,17 @@ const TrustBadges = () => {
           {loop.map((b, i) => (
             <div key={i} className="flex items-center gap-2 lg:gap-3 flex-shrink-0">
               <div
-                className="flex items-center gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-white border border-gray-300 shadow-sm flex-shrink-0"
+                className="flex items-center gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-primary border border-accent-yellow/40 shadow-sm flex-shrink-0"
                 data-testid={`badge-${i}`}
               >
-                <span className="flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-cta-orange/15 flex-shrink-0">
-                  <b.icon className="w-3 h-3 lg:w-3.5 lg:h-3.5 text-cta-orange" />
+                <span className="flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-accent-yellow/20 flex-shrink-0">
+                  <b.icon className="w-3 h-3 lg:w-3.5 lg:h-3.5 text-accent-yellow" />
                 </span>
-                <span className="text-xs lg:text-sm font-heading font-semibold text-black">
+                <span className="text-xs lg:text-sm font-heading font-semibold text-accent-yellow">
                   {b.label}
                 </span>
               </div>
-              <span className="text-cta-orange text-base lg:text-lg flex-shrink-0">✦</span>
+              <span className="text-accent-yellow text-base lg:text-lg flex-shrink-0">✦</span>
             </div>
           ))}
         </div>
