@@ -48,13 +48,21 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    const source = typeof window !== "undefined" ? window.location.pathname : "";
     try {
-      await fetch("https://cdlagency.app.n8n.cloud/webhook/b276c9c8-38b7-4058-84b2-11a154d7c943", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      await Promise.allSettled([
+        fetch("https://cdlagency.app.n8n.cloud/webhook/b276c9c8-38b7-4058-84b2-11a154d7c943", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }),
+        fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...formData, source }),
+        }),
+      ]);
       setSubmitted(true);
       setFormData(initialFormData);
       setTimeout(() => {
