@@ -50,19 +50,12 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
     setSubmitting(true);
     const source = typeof window !== "undefined" ? window.location.pathname : "";
     try {
-      await Promise.allSettled([
-        fetch("https://n8n.andriusdigital.com/webhook/b276c9c8-38b7-4058-84b2-11a154d7c943", {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }),
-        fetch("/api/leads", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, source }),
-        }),
-      ]);
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, source }),
+      });
+      if (!res.ok) throw new Error("submit failed");
       setSubmitted(true);
       setFormData(initialFormData);
       setTimeout(() => {
