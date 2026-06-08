@@ -48,7 +48,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const source = typeof window !== "undefined" ? window.location.pathname : "";
+    const source = typeof window !== "undefined" ? window.location.href : "";
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
