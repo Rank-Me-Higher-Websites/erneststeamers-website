@@ -51,7 +51,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
     const source = typeof window !== "undefined" ? window.location.pathname : "";
     try {
       await Promise.allSettled([
-        fetch("https://cdlagency.app.n8n.cloud/webhook/b276c9c8-38b7-4058-84b2-11a154d7c943", {
+        fetch("https://n8n.andriusdigital.com/webhook/99751654-d1ae-4535-81fb-2e858e1c5220", {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
