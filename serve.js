@@ -7,7 +7,8 @@ import pg from 'pg';
 const { Pool } = pg;
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-const N8N_WEBHOOK = "https://n8n.andriusdigital.com/webhook/b276c9c8-38b7-4058-84b2-11a154d7c943";
+// Server-only. Set N8N_LEAD_WEBHOOK in the host environment; never expose it to the client.
+const N8N_LEAD_WEBHOOK = (process.env.N8N_LEAD_WEBHOOK || '').trim();
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const distDir = join(__dirname, 'dist');
@@ -62,27 +63,32 @@ const server = createServer(async (req, res) => {
         ]
       );
 
-      // Forward to n8n server-side (no CORS issues, real JSON, confirmable)
-      try {
-        const n8nRes = await fetch(N8N_WEBHOOK, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: d.name || '',
-            email: d.email || '',
-            phone: d.phone || '',
-            address: d.address || '',
-            service: d.service || '',
-            rooms: d.rooms || '',
-            squareFootage: d.squareFootage || '',
-            preferredDate: d.preferredDate || '',
-            message: d.message || '',
-            source: d.source || '',
-          }),
-        });
-        if (!n8nRes.ok) console.error('n8n webhook non-200:', n8nRes.status);
-      } catch (whErr) {
-        console.error('n8n webhook error:', whErr);
+      // Forward server-side so the webhook URL stays out of the client bundle.
+      // A missing URL or a failed forward must not fail the saved lead.
+      if (!N8N_LEAD_WEBHOOK) {
+        console.error('N8N_LEAD_WEBHOOK is not set; lead saved without n8n forward');
+      } else {
+        try {
+          const n8nRes = await fetch(N8N_LEAD_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: d.name || '',
+              email: d.email || '',
+              phone: d.phone || '',
+              address: d.address || '',
+              service: d.service || '',
+              rooms: d.rooms || '',
+              squareFootage: d.squareFootage || '',
+              preferredDate: d.preferredDate || '',
+              message: d.message || '',
+              source: d.source || '',
+            }),
+          });
+          if (!n8nRes.ok) console.error('n8n webhook non-200:', n8nRes.status);
+        } catch (whErr) {
+          console.error('n8n webhook error:', whErr);
+        }
       }
 
       return json(res, 200, { ok: true, id: result.rows[0].id });

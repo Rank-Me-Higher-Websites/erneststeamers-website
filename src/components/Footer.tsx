@@ -24,7 +24,7 @@ const Footer = () => {
               <li className="flex items-start gap-1.5 lg:gap-2">
                 <MapPin className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
                 <span className="text-primary-foreground/70 text-xs lg:text-sm">
-                  1018 Hummingbird Way,<br />Bartlett, IL 60103
+                  10549 Crown Rd #4,<br />Franklin Park, IL 60131
                 </span>
               </li>
             </ul>
@@ -127,7 +127,7 @@ const Footer = () => {
 
       <div className="w-full h-32 lg:h-44">
         <iframe
-          src="https://www.google.com/maps?q=Ernest+Steamers,+10549+Crown+Rd+%234,+Franklin+Park,+IL&output=embed&z=10"
+          src="https://www.google.com/maps?q=Ernest+Steamers,+10549+Crown+Rd+%234,+Franklin+Park,+IL+60131&output=embed&z=10"
           width="100%"
           height="100%"
           style={{ border: 0 }}
