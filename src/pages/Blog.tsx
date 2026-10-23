@@ -4,6 +4,7 @@ import QuoteFormDialog from "@/components/QuoteFormDialog";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogPosts } from "@/data/blogPosts";
+import { formatPostDate } from "@/lib/formatPostDate";
 
 const Blog = () => {
   return (
@@ -27,11 +28,7 @@ const Blog = () => {
         <div className="container max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogPosts.map((post) => {
-              const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              });
+              const formattedDate = formatPostDate(post.date);
               return (
                 <Link
                   key={post.slug}

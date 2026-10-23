@@ -1,29 +1,29 @@
 # Ernest Steamers
 
-Carpet, rug, and upholstery steam-cleaning lead site for Chicago and the suburbs. Vite and React frontend, with `serve.js` serving the production build and writing quote requests to Postgres.
+Carpet, rug, and upholstery steam-cleaning lead site for Chicago and the suburbs. The production build is static HTML for Cloudflare Pages. Quote requests go to n8n through a Pages Function.
 
 **NAP:** Ernest Steamers · 630-830-9867 · 10549 Crown Rd #4, Franklin Park, IL 60131
 
-## Environment
+## Build
 
-Copy `.env.example` to `.env`. Never commit `.env` or a real webhook URL.
+```bash
+npm run build    # Vite client build, then prerender every route into dist/
+npm test         # vitest
+npm run dev      # Vite dev server
+```
+
+Cloudflare Pages settings, the `N8N_LEAD_WEBHOOK` secret, and the Postgres decision are in [DEPLOY-CLOUDFLARE.md](DEPLOY-CLOUDFLARE.md). Build command: `npm run build`. Output directory: `dist`. This repo does not change DNS.
+
+`npm run build` writes one HTML file per route (`/`, `/services`, `/service-areas`, `/about`, `/blog`, each `/blog/:slug`, and `/funnel`) plus `dist/404.html` from `public/404.html`. Each file includes that page's title, meta description, canonical, NAP, and JSON-LD without requiring JavaScript.
+
+## Quote form
+
+The form posts JSON to `/api/leads`. `functions/api/leads.js` forwards that JSON to n8n.
 
 | Variable | Where it is read | Required |
 | --- | --- | --- |
-| `DATABASE_URL` | `serve.js` (`pg` pool for `POST /api/leads`) | Required to store leads |
-| `N8N_LEAD_WEBHOOK` | `serve.js` only, after the lead insert | Optional |
+| `N8N_LEAD_WEBHOOK` | Pages Function `context.env` | Required for delivery |
 
-`N8N_LEAD_WEBHOOK` is server-side. The quote form posts to `/api/leads`; the browser never sees the webhook. If `N8N_LEAD_WEBHOOK` is unset, or the forward fails, the lead is still saved and the API still returns success. Do not put this URL in client code or in a `VITE_` variable.
+Set `N8N_LEAD_WEBHOOK` as a Pages secret (locally, in `.dev.vars`). Do not commit the URL, and do not put it in client code or a `VITE_` variable. If it is unset, or n8n does not return a 2xx, the function responds with `502`. A filled `website` honeypot is dropped and still returns `{ok:true}`.
 
-Set `N8N_LEAD_WEBHOOK` in the host's environment (for example Replit secrets). This repo does not change deploy targets.
-
-## Scripts
-
-```bash
-npm run dev      # Vite dev server
-npm run build    # production client build into dist/
-npm test         # vitest
-node serve.js    # serve dist/ and POST /api/leads on port 5000
-```
-
-Production start is `npm run build && node serve.js`.
+Leads are not written to Postgres. n8n is the store.
