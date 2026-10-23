@@ -123,7 +123,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="(630) 555-1234"
+                    placeholder="Your phone number"
                     className={inputClass}
                   />
                 </div>
@@ -149,7 +149,7 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
                   required
                   value={formData.address}
                   onChange={handleChange}
-                  placeholder="123 Main St, Chicago, IL"
+                  placeholder="Street address, city, IL"
                   className={inputClass}
                 />
               </div>
