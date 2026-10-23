@@ -7,8 +7,8 @@ import pg from 'pg';
 const { Pool } = pg;
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-// Server-only. Set N8N_WEBHOOK_URL in the host environment; never expose it to the client.
-const N8N_WEBHOOK_URL = (process.env.N8N_WEBHOOK_URL || '').trim();
+// Server-only. Set N8N_LEAD_WEBHOOK in the host environment; never expose it to the client.
+const N8N_LEAD_WEBHOOK = (process.env.N8N_LEAD_WEBHOOK || '').trim();
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const distDir = join(__dirname, 'dist');
@@ -65,11 +65,11 @@ const server = createServer(async (req, res) => {
 
       // Forward server-side so the webhook URL stays out of the client bundle.
       // A missing URL or a failed forward must not fail the saved lead.
-      if (!N8N_WEBHOOK_URL) {
-        console.error('N8N_WEBHOOK_URL is not set; lead saved without n8n forward');
+      if (!N8N_LEAD_WEBHOOK) {
+        console.error('N8N_LEAD_WEBHOOK is not set; lead saved without n8n forward');
       } else {
         try {
-          const n8nRes = await fetch(N8N_WEBHOOK_URL, {
+          const n8nRes = await fetch(N8N_LEAD_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

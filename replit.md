@@ -26,7 +26,7 @@ The app runs on port 5000 via the "Start application" workflow (`npm run dev`).
 - `POST /api/leads` — logs quote-form submissions to PostgreSQL `leads` table
 - Uses `pg` Pool with `DATABASE_URL` env var (Replit-managed Postgres)
 - `leads` table columns: id, name, email, phone, address, service, rooms, square_footage, preferred_date, message, source (page path), user_agent, ip, created_at
-- QuoteFormDialog posts to `/api/leads` only. `serve.js` saves the lead, then forwards it to `N8N_WEBHOOK_URL` when that server env var is set. If the var is unset or the forward fails, the lead is still saved.
+- QuoteFormDialog posts to `/api/leads` only. `serve.js` saves the lead, then forwards it to `N8N_LEAD_WEBHOOK` when that server env var is set. If the var is unset or the forward fails, the lead is still saved.
 - Production database is queryable read-only via `executeSql({ environment: "production" })` — user can ask for leads anytime
 
 ## Migration Notes

@@ -11,11 +11,11 @@ Copy `.env.example` to `.env`. Never commit `.env` or a real webhook URL.
 | Variable | Where it is read | Required |
 | --- | --- | --- |
 | `DATABASE_URL` | `serve.js` (`pg` pool for `POST /api/leads`) | Required to store leads |
-| `N8N_WEBHOOK_URL` | `serve.js` only, after the lead insert | Optional |
+| `N8N_LEAD_WEBHOOK` | `serve.js` only, after the lead insert | Optional |
 
-`N8N_WEBHOOK_URL` is server-side. The quote form posts to `/api/leads`; the browser never sees the webhook. If `N8N_WEBHOOK_URL` is unset, or the forward fails, the lead is still saved and the API still returns success. Do not put this URL in client code or in a `VITE_` variable.
+`N8N_LEAD_WEBHOOK` is server-side. The quote form posts to `/api/leads`; the browser never sees the webhook. If `N8N_LEAD_WEBHOOK` is unset, or the forward fails, the lead is still saved and the API still returns success. Do not put this URL in client code or in a `VITE_` variable.
 
-Set `N8N_WEBHOOK_URL` in the host's environment (for example Replit secrets). This repo does not change deploy targets.
+Set `N8N_LEAD_WEBHOOK` in the host's environment (for example Replit secrets). This repo does not change deploy targets.
 
 ## Scripts
 
