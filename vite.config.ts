@@ -10,6 +10,9 @@ export default defineConfig({
     allowedHosts: true,
   },
   plugins: [react()],
+  build: {
+    manifest: true,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

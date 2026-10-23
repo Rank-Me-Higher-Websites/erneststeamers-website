@@ -31,6 +31,7 @@ const initialFormData = {
   squareFootage: "",
   preferredDate: "",
   message: "",
+  website: "",
 };
 
 const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
@@ -103,6 +104,19 @@ const QuoteFormDialog = ({ children }: QuoteFormDialogProps) => {
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="space-y-3 mt-2">
+              {/* Honeypot: humans leave this empty. /api/leads drops a filled value. */}
+              <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="quote-website">Website</label>
+                <input
+                  id="quote-website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={handleChange}
+                />
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="animate-fade-in" style={{ animationDelay: "50ms" }}>
                   <label className="text-xs font-medium text-foreground mb-1 block">Full Name *</label>

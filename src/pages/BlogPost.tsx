@@ -1,9 +1,9 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import { getPostBySlug, blogPosts } from "@/data/blogPosts";
+import { formatPostDate } from "@/lib/formatPostDate";
 import { Calendar, ArrowLeft, User } from "lucide-react";
 import NotFound from "./NotFound";
 
@@ -11,32 +11,9 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
 
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | Ernest Steamers`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute("content", post.metaDescription);
-      } else {
-        const meta = document.createElement("meta");
-        meta.name = "description";
-        meta.content = post.metaDescription;
-        document.head.appendChild(meta);
-      }
-    }
-    window.scrollTo(0, 0);
-    return () => {
-      document.title = "Ernest Steamers";
-    };
-  }, [post]);
-
   if (!post) return <NotFound />;
 
-  const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const formattedDate = formatPostDate(post.date);
 
   // Simple markdown-to-HTML for the content
   const renderContent = (content: string) => {
