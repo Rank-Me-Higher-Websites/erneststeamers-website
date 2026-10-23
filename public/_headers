@@ -1,0 +1,47 @@
+# Request-path headers for Cloudflare Pages.
+# Later rules override the same header name set by an earlier rule.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/about
+  Cache-Control: public, max-age=0, must-revalidate
+
+/services
+  Cache-Control: public, max-age=0, must-revalidate
+
+/service-areas
+  Cache-Control: public, max-age=0, must-revalidate
+
+/blog
+  Cache-Control: public, max-age=0, must-revalidate
+
+/blog/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/funnel
+  Cache-Control: public, max-age=0, must-revalidate

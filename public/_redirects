@@ -1,0 +1,7 @@
+# Cloudflare Pages checks Pages Functions first, then static files, then this file.
+# /api/leads is a Function. /sitemap.xml, /robots.txt, /assets/*, and every
+# prerendered route are static files, so they are not rewritten here.
+#
+# There is no `/* /index.html 200` SPA fallback. Every app route is already
+# written to dist as HTML, and unknown URLs must return dist/404.html with
+# status 404. A splat rewrite would serve the homepage with status 200.

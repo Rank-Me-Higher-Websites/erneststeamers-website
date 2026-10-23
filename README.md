@@ -12,7 +12,7 @@ npm test         # vitest
 npm run dev      # Vite dev server
 ```
 
-Cloudflare Pages build command: `npm run build`. Output directory: `dist`. This repo does not set DNS or the Pages project.
+Cloudflare Pages settings, the `N8N_LEAD_WEBHOOK` secret, and the Postgres decision are in [DEPLOY-CLOUDFLARE.md](DEPLOY-CLOUDFLARE.md). Build command: `npm run build`. Output directory: `dist`. This repo does not change DNS.
 
 `npm run build` writes one HTML file per route (`/`, `/services`, `/service-areas`, `/about`, `/blog`, each `/blog/:slug`, and `/funnel`) plus `dist/404.html` from `public/404.html`. Each file includes that page's title, meta description, canonical, NAP, and JSON-LD without requiring JavaScript.
 

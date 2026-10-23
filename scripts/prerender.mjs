@@ -105,6 +105,24 @@ try {
     throw new Error("dist/404.html is missing its canonical");
   }
   console.log(`prerendered ${routes.length} routes; 404.html ok`);
+
+  const staticFiles = {
+    "dist/sitemap.xml": ["<urlset", "<loc>https://erneststeamers.com/</loc>", "https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners"],
+    "dist/robots.txt": ["User-agent:", "Disallow: /funnel", "Sitemap: https://erneststeamers.com/sitemap.xml"],
+    "dist/_headers": ["/sitemap.xml", "application/xml", "/robots.txt", "text/plain", "/assets/*"],
+    "dist/_redirects": ["404.html"],
+  };
+  for (const [file, needles] of Object.entries(staticFiles)) {
+    const text = readFileSync(file, "utf8");
+    for (const needle of needles) {
+      if (!text.includes(needle)) throw new Error(`${file} is missing ${needle}`);
+    }
+    console.log(`static ${file} ok`);
+  }
+  const redirects = readFileSync("dist/_redirects", "utf8");
+  if (/^\s*\*\s+\/index\.html\s+200/m.test(redirects)) {
+    throw new Error("dist/_redirects rewrites every path to index.html");
+  }
 } finally {
   await vite.close();
 }

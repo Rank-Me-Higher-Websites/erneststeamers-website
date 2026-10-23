@@ -25,4 +25,34 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://erneststeamers.com/blog/remove-pet-stains-odors</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://erneststeamers.com/blog/steam-cleaning-vs-dry-cleaning-carpet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://erneststeamers.com/blog/upholstery-cleaning-benefits</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://erneststeamers.com/blog/carpet-cleaning-allergies-indoor-air-quality</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://erneststeamers.com/blog/commercial-carpet-cleaning-business</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
