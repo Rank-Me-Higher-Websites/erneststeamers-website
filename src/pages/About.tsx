@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
+import { PRIMARY_LOCATION, SECONDARY_OFFICES, formatAddress } from "@/data/locations";
 import cleaningAction from "@/assets/cleaning-action.png";
 import vanHouse from "@/assets/van-house.png";
 import { Leaf, ShieldCheck } from "lucide-react";
@@ -65,6 +67,19 @@ const About = () => {
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 From residential carpets to commercial floors, tile, upholstery, and pet stain removal, every job is handled with expert care and top-tier equipment. Our eco-friendly solutions are trusted throughout the Chicagoland area.
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed mt-3">
+                Ernest Steamers is located at {formatAddress(PRIMARY_LOCATION)}.
+                {SECONDARY_OFFICES.map((office) => (
+                  <span key={office.id}>
+                    {" "}
+                    Carpet, rug, and upholstery steam cleaning is also available from the{" "}
+                    <Link to={office.path} className="text-foreground underline hover:text-cta-orange">
+                      {office.city} office
+                    </Link>{" "}
+                    at {formatAddress(office)}.
+                  </span>
+                ))}
               </p>
             </div>
           </div>

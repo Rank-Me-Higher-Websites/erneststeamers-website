@@ -12,6 +12,7 @@ import About from "./pages/About.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import Funnel from "./pages/Funnel.tsx";
+import LocationPage from "./pages/Location.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ export function AppRoutes() {
         <Route path="/services" element={<Services />} />
         <Route path="/service-areas" element={<ServiceAreas />} />
         <Route path="/about" element={<About />} />
+        <Route path="/locations/:slug" element={<LocationPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/funnel" element={<Funnel />} />

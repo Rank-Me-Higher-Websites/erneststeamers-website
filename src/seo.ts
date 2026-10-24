@@ -1,18 +1,19 @@
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import { faqs } from "@/data/faqs";
+import {
+  NAP,
+  PRIMARY_LOCATION,
+  SECONDARY_OFFICES,
+  SISTER_COMPANY,
+  formatAddress,
+  getOfficeByPath,
+} from "@/data/locations";
+
+export { NAP };
 
 export const SITE = "https://erneststeamers.com";
 
-export const NAP = {
-  name: "Ernest Steamers",
-  phoneDisplay: "630-830-9867",
-  phoneSchema: "+1-630-830-9867",
-  street: "10549 Crown Rd #4",
-  city: "Franklin Park",
-  region: "IL",
-  postalCode: "60131",
-  email: "info@erneststeamers.com",
-} as const;
+const MAIN_BUSINESS_ID = `${SITE}/#business`;
 
 const AREA_SERVED = [
   "Chicago",
@@ -63,37 +64,34 @@ type PageCopy = {
   faq?: boolean;
 };
 
+const primaryAddress = formatAddress(PRIMARY_LOCATION);
+const cityLabel = `${PRIMARY_LOCATION.city}, ${PRIMARY_LOCATION.region}`;
+
 const pages: Record<string, PageCopy> = {
   "/": {
     title: "Ernest Steamers — Carpet Cleaning in Chicago & Suburbs",
-    description:
-      "Carpet, rug, and upholstery steam cleaning for Chicago and the suburbs. Ernest Steamers, 10549 Crown Rd #4, Franklin Park, IL 60131. Call 630-830-9867.",
+    description: `Carpet, rug, and upholstery steam cleaning for Chicago and the suburbs. Ernest Steamers, ${primaryAddress}. Call ${NAP.phoneDisplay}.`,
     faq: true,
   },
   "/services": {
     title: "Cleaning Services | Ernest Steamers",
-    description:
-      "Carpet cleaning, upholstery cleaning, area rug cleaning, tile and grout, and commercial carpet care from Ernest Steamers in Franklin Park, IL. Call 630-830-9867.",
+    description: `Carpet cleaning, upholstery cleaning, area rug cleaning, tile and grout, and commercial carpet care from Ernest Steamers in ${cityLabel}. Call ${NAP.phoneDisplay}.`,
   },
   "/service-areas": {
     title: "Service Areas | Ernest Steamers",
-    description:
-      "Ernest Steamers cleans carpets and upholstery across Chicago, the North Shore, DuPage County, and the northwest suburbs from Franklin Park, IL. Call 630-830-9867.",
+    description: `Ernest Steamers cleans carpets and upholstery across Chicago, the North Shore, DuPage County, and the northwest suburbs from ${cityLabel}. Call ${NAP.phoneDisplay}.`,
   },
   "/about": {
     title: "About Us | Ernest Steamers",
-    description:
-      "Ernest Steamers is a Franklin Park carpet, rug, and upholstery cleaning company serving Chicago and the suburbs. Call 630-830-9867.",
+    description: `Ernest Steamers is a ${cityLabel} carpet, rug, and upholstery cleaning company serving Chicago and the suburbs. ${primaryAddress}. Call ${NAP.phoneDisplay}.`,
   },
   "/blog": {
     title: "Carpet Cleaning Blog | Ernest Steamers",
-    description:
-      "Carpet cleaning tips, pet stain guides, and upholstery advice from Ernest Steamers in Franklin Park, IL. Call 630-830-9867.",
+    description: `Carpet cleaning tips, pet stain guides, and upholstery advice from Ernest Steamers in ${cityLabel}. Call ${NAP.phoneDisplay}.`,
   },
   "/funnel": {
     title: "Free Carpet Cleaning Quote | Ernest Steamers",
-    description:
-      "Request a free carpet, rug, or upholstery cleaning quote from Ernest Steamers in Franklin Park, IL. Call 630-830-9867.",
+    description: `Request a free carpet, rug, or upholstery cleaning quote from Ernest Steamers in ${cityLabel}. Call ${NAP.phoneDisplay}.`,
     robots: "noindex, nofollow",
     faq: true,
   },
@@ -108,10 +106,50 @@ export type SeoMeta = {
   jsonLd: Record<string, unknown>[];
 };
 
+const OPENING_HOURS = [
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "07:00",
+    closes: "19:00",
+  },
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: "Saturday",
+    opens: "09:00",
+    closes: "15:00",
+  },
+];
+
+function postalAddress(location: { street: string; city: string; region: string; postalCode: string }) {
+  return {
+    "@type": "PostalAddress",
+    streetAddress: location.street,
+    addressLocality: location.city,
+    addressRegion: location.region,
+    postalCode: location.postalCode,
+    addressCountry: "US",
+  };
+}
+
+function officeId(path: string) {
+  return `${SITE}${path}#business`;
+}
+
+function sisterOrganization() {
+  return {
+    "@type": "Organization",
+    "@id": SISTER_COMPANY.id,
+    name: SISTER_COMPANY.name,
+    url: SISTER_COMPANY.url,
+    sameAs: SISTER_COMPANY.url,
+  };
+}
+
 function localBusiness() {
   return {
     "@type": "LocalBusiness",
-    "@id": `${SITE}/#business`,
+    "@id": MAIN_BUSINESS_ID,
     name: NAP.name,
     url: `${SITE}/`,
     telephone: NAP.phoneSchema,
@@ -119,36 +157,36 @@ function localBusiness() {
     image: `${SITE}/apple-touch-icon.png`,
     description:
       "Carpet, rug, and upholstery steam cleaning for homes and businesses in Chicago and the suburbs.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: NAP.street,
-      addressLocality: NAP.city,
-      addressRegion: NAP.region,
-      postalCode: NAP.postalCode,
-      addressCountry: "US",
-    },
+    address: postalAddress(PRIMARY_LOCATION),
+    parentOrganization: sisterOrganization(),
+    department: SECONDARY_OFFICES.map((office) => ({ "@id": officeId(office.path) })),
     areaServed: AREA_SERVED.map((name) => ({ "@type": "City", name })),
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "07:00",
-        closes: "19:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "15:00",
-      },
-    ],
+    openingHoursSpecification: OPENING_HOURS,
   };
+}
+
+function secondaryBusinesses() {
+  return SECONDARY_OFFICES.map((office) => ({
+    "@type": "LocalBusiness",
+    "@id": officeId(office.path),
+    name: office.name,
+    url: `${SITE}${office.path}`,
+    telephone: office.phoneSchema,
+    email: office.email,
+    image: `${SITE}/apple-touch-icon.png`,
+    description: office.description,
+    address: postalAddress(office),
+    parentOrganization: { "@id": MAIN_BUSINESS_ID },
+    branchOf: { "@id": MAIN_BUSINESS_ID },
+    areaServed: [office.city, ...office.nearby].map((name) => ({ "@type": "City", name })),
+    openingHoursSpecification: OPENING_HOURS,
+  }));
 }
 
 function graph(nodes: Record<string, unknown>[]): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
-    "@graph": [localBusiness(), ...nodes],
+    "@graph": [localBusiness(), ...secondaryBusinesses(), ...nodes],
   };
 }
 
@@ -163,14 +201,18 @@ function faqNode() {
   };
 }
 
-function pageNode(seo: { title: string; description: string; canonical: string }, type = "WebPage") {
+function pageNode(
+  seo: { title: string; description: string; canonical: string },
+  type = "WebPage",
+  aboutId = MAIN_BUSINESS_ID,
+) {
   return {
     "@type": type,
     "@id": `${seo.canonical}#webpage`,
     url: seo.canonical,
     name: seo.title,
     description: seo.description,
-    about: { "@id": `${SITE}/#business` },
+    about: { "@id": aboutId },
     isPartOf: { "@id": `${SITE}/#website` },
   };
 }
@@ -178,8 +220,7 @@ function pageNode(seo: { title: string; description: string; canonical: string }
 function notFound(path: string): SeoMeta {
   const canonical = `${SITE}${path === "/" ? "/" : path}`;
   const title = "Page Not Found | Ernest Steamers";
-  const description =
-    "That page is not on the Ernest Steamers site. Call 630-830-9867 for carpet, rug, and upholstery cleaning in Chicago and the suburbs. 10549 Crown Rd #4, Franklin Park, IL 60131.";
+  const description = `That page is not on the Ernest Steamers site. Call ${NAP.phoneDisplay} for carpet, rug, and upholstery cleaning in Chicago and the suburbs. ${primaryAddress}.`;
   return {
     title,
     description,
@@ -214,9 +255,30 @@ export function getSeo(pathname: string): SeoMeta {
             description: post.metaDescription,
             datePublished: post.date,
             author: { "@type": "Organization", name: NAP.name, url: `${SITE}/` },
-            publisher: { "@id": `${SITE}/#business` },
+            publisher: { "@id": MAIN_BUSINESS_ID },
             mainEntityOfPage: canonical,
           },
+        ]),
+      ],
+    };
+  }
+
+  const office = getOfficeByPath(path);
+  if (office) {
+    const canonical = `${SITE}${office.path}`;
+    return {
+      title: office.title,
+      description: office.description,
+      canonical,
+      robots: "index, follow",
+      ogType: "website",
+      jsonLd: [
+        graph([
+          pageNode(
+            { title: office.title, description: office.description, canonical },
+            "WebPage",
+            officeId(office.path),
+          ),
         ]),
       ],
     };
@@ -232,7 +294,7 @@ export function getSeo(pathname: string): SeoMeta {
       "@id": `${SITE}/#website`,
       url: `${SITE}/`,
       name: NAP.name,
-      publisher: { "@id": `${SITE}/#business` },
+      publisher: { "@id": MAIN_BUSINESS_ID },
     } as unknown as ReturnType<typeof pageNode>);
   }
   if (copy.faq) nodes.push(faqNode() as unknown as ReturnType<typeof pageNode>);
@@ -253,6 +315,7 @@ export function getPrerenderPaths(): string[] {
     "/service-areas",
     "/about",
     "/blog",
+    ...SECONDARY_OFFICES.map((office) => office.path),
     "/funnel",
     ...blogPosts.map((post) => `/blog/${post.slug}`),
   ];
