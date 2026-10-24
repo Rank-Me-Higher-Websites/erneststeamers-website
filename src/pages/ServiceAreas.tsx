@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import { Phone, ChevronsRight } from "lucide-react";
+import { PRIMARY_LOCATION, SECONDARY_OFFICES, formatAddress } from "@/data/locations";
 
 import areaChicago from "@/assets/area-chicago.jpg";
 import areaWest from "@/assets/area-west.jpg";
@@ -12,7 +14,7 @@ const areas = [
   {
     region: "Chicago & Cook County",
     image: areaChicago,
-    locations: ["Chicago", "Wheeling", "Des Plaines", "Morton Grove", "Arlington Hts", "Niles", "Mt Prospect", "Skokie"],
+    locations: ["Chicago", "Franklin Park", "Wheeling", "Des Plaines", "Morton Grove", "Arlington Hts", "Niles", "Mt Prospect", "Skokie"],
   },
   {
     region: "DuPage County & South Suburbs",
@@ -27,7 +29,7 @@ const areas = [
   {
     region: "Northwest Lake & Cook Counties",
     image: areaSouth,
-    locations: ["Barrington", "Long Grove", "Palatine", "Hawthorn Woods", "Elgin", "Vernon Hills", "Schaumburg", "Buffalo Grove"],
+    locations: ["Bartlett", "Barrington", "Long Grove", "Palatine", "Hawthorn Woods", "Elgin", "Vernon Hills", "Schaumburg", "Buffalo Grove"],
   },
 ];
 
@@ -42,8 +44,11 @@ const ServiceAreas = () => {
           <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-4">
             Service Areas
           </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-6">
+          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-3">
             Ernest Steamers proudly serves Chicago and the greater Chicagoland area with professional carpet and upholstery cleaning.
+          </p>
+          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-6">
+            The main location is {formatAddress(PRIMARY_LOCATION)}.
           </p>
           <QuoteFormDialog>
             <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all">
@@ -104,6 +109,19 @@ const ServiceAreas = () => {
         </div>
 
         <div className="mt-10 text-center">
+          <p className="text-muted-foreground mb-2 max-w-2xl mx-auto">
+            Ernest Steamers is located at {formatAddress(PRIMARY_LOCATION)}.
+            {SECONDARY_OFFICES.map((office) => (
+              <span key={office.id}>
+                {" "}
+                Carpet, rug, and upholstery steam cleaning is also available from the{" "}
+                <Link to={office.path} className="text-foreground underline hover:text-cta-orange">
+                  {office.city} office
+                </Link>{" "}
+                at {formatAddress(office)}.
+              </span>
+            ))}
+          </p>
           <p className="text-muted-foreground mb-2">Don't see your area? Give us a call — we may still be able to help!</p>
           <a
             href="tel:+16308309867"

@@ -44,7 +44,7 @@ npx wrangler pages dev dist --port 8788 --ip 127.0.0.1
 
 | Path | Role |
 | --- | --- |
-| `dist/index.html`, `dist/about/index.html`, `dist/services/index.html`, `dist/service-areas/index.html`, `dist/blog/index.html`, `dist/blog/<slug>/index.html`, `dist/funnel/index.html` | Prerendered pages. Crawlers see the title, meta description, canonical, NAP, and JSON-LD without JavaScript. |
+| `dist/index.html`, `dist/about/index.html`, `dist/services/index.html`, `dist/service-areas/index.html`, `dist/locations/franklin-park/index.html`, `dist/blog/index.html`, `dist/blog/<slug>/index.html`, `dist/funnel/index.html` | Prerendered pages. Crawlers see the title, meta description, canonical, NAP, and JSON-LD without JavaScript. |
 | `dist/404.html` | Not-found page (from `public/404.html`). |
 | `dist/sitemap.xml` | Static sitemap copied from `public/sitemap.xml`. |
 | `dist/robots.txt` | Static robots file copied from `public/robots.txt`. It allows `/`, disallows `/funnel`, and points at `https://erneststeamers.com/sitemap.xml`. |

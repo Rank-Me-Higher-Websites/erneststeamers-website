@@ -2,7 +2,9 @@
 
 Carpet, rug, and upholstery steam-cleaning lead site for Chicago and the suburbs. The production build is static HTML for Cloudflare Pages. Quote requests go to n8n through a Pages Function.
 
-**NAP:** Ernest Steamers · 630-830-9867 · 10549 Crown Rd #4, Franklin Park, IL 60131
+**NAP:** Ernest Steamers · 630-830-9867 · 1018 Hummingbird Way, Bartlett, IL 60103
+
+Secondary office: 10549 Crown Rd #4, Franklin Park, IL 60131 (`/locations/franklin-park`). Sister company: [Ernest Windows](https://ernestwindows.com).
 
 ## Build
 
@@ -14,7 +16,7 @@ npm run dev      # Vite dev server
 
 Cloudflare Pages settings, the `N8N_LEAD_WEBHOOK` secret, and the Postgres decision are in [DEPLOY-CLOUDFLARE.md](DEPLOY-CLOUDFLARE.md). Build command: `npm run build`. Output directory: `dist`. This repo does not change DNS.
 
-`npm run build` writes one HTML file per route (`/`, `/services`, `/service-areas`, `/about`, `/blog`, each `/blog/:slug`, and `/funnel`) plus `dist/404.html` from `public/404.html`. Each file includes that page's title, meta description, canonical, NAP, and JSON-LD without requiring JavaScript.
+`npm run build` writes one HTML file per route (`/`, `/services`, `/service-areas`, `/about`, `/blog`, each `/blog/:slug`, `/locations/franklin-park`, and `/funnel`) plus `dist/404.html` from `public/404.html`. Each file includes that page's title, meta description, canonical, NAP, and JSON-LD without requiring JavaScript.
 
 ## Quote form
 

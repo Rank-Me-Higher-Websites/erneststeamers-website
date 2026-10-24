@@ -16,6 +16,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://erneststeamers.com/locations/franklin-park</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://erneststeamers.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
