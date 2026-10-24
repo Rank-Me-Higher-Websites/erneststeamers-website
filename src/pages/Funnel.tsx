@@ -130,7 +130,7 @@ const FunnelFooter = () => {
               className="inline-block mt-2 lg:mt-3 text-accent hover:text-primary-foreground text-xs lg:text-sm transition-colors"
               rel="noopener noreferrer"
             >
-              Sister company: {SISTER_COMPANY.name}
+              {`Sister company: ${SISTER_COMPANY.name}`}
             </a>
             <div className="flex items-center gap-2 mt-2 lg:mt-4">
               {[Facebook, Linkedin, Instagram].map((Icon, i) => (

@@ -189,7 +189,8 @@ function assertPage(file, html, { route, h1, required, offices }) {
     : `https://erneststeamers.com${route}`;
   if (route && !html.includes(`href="${canonical}"`)) problems.push(`missing canonical ${canonical}`);
   if (route) {
-    if (!html.includes("Sister company: Ernest Windows")) problems.push("missing sister company link");
+    const visible = html.replace(/<!--.*?-->/g, "");
+    if (!visible.includes("Sister company: Ernest Windows")) problems.push("missing sister company link");
     if (!html.includes("https://ernestwindows.com")) problems.push("missing sister company url");
   }
   const office = offices?.find((item) => item.path === route);
