@@ -162,7 +162,7 @@ const BlogPost = () => {
         <div className="container max-w-3xl mx-auto">
           {/* Breadcrumb */}
           <Link
-            to="/blog"
+            to="/blog/"
             className="inline-flex items-center gap-1.5 text-accent text-sm font-medium hover:underline mb-6"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Blog
@@ -218,7 +218,7 @@ const BlogPost = () => {
             {relatedPosts.map((rp) => (
               <Link
                 key={rp.slug}
-                to={`/blog/${rp.slug}`}
+                to={`/blog/${rp.slug}/`}
                 className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground overflow-hidden hover:border-accent-yellow transition-colors group"
               >
                 <div className="h-40 overflow-hidden">

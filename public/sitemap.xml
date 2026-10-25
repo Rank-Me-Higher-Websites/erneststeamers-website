@@ -6,57 +6,57 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/services</loc>
+    <loc>https://erneststeamers.com/services/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/service-areas</loc>
+    <loc>https://erneststeamers.com/service-areas/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/locations/franklin-park</loc>
+    <loc>https://erneststeamers.com/locations/franklin-park/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/about</loc>
+    <loc>https://erneststeamers.com/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog</loc>
+    <loc>https://erneststeamers.com/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners</loc>
+    <loc>https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog/remove-pet-stains-odors</loc>
+    <loc>https://erneststeamers.com/blog/remove-pet-stains-odors/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog/steam-cleaning-vs-dry-cleaning-carpet</loc>
+    <loc>https://erneststeamers.com/blog/steam-cleaning-vs-dry-cleaning-carpet/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog/upholstery-cleaning-benefits</loc>
+    <loc>https://erneststeamers.com/blog/upholstery-cleaning-benefits/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog/carpet-cleaning-allergies-indoor-air-quality</loc>
+    <loc>https://erneststeamers.com/blog/carpet-cleaning-allergies-indoor-air-quality/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://erneststeamers.com/blog/commercial-carpet-cleaning-business</loc>
+    <loc>https://erneststeamers.com/blog/commercial-carpet-cleaning-business/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

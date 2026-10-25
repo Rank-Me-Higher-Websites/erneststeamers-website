@@ -132,8 +132,18 @@ function postalAddress(location: { street: string; city: string; region: string;
   };
 }
 
+/** Root stays "/". Every other route uses the trailing slash Pages serves. */
+function publicPath(path: string): string {
+  if (!path || path === "/") return "/";
+  return path.endsWith("/") ? path : `${path}/`;
+}
+
+function absoluteRoute(path: string): string {
+  return `${SITE}${publicPath(path)}`;
+}
+
 function officeId(path: string) {
-  return `${SITE}${path}#business`;
+  return `${absoluteRoute(path)}#business`;
 }
 
 function sisterOrganization() {
@@ -170,7 +180,7 @@ function secondaryBusinesses() {
     "@type": "LocalBusiness",
     "@id": officeId(office.path),
     name: office.name,
-    url: `${SITE}${office.path}`,
+    url: absoluteRoute(office.path),
     telephone: office.phoneSchema,
     email: office.email,
     image: `${SITE}/apple-touch-icon.png`,
@@ -218,7 +228,7 @@ function pageNode(
 }
 
 function notFound(path: string): SeoMeta {
-  const canonical = `${SITE}${path === "/" ? "/" : path}`;
+  const canonical = absoluteRoute(path);
   const title = "Page Not Found | Ernest Steamers";
   const description = `That page is not on the Ernest Steamers site. Call ${NAP.phoneDisplay} for carpet, rug, and upholstery cleaning in Chicago and the suburbs. ${primaryAddress}.`;
   return {
@@ -237,7 +247,7 @@ export function getSeo(pathname: string): SeoMeta {
   if (blogSlug) {
     const post = getPostBySlug(decodeURIComponent(blogSlug[1]));
     if (!post) return notFound(path);
-    const canonical = `${SITE}/blog/${post.slug}`;
+    const canonical = absoluteRoute(`/blog/${post.slug}`);
     const title = `${post.title} | Ernest Steamers`;
     const description = post.metaDescription;
     return {
@@ -265,7 +275,7 @@ export function getSeo(pathname: string): SeoMeta {
 
   const office = getOfficeByPath(path);
   if (office) {
-    const canonical = `${SITE}${office.path}`;
+    const canonical = absoluteRoute(office.path);
     return {
       title: office.title,
       description: office.description,
@@ -286,7 +296,7 @@ export function getSeo(pathname: string): SeoMeta {
 
   const copy = pages[path];
   if (!copy) return notFound(path);
-  const canonical = path === "/" ? `${SITE}/` : `${SITE}${path}`;
+  const canonical = absoluteRoute(path);
   const nodes = [pageNode({ title: copy.title, description: copy.description, canonical })];
   if (path === "/") {
     nodes.unshift({
@@ -318,7 +328,7 @@ export function getPrerenderPaths(): string[] {
     ...SECONDARY_OFFICES.map((office) => office.path),
     "/funnel",
     ...blogPosts.map((post) => `/blog/${post.slug}`),
-  ];
+  ].map(publicPath);
 }
 
 function normalizePath(pathname: string): string {

@@ -53,7 +53,7 @@ const LocationPage = () => {
           </p>
           <p className="text-muted-foreground text-sm leading-relaxed mb-8">
             The main Ernest Steamers location is {formatAddress(PRIMARY_LOCATION)}.{" "}
-            <Link to="/service-areas" className="text-foreground underline hover:text-cta-orange">
+            <Link to="/service-areas/" className="text-foreground underline hover:text-cta-orange">
               View service areas
             </Link>
             .

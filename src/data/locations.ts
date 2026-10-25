@@ -47,6 +47,7 @@ export const SISTER_COMPANY = {
 export type SecondaryOffice = {
   id: string;
   slug: string;
+  /** Public path. Non-root routes include the trailing slash Pages redirects to. */
   path: string;
   /** Visible h1. Keep it a single text node so prerender can find it. */
   h1: string;
@@ -72,7 +73,7 @@ export const SECONDARY_OFFICES: readonly SecondaryOffice[] = [
   {
     id: "franklin-park",
     slug: "franklin-park",
-    path: "/locations/franklin-park",
+    path: "/locations/franklin-park/",
     h1: "Franklin Park Office",
     name: "Ernest Steamers Franklin Park",
     street: "10549 Crown Rd #4",
@@ -131,6 +132,12 @@ export function getOfficeBySlug(slug: string) {
   return SECONDARY_OFFICES.find((office) => office.slug === slug);
 }
 
+function stripRouteSlash(path: string) {
+  if (path.length > 1 && path.endsWith("/")) return path.slice(0, -1);
+  return path;
+}
+
 export function getOfficeByPath(path: string) {
-  return SECONDARY_OFFICES.find((office) => office.path === path);
+  const key = stripRouteSlash(path);
+  return SECONDARY_OFFICES.find((office) => stripRouteSlash(office.path) === key);
 }
