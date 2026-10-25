@@ -41,9 +41,54 @@ function rewriteAssets(html, manifest) {
   return out;
 }
 
+function bareRoute(route) {
+  if (!route || route === "/") return "/";
+  return route.replace(/\/+$/, "");
+}
+
 function outputPath(route) {
   if (route === "/") return "dist/index.html";
-  return join("dist", route.replace(/^\//, ""), "index.html");
+  return join("dist", bareRoute(route).replace(/^\//, ""), "index.html");
+}
+
+function isFilePath(path) {
+  const leaf = path.split("/").pop() || "";
+  return /\.[a-z0-9]+$/i.test(leaf);
+}
+
+/** True when an href or absolute site URL is a non-root route missing its slash. */
+function bareInternalRoute(value) {
+  if (!value || value.startsWith("mailto:") || value.startsWith("tel:") || value.startsWith("#")) return false;
+  let path = value;
+  if (value.startsWith(`${SITE}/`) || value === SITE || value === `${SITE}/`) {
+    path = value.slice(SITE.length) || "/";
+  } else if (/^[a-z][a-z0-9+.-]*:/i.test(value)) {
+    return false;
+  } else if (!value.startsWith("/")) {
+    return false;
+  }
+  const end = path.search(/[?#]/);
+  const base = end === -1 ? path : path.slice(0, end);
+  if (base === "" || base === "/") return false;
+  if (isFilePath(base)) return false;
+  return !base.endsWith("/");
+}
+
+function assertTrailingSlashRoutes(file, text) {
+  const found = new Set();
+  const attr = /(?:href|content)="([^"]*)"/g;
+  let match;
+  while ((match = attr.exec(text))) {
+    if (bareInternalRoute(match[1])) found.add(match[1]);
+  }
+  const abs = /https:\/\/erneststeamers\.com(\/[^\s"'<\\]*)/g;
+  while ((match = abs.exec(text))) {
+    const url = `${SITE}${match[1]}`;
+    if (bareInternalRoute(url)) found.add(url);
+  }
+  if (found.size) {
+    throw new Error(`${file}: non-slash internal route:\n- ${[...found].join("\n- ")}`);
+  }
 }
 
 function typesOf(node) {
@@ -142,7 +187,7 @@ function assertJsonLd(file, html, { primary, offices, sister, requireOffices }) 
   const departments = Array.isArray(main.department) ? main.department : main.department ? [main.department] : [];
   const departmentIds = new Set(departments.map((item) => item && item["@id"]));
   for (const office of offices) {
-    const officeId = `${SITE}${office.path}#business`;
+    const officeId = `${SITE}${bareRoute(office.path)}/#business`;
     const node = businesses.find((item) => item["@id"] === officeId);
     if (!node) throw new Error(`${file}: missing LocalBusiness ${officeId}`);
     const officeAddress = node.address || {};
@@ -186,14 +231,14 @@ function assertPage(file, html, { route, h1, required, offices }) {
   if (!html.includes("<h1")) problems.push("missing h1");
   const canonical = route === "/"
     ? `${SITE}/`
-    : `https://erneststeamers.com${route}`;
+    : `${SITE}${bareRoute(route)}/`;
   if (route && !html.includes(`href="${canonical}"`)) problems.push(`missing canonical ${canonical}`);
   if (route) {
     const visible = html.replace(/<!--.*?-->/g, "");
     if (!visible.includes("Sister company: Ernest Windows")) problems.push("missing sister company link");
     if (!html.includes("https://ernestwindows.com")) problems.push("missing sister company url");
   }
-  const office = offices?.find((item) => item.path === route);
+  const office = offices?.find((item) => bareRoute(item.path) === bareRoute(route));
   if (office) {
     for (const needle of [office.street, office.city, office.postalCode, "Get A Free Quote"]) {
       if (!html.includes(needle)) problems.push(`missing ${needle}`);
@@ -222,7 +267,7 @@ try {
     "/src/data/locations.ts",
   );
   for (const office of SECONDARY_OFFICES) {
-    H1_SNIPPET[office.path] = office.h1;
+    H1_SNIPPET[bareRoute(office.path)] = office.h1;
   }
   const required = [
     PRIMARY_LOCATION.phoneDisplay,
@@ -245,7 +290,13 @@ try {
     const file = outputPath(route);
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, page);
-    const title = assertPage(file, page, { route, h1: H1_SNIPPET[route], required, offices: SECONDARY_OFFICES });
+    const title = assertPage(file, page, {
+      route,
+      h1: H1_SNIPPET[bareRoute(route)],
+      required,
+      offices: SECONDARY_OFFICES,
+    });
+    assertTrailingSlashRoutes(file, page);
     assertJsonLd(file, page, {
       primary: PRIMARY_LOCATION,
       offices: SECONDARY_OFFICES,
@@ -267,13 +318,14 @@ try {
     sister: SISTER_COMPANY,
     requireOffices: false,
   });
-  if (!notFound.includes('href="https://erneststeamers.com/404"')) {
+  if (!notFound.includes('href="https://erneststeamers.com/404/"')) {
     throw new Error("dist/404.html is missing its canonical");
   }
+  assertTrailingSlashRoutes("dist/404.html", notFound);
   console.log(`prerendered ${routes.length} routes; 404.html ok`);
 
   const staticFiles = {
-    "dist/sitemap.xml": ["<urlset", "<loc>https://erneststeamers.com/</loc>", "https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners"],
+    "dist/sitemap.xml": ["<urlset", "<loc>https://erneststeamers.com/</loc>", "https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners/"],
     "dist/robots.txt": ["User-agent:", "Disallow: /funnel", "Sitemap: https://erneststeamers.com/sitemap.xml"],
     "dist/_headers": ["/sitemap.xml", "application/xml", "/robots.txt", "text/plain", "/assets/*"],
     "dist/_redirects": ["404.html"],
@@ -286,10 +338,12 @@ try {
     console.log(`static ${file} ok`);
   }
   const sitemap = readFileSync("dist/sitemap.xml", "utf8");
+  assertTrailingSlashRoutes("dist/sitemap.xml", sitemap);
   for (const route of routes) {
-    const loc = route === "/" ? `${SITE}/` : `${SITE}${route}`;
+    const bare = bareRoute(route);
+    const loc = bare === "/" ? `${SITE}/` : `${SITE}${bare}/`;
     const listed = sitemap.includes(`<loc>${loc}</loc>`);
-    if (route === "/funnel") {
+    if (bare === "/funnel") {
       if (listed) throw new Error("sitemap should not list /funnel");
       continue;
     }

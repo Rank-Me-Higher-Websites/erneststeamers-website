@@ -35,7 +35,7 @@ const AboutSection = () => {
             </p>
 
             <Link
-              to="/about"
+              to="/about/"
               className="inline-flex items-center gap-2 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-4 py-2 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-base transition-all"
             >
               Read More <span className="text-base lg:text-lg">→</span>

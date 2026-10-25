@@ -6,11 +6,16 @@ import QuoteFormDialog from "./QuoteFormDialog";
 
 const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Service Areas", path: "/service-areas" },
-  { label: "About Us", path: "/about" },
-  { label: "Blog", path: "/blog" },
+  { label: "Services", path: "/services/" },
+  { label: "Service Areas", path: "/service-areas/" },
+  { label: "About Us", path: "/about/" },
+  { label: "Blog", path: "/blog/" },
 ];
+
+function isCurrentPath(pathname: string, path: string) {
+  const strip = (value: string) => (value.length > 1 && value.endsWith("/") ? value.slice(0, -1) : value);
+  return strip(pathname) === strip(path);
+}
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,7 +34,7 @@ const Navbar = () => {
                 key={link.label}
                 to={link.path}
                 className={`text-foreground text-xs font-semibold hover:text-primary transition-colors ${
-                  location.pathname === link.path ? "underline underline-offset-4" : ""
+                  isCurrentPath(location.pathname, link.path) ? "underline underline-offset-4" : ""
                 }`}
               >
                 {link.label}

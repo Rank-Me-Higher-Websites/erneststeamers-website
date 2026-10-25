@@ -32,7 +32,7 @@ const Blog = () => {
               return (
                 <Link
                   key={post.slug}
-                  to={`/blog/${post.slug}`}
+                  to={`/blog/${post.slug}/`}
                   className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground overflow-hidden flex flex-col hover:border-accent-yellow transition-colors group"
                 >
                   <div className="h-48 overflow-hidden">

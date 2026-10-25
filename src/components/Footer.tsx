@@ -5,8 +5,8 @@ import { PRIMARY_LOCATION, SECONDARY_OFFICES, SISTER_COMPANY, mapsEmbedSrc } fro
 
 const quickLinks = [
   { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Service Areas", path: "/service-areas" },
+  { label: "Services", path: "/services/" },
+  { label: "Service Areas", path: "/service-areas/" },
   ...SECONDARY_OFFICES.map((office) => ({ label: `${office.city} Office`, path: office.path })),
   { label: "About Us", path: "/#about" },
   { label: "Blog", path: "#" },
@@ -87,7 +87,7 @@ const Footer = () => {
               ].map((service) => (
                 <li key={service}>
                   <Link
-                    to="/services"
+                    to="/services/"
                     className="text-primary-foreground/70 hover:text-accent text-[11px] lg:text-sm transition-colors flex items-center gap-1"
                   >
                     <span className="text-accent text-[10px] lg:text-xs">›</span> {service}
