@@ -1,9 +1,7 @@
-import blogCarpetTips from "@/assets/blog-carpet-tips.jpg";
-import blogPetStains from "@/assets/blog-pet-stains.jpg";
-import blogSteamVsDry from "@/assets/blog-steam-vs-dry.jpg";
-import blogUpholstery from "@/assets/blog-upholstery.jpg";
-import blogAllergies from "@/assets/blog-allergies.jpg";
-import blogCommercial from "@/assets/blog-commercial.jpg";
+import type { BlogImageName } from "@/lib/blogImages";
+
+export const BLOG_TOPICS = ["Carpets", "Pet stains", "Upholstery", "Commercial", "Health"] as const;
+export type BlogTopic = (typeof BLOG_TOPICS)[number];
 
 export interface BlogPost {
   slug: string;
@@ -12,11 +10,15 @@ export interface BlogPost {
   metaTitle?: string;
   metaDescription: string;
   excerpt: string;
-  image: string;
+  image: BlogImageName;
   imageAlt: string;
   date: string;
-  category: string;
+  topic: BlogTopic;
   author: string;
+  serviceHref: string;
+  serviceLabel: string;
+  /** Existing `/api/leads` service option string. */
+  serviceValue: string;
   content: string;
 }
 
@@ -26,14 +28,17 @@ export const blogPosts: BlogPost[] = [
     title: "5 Carpet Cleaning Tips Every Homeowner Should Know",
     metaTitle: "Carpet Cleaning Tips for Homeowners | Ernest Steamers",
     metaDescription:
-      "Learn 5 expert carpet cleaning tips from Ernest Steamers to keep your carpets fresh between professional cleanings. Serving Chicago & Chicagoland.",
+      "Five carpet cleaning tips for homeowners in Chicago and the suburbs, from Ernest Steamers in Bartlett, IL. Call 630-830-9867.",
     excerpt:
       "Keeping your carpets looking fresh between professional cleanings doesn't have to be hard. From quick spot-treatment tricks to vacuuming schedules, here are five tips that extend the life of your carpet and keep your home feeling clean.",
-    image: blogCarpetTips,
-    imageAlt: "Before and after professional carpet cleaning in a Chicago home",
+    image: "carpet-tips",
+    imageAlt: "Split view of a beige living room carpet labeled before and after, with a cleaning wand visible",
     date: "2026-03-10",
-    category: "Tips & Tricks",
+    topic: "Carpets",
     author: "Ernest Steamers",
+    serviceHref: "/services/#carpet",
+    serviceLabel: "Carpet cleaning",
+    serviceValue: "Carpet Cleaning",
     content: `## Why Carpet Maintenance Matters
 
 Your carpet is one of the largest surfaces in your home — and one of the most overlooked when it comes to regular maintenance. Over time, dirt, dust, allergens, and bacteria build up deep within the fibers, even if the surface looks clean. Without proper care, carpet fibers break down faster, colors fade, and your indoor air quality suffers.
@@ -61,7 +66,7 @@ If the stain persists, call us — we offer targeted stain removal using non-tox
 
 ## 3. Use Doormats and Remove Shoes
 
-Up to 80% of the dirt in your carpet comes from shoes. Placing quality doormats at every entrance and adopting a no-shoes policy indoors can dramatically reduce the amount of soil tracked onto your carpets.
+Much of the dirt in carpet is tracked in on shoes. Placing quality doormats at every entrance and adopting a no-shoes policy indoors can dramatically reduce the amount of soil tracked onto your carpets.
 
 ## 4. Rearrange Furniture Periodically
 
@@ -79,20 +84,23 @@ At Ernest Steamers, we use truck-mounted hot water extraction equipment that del
 
 These five simple habits can extend the life of your carpet by years and keep your home healthier. But when it's time for a deep clean, trust the professionals.
 
-**Ernest Steamers proudly serves Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call us at [630-830-9867](tel:6308309867) or request a free quote today.`,
+**Ernest Steamers proudly serves Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call us at [630-830-9867](tel:+16308309867) or request a free quote today.`,
   },
   {
     slug: "remove-pet-stains-odors",
     title: "How to Remove Pet Stains & Odors for Good",
     metaDescription:
-      "Struggling with pet stains and odors? Ernest Steamers explains why DIY cleaners fail and how professional steam cleaning eliminates pet messes permanently.",
+      "Pet stains and odors on carpet: what to do before a professional clean, from Ernest Steamers in Bartlett, IL. Call 630-830-9867.",
     excerpt:
       "Pet accidents happen — but they don't have to leave a permanent mark. Learn why store-bought cleaners often fall short and how professional steam extraction eliminates stains and odors at the source.",
-    image: blogPetStains,
-    imageAlt: "Family with pets on clean carpet in living room",
+    image: "pet-stains",
+    imageAlt: "Family with two dogs and three children on a light rug in a living room",
     date: "2026-02-24",
-    category: "Pet Care",
+    topic: "Pet stains",
     author: "Ernest Steamers",
+    serviceHref: "/services/#carpet",
+    serviceLabel: "Carpet cleaning",
+    serviceValue: "Carpet Cleaning",
     content: `## The Hidden Problem with Pet Accidents
 
 If you have pets, you've dealt with accidents on your carpet. Whether it's a new puppy still being trained, an older dog with occasional issues, or a cat that occasionally misses the litter box — pet urine, vomit, and other messes are one of the most common reasons homeowners call us.
@@ -137,21 +145,24 @@ Between professional cleanings, here's how to minimize pet-related carpet damage
 
 Even if your carpets have years of pet damage, professional treatment can make a dramatic difference. We've restored carpets that homeowners were ready to replace — saving them thousands of dollars.
 
-**Ernest Steamers serves pet owners across Chicago, Naperville, Arlington Heights, Evanston, Orland Park, and all surrounding suburbs.** Call [630-830-9867](tel:6308309867) for a free estimate.`,
+**Ernest Steamers serves pet owners across Chicago, Naperville, Arlington Heights, Evanston, Orland Park, and all surrounding suburbs.** Call [630-830-9867](tel:+16308309867) for a free estimate.`,
   },
   {
     slug: "steam-cleaning-vs-dry-cleaning-carpet",
     title: "Steam Cleaning vs. Dry Cleaning: Which Is Better for Your Carpet?",
     metaTitle: "Steam Cleaning vs. Dry Cleaning Carpet | Ernest Steamers",
     metaDescription:
-      "Steam cleaning vs dry cleaning carpet — which is better? Ernest Steamers compares both methods to help you choose the right carpet cleaning for your Chicago home.",
+      "Steam cleaning versus dry cleaning for carpet, compared for Chicago-area homes by Ernest Steamers in Bartlett. Call 630-830-9867.",
     excerpt:
       "Not all carpet cleaning methods are created equal. We break down the pros and cons of hot water extraction (steam cleaning) vs. dry cleaning so you can make an informed decision.",
-    image: blogSteamVsDry,
-    imageAlt: "Professional steam cleaning equipment on tile floor",
+    image: "steam-vs-dry",
+    imageAlt: "Rotary floor cleaning machine spreading foam on a light tile floor",
     date: "2026-02-12",
-    category: "Education",
+    topic: "Carpets",
     author: "Ernest Steamers",
+    serviceHref: "/services/#carpet",
+    serviceLabel: "Carpet cleaning",
+    serviceValue: "Carpet Cleaning",
     content: `## Understanding Your Carpet Cleaning Options
 
 When it comes to professional carpet cleaning, two methods dominate the industry: **hot water extraction (steam cleaning)** and **dry cleaning**. Both have their place, but they work very differently — and deliver very different results.
@@ -216,21 +227,24 @@ We exclusively use truck-mounted hot water extraction equipment because it deliv
 
 Combined with our non-toxic, eco-friendly cleaning solutions, we deliver a deep clean that's safe for children, pets, and the environment.
 
-**Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:6308309867) or request your free quote today.`,
+**Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) or request your free quote today.`,
   },
   {
     slug: "upholstery-cleaning-benefits",
     title: "Why You Should Clean Your Upholstery More Often Than You Think",
     metaTitle: "Upholstery Cleaning Benefits | Ernest Steamers",
     metaDescription:
-      "Discover why regular upholstery cleaning improves indoor air quality, extends furniture life, and removes hidden allergens. Ernest Steamers serves Chicago & suburbs.",
+      "Why sofas and chairs collect dust, and how upholstery cleaning helps homes in Chicago and the suburbs. Call 630-830-9867.",
     excerpt:
       "Your couch collects dust, allergens, and bacteria every single day. Regular upholstery cleaning improves air quality and extends the life of your furniture.",
-    image: blogUpholstery,
-    imageAlt: "Clean white upholstered sofa in modern living room",
+    image: "upholstery",
+    imageAlt: "Light fabric sofa with pillows in a living room with hardwood floors",
     date: "2026-01-28",
-    category: "Upholstery",
+    topic: "Upholstery",
     author: "Ernest Steamers",
+    serviceHref: "/services/#upholstery",
+    serviceLabel: "Upholstery cleaning",
+    serviceValue: "Upholstery Cleaning",
     content: `## Your Furniture Is Dirtier Than You Think
 
 Think about how much time you spend on your couch, chairs, and other upholstered furniture. Now think about everything that ends up on those surfaces: body oils, sweat, pet dander, food crumbs, dust, pollen, and skin cells. The average couch collects **pounds** of debris every year.
@@ -280,23 +294,26 @@ We recommend professional upholstery cleaning:
 
 ## Extend the Life of Your Furniture
 
-Quality furniture is an investment. A single sofa can cost $1,000 to $5,000 or more. Regular professional cleaning protects that investment by preventing permanent staining, fiber degradation, and odor buildup.
+Quality upholstery is a real investment. Regular professional cleaning protects that investment by preventing permanent staining, fiber degradation, and odor buildup.
 
-**Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Call [630-830-9867](tel:6308309867) for your free estimate.`,
+**Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) for your free estimate.`,
   },
   {
     slug: "carpet-cleaning-allergies-indoor-air-quality",
     title: "Carpet Cleaning & Allergies: How Clean Carpets Improve Your Health",
     metaTitle: "Carpet Cleaning and Allergies | Ernest Steamers",
     metaDescription:
-      "Learn how dirty carpets trigger allergies and asthma. Ernest Steamers explains how professional carpet cleaning improves indoor air quality in Chicago homes.",
+      "How carpet holds dust, dander, and pollen in Chicago-area homes, and how cleaning can help reduce them. Call 630-830-9867.",
     excerpt:
       "Dirty carpets are one of the biggest triggers for indoor allergies. Dust mites, pet dander, and pollen get trapped in carpet fibers. Here's how professional cleaning can dramatically reduce symptoms.",
-    image: blogAllergies,
-    imageAlt: "Person experiencing allergies caused by dirty carpet",
+    image: "allergies",
+    imageAlt: "Person in a blue shirt sitting on beige carpet and holding their nose",
     date: "2026-01-15",
-    category: "Health",
+    topic: "Health",
     author: "Ernest Steamers",
+    serviceHref: "/services/#carpet",
+    serviceLabel: "Carpet cleaning",
+    serviceValue: "Carpet Cleaning",
     content: `## The Connection Between Carpets and Allergies
 
 If you or your family members suffer from allergies, asthma, or respiratory issues, your carpet could be making things worse. Carpets act like a giant filter, trapping airborne particles as they settle. While this can actually be beneficial — keeping allergens out of the air you breathe — it only works if the carpet is regularly and thoroughly cleaned.
@@ -332,7 +349,7 @@ Direct contact with dirty carpet can cause eczema flare-ups, rashes, and itching
 ## How Professional Carpet Cleaning Helps
 
 ### Removes Allergens at the Source
-Professional hot water extraction removes up to **98% of allergens** from carpet, according to studies conducted by carpet cleaning industry researchers. This is far more effective than vacuuming alone, which only removes surface-level particles.
+Hot-water extraction removes many allergens from carpet. This is far more effective than vacuuming alone, which only removes surface-level particles.
 
 ### Kills Dust Mites
 The high water temperatures used in professional steam cleaning (150–200°F) are lethal to dust mites. Combined with powerful extraction, both the mites and their waste products are removed.
@@ -358,21 +375,24 @@ In addition to professional carpet cleaning every 6 months, we recommend:
 
 Our eco-friendly, non-toxic cleaning process is specifically designed to be safe for allergy and asthma sufferers — including children and the elderly. We use residue-free solutions that won't trigger chemical sensitivities.
 
-**Serving allergy sufferers across Chicago, Naperville, Evanston, Schaumburg, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:6308309867) or request your free quote today.`,
+**Serving allergy sufferers across Chicago, Naperville, Evanston, Schaumburg, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) or request your free quote today.`,
   },
   {
     slug: "commercial-carpet-cleaning-business",
     title: "Commercial Carpet Cleaning: Why It Matters for Your Business",
     metaTitle: "Commercial Carpet Cleaning | Ernest Steamers",
     metaDescription:
-      "Learn why commercial carpet cleaning is essential for your Chicago business. Ernest Steamers explains how clean carpets impact first impressions and employee health.",
+      "Commercial carpet cleaning for offices and shops across Chicago and the suburbs, from Ernest Steamers. Call 630-830-9867.",
     excerpt:
       "First impressions count. Clean carpets in your office or retail space signal professionalism and care. We explain how routine commercial cleaning protects your investment.",
-    image: blogCommercial,
-    imageAlt: "Clean commercial office space with professional carpet",
+    image: "commercial",
+    imageAlt: "Open office with gray carpet, desks, chairs, and glass-walled rooms",
     date: "2026-01-03",
-    category: "Commercial",
+    topic: "Commercial",
     author: "Ernest Steamers",
+    serviceHref: "/services/#commercial",
+    serviceLabel: "Commercial carpet cleaning",
+    serviceValue: "Commercial Carpet Cleaning",
     content: `## First Impressions Start from the Ground Up
 
 When a client, customer, or potential partner walks into your business, they form an impression within seconds. And while you may focus on your lobby furniture, signage, and reception area, the condition of your carpet speaks volumes about your professionalism and attention to detail.
@@ -389,12 +409,12 @@ Commercial carpets in offices accumulate significant amounts of dust, allergens,
 - Respiratory complaints and allergy symptoms
 - Higher healthcare costs
 
-The EPA estimates that indoor air quality issues cost U.S. businesses **billions of dollars annually** in lost productivity.
+Poor indoor air quality costs businesses in lost productivity.
 
 ### Carpet Longevity and Cost Savings
-Commercial carpet is a significant investment — typically $3 to $12 per square foot installed. Without regular professional cleaning, embedded dirt acts like sandpaper on carpet fibers, causing premature wear and requiring early replacement.
+Commercial carpet is a significant investment. Without regular professional cleaning, embedded dirt acts like sandpaper on carpet fibers, causing premature wear and requiring early replacement. Replacing carpet costs far more than cleaning it.
 
-A consistent cleaning program can extend your carpet's life by **50% or more**, saving thousands of dollars in replacement costs.
+Regular professional cleaning helps carpet last longer.
 
 ### Liability and Safety
 Dirty carpets can become slippery and contribute to slip-and-fall accidents. Regular cleaning removes soil buildup that can make carpets hazardous, helping you avoid potential liability issues.
@@ -448,10 +468,19 @@ Ernest Steamers provides commercial carpet cleaning for businesses across Chicag
 
 Your carpet is one of the first things people notice — and one of the last things many businesses think about cleaning. Don't let dirty floors undermine your professional image.
 
-**Ernest Steamers serves businesses across Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:6308309867) for a free commercial estimate.`,
+**Ernest Steamers serves businesses across Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) for a free commercial estimate.`,
   },
 ];
 
 export const getPostBySlug = (slug: string): BlogPost | undefined => {
   return blogPosts.find((post) => post.slug === slug);
 };
+
+export function relatedPosts(slug: string, limit = 3): BlogPost[] {
+  const current = getPostBySlug(slug);
+  const others = blogPosts.filter((post) => post.slug !== slug);
+  if (!current) return others.slice(0, limit);
+  const sameTopic = others.filter((post) => post.topic === current.topic);
+  const rest = others.filter((post) => post.topic !== current.topic);
+  return [...sameTopic, ...rest].slice(0, limit);
+}

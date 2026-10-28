@@ -1,92 +1,93 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StickyMobileBar from "@/components/StickyMobileBar";
+import CallButton from "@/components/CallButton";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
-import { Calendar, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { blogPosts } from "@/data/blogPosts";
-import { formatPostDate } from "@/lib/formatPostDate";
+import PostCard from "@/components/blog/PostCard";
+import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
+import { BLOG_TOPICS, blogPosts, type BlogTopic } from "@/data/blogPosts";
+
+function QuoteBand({ heading, links = false }: { heading: string; links?: boolean }) {
+  return (
+    <section className="rounded-2xl bg-primary px-6 py-8 text-primary-foreground">
+      <h2 className="font-heading text-2xl font-bold md:text-3xl">{heading}</h2>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <CallButton className={`${buttonOrange} w-full sm:w-auto`} />
+        <QuoteFormDialog>
+          <button type="button" className={`${buttonOutline} w-full sm:w-auto`}>
+            Get a Quote
+          </button>
+        </QuoteFormDialog>
+      </div>
+      {links ? (
+        <p className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-base">
+          <Link to="/services/" className={`underline underline-offset-2 ${focusRing}`}>
+            Cleaning services
+          </Link>
+          <Link to="/service-areas/" className={`underline underline-offset-2 ${focusRing}`}>
+            Service areas
+          </Link>
+        </p>
+      ) : null}
+    </section>
+  );
+}
 
 const Blog = () => {
+  const [filter, setFilter] = useState<"All" | BlogTopic>("All");
+  const matches = filter === "All" ? blogPosts : blogPosts.filter((post) => post.topic === filter);
+  const featured = filter === "All" ? matches[0] : undefined;
+  const grid = featured ? matches.slice(1) : matches;
+  const chips = ["All", ...BLOG_TOPICS] as const;
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-
-      {/* Hero Banner */}
-      <section className="bg-hero py-12 lg:py-16">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-4">
-            Blog
-          </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
-            Expert carpet cleaning tips, guides, and insights from the Ernest Steamers team.
-          </p>
-        </div>
-      </section>
-
-      {/* Blog Posts Grid */}
-      <section className="py-12 px-4">
-        <div className="container max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => {
-              const formattedDate = formatPostDate(post.date);
-              return (
-                <Link
-                  key={post.slug}
-                  to={`/blog/${post.slug}/`}
-                  className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground overflow-hidden flex flex-col hover:border-accent-yellow transition-colors group"
-                >
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.imageAlt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-semibold bg-accent/20 text-accent px-2.5 py-1 rounded-full">
-                        {post.category}
-                      </span>
-                      <span className="flex items-center gap-1 text-xs text-primary-foreground/60">
-                        <Calendar className="w-3 h-3" />
-                        {formattedDate}
-                      </span>
-                    </div>
-                    <h2 className="font-heading font-bold text-lg text-primary-foreground mb-2 leading-tight">
-                      {post.title}
-                    </h2>
-                    <p className="text-primary-foreground/70 text-sm leading-relaxed flex-1">
-                      {post.excerpt}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-accent font-heading font-bold text-sm group-hover:gap-2.5 transition-all">
-                      Read More <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+      <main>
+        <section className="bg-white px-4 pb-4 pt-12 lg:pt-16">
+          <div className="mx-auto max-w-6xl">
+            <h1 className={sectionTitle}>Blog</h1>
+            <p className={`${bodyText} mt-3 max-w-2xl`}>
+              Carpet, upholstery, and pet-stain cleaning guides for Chicago-area homes.
+            </p>
+            <div className="mt-6 flex gap-2 overflow-x-auto pb-2" role="toolbar" aria-label="Filter articles">
+              {chips.map((chip) => {
+                const selected = filter === chip;
+                return (
+                  <button
+                    key={chip}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => setFilter(chip)}
+                    className={`inline-flex min-h-12 shrink-0 items-center rounded-full px-4 text-base font-semibold ${focusRing} ${
+                      selected ? "bg-primary text-primary-foreground" : "bg-[hsl(216,40%,96%)] text-primary"
+                    }`}
+                  >
+                    {chip}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Bottom CTA */}
-      <section className="bg-hero py-12">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-primary-foreground mb-4">
-            Ready for a Cleaner Home?
-          </h2>
-          <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
-            Put these tips into action — or let the pros handle it. Get your free quote from Ernest Steamers today!
-          </p>
-          <QuoteFormDialog>
-            <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all">
-              GET A FREE QUOTE
-            </button>
-          </QuoteFormDialog>
-        </div>
-      </section>
-
+        <section className="px-4 py-6" aria-label="Articles">
+          <div className="mx-auto flex max-w-6xl flex-col gap-8">
+            {featured ? <PostCard post={featured} featured priority /> : null}
+            <QuoteBand heading="Need a quote? Carpet cleaning starts at $99" />
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {grid.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+            <QuoteBand heading="Ready for a professional clean?" links />
+          </div>
+        </section>
+      </main>
       <Footer />
+      <StickyMobileBar />
     </div>
   );
 };

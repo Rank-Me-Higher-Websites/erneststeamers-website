@@ -1,5 +1,6 @@
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import { partsText, serviceBlocks, serviceFaqs } from "@/data/servicesPage";
+import { BLOG_FEATURED_SIZES, BLOG_HERO_SIZES, blogImageSrc, blogPreload } from "@/lib/blogImages";
 import {
   HERO_AVIF_SRCSET,
   HERO_IMAGE_SIZES,
@@ -102,7 +103,8 @@ const pages: Record<string, PageCopy> = {
   },
   "/blog": {
     title: "Carpet Cleaning Blog | Ernest Steamers",
-    description: `Carpet cleaning tips, pet stain guides, and upholstery advice from Ernest Steamers in ${cityLabel}. Call ${NAP.phoneDisplay}.`,
+    description:
+      "Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Bartlett, IL. Practical tips for Chicago-area homes. Call 630-830-9867.",
   },
   "/funnel": {
     title: "Free Carpet Cleaning Quote | Ernest Steamers",
@@ -119,6 +121,7 @@ export type SeoMeta = {
   robots: string;
   ogType: "website" | "article";
   jsonLd: Record<string, unknown>[];
+  image?: string;
 };
 
 const OPENING_HOURS = [
@@ -215,6 +218,32 @@ function graph(nodes: Record<string, unknown>[]): Record<string, unknown> {
   };
 }
 
+function breadcrumbNode(items: { name: string; item: string }[]) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((entry, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: entry.name,
+      item: entry.item,
+    })),
+  };
+}
+
+function articleNode(post: (typeof blogPosts)[number], canonical: string) {
+  return {
+    "@type": "Article",
+    headline: post.title,
+    description: post.metaDescription,
+    image: `${SITE}${blogImageSrc(post.image)}`,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Organization", name: NAP.name, url: `${SITE}/` },
+    publisher: { "@id": MAIN_BUSINESS_ID },
+    mainEntityOfPage: canonical,
+  };
+}
+
 function faqNodeFrom(items: { q: string; a: string }[]) {
   return {
     "@type": "FAQPage",
@@ -303,18 +332,16 @@ export function getSeo(pathname: string): SeoMeta {
       canonical,
       robots: "index, follow",
       ogType: "article",
+      image: `${SITE}${blogImageSrc(post.image)}`,
       jsonLd: [
         graph([
           pageNode({ title: schemaTitle, description, canonical }, "WebPage"),
-          {
-            "@type": "BlogPosting",
-            headline: post.title,
-            description: post.metaDescription,
-            datePublished: post.date,
-            author: { "@type": "Organization", name: NAP.name, url: `${SITE}/` },
-            publisher: { "@id": MAIN_BUSINESS_ID },
-            mainEntityOfPage: canonical,
-          },
+          breadcrumbNode([
+            { name: "Home", item: `${SITE}/` },
+            { name: "Blog", item: absoluteRoute("/blog") },
+            { name: post.title, item: canonical },
+          ]),
+          articleNode(post, canonical),
         ]),
       ],
     };
@@ -380,12 +407,36 @@ export function getSeo(pathname: string): SeoMeta {
     } as unknown as ReturnType<typeof pageNode>);
   }
   if (copy.faq) nodes.push(faqNode() as unknown as ReturnType<typeof pageNode>);
+  if (path === "/blog") {
+    nodes.push({
+      "@type": "Blog",
+      "@id": `${canonical}#blog`,
+      url: canonical,
+      name: copy.title,
+      description: copy.description,
+      blogPost: blogPosts.map((post) => ({
+        "@type": "Article",
+        headline: post.title,
+        url: absoluteRoute(`/blog/${post.slug}`),
+        datePublished: post.date,
+        image: `${SITE}${blogImageSrc(post.image)}`,
+      })),
+    } as unknown as ReturnType<typeof pageNode>);
+    nodes.push(
+      breadcrumbNode([
+        { name: "Home", item: `${SITE}/` },
+        { name: "Blog", item: canonical },
+      ]) as unknown as ReturnType<typeof pageNode>,
+    );
+  }
+  const featured = blogPosts[0];
   return {
     title: copy.title,
     description: copy.description,
     canonical,
     robots: copy.robots ?? "index, follow",
     ogType: "website",
+    image: path === "/blog" ? `${SITE}${blogImageSrc(featured.image)}` : undefined,
     jsonLd: [graph(nodes)],
   };
 }
@@ -417,8 +468,9 @@ function escapeAttr(value: string): string {
   return escapeText(value).replace(/"/g, "&quot;");
 }
 
-function shareImage(canonical: string): string {
-  if (canonical === `${SITE}/` || canonical === `${SITE}/about/`) return `${SITE}/images/home/og.jpg`;
+function shareImage(seo: SeoMeta): string {
+  if (seo.image) return seo.image;
+  if (seo.canonical === `${SITE}/` || seo.canonical === `${SITE}/about/`) return `${SITE}/images/home/og.jpg`;
   return `${SITE}/apple-touch-icon.png`;
 }
 
@@ -440,6 +492,16 @@ function lcpImage(canonical: string) {
       sizes: ABOUT_STORY_SIZES,
     };
   }
+  if (canonical === `${SITE}/blog/`) {
+    const preload = blogPreload(blogPosts[0].image, BLOG_FEATURED_SIZES);
+    return { href: preload.href, srcset: preload.srcSet, sizes: preload.sizes };
+  }
+  const slug = canonical.match(/\/blog\/([^/]+)\/$/)?.[1];
+  const post = slug ? getPostBySlug(slug) : undefined;
+  if (post) {
+    const preload = blogPreload(post.image, BLOG_HERO_SIZES);
+    return { href: preload.href, srcset: preload.srcSet, sizes: preload.sizes };
+  }
   return null;
 }
 
@@ -456,7 +518,7 @@ export function renderSeoHead(seo: SeoMeta): string {
         `<script type="application/ld+json" data-seo-jsonld>${JSON.stringify(block).replace(/</g, "\\u003c")}</script>`,
     )
     .join("\n    ");
-  const image = shareImage(seo.canonical);
+  const image = shareImage(seo);
   const preload = heroPreload(seo.canonical);
   return [
     `<title>${escapeText(seo.title)}</title>`,
@@ -513,9 +575,8 @@ function syncHeroPreload(canonical: string) {
   link.setAttribute("fetchpriority", "high");
 }
 
-/** Keep the document head in sync after client-side navigations. */
 export function applySeoToDocument(seo: SeoMeta) {
-  const image = shareImage(seo.canonical);
+  const image = shareImage(seo);
   document.title = seo.title;
   upsertMeta("name", "description", seo.description);
   upsertMeta("name", "robots", seo.robots);
