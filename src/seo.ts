@@ -1,4 +1,5 @@
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
+import { HERO_AVIF_SRCSET, HERO_IMAGE_SIZES, HERO_PRELOAD_HREF } from "@/lib/homeImages";
 import { faqs } from "@/data/faqs";
 import {
   NAP,
@@ -69,8 +70,9 @@ const cityLabel = `${PRIMARY_LOCATION.city}, ${PRIMARY_LOCATION.region}`;
 
 const pages: Record<string, PageCopy> = {
   "/": {
-    title: "Ernest Steamers — Carpet Cleaning in Chicago & Suburbs",
-    description: `Carpet, rug, and upholstery steam cleaning for Chicago and the suburbs. Ernest Steamers, ${primaryAddress}. Call ${NAP.phoneDisplay}.`,
+    title: "Carpet Cleaning in Chicago & Suburbs | Ernest Steamers",
+    description:
+      "Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Certified technicians, carpet cleaning starts at $99. Call 630-830-9867.",
     faq: true,
   },
   "/services": {
@@ -346,6 +348,15 @@ function escapeAttr(value: string): string {
   return escapeText(value).replace(/"/g, "&quot;");
 }
 
+function shareImage(canonical: string): string {
+  return canonical === `${SITE}/` ? `${SITE}/images/home/og.jpg` : `${SITE}/apple-touch-icon.png`;
+}
+
+function heroPreload(canonical: string): string {
+  if (canonical !== `${SITE}/`) return "";
+  return `<link rel="preload" as="image" type="image/avif" href="${HERO_PRELOAD_HREF}" imagesrcset="${HERO_AVIF_SRCSET}" imagesizes="${HERO_IMAGE_SIZES}" fetchpriority="high" />`;
+}
+
 export function renderSeoHead(seo: SeoMeta): string {
   const scripts = seo.jsonLd
     .map(
@@ -353,23 +364,28 @@ export function renderSeoHead(seo: SeoMeta): string {
         `<script type="application/ld+json" data-seo-jsonld>${JSON.stringify(block).replace(/</g, "\\u003c")}</script>`,
     )
     .join("\n    ");
+  const image = shareImage(seo.canonical);
+  const preload = heroPreload(seo.canonical);
   return [
     `<title>${escapeText(seo.title)}</title>`,
     `<meta name="description" content="${escapeAttr(seo.description)}" />`,
     `<meta name="robots" content="${escapeAttr(seo.robots)}" />`,
     `<link rel="canonical" href="${escapeAttr(seo.canonical)}" />`,
+    preload,
     `<meta property="og:title" content="${escapeAttr(seo.title)}" />`,
     `<meta property="og:description" content="${escapeAttr(seo.description)}" />`,
     `<meta property="og:type" content="${seo.ogType}" />`,
     `<meta property="og:url" content="${escapeAttr(seo.canonical)}" />`,
-    `<meta property="og:image" content="${SITE}/apple-touch-icon.png" />`,
+    `<meta property="og:image" content="${escapeAttr(image)}" />`,
     `<meta property="og:site_name" content="${escapeAttr(NAP.name)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(seo.title)}" />`,
     `<meta name="twitter:description" content="${escapeAttr(seo.description)}" />`,
-    `<meta name="twitter:image" content="${SITE}/apple-touch-icon.png" />`,
+    `<meta name="twitter:image" content="${escapeAttr(image)}" />`,
     scripts,
-  ].join("\n    ");
+  ]
+    .filter(Boolean)
+    .join("\n    ");
 }
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {
@@ -382,8 +398,29 @@ function upsertMeta(attr: "name" | "property", key: string, content: string) {
   el.setAttribute("content", content);
 }
 
+function syncHeroPreload(canonical: string) {
+  let link = document.head.querySelector("link[data-hero-preload]");
+  if (canonical !== `${SITE}/`) {
+    link?.remove();
+    return;
+  }
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "preload");
+    link.setAttribute("as", "image");
+    link.setAttribute("data-hero-preload", "");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("type", "image/avif");
+  link.setAttribute("href", HERO_PRELOAD_HREF);
+  link.setAttribute("imagesrcset", HERO_AVIF_SRCSET);
+  link.setAttribute("imagesizes", HERO_IMAGE_SIZES);
+  link.setAttribute("fetchpriority", "high");
+}
+
 /** Keep the document head in sync after client-side navigations. */
 export function applySeoToDocument(seo: SeoMeta) {
+  const image = shareImage(seo.canonical);
   document.title = seo.title;
   upsertMeta("name", "description", seo.description);
   upsertMeta("name", "robots", seo.robots);
@@ -391,12 +428,13 @@ export function applySeoToDocument(seo: SeoMeta) {
   upsertMeta("property", "og:description", seo.description);
   upsertMeta("property", "og:type", seo.ogType);
   upsertMeta("property", "og:url", seo.canonical);
-  upsertMeta("property", "og:image", `${SITE}/apple-touch-icon.png`);
+  upsertMeta("property", "og:image", image);
   upsertMeta("property", "og:site_name", NAP.name);
   upsertMeta("name", "twitter:card", "summary_large_image");
   upsertMeta("name", "twitter:title", seo.title);
   upsertMeta("name", "twitter:description", seo.description);
-  upsertMeta("name", "twitter:image", `${SITE}/apple-touch-icon.png`);
+  upsertMeta("name", "twitter:image", image);
+  syncHeroPreload(seo.canonical);
 
   let canonical = document.head.querySelector('link[rel="canonical"]');
   if (!canonical) {

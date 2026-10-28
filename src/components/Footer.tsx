@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="container max-w-7xl mx-auto px-3 lg:px-4 py-6 lg:py-12">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
           <div className="col-span-2 sm:col-span-1">
-            <img src={logo} alt="Ernest Steamers" className="h-10 lg:h-14 mb-2 lg:mb-4" />
+            <img src={logo} alt="Ernest Steamers" width={283} height={67} className="mb-2 h-10 w-auto lg:mb-4 lg:h-14" />
             <a href="tel:+16308309867" className="block font-heading font-bold text-primary-foreground text-base lg:text-xl mb-2 lg:mb-3">
               630-830-9867
             </a>
@@ -58,13 +58,20 @@ const Footer = () => {
               {`Sister company: ${SISTER_COMPANY.name}`}
             </a>
             <div className="flex items-center gap-2 mt-2 lg:mt-4">
-              {[Facebook, Linkedin, Instagram].map((Icon, i) => (
+              {(
+                [
+                  { label: "Facebook", Icon: Facebook },
+                  { label: "LinkedIn", Icon: Linkedin },
+                  { label: "Instagram", Icon: Instagram },
+                ] as const
+              ).map(({ label, Icon }) => (
                 <a
-                  key={i}
+                  key={label}
                   href="#"
-                  className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center hover:bg-accent transition-colors"
+                  aria-label={label}
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary-foreground/15 transition-colors hover:bg-accent"
                 >
-                  <Icon className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-primary-foreground" />
+                  <Icon className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -88,7 +95,7 @@ const Footer = () => {
                 <li key={service}>
                   <Link
                     to="/services/"
-                    className="text-primary-foreground/70 hover:text-accent text-[11px] lg:text-sm transition-colors flex items-center gap-1"
+                    className="inline-flex min-h-8 items-center gap-1 py-1 text-sm text-primary-foreground/80 transition-colors hover:text-accent"
                   >
                     <span className="text-accent text-[10px] lg:text-xs">›</span> {service}
                   </Link>
@@ -107,7 +114,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <Link
                     to={link.path}
-                    className="text-primary-foreground/70 hover:text-accent text-[11px] lg:text-sm transition-colors flex items-center gap-1"
+                    className="inline-flex min-h-8 items-center gap-1 py-1 text-sm text-primary-foreground/80 transition-colors hover:text-accent"
                   >
                     <span className="text-accent text-[10px] lg:text-xs">›</span> {link.label}
                   </Link>
@@ -164,17 +171,17 @@ const Footer = () => {
       <div className="border-t border-primary-foreground/10 bg-primary">
         <div className="container max-w-7xl mx-auto px-3 lg:px-4 py-3 lg:py-4 flex flex-col sm:flex-row items-center justify-between gap-2 lg:gap-3">
           <div className="flex items-center gap-3 lg:gap-4">
-            <a href="#" className="text-accent hover:text-primary-foreground/80 text-[10px] lg:text-xs transition-colors">
+            <a href="#" className="inline-flex min-h-8 items-center text-sm text-accent underline">
               Privacy Policy
             </a>
-            <span className="text-primary-foreground/20">|</span>
-            <a href="#" className="text-accent hover:text-primary-foreground/80 text-[10px] lg:text-xs transition-colors">
+            <span className="text-primary-foreground/40">|</span>
+            <a href="#" className="inline-flex min-h-8 items-center text-sm text-accent underline">
               Terms & Conditions
             </a>
           </div>
-          <p className="text-primary-foreground/50 text-[10px] lg:text-xs">
+          <p className="text-xs text-primary-foreground/80 lg:text-sm">
             © Copyright Ernest Steamers. All rights reserved – Website by{" "}
-            <a href="#" className="text-accent hover:underline">HSdigital</a> {currentYear}
+            <a href="#" className="text-accent underline">HSdigital</a> {currentYear}
           </p>
         </div>
       </div>

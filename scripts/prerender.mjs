@@ -6,7 +6,7 @@ const SITE = "https://erneststeamers.com";
 const MAIN_ID = `${SITE}/#business`;
 
 const H1_SNIPPET = {
-  "/": "Expert Carpet Cleaning in Chicago",
+  "/": "Upholstery Steam Cleaning in Chicago",
   "/services": "Our Cleaning Services",
   "/service-areas": "Service Areas",
   "/about": "About Ernest Steamers",
