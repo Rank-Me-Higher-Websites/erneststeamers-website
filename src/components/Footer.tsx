@@ -10,6 +10,7 @@ const quickLinks = [
   ...SECONDARY_OFFICES.map((office) => ({ label: `${office.city} Office`, path: office.path })),
   { label: "About Us", path: "/#about" },
   { label: "Blog", path: "#" },
+  { label: "Contact", path: "/contact/" },
 ];
 
 const Footer = () => {

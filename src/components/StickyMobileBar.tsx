@@ -7,11 +7,13 @@ import { buttonOrange, focusRing } from "@/components/home/ui";
 type StickyMobileBarProps = {
   /** When set, "Get a quote" scrolls to this element instead of opening the dialog. */
   scrollTo?: string;
+  /** The quote form is already on the page, so the bar only offers a call. */
+  callOnly?: boolean;
 };
 
 const quoteClass = `min-h-12 w-full rounded-lg bg-primary px-3 text-left text-base font-heading font-bold leading-tight text-primary-foreground ${focusRing}`;
 
-export default function StickyMobileBar({ scrollTo }: StickyMobileBarProps) {
+export default function StickyMobileBar({ scrollTo, callOnly = false }: StickyMobileBarProps) {
   const [visible, setVisible] = useState(false);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
@@ -67,8 +69,8 @@ export default function StickyMobileBar({ scrollTo }: StickyMobileBarProps) {
       hidden={!visible || keyboardOpen}
       data-testid="bar-sticky-mobile"
     >
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-stretch gap-2 p-2">
-        {scrollTo ? (
+      <div className={callOnly ? "p-2" : "grid grid-cols-[minmax(0,1fr)_auto] items-stretch gap-2 p-2"}>
+        {callOnly ? null : scrollTo ? (
           <button type="button" className={quoteClass} onClick={scrollToForm}>
             {quoteLabel}
           </button>
@@ -82,11 +84,11 @@ export default function StickyMobileBar({ scrollTo }: StickyMobileBarProps) {
         <a
           href={phoneTelHref()}
           aria-label={`Call ${PHONE_DISPLAY}`}
-          className={`${buttonOrange} min-w-12 px-4`}
+          className={callOnly ? `${buttonOrange} w-full` : `${buttonOrange} min-w-12 px-4`}
           data-testid="button-mobile-call"
         >
           <Phone className="h-5 w-5" aria-hidden="true" />
-          Call
+          {callOnly ? `Call ${PHONE_DISPLAY}` : "Call"}
         </a>
       </div>
     </div>

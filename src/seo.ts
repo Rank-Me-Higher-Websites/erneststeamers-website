@@ -101,13 +101,18 @@ const pages: Record<string, PageCopy> = {
     description:
       "Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call 630-830-9867.",
   },
+  "/contact": {
+    title: "Free Carpet Cleaning Quote | Ernest Steamers",
+    description:
+      "Request a free carpet, rug or upholstery cleaning quote from Ernest Steamers in Chicago & suburbs. Starts at $99. Call 630-830-9867.",
+  },
   "/blog": {
     title: "Carpet Cleaning Blog | Ernest Steamers",
     description:
       "Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Bartlett, IL. Practical tips for Chicago-area homes. Call 630-830-9867.",
   },
   "/funnel": {
-    title: "Free Carpet Cleaning Quote | Ernest Steamers",
+    title: "Carpet Cleaning Quote Request | Ernest Steamers",
     description: `Request a free carpet, rug, or upholstery cleaning quote from Ernest Steamers in ${cityLabel}. Call ${NAP.phoneDisplay}.`,
     robots: "noindex, nofollow",
     faq: true,
@@ -371,7 +376,7 @@ export function getSeo(pathname: string): SeoMeta {
   const copy = pages[path];
   if (!copy) return notFound(path);
   const canonical = absoluteRoute(path);
-  const pageType = path === "/about" ? "AboutPage" : "WebPage";
+  const pageType = path === "/about" ? "AboutPage" : path === "/contact" ? "ContactPage" : "WebPage";
   const nodes = [pageNode({ title: copy.title, description: copy.description, canonical }, pageType)];
   if (path === "/") {
     nodes.unshift({
@@ -396,13 +401,13 @@ export function getSeo(pathname: string): SeoMeta {
     }
     nodes.push(faqNodeFrom(serviceFaqs) as unknown as ReturnType<typeof pageNode>);
   }
-  if (path === "/about") {
+  if (path === "/about" || path === "/contact") {
     nodes.push({
       "@type": "BreadcrumbList",
       "@id": `${canonical}#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: "About", item: canonical },
+        { "@type": "ListItem", position: 2, name: path === "/contact" ? "Contact" : "About", item: canonical },
       ],
     } as unknown as ReturnType<typeof pageNode>);
   }
@@ -447,6 +452,7 @@ export function getPrerenderPaths(): string[] {
     "/services",
     "/service-areas",
     "/about",
+    "/contact",
     "/blog",
     ...SECONDARY_OFFICES.map((office) => office.path),
     "/funnel",
