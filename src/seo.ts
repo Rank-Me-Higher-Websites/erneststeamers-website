@@ -1,5 +1,13 @@
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
-import { HERO_AVIF_SRCSET, HERO_IMAGE_SIZES, HERO_PRELOAD_HREF } from "@/lib/homeImages";
+import { partsText, serviceBlocks, serviceFaqs } from "@/data/servicesPage";
+import {
+  HERO_AVIF_SRCSET,
+  HERO_IMAGE_SIZES,
+  HERO_PRELOAD_HREF,
+  SERVICES_CARPET_AVIF_SRCSET,
+  SERVICES_CARPET_PRELOAD_HREF,
+  SERVICES_CARPET_SIZES,
+} from "@/lib/homeImages";
 import { faqs } from "@/data/faqs";
 import {
   NAP,
@@ -76,8 +84,9 @@ const pages: Record<string, PageCopy> = {
     faq: true,
   },
   "/services": {
-    title: "Cleaning Services | Ernest Steamers",
-    description: `Carpet cleaning, upholstery cleaning, area rug cleaning, tile and grout, and commercial carpet care from Ernest Steamers in ${cityLabel}. Call ${NAP.phoneDisplay}.`,
+    title: "Carpet, Rug & Upholstery Cleaning Services | Ernest Steamers",
+    description:
+      "Carpet, upholstery, area rug, tile & grout and commercial carpet cleaning in Chicago and suburbs. Carpet cleaning starts at $99. Call 630-830-9867.",
   },
   "/service-areas": {
     title: "Service Areas | Ernest Steamers",
@@ -202,15 +211,46 @@ function graph(nodes: Record<string, unknown>[]): Record<string, unknown> {
   };
 }
 
-function faqNode() {
+function faqNodeFrom(items: { q: string; a: string }[]) {
   return {
     "@type": "FAQPage",
-    mainEntity: faqs.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
+}
+
+function faqNode() {
+  return faqNodeFrom(faqs);
+}
+
+function serviceNodes(canonical: string) {
+  return serviceBlocks.map((service) => {
+    const node: Record<string, unknown> = {
+      "@type": "Service",
+      "@id": `${canonical}#${service.id}`,
+      name: service.service,
+      serviceType: service.service,
+      url: `${canonical}#${service.id}`,
+      description: partsText(service.body),
+      provider: { "@id": MAIN_BUSINESS_ID },
+    };
+    if (service.startsAt) {
+      node.offers = {
+        "@type": "Offer",
+        description: "Starts at $99",
+        priceCurrency: "USD",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: 99,
+          priceCurrency: "USD",
+        },
+      };
+    }
+    return node;
+  });
 }
 
 function pageNode(
@@ -310,6 +350,20 @@ export function getSeo(pathname: string): SeoMeta {
       publisher: { "@id": MAIN_BUSINESS_ID },
     } as unknown as ReturnType<typeof pageNode>);
   }
+  if (path === "/services") {
+    nodes.push({
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: "Services", item: canonical },
+      ],
+    } as unknown as ReturnType<typeof pageNode>);
+    for (const service of serviceNodes(canonical)) {
+      nodes.push(service as unknown as ReturnType<typeof pageNode>);
+    }
+    nodes.push(faqNodeFrom(serviceFaqs) as unknown as ReturnType<typeof pageNode>);
+  }
   if (copy.faq) nodes.push(faqNode() as unknown as ReturnType<typeof pageNode>);
   return {
     title: copy.title,
@@ -352,9 +406,24 @@ function shareImage(canonical: string): string {
   return canonical === `${SITE}/` ? `${SITE}/images/home/og.jpg` : `${SITE}/apple-touch-icon.png`;
 }
 
+function lcpImage(canonical: string) {
+  if (canonical === `${SITE}/`) {
+    return { href: HERO_PRELOAD_HREF, srcset: HERO_AVIF_SRCSET, sizes: HERO_IMAGE_SIZES };
+  }
+  if (canonical === `${SITE}/services/`) {
+    return {
+      href: SERVICES_CARPET_PRELOAD_HREF,
+      srcset: SERVICES_CARPET_AVIF_SRCSET,
+      sizes: SERVICES_CARPET_SIZES,
+    };
+  }
+  return null;
+}
+
 function heroPreload(canonical: string): string {
-  if (canonical !== `${SITE}/`) return "";
-  return `<link rel="preload" as="image" type="image/avif" href="${HERO_PRELOAD_HREF}" imagesrcset="${HERO_AVIF_SRCSET}" imagesizes="${HERO_IMAGE_SIZES}" fetchpriority="high" />`;
+  const image = lcpImage(canonical);
+  if (!image) return "";
+  return `<link rel="preload" as="image" type="image/avif" href="${image.href}" imagesrcset="${image.srcset}" imagesizes="${image.sizes}" fetchpriority="high" />`;
 }
 
 export function renderSeoHead(seo: SeoMeta): string {
@@ -399,22 +468,25 @@ function upsertMeta(attr: "name" | "property", key: string, content: string) {
 }
 
 function syncHeroPreload(canonical: string) {
-  let link = document.head.querySelector("link[data-hero-preload]");
-  if (canonical !== `${SITE}/`) {
-    link?.remove();
+  const image = lcpImage(canonical);
+  const links = [...document.head.querySelectorAll('link[rel="preload"][as="image"]')];
+  if (!image) {
+    links.forEach((node) => node.remove());
     return;
   }
+  let link = links[0];
+  for (const extra of links.slice(1)) extra.remove();
   if (!link) {
     link = document.createElement("link");
     link.setAttribute("rel", "preload");
     link.setAttribute("as", "image");
-    link.setAttribute("data-hero-preload", "");
     document.head.appendChild(link);
   }
+  link.setAttribute("data-lcp-preload", "");
   link.setAttribute("type", "image/avif");
-  link.setAttribute("href", HERO_PRELOAD_HREF);
-  link.setAttribute("imagesrcset", HERO_AVIF_SRCSET);
-  link.setAttribute("imagesizes", HERO_IMAGE_SIZES);
+  link.setAttribute("href", image.href);
+  link.setAttribute("imagesrcset", image.srcset);
+  link.setAttribute("imagesizes", image.sizes);
   link.setAttribute("fetchpriority", "high");
 }
 

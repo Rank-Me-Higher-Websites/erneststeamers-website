@@ -19,3 +19,12 @@ export const HERO_PRELOAD_HREF = "/images/home/hero-1200.avif";
 export const HERO_AVIF_SRCSET = homeImages.hero.widths
   .map((width) => `/images/home/hero-${width}.avif ${width}w`)
   .join(", ");
+
+/** Matches the first services photo (carpet) and its preload. */
+export const SERVICES_CARPET_SIZES = "(min-width: 1024px) 560px, 100vw";
+
+export const SERVICES_CARPET_PRELOAD_HREF = "/images/home/carpet-768.avif";
+
+export const SERVICES_CARPET_AVIF_SRCSET = homeImages.carpet.widths
+  .map((width) => `/images/home/carpet-${width}.avif ${width}w`)
+  .join(", ");
