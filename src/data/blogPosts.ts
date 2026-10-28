@@ -66,7 +66,7 @@ If the stain persists, call us — we offer targeted stain removal using non-tox
 
 ## 3. Use Doormats and Remove Shoes
 
-Up to 80% of the dirt in your carpet comes from shoes. Placing quality doormats at every entrance and adopting a no-shoes policy indoors can dramatically reduce the amount of soil tracked onto your carpets.
+Much of the dirt in carpet is tracked in on shoes. Placing quality doormats at every entrance and adopting a no-shoes policy indoors can dramatically reduce the amount of soil tracked onto your carpets.
 
 ## 4. Rearrange Furniture Periodically
 
@@ -294,7 +294,7 @@ We recommend professional upholstery cleaning:
 
 ## Extend the Life of Your Furniture
 
-Quality furniture is an investment. A single sofa can cost $1,000 to $5,000 or more. Regular professional cleaning protects that investment by preventing permanent staining, fiber degradation, and odor buildup.
+Quality upholstery is a real investment. Regular professional cleaning protects that investment by preventing permanent staining, fiber degradation, and odor buildup.
 
 **Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) for your free estimate.`,
   },
@@ -349,7 +349,7 @@ Direct contact with dirty carpet can cause eczema flare-ups, rashes, and itching
 ## How Professional Carpet Cleaning Helps
 
 ### Removes Allergens at the Source
-Professional hot water extraction removes up to **98% of allergens** from carpet, according to studies conducted by carpet cleaning industry researchers. This is far more effective than vacuuming alone, which only removes surface-level particles.
+Hot-water extraction removes many allergens from carpet. This is far more effective than vacuuming alone, which only removes surface-level particles.
 
 ### Kills Dust Mites
 The high water temperatures used in professional steam cleaning (150–200°F) are lethal to dust mites. Combined with powerful extraction, both the mites and their waste products are removed.
@@ -409,12 +409,12 @@ Commercial carpets in offices accumulate significant amounts of dust, allergens,
 - Respiratory complaints and allergy symptoms
 - Higher healthcare costs
 
-The EPA estimates that indoor air quality issues cost U.S. businesses **billions of dollars annually** in lost productivity.
+Poor indoor air quality costs businesses in lost productivity.
 
 ### Carpet Longevity and Cost Savings
-Commercial carpet is a significant investment — typically $3 to $12 per square foot installed. Without regular professional cleaning, embedded dirt acts like sandpaper on carpet fibers, causing premature wear and requiring early replacement.
+Commercial carpet is a significant investment. Without regular professional cleaning, embedded dirt acts like sandpaper on carpet fibers, causing premature wear and requiring early replacement. Replacing carpet costs far more than cleaning it.
 
-A consistent cleaning program can extend your carpet's life by **50% or more**, saving thousands of dollars in replacement costs.
+Regular professional cleaning helps carpet last longer.
 
 ### Liability and Safety
 Dirty carpets can become slippery and contribute to slip-and-fall accidents. Regular cleaning removes soil buildup that can make carpets hazardous, helping you avoid potential liability issues.

@@ -75,7 +75,7 @@ describe("blog post", () => {
     expect(screen.getByRole("link", { name: "carpet cleaning for allergies" }).getAttribute("href")).toBe(
       "/blog/carpet-cleaning-allergies-indoor-air-quality/",
     );
-    expect(container.textContent).toContain("Up to 80% of the dirt in your carpet comes from shoes.");
+    expect(container.textContent).toContain("Much of the dirt in carpet is tracked in on shoes.");
     expect(screen.getAllByRole("link", { name: "Why Carpet Maintenance Matters" }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: "Read" })).toHaveLength(3);
     expect(screen.getByRole("link", { name: "Service details" }).getAttribute("href")).toBe("/services/#carpet");
@@ -132,33 +132,41 @@ describe("blog post", () => {
     steam.unmount();
 
     const allergies = renderPost("carpet-cleaning-allergies-indoor-air-quality");
-    expect(allergies.container.textContent).toContain("98% of allergens");
+    expect(allergies.container.textContent).toContain("Hot-water extraction removes many allergens");
+    expect(allergies.container.textContent).not.toContain("98%");
     allergies.unmount();
 
     const commercial = renderPost("commercial-carpet-cleaning-business");
-    expect(commercial.container.textContent).toContain("50% or more");
-    expect(commercial.container.textContent).toContain("$3 to $12 per square foot");
+    expect(commercial.container.textContent).toContain("Regular professional cleaning helps carpet last longer.");
+    expect(commercial.container.textContent).toContain("Replacing carpet costs far more than cleaning it.");
+    expect(commercial.container.textContent).toContain("Poor indoor air quality costs businesses in lost productivity.");
+    expect(commercial.container.textContent).not.toMatch(/50%|\$3 to \$12|billions of dollars/);
     expect(commercial.container.querySelector("table")?.textContent).toContain("Medical/dental offices");
     commercial.unmount();
 
     const upholstery = renderPost("upholstery-cleaning-benefits");
-    expect(upholstery.container.textContent).toContain("$1,000 to $5,000");
+    expect(upholstery.container.textContent).toContain("Quality upholstery is a real investment.");
+    expect(upholstery.container.textContent).not.toContain("$1,000");
     expect(upholstery.container.querySelector('a[href="/services/#upholstery"]')).toBeTruthy();
   });
 });
 
 describe("stored article copy", () => {
-  it("leaves the unsourced statistics in place and normalizes only the phone link", () => {
+  it("keeps the phone link and states the old statistics without figures", () => {
     const tips = getPostBySlug("carpet-cleaning-tips-homeowners");
     const allergies = getPostBySlug("carpet-cleaning-allergies-indoor-air-quality");
     const commercial = getPostBySlug("commercial-carpet-cleaning-business");
     const upholstery = getPostBySlug("upholstery-cleaning-benefits");
-    expect(tips?.content).toContain("Up to 80% of the dirt in your carpet comes from shoes.");
+    expect(tips?.content).toContain("Much of the dirt in carpet is tracked in on shoes.");
+    expect(tips?.content).not.toContain("80%");
     expect(tips?.content).toContain("](/blog/carpet-cleaning-allergies-indoor-air-quality/)");
-    expect(allergies?.content).toContain("98% of allergens");
-    expect(commercial?.content).toContain("50% or more");
-    expect(commercial?.content).toContain("$3 to $12 per square foot");
-    expect(upholstery?.content).toContain("$1,000 to $5,000 or more");
+    expect(allergies?.content).toContain("Hot-water extraction removes many allergens");
+    expect(allergies?.content).not.toContain("98%");
+    expect(commercial?.content).toContain("Regular professional cleaning helps carpet last longer.");
+    expect(commercial?.content).toContain("Replacing carpet costs far more than cleaning it.");
+    expect(commercial?.content).not.toMatch(/50%|\$3 to \$12|billions of dollars/);
+    expect(upholstery?.content).toContain("Quality upholstery is a real investment.");
+    expect(upholstery?.content).not.toContain("$1,000");
     expect(tips?.title).toBe("5 Carpet Cleaning Tips Every Homeowner Should Know");
     expect(tips?.metaTitle).toBe("Carpet Cleaning Tips for Homeowners | Ernest Steamers");
     expect(getPostBySlug("remove-pet-stains-odors")?.metaTitle).toBeUndefined();
