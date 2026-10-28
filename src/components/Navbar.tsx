@@ -30,11 +30,15 @@ const Navbar = () => {
     ? "#hero-quote"
     : isCurrentPath(location.pathname, "/services")
       ? "#services-quote"
-      : isCurrentPath(location.pathname, "/about")
-        ? "#about-quote"
-        : isCurrentPath(location.pathname, "/contact")
-          ? "#contact-quote"
-          : null;
+        : isCurrentPath(location.pathname, "/about")
+          ? "#about-quote"
+          : isCurrentPath(location.pathname, "/contact")
+            ? "#contact-quote"
+            : isCurrentPath(location.pathname, "/service-areas")
+              ? "#areas-quote"
+              : isCurrentPath(location.pathname, "/locations/franklin-park")
+                ? "#franklin-park-quote"
+                : null;
 
   const quote = quoteHref ? (
     <a href={quoteHref} className={quoteClass} onClick={() => setMobileOpen(false)}>

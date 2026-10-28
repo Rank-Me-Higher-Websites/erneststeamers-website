@@ -62,6 +62,11 @@ export type SecondaryOffice = {
   email: string;
   title: string;
   description: string;
+  /**
+   * SERP description. When set, LocalBusiness.description stays `description`
+   * so the branch schema does not change.
+   */
+  metaDescription?: string;
   /** Hero sentence for the location page. */
   intro: string;
   /** Body sentence describing the work at this office. */
@@ -74,7 +79,7 @@ export const SECONDARY_OFFICES: readonly SecondaryOffice[] = [
     id: "franklin-park",
     slug: "franklin-park",
     path: "/locations/franklin-park/",
-    h1: "Franklin Park Office",
+    h1: "Carpet and Upholstery Cleaning in Franklin Park, IL",
     name: "Ernest Steamers Franklin Park",
     street: "10549 Crown Rd #4",
     city: "Franklin Park",
@@ -84,9 +89,11 @@ export const SECONDARY_OFFICES: readonly SecondaryOffice[] = [
     phoneDisplay: PHONE_DISPLAY,
     phoneSchema: PHONE_SCHEMA,
     email: EMAIL,
-    title: "Franklin Park Office | Ernest Steamers",
+    title: "Carpet Cleaning in Franklin Park, IL | Ernest Steamers",
     description:
       "Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call 630-830-9867.",
+    metaDescription:
+      "Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call 630-830-9867 for a quote.",
     intro: "Carpet, rug, and upholstery steam cleaning for Franklin Park and nearby suburbs.",
     details:
       "The Franklin Park office provides carpet, rug, and upholstery steam cleaning for homes and businesses.",

@@ -13,6 +13,8 @@ import {
   SERVICES_CARPET_SIZES,
 } from "@/lib/homeImages";
 import { faqs } from "@/data/faqs";
+import { franklinParkFaqs } from "@/data/franklinParkPage";
+import { serviceAreasDescription, serviceAreasTitle } from "@/data/serviceAreas";
 import {
   NAP,
   PRIMARY_LOCATION,
@@ -93,8 +95,8 @@ const pages: Record<string, PageCopy> = {
       "Carpet, upholstery, area rug, tile & grout and commercial carpet cleaning in Chicago and suburbs. Carpet cleaning starts at $99. Call 630-830-9867.",
   },
   "/service-areas": {
-    title: "Service Areas | Ernest Steamers",
-    description: `Ernest Steamers cleans carpets and upholstery across Chicago, the North Shore, DuPage County, and the northwest suburbs from ${cityLabel}. Call ${NAP.phoneDisplay}.`,
+    title: serviceAreasTitle,
+    description: serviceAreasDescription,
   },
   "/about": {
     title: "About Ernest Steamers | Carpet Cleaning in Bartlett, IL",
@@ -355,21 +357,29 @@ export function getSeo(pathname: string): SeoMeta {
   const office = getOfficeByPath(path);
   if (office) {
     const canonical = absoluteRoute(office.path);
+    const description = office.metaDescription ?? office.description;
+    const nodes = [
+      pageNode({ title: office.title, description, canonical }, "WebPage", officeId(office.path)),
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: "Service Areas", item: `${SITE}/service-areas/` },
+          { "@type": "ListItem", position: 3, name: office.city, item: canonical },
+        ],
+      } as unknown as ReturnType<typeof pageNode>,
+    ];
+    if (office.slug === "franklin-park") {
+      nodes.push(faqNodeFrom(franklinParkFaqs) as unknown as ReturnType<typeof pageNode>);
+    }
     return {
       title: office.title,
-      description: office.description,
+      description,
       canonical,
       robots: "index, follow",
       ogType: "website",
-      jsonLd: [
-        graph([
-          pageNode(
-            { title: office.title, description: office.description, canonical },
-            "WebPage",
-            officeId(office.path),
-          ),
-        ]),
-      ],
+      jsonLd: [graph(nodes)],
     };
   }
 
@@ -408,6 +418,16 @@ export function getSeo(pathname: string): SeoMeta {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
         { "@type": "ListItem", position: 2, name: path === "/contact" ? "Contact" : "About", item: canonical },
+      ],
+    } as unknown as ReturnType<typeof pageNode>);
+  }
+  if (path === "/service-areas") {
+    nodes.push({
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: "Service Areas", item: canonical },
       ],
     } as unknown as ReturnType<typeof pageNode>);
   }
@@ -507,6 +527,13 @@ function lcpImage(canonical: string) {
   if (post) {
     const preload = blogPreload(post.image, BLOG_HERO_SIZES);
     return { href: preload.href, srcset: preload.srcSet, sizes: preload.sizes };
+  }
+  if (canonical === `${SITE}/locations/franklin-park/`) {
+    return {
+      href: SERVICES_CARPET_PRELOAD_HREF,
+      srcset: SERVICES_CARPET_AVIF_SRCSET,
+      sizes: SERVICES_CARPET_SIZES,
+    };
   }
   return null;
 }
