@@ -4,6 +4,9 @@ import {
   HERO_AVIF_SRCSET,
   HERO_IMAGE_SIZES,
   HERO_PRELOAD_HREF,
+  ABOUT_STORY_AVIF_SRCSET,
+  ABOUT_STORY_PRELOAD_HREF,
+  ABOUT_STORY_SIZES,
   SERVICES_CARPET_AVIF_SRCSET,
   SERVICES_CARPET_PRELOAD_HREF,
   SERVICES_CARPET_SIZES,
@@ -93,8 +96,9 @@ const pages: Record<string, PageCopy> = {
     description: `Ernest Steamers cleans carpets and upholstery across Chicago, the North Shore, DuPage County, and the northwest suburbs from ${cityLabel}. Call ${NAP.phoneDisplay}.`,
   },
   "/about": {
-    title: "About Us | Ernest Steamers",
-    description: `Ernest Steamers is a ${cityLabel} carpet, rug, and upholstery cleaning company serving Chicago and the suburbs. ${primaryAddress}. Call ${NAP.phoneDisplay}.`,
+    title: "About Ernest Steamers | Carpet Cleaning in Bartlett, IL",
+    description:
+      "Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call 630-830-9867.",
   },
   "/blog": {
     title: "Carpet Cleaning Blog | Ernest Steamers",
@@ -340,7 +344,8 @@ export function getSeo(pathname: string): SeoMeta {
   const copy = pages[path];
   if (!copy) return notFound(path);
   const canonical = absoluteRoute(path);
-  const nodes = [pageNode({ title: copy.title, description: copy.description, canonical })];
+  const pageType = path === "/about" ? "AboutPage" : "WebPage";
+  const nodes = [pageNode({ title: copy.title, description: copy.description, canonical }, pageType)];
   if (path === "/") {
     nodes.unshift({
       "@type": "WebSite",
@@ -363,6 +368,16 @@ export function getSeo(pathname: string): SeoMeta {
       nodes.push(service as unknown as ReturnType<typeof pageNode>);
     }
     nodes.push(faqNodeFrom(serviceFaqs) as unknown as ReturnType<typeof pageNode>);
+  }
+  if (path === "/about") {
+    nodes.push({
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: "About", item: canonical },
+      ],
+    } as unknown as ReturnType<typeof pageNode>);
   }
   if (copy.faq) nodes.push(faqNode() as unknown as ReturnType<typeof pageNode>);
   return {
@@ -403,7 +418,8 @@ function escapeAttr(value: string): string {
 }
 
 function shareImage(canonical: string): string {
-  return canonical === `${SITE}/` ? `${SITE}/images/home/og.jpg` : `${SITE}/apple-touch-icon.png`;
+  if (canonical === `${SITE}/` || canonical === `${SITE}/about/`) return `${SITE}/images/home/og.jpg`;
+  return `${SITE}/apple-touch-icon.png`;
 }
 
 function lcpImage(canonical: string) {
@@ -415,6 +431,13 @@ function lcpImage(canonical: string) {
       href: SERVICES_CARPET_PRELOAD_HREF,
       srcset: SERVICES_CARPET_AVIF_SRCSET,
       sizes: SERVICES_CARPET_SIZES,
+    };
+  }
+  if (canonical === `${SITE}/about/`) {
+    return {
+      href: ABOUT_STORY_PRELOAD_HREF,
+      srcset: ABOUT_STORY_AVIF_SRCSET,
+      sizes: ABOUT_STORY_SIZES,
     };
   }
   return null;
