@@ -1,10 +1,20 @@
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StickyMobileBar from "@/components/StickyMobileBar";
+import CallButton from "@/components/CallButton";
+import StartsAtBadge from "@/components/StartsAtBadge";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
-import { getPostBySlug, blogPosts } from "@/data/blogPosts";
+import ArticleBody from "@/components/blog/ArticleBody";
+import ArticleToc from "@/components/blog/ArticleToc";
+import BlogImage from "@/components/blog/BlogImage";
+import PostCard from "@/components/blog/PostCard";
+import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
+import { getPostBySlug, relatedPosts } from "@/data/blogPosts";
+import { BLOG_HERO_SIZES } from "@/lib/blogImages";
+import { parseBlocks, readingMinutes } from "@/lib/blogContent";
 import { formatPostDate } from "@/lib/formatPostDate";
-import { Calendar, ArrowLeft, User } from "lucide-react";
 import NotFound from "./NotFound";
 
 const BlogPost = () => {
@@ -13,236 +23,121 @@ const BlogPost = () => {
 
   if (!post) return <NotFound />;
 
-  const formattedDate = formatPostDate(post.date);
-
-  // Simple markdown-to-HTML for the content
-  const renderContent = (content: string) => {
-    return content.split("\n").map((line, i) => {
-      const trimmed = line.trim();
-      if (!trimmed) return null;
-
-      // H2
-      if (trimmed.startsWith("## ")) {
-        return (
-          <h2 key={i} className="font-heading font-bold text-xl md:text-2xl text-foreground mt-8 mb-3">
-            {trimmed.replace("## ", "")}
-          </h2>
-        );
-      }
-      // H3
-      if (trimmed.startsWith("### ")) {
-        return (
-          <h3 key={i} className="font-heading font-bold text-lg text-foreground mt-6 mb-2">
-            {trimmed.replace("### ", "")}
-          </h3>
-        );
-      }
-      // Bullet list
-      if (trimmed.startsWith("- **")) {
-        const match = trimmed.match(/^- \*\*(.+?)\*\*\s*[—–-]?\s*(.*)$/);
-        if (match) {
-          return (
-            <li key={i} className="text-muted-foreground text-sm leading-relaxed ml-4 mb-1.5 list-disc">
-              <strong className="text-foreground">{match[1]}</strong>
-              {match[2] ? ` — ${match[2]}` : ""}
-            </li>
-          );
-        }
-        const match2 = trimmed.match(/^- \*\*(.+?)\*\*(.*)$/);
-        if (match2) {
-          return (
-            <li key={i} className="text-muted-foreground text-sm leading-relaxed ml-4 mb-1.5 list-disc">
-              <strong className="text-foreground">{match2[1]}</strong>{match2[2]}
-            </li>
-          );
-        }
-      }
-      if (trimmed.startsWith("- ")) {
-        return (
-          <li key={i} className="text-muted-foreground text-sm leading-relaxed ml-4 mb-1.5 list-disc">
-            {renderInline(trimmed.replace("- ", ""))}
-          </li>
-        );
-      }
-      // Table header
-      if (trimmed.startsWith("|") && trimmed.includes("---|")) return null;
-      if (trimmed.startsWith("| Business Type")) {
-        return null; // skip, we'll handle table separately
-      }
-      if (trimmed.startsWith("|") && !trimmed.includes("---")) {
-        const cells = trimmed.split("|").filter(Boolean).map((c) => c.trim());
-        if (cells.length >= 2) {
-          return (
-            <div key={i} className="flex justify-between border-b border-border py-2 text-sm">
-              <span className="text-foreground font-medium">{cells[0]}</span>
-              <span className="text-muted-foreground">{cells[1]}</span>
-            </div>
-          );
-        }
-      }
-      // Regular paragraph
-      return (
-        <p key={i} className="text-muted-foreground text-sm leading-relaxed mb-3">
-          {renderInline(trimmed)}
-        </p>
-      );
-    });
-  };
-
-  const renderInline = (text: string) => {
-    // Handle bold, links
-    const parts: (string | JSX.Element)[] = [];
-    let remaining = text;
-    let key = 0;
-
-    while (remaining.length > 0) {
-      // Check for links [text](url)
-      const linkMatch = remaining.match(/\[(.+?)\]\((.+?)\)/);
-      // Check for bold **text**
-      const boldMatch = remaining.match(/\*\*(.+?)\*\*/);
-
-      let firstMatch: { index: number; type: "link" | "bold"; match: RegExpMatchArray } | null = null;
-
-      if (linkMatch && linkMatch.index !== undefined) {
-        firstMatch = { index: linkMatch.index, type: "link", match: linkMatch };
-      }
-      if (boldMatch && boldMatch.index !== undefined) {
-        if (!firstMatch || boldMatch.index < firstMatch.index) {
-          firstMatch = { index: boldMatch.index, type: "bold", match: boldMatch };
-        }
-      }
-
-      if (!firstMatch) {
-        parts.push(remaining);
-        break;
-      }
-
-      if (firstMatch.index > 0) {
-        parts.push(remaining.substring(0, firstMatch.index));
-      }
-
-      if (firstMatch.type === "link") {
-        const [full, linkText, url] = firstMatch.match;
-        parts.push(
-          <a key={key++} href={url} className="text-accent hover:underline font-medium">
-            {linkText}
-          </a>
-        );
-        remaining = remaining.substring(firstMatch.index + full.length);
-      } else {
-        const [full, boldText] = firstMatch.match;
-        parts.push(
-          <strong key={key++} className="text-foreground font-semibold">
-            {boldText}
-          </strong>
-        );
-        remaining = remaining.substring(firstMatch.index + full.length);
-      }
-    }
-
-    return <>{parts}</>;
-  };
-
-  // Get related posts (same category, excluding current)
-  const relatedPosts = blogPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
+  const headings = parseBlocks(post.content).filter((block) => block.type === "h2");
+  const minutes = readingMinutes(post.content);
+  const related = relatedPosts(post.slug);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-
-      {/* Hero Image */}
-      <div className="w-full h-64 md:h-80 lg:h-96 overflow-hidden">
-        <img src={post.image} alt={post.imageAlt} className="w-full h-full object-cover" />
-      </div>
-
-      {/* Article */}
-      <article className="py-10 px-4">
-        <div className="container max-w-3xl mx-auto">
-          {/* Breadcrumb */}
-          <Link
-            to="/blog/"
-            className="inline-flex items-center gap-1.5 text-accent text-sm font-medium hover:underline mb-6"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Blog
-          </Link>
-
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-xs font-semibold bg-accent/20 text-accent px-2.5 py-1 rounded-full">
-              {post.category}
-            </span>
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Calendar className="w-3 h-3" />
-              {formattedDate}
-            </span>
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <User className="w-3 h-3" />
-              {post.author}
-            </span>
-          </div>
-
-          {/* Title */}
-          <h1 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-6 leading-tight">
-            {post.title}
-          </h1>
-
-          {/* Content */}
-          <div className="prose-wrapper">{renderContent(post.content)}</div>
-
-          {/* CTA */}
-          <div className="mt-12 rounded-xl border-2 border-border bg-primary p-8 text-center">
-            <h3 className="font-heading font-bold text-xl text-primary-foreground mb-2">
-              Ready for a Professional Clean?
-            </h3>
-            <p className="text-primary-foreground/70 text-sm mb-5 max-w-md mx-auto">
-              Ernest Steamers serves Chicago and all Chicagoland suburbs with eco-friendly, professional carpet cleaning.
+      <main className="px-4 py-8 lg:py-12">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6">
+          <header>
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-2 text-base text-muted-foreground">
+                <li>
+                  <Link to="/" className={`text-primary underline-offset-2 hover:underline ${focusRing}`}>
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">›</li>
+                <li>
+                  <Link to="/blog/" className={`text-primary underline-offset-2 hover:underline ${focusRing}`}>
+                    Blog
+                  </Link>
+                </li>
+                <li aria-hidden="true">›</li>
+                <li aria-current="page" className="text-foreground">
+                  {post.title}
+                </li>
+              </ol>
+            </nav>
+            <h1 className={`${sectionTitle} mt-4`}>{post.title}</h1>
+            <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-muted-foreground">
+              <span className="font-semibold uppercase tracking-wide text-[hsl(174,62%,26%)]">{post.topic}</span>
+              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+              <span>{minutes} min read</span>
+              <span>By {post.author}</span>
             </p>
-            <QuoteFormDialog>
-              <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-6 py-3 rounded-lg text-base transition-all">
-                Get A Free Quote →
-              </button>
-            </QuoteFormDialog>
-          </div>
-        </div>
-      </article>
+          </header>
 
-      {/* Related Posts */}
-      <section className="py-12 px-4 bg-background">
-        <div className="container max-w-7xl mx-auto">
-          <h2 className="font-heading font-bold text-2xl text-foreground text-center mb-8">
-            More from the Blog
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {relatedPosts.map((rp) => (
-              <Link
-                key={rp.slug}
-                to={`/blog/${rp.slug}/`}
-                className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground overflow-hidden hover:border-accent-yellow transition-colors group"
-              >
-                <div className="h-40 overflow-hidden">
-                  <img
-                    src={rp.image}
-                    alt={rp.imageAlt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+          <details className="group rounded-2xl border border-border bg-white p-4 lg:hidden">
+            <summary
+              className={`flex min-h-12 cursor-pointer list-none items-center justify-between font-heading text-base font-bold text-primary [&::-webkit-details-marker]:hidden ${focusRing}`}
+            >
+              In this article
+              <ChevronDown className="h-5 w-5 transition group-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <ArticleToc headings={headings} />
+          </details>
+
+          <BlogImage
+            name={post.image}
+            alt={post.imageAlt}
+            sizes={BLOG_HERO_SIZES}
+            priority
+            className="aspect-video w-full rounded-2xl object-cover"
+          />
+
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
+            <article className="min-w-0 max-w-[70ch]">
+              <ArticleBody content={post.content} defaultService={post.serviceValue} />
+            </article>
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 space-y-6">
+                <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+                  <ArticleToc headings={headings} showLabel />
                 </div>
-                <div className="p-4">
-                  <span className="text-xs font-semibold bg-accent/20 text-accent px-2 py-0.5 rounded-full">
-                    {rp.category}
-                  </span>
-                  <h3 className="font-heading font-bold text-sm text-primary-foreground mt-2 leading-tight">
-                    {rp.title}
-                  </h3>
+                <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+                  <StartsAtBadge />
+                  <p className={`${bodyText} mt-3`}>Carpet cleaning starts at $99.</p>
+                  <CallButton className={`${buttonOrange} mt-4 w-full`} />
+                  <a href="#article-quote" className={`${buttonOutline} mt-2 w-full`}>
+                    Get a quote
+                  </a>
                 </div>
+              </div>
+            </aside>
+          </div>
+
+          <section aria-labelledby="related-heading" className="mt-4">
+            <h2 id="related-heading" className={sectionTitle}>
+              Related articles
+            </h2>
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              {related.map((item) => (
+                <PostCard key={item.slug} post={item} heading="h3" />
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="related-service-heading" className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+            <h2 id="related-service-heading" className="font-heading text-2xl font-bold text-primary">
+              Related service
+            </h2>
+            <h3 className="mt-3 font-heading text-xl font-bold text-primary">{post.serviceLabel}</h3>
+            <div className="mt-4">
+              {post.serviceValue === "Carpet Cleaning" ? (
+                <StartsAtBadge />
+              ) : (
+                <p className="text-base font-semibold text-primary">Request a quote</p>
+              )}
+            </div>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <Link to={post.serviceHref} className={`${buttonOutline} w-full sm:w-auto`}>
+                Service details
               </Link>
-            ))}
-          </div>
+              <QuoteFormDialog defaultService={post.serviceValue}>
+                <button type="button" className={`${buttonOrange} w-full sm:w-auto`}>
+                  Get a quote
+                </button>
+              </QuoteFormDialog>
+            </div>
+          </section>
         </div>
-      </section>
-
+      </main>
       <Footer />
+      <StickyMobileBar scrollTo="article-quote" />
     </div>
   );
 };
