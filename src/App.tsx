@@ -9,6 +9,7 @@ import Index from "./pages/Index.tsx";
 import Services from "./pages/Services.tsx";
 import ServiceAreas from "./pages/ServiceAreas.tsx";
 import About from "./pages/About.tsx";
+import Contact from "./pages/Contact.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import Funnel from "./pages/Funnel.tsx";
@@ -35,6 +36,7 @@ export function AppRoutes() {
         <Route path="/services" element={<Services />} />
         <Route path="/service-areas" element={<ServiceAreas />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/locations/:slug" element={<LocationPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />

@@ -10,6 +10,7 @@ const H1_SNIPPET = {
   "/services": "Upholstery Cleaning Services",
   "/service-areas": "Service Areas",
   "/about": "About Ernest Steamers",
+  "/contact": "Get a Free Carpet Cleaning Quote",
   "/blog": "Blog",
   "/funnel": "Expert Carpet Cleaning in Chicago",
 };

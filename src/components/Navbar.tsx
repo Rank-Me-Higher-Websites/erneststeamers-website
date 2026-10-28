@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Service Areas", path: "/service-areas/" },
   { label: "About Us", path: "/about/" },
   { label: "Blog", path: "/blog/" },
+  { label: "Contact", path: "/contact/" },
 ];
 
 function isCurrentPath(pathname: string, path: string) {
@@ -31,7 +32,9 @@ const Navbar = () => {
       ? "#services-quote"
       : isCurrentPath(location.pathname, "/about")
         ? "#about-quote"
-        : null;
+        : isCurrentPath(location.pathname, "/contact")
+          ? "#contact-quote"
+          : null;
 
   const quote = quoteHref ? (
     <a href={quoteHref} className={quoteClass} onClick={() => setMobileOpen(false)}>
