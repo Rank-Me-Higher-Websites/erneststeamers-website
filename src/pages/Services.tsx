@@ -1,189 +1,205 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StickyMobileBar from "@/components/StickyMobileBar";
+import CallButton from "@/components/CallButton";
+import QuoteForm from "@/components/QuoteForm";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
-import { Home, Sofa, Layers, Building2, Grid3X3, CheckCircle } from "lucide-react";
-import serviceCarpet from "@/assets/service-carpet.png";
-import serviceUpholstery from "@/assets/service-upholstery.jpg";
-import serviceRug from "@/assets/service-rug.jpg";
-import vanHouse from "@/assets/van-house.png";
-import serviceTile from "@/assets/service-tile.jpg";
+import StartsAtBadge from "@/components/StartsAtBadge";
+import FaqAccordion from "@/components/FaqAccordion";
+import AreaTeaser from "@/components/home/AreaTeaser";
+import HowItWorks from "@/components/home/HowItWorks";
+import ResponsiveImage from "@/components/home/ResponsiveImage";
+import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
+import { SERVICES_CARPET_SIZES } from "@/lib/homeImages";
+import { serviceBlocks, serviceFaqs, type CopyPart } from "@/data/servicesPage";
 
-const services = [
-  {
-    icon: Home,
-    title: "Professional Carpet Cleaning",
-    desc: "Our expert carpet cleaning eliminates dirt, dust, allergens, and contaminants, restoring your carpets to their best condition.",
-    more: {
-      href: "/blog/carpet-cleaning-allergies-indoor-air-quality/",
-      lead: " Read how ",
-      anchor: "carpet cleaning and allergies",
-      tail: " affect the air in your home.",
-    },
-    image: serviceCarpet,
-    details: [
-      "Deep steam extraction technology",
-      "Pet stain & odor removal",
-      "Safe for children and pets",
-      "Fast drying times",
-    ],
-  },
-  {
-    icon: Sofa,
-    title: "Upholstery Cleaning",
-    desc: "Advanced deep-cleaning methods remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
-    image: serviceUpholstery,
-    details: [
-      "Fabric-safe cleaning solutions",
-      "Stain protection treatment",
-      "Deodorizing included",
-      "All furniture types serviced",
-    ],
-  },
-  {
-    icon: Layers,
-    title: "Area Rug Cleaning",
-    desc: "Top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors.",
-    image: serviceRug,
-    details: [
-      "Hand-washing available",
-      "Color-safe treatments",
-      "Fringe cleaning",
-      "Pickup & delivery available",
-    ],
-  },
-  {
-    icon: Building2,
-    title: "Commercial Carpet Cleaning",
-    desc: "Flexible, cost-effective commercial cleaning solutions for businesses of all sizes across Chicago and surrounding areas.",
-    more: {
-      href: "/blog/commercial-carpet-cleaning-business/",
-      lead: " See why ",
-      anchor: "commercial carpet cleaning for your business",
-      tail: " keeps lobbies and work areas presentable.",
-    },
-    image: vanHouse,
-    details: [
-      "After-hours scheduling",
-      "Contract & one-time service",
-      "High-traffic area specialists",
-      "Minimal business disruption",
-    ],
-  },
-  {
-    icon: Grid3X3,
-    title: "Tile and Grout Cleaning",
-    desc: "Professional tile and grout cleaning restores your floors by effectively removing dirt, grime, and stains.",
-    image: serviceTile,
-    details: [
-      "High-pressure steam cleaning",
-      "Grout sealing available",
-      "Kitchen & bathroom floors",
-      "Restores original color",
-    ],
-  },
-];
+const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+
+function AreasAnswer() {
+  return (
+    <>
+      We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in
+      Franklin Park. See the{" "}
+      <Link to="/service-areas/" className={linkClass}>
+        service areas page
+      </Link>{" "}
+      for the town list, or call 630-830-9867 to ask about your town.
+    </>
+  );
+}
+
+function ServiceCopy({ parts }: { parts: CopyPart[] }) {
+  return (
+    <p className={`${bodyText} mt-4`}>
+      {parts.map((part, index) =>
+        part.href ? (
+          <Link key={index} to={part.href} className={linkClass}>
+            {part.text}
+          </Link>
+        ) : (
+          part.text
+        ),
+      )}
+    </p>
+  );
+}
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
+      <main>
+        <section className="bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
+          <div className="mx-auto max-w-6xl">
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
+                <li>
+                  <Link to="/" className={linkClass}>
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-primary">
+                  Services
+                </li>
+              </ol>
+            </nav>
+            <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
+              Carpet, Rug & Upholstery Cleaning Services
+            </h1>
+            <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
+              Certified technicians for homes and businesses in Chicago and the suburbs. Carpet cleaning starts at $99.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a href="#services-quote" className={`${buttonOrange} w-full sm:w-auto`}>
+                Get a Quote
+              </a>
+              <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+            </div>
+          </div>
+        </section>
 
-      {/* Hero Banner */}
-      <section className="bg-hero py-12 lg:py-16">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-4">
-            Our Cleaning Services
-          </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-6">
-            Professional carpet, upholstery, and tile cleaning for homes and businesses across Chicago and the suburbs.
+        <nav
+          aria-label="Services on this page"
+          className="sticky top-16 z-40 border-y border-border bg-white/95 backdrop-blur"
+        >
+          <ul className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-3 md:flex-wrap md:overflow-visible">
+            {serviceBlocks.map((service) => (
+              <li key={service.id} className="shrink-0">
+                <a
+                  href={`#${service.id}`}
+                  className={`inline-flex min-h-12 items-center rounded-full border border-border bg-white px-4 text-base font-semibold text-primary ${focusRing}`}
+                >
+                  {service.nav}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="bg-white px-4 pb-4 pt-10 lg:pt-14">
+          <p className={`${bodyText} mx-auto max-w-6xl`}>
+            Five services for homes and businesses in Chicago and the suburbs, from the Bartlett office and the{" "}
+            <Link to="/locations/franklin-park/" className={linkClass}>
+              Franklin Park office
+            </Link>
+            . Certified technicians do the cleaning. Carpet cleaning starts at $99. Upholstery, area rugs, tile and grout,
+            and commercial carpet are quoted for the rooms, the size, and the condition. The towns we cover are on the{" "}
+            <Link to="/service-areas/" className={linkClass}>
+              service areas
+            </Link>{" "}
+            page.
           </p>
-          <QuoteFormDialog>
-            <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all">
-              Get A Free Quote →
-            </button>
-          </QuoteFormDialog>
         </div>
-      </section>
 
-      {/* Services List */}
-      <section className="py-12 px-4">
-        <div className="container max-w-7xl mx-auto space-y-16">
-          {services.map((service, i) => (
-            <div
-              key={service.title}
-              className={`grid md:grid-cols-2 gap-8 items-center`}
+        {serviceBlocks.map((service, index) => (
+          <section
+            key={service.id}
+            id={service.id}
+            className={`scroll-mt-36 px-4 py-12 lg:py-16 ${index % 2 === 1 ? "bg-[hsl(210,40%,98%)]" : "bg-white"}`}
+          >
+            <article
+              aria-labelledby={`${service.id}-heading`}
+              tabIndex={-1}
+              className="mx-auto grid max-w-6xl items-center gap-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[hsl(174,62%,26%)] lg:grid-cols-2"
             >
-              <div className={`space-y-4 ${i % 2 === 1 ? "md:order-2" : ""}`}>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center">
-                    <service.icon className="w-6 h-6 text-accent" />
-                  </div>
-                  <h2 className="font-heading font-bold text-2xl text-foreground">{service.title}</h2>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.desc}
-                  {"more" in service && service.more && (
-                    <>
-                      {service.more.lead}
-                      <a href={service.more.href} className="text-accent hover:underline font-medium">
-                        {service.more.anchor}
-                      </a>
-                      {service.more.tail}
-                    </>
-                  )}
-                </p>
-                <ul className="space-y-2">
-                  {service.details.map((d) => (
-                    <li key={d} className="flex items-center gap-2 text-foreground text-sm">
-                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                      {d}
-                    </li>
+              <figure className={index % 2 === 1 ? "lg:order-2" : ""}>
+                <ResponsiveImage
+                  name={service.image}
+                  alt={service.alt}
+                  sizes={SERVICES_CARPET_SIZES}
+                  priority={index === 0}
+                  className="aspect-[3/2] w-full rounded-2xl object-cover"
+                />
+              </figure>
+              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                <h2 id={`${service.id}-heading`} className="font-heading text-3xl font-bold text-primary">
+                  {service.title}
+                </h2>
+                {service.startsAt ? (
+                  <StartsAtBadge className="mt-4" />
+                ) : (
+                  <p className="mt-4 text-base font-semibold text-primary">Request a quote</p>
+                )}
+                <ServiceCopy parts={service.body} />
+                <h3 className="mt-6 font-heading text-xl font-bold text-primary">What's included</h3>
+                <ul className={`${bodyText} mt-3 list-disc space-y-2 pl-5`}>
+                  {service.included.map((item) => (
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <QuoteFormDialog>
-                  <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-6 py-2.5 rounded-lg text-sm transition-all">
-                    Get A Quote →
+                <QuoteFormDialog defaultService={service.service}>
+                  <button type="button" className={`${buttonOrange} mt-6 w-full lg:w-auto`}>
+                    Get a quote for this service
                   </button>
                 </QuoteFormDialog>
               </div>
-              <div className={`rounded-xl overflow-hidden shadow-lg ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-72 object-cover"
-                />
-              </div>
+            </article>
+          </section>
+        ))}
+
+        <HowItWorks />
+
+        <section className="border-t border-border bg-white px-4 py-16 lg:py-24" aria-labelledby="services-faq-heading">
+          <div className="mx-auto max-w-6xl">
+            <h2 id="services-faq-heading" className={sectionTitle}>
+              Questions about these services
+            </h2>
+            <p className={`${bodyText} mt-3 max-w-2xl`}>Price, how to prepare, and where we clean.</p>
+            <div className="mt-8">
+              <FaqAccordion
+                defaultOpen
+                items={serviceFaqs.map((item) =>
+                  item.q.startsWith("Which areas") ? { q: item.q, a: <AreasAnswer /> } : item,
+                )}
+              />
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="bg-hero py-12">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-primary-foreground mb-4">
-            Ready to Get Started?
-          </h2>
-          <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
-            Contact us today for a free, no-obligation quote. We'll respond within 24 hours.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="tel:+16308309867"
-              className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all"
-            >
-              Call 630-830-9867
-            </a>
-            <QuoteFormDialog>
-              <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all">
-                GET A FREE QUOTE
-              </button>
-            </QuoteFormDialog>
           </div>
-        </div>
-      </section>
+        </section>
 
+        <div className="border-t border-border">
+          <AreaTeaser />
+        </div>
+
+        <section id="services-quote" className="scroll-mt-36 border-t border-border bg-white px-4 py-16 lg:py-24">
+          <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-2">
+            <div>
+              <h2 className={sectionTitle}>Request a quote</h2>
+              <p className={`${bodyText} mt-4 max-w-xl`}>
+                Call 630-830-9867 or send the form. Carpet cleaning starts at $99. Certified technicians do the work.
+                Choose the service and the address, and we will confirm the quote before scheduling.
+              </p>
+              <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
+            </div>
+            <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+              <QuoteForm id="services-quote-form" />
+            </div>
+          </div>
+        </section>
+      </main>
       <Footer />
+      <StickyMobileBar scrollTo="services-quote" />
     </div>
   );
 };
