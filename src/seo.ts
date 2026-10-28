@@ -248,7 +248,8 @@ export function getSeo(pathname: string): SeoMeta {
     const post = getPostBySlug(decodeURIComponent(blogSlug[1]));
     if (!post) return notFound(path);
     const canonical = absoluteRoute(`/blog/${post.slug}`);
-    const title = `${post.title} | Ernest Steamers`;
+    const schemaTitle = `${post.title} | Ernest Steamers`;
+    const title = post.metaTitle ?? schemaTitle;
     const description = post.metaDescription;
     return {
       title,
@@ -258,7 +259,7 @@ export function getSeo(pathname: string): SeoMeta {
       ogType: "article",
       jsonLd: [
         graph([
-          pageNode({ title, description, canonical }, "WebPage"),
+          pageNode({ title: schemaTitle, description, canonical }, "WebPage"),
           {
             "@type": "BlogPosting",
             headline: post.title,

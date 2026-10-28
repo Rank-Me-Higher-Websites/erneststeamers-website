@@ -111,9 +111,9 @@ const HeroSection = () => {
             ))}
           </div>
 
-          <h1 className="font-heading font-bold text-[1.65rem] sm:text-3xl leading-[1.1] text-primary-foreground">
+          <p className="font-heading font-bold text-[1.65rem] sm:text-3xl leading-[1.1] text-primary-foreground">
             Expert Carpet Cleaning in Chicago &amp; Suburbs
-          </h1>
+          </p>
 
           <p className="text-primary-foreground/80 text-sm leading-snug">
             Top-quality carpet cleaning across Chicago and nearby suburbs — a deeper, longer-lasting clean.
