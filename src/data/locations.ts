@@ -117,6 +117,16 @@ export function mapsEmbedSrc(location: {
   return `https://www.google.com/maps?q=${query}&output=embed&z=10`;
 }
 
+/** Google Maps search for the exact street address. Does not change the NAP. */
+export function mapsDirectionsHref(location: {
+  street: string;
+  city: string;
+  region: string;
+  postalCode: string;
+}) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(formatAddress(location))}`;
+}
+
 export function phoneTelHref(phoneSchema: string = PHONE_SCHEMA) {
   return `tel:+${phoneSchema.replace(/\D/g, "")}`;
 }

@@ -1,186 +1,236 @@
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import QuoteFormDialog from "@/components/QuoteFormDialog";
-import { PRIMARY_LOCATION, SECONDARY_OFFICES, formatAddress } from "@/data/locations";
-import cleaningAction from "@/assets/cleaning-action.png";
-import vanHouse from "@/assets/van-house.png";
-import { Leaf, ShieldCheck } from "lucide-react";
+import StickyMobileBar from "@/components/StickyMobileBar";
+import CallButton from "@/components/CallButton";
+import OfficeCard from "@/components/OfficeCard";
+import QuoteForm from "@/components/QuoteForm";
+import StartsAtBadge from "@/components/StartsAtBadge";
+import Steps from "@/components/Steps";
+import ResponsiveImage from "@/components/home/ResponsiveImage";
+import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
+import { ABOUT_STORY_SIZES } from "@/lib/homeImages";
+import { PHONE_DISPLAY, PRIMARY_LOCATION, SECONDARY_OFFICES, formatAddress } from "@/data/locations";
 
-const stats = [
-  { label: "Projects Completed", value: "500+" },
-  { label: "Years of Experience", value: "10+" },
-  { label: "Happy Customers", value: "400+" },
+const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+
+const services = [
+  { label: "Carpet Cleaning", href: "/services/#carpet", startsAt: true },
+  { label: "Upholstery Cleaning", href: "/services/#upholstery" },
+  { label: "Area Rug Cleaning", href: "/services/#rugs" },
+  { label: "Tile & Grout Cleaning", href: "/services/#tile-grout" },
+  { label: "Commercial Carpet Cleaning", href: "/services/#commercial" },
 ];
 
+function focusQuoteForm() {
+  window.setTimeout(() => {
+    document.querySelector<HTMLElement>("#about-quote-form input[name='name']")?.focus();
+  }, 0);
+}
+
 const About = () => {
+  const franklinPark = SECONDARY_OFFICES[0];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-
-      {/* Hero Banner - NAVY */}
-      <section className="bg-hero py-12 lg:py-16">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-4">
-            About Ernest Steamers
-          </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-6">
-            Carpet cleaning experts you can trust — serving Chicago and Chicagoland with integrity, professionalism, and eco-friendly results.
-          </p>
-          <QuoteFormDialog>
-            <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all">
-              Get A Free Quote →
-            </button>
-          </QuoteFormDialog>
-        </div>
-      </section>
-
-      {/* Intro Photos + Text - WHITE */}
-      <section className="py-12 lg:py-16 px-4 bg-background">
-        <div className="container max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="grid grid-cols-2 gap-3">
-              <img
-                src={cleaningAction}
-                alt="Ernest Steamers technician cleaning carpet"
-                className="rounded-xl border-2 border-border w-full h-48 md:h-64 object-cover shadow-xl"
-              />
-              <img
-                src={vanHouse}
-                alt="Ernest Steamers van at customer home"
-                className="rounded-xl border-2 border-border w-full h-48 md:h-64 object-cover shadow-xl"
-              />
+      <main>
+        <section className="bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
+          <div className="mx-auto max-w-6xl">
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
+                <li>
+                  <Link to="/" className={linkClass}>
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-primary">
+                  About
+                </li>
+              </ol>
+            </nav>
+            <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
+              About Ernest Steamers — Chicago-Area Carpet Cleaners
+            </h1>
+            <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
+              Certified technicians. Carpet cleaning starts at $99.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a href="#about-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
+                Get a Quote
+              </a>
+              <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
             </div>
+          </div>
+        </section>
 
-            <div>
-              <h2 className="font-heading font-bold text-2xl md:text-4xl text-foreground mb-2">
-                About Carpet Cleaning Experts{" "}
-                <span className="text-cta-orange">You Can Trust</span>
+        <section className="bg-white px-4 py-12 lg:py-20" aria-labelledby="story-heading">
+          <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-12">
+            <figure className="lg:col-span-6">
+              <ResponsiveImage
+                name="van"
+                alt="Ernest Steamers van parked in the driveway of a brick house"
+                sizes={ABOUT_STORY_SIZES}
+                priority
+                className="aspect-[3/2] w-full rounded-2xl object-cover"
+              />
+              <figcaption className={`${bodyText} mt-3`}>Ernest Steamers van on a residential job.</figcaption>
+            </figure>
+            <div className="lg:col-span-6">
+              <p className="text-sm font-bold uppercase tracking-wide text-[hsl(174,62%,26%)]">About us</p>
+              <h2 id="story-heading" className={`${sectionTitle} mt-2`}>
+                Our story
               </h2>
-              <div className="w-16 h-1 bg-cta-orange my-4" />
-
-              <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                Ernest Steamers provides safe, high-quality carpet cleaning for homes and businesses across Chicago. Built on integrity and professionalism, we've earned a trusted reputation through consistent results and client satisfaction.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                We go beyond surface-level clean — using non-toxic, residue-free products and advanced steam technology for deep, lasting results that are safe for kids, pets, and the planet.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                From residential carpets to commercial floors, tile, upholstery, and pet stain removal, every job is handled with expert care and top-tier equipment. Our eco-friendly solutions are trusted throughout the Chicagoland area.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed mt-3">
-                Ernest Steamers is located at {formatAddress(PRIMARY_LOCATION)}.
-                {SECONDARY_OFFICES.map((office) => (
-                  <span key={office.id}>
-                    {" "}
-                    Carpet, rug, and upholstery steam cleaning is also available from the{" "}
-                    <Link to={office.path} className="text-foreground underline hover:text-cta-orange">
-                      {office.city} office
-                    </Link>{" "}
-                    at {formatAddress(office)}.
-                  </span>
-                ))}
-              </p>
+              <div className={`${bodyText} mt-4 space-y-4`}>
+                <p>
+                  Ernest Steamers is based in Bartlett, IL, with a second office in Franklin Park. Certified technicians
+                  steam clean carpet, rugs, and upholstery for homes and businesses in Chicago and the suburbs.
+                </p>
+                <p>
+                  Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. We
+                  confirm a quote before the visit is scheduled.
+                </p>
+                <p>
+                  The Bartlett office is at {formatAddress(PRIMARY_LOCATION)}. The{" "}
+                  <Link to={franklinPark.path} className={linkClass}>
+                    Franklin Park office
+                  </Link>{" "}
+                  is at {formatAddress(franklinPark)}. See the{" "}
+                  <Link to="/services/" className={linkClass}>
+                    cleaning services
+                  </Link>
+                  , the{" "}
+                  <Link to="/service-areas/" className={linkClass}>
+                    service areas
+                  </Link>
+                  , and the{" "}
+                  <Link to="/blog/" className={linkClass}>
+                    blog
+                  </Link>
+                  .
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Stats - YELLOW */}
-      <section className="py-10 lg:py-12 px-4 bg-cta-orange">
-        <div className="container max-w-5xl mx-auto">
-          <div className="grid grid-cols-3 gap-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="font-heading font-bold text-3xl md:text-5xl text-primary-foreground">{stat.value}</p>
-                <p className="text-primary-foreground/90 text-xs md:text-sm mt-1 font-semibold">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vision & Goal - NAVY */}
-      <section className="py-12 lg:py-16 px-4 bg-primary">
-        <div className="container max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-xl border-2 border-primary-foreground/10 bg-primary-foreground/5 p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-accent-yellow/20 flex items-center justify-center">
-                  <Leaf className="w-5 h-5 text-accent-yellow" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-primary-foreground">Our Vision</h3>
-              </div>
-              <p className="text-primary-foreground/80 text-sm leading-relaxed">
-                At Ernest Steamers, our vision is to transform the way Chicago experiences carpet cleaning. We aim to lead the industry with a commitment to safe, eco-conscious cleaning that prioritizes both results and responsibility. We see a future where every home and business has access to high-quality, non-toxic carpet care — delivered by experts who care about your health, your space, and the planet.
-              </p>
-            </div>
-            <div className="rounded-xl border-2 border-primary-foreground/10 bg-primary-foreground/5 p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-accent-yellow/20 flex items-center justify-center">
-                  <ShieldCheck className="w-5 h-5 text-accent-yellow" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-primary-foreground">Our Goal</h3>
-              </div>
-              <p className="text-primary-foreground/80 text-sm leading-relaxed">
-                Our goal is to provide dependable, eco-friendly carpet cleaning services in Chicago with no shortcuts. Whether it's a home or business, we focus on delivering consistent, high-quality results using non-toxic methods and industry-leading equipment.
-              </p>
+        <section id="what-to-expect" className="bg-[hsl(210,40%,98%)] px-4 py-16 lg:py-24" aria-labelledby="expect-heading">
+          <div className="mx-auto max-w-6xl">
+            <h2 id="expect-heading" className={sectionTitle}>
+              What to expect
+            </h2>
+            <p className={`${bodyText} mt-3 max-w-2xl`}>Four steps from the first call to the walkthrough.</p>
+            <div className="mt-8">
+              <Steps
+                columns={4}
+                steps={[
+                  {
+                    title: "Request a quote",
+                    body: `Call ${PHONE_DISPLAY} or send the form. Tell us the service and the address.`,
+                  },
+                  {
+                    title: "Review the space",
+                    body: "We look at the rooms and the condition and confirm the work before cleaning starts.",
+                  },
+                  {
+                    title: "Steam clean",
+                    body: "Certified technicians clean with hot-water extraction.",
+                  },
+                  {
+                    title: "Walk the result",
+                    body: "We walk the finished work with you.",
+                  },
+                ]}
+              />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Cleaning Process - WHITE */}
-      <section className="py-12 lg:py-16 px-4 bg-background">
-        <div className="container max-w-7xl mx-auto">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground text-center mb-2">
-            What to Expect: <span className="text-cta-orange">Our Cleaning Process</span>
-          </h2>
-          <p className="text-muted-foreground text-center text-sm mb-8 max-w-2xl mx-auto">
-            From booking to post-clean care, here's how we deliver results you can count on.
-          </p>
-
-          <div className="grid md:grid-cols-5 gap-4">
-            {[
-              { step: "1", title: "Book Your Appointment", desc: "It all starts with a quick call or online booking. We'll confirm your location, cleaning needs, and schedule a time that works for you." },
-              { step: "2", title: "Customized Estimate", desc: "Our technician walks through the space with you, identifies problem areas like stains or odors, and explains the best approach." },
-              { step: "3", title: "Deep Cleaning Service", desc: "We use powerful steam extraction and non-toxic, residue-free products. Safe for kids, pets, and delivers deep, lasting results." },
-              { step: "4", title: "Satisfaction Check", desc: "We do a complete walkthrough with you to ensure everything meets your expectations. We don't leave until you're 100% satisfied." },
-              { step: "5", title: "Post-Clean Care Tips", desc: "We provide expert guidance on how to keep your carpets looking their best — spot-cleaning advice and tips for maintaining freshness." },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="rounded-xl border-2 border-primary-foreground/10 bg-primary text-primary-foreground p-5 text-center"
-              >
-                <div className="w-10 h-10 rounded-full bg-accent-yellow text-primary font-heading font-bold flex items-center justify-center mx-auto mb-3">
-                  {item.step}
-                </div>
-                <h4 className="font-heading font-bold text-sm text-primary-foreground mb-2">{item.title}</h4>
-                <p className="text-primary-foreground/70 text-xs leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+        <section className="bg-white px-4 py-16 lg:py-24" aria-labelledby="offices-heading">
+          <div className="mx-auto max-w-6xl">
+            <h2 id="offices-heading" className={sectionTitle}>
+              Our offices
+            </h2>
+            <p className={`${bodyText} mt-3 max-w-2xl`}>
+              Two offices serve Chicago and the suburbs. Call {PHONE_DISPLAY} or request a quote online.
+            </p>
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              <OfficeCard
+                name={PRIMARY_LOCATION.name}
+                street={PRIMARY_LOCATION.street}
+                city={PRIMARY_LOCATION.city}
+                region={PRIMARY_LOCATION.region}
+                postalCode={PRIMARY_LOCATION.postalCode}
+                primary
+                image="van-setup"
+                imageAlt="Technician preparing the truck-mounted cleaner inside the Ernest Steamers van"
+                imageCaption="Setting up the van-mounted cleaner on a job."
+              />
+              <OfficeCard
+                name={franklinPark.name}
+                street={franklinPark.street}
+                city={franklinPark.city}
+                region={franklinPark.region}
+                postalCode={franklinPark.postalCode}
+                pageHref={franklinPark.path}
+                image="equipment"
+                imageAlt="Technician operating a truck-mounted carpet cleaning machine in the van"
+                imageCaption="Truck-mounted cleaner on a job."
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Bottom CTA - NAVY */}
-      <section className="bg-hero py-12">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-primary-foreground mb-4">
-            Ready for a Cleaner Space?
-          </h2>
-          <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
-            Whether it's your home or business, Ernest Steamers delivers results you can count on. Get your free quote today!
-          </p>
-          <QuoteFormDialog>
-            <button className="btn-flash-yellow text-accent-foreground font-heading font-bold px-8 py-3 rounded-lg text-lg transition-all">
-              GET A FREE QUOTE
-            </button>
-          </QuoteFormDialog>
-        </div>
-      </section>
+        <section className="bg-[hsl(210,40%,98%)] px-4 py-16 lg:py-24" aria-labelledby="services-strip-heading">
+          <div className="mx-auto max-w-6xl">
+            <h2 id="services-strip-heading" className={sectionTitle}>
+              Cleaning services
+            </h2>
+            <p className={`${bodyText} mt-3 max-w-2xl`}>
+              Carpet cleaning starts at $99. Other services are quoted for the rooms, the size, and the condition.
+            </p>
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => (
+                <li key={service.href} className="flex flex-col gap-3 rounded-2xl border border-border bg-white p-4">
+                  <Link to={service.href} className={`${buttonOutline} w-full`}>
+                    {service.label}
+                  </Link>
+                  {service.startsAt ? <StartsAtBadge /> : <p className="text-base font-semibold text-primary">Request a quote</p>}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link to="/services/" className={`${buttonOutline} w-full sm:w-auto`}>
+                See all services
+              </Link>
+              <Link to="/service-areas/" className={`${buttonOutline} w-full sm:w-auto`}>
+                Service areas
+              </Link>
+              <Link to="/blog/" className={`${buttonOutline} w-full sm:w-auto`}>
+                Blog
+              </Link>
+            </div>
+          </div>
+        </section>
 
+        <section id="about-quote" className="scroll-mt-24 border-t border-border bg-white px-4 py-16 lg:py-24">
+          <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-2">
+            <div>
+              <h2 className={sectionTitle}>Request a quote</h2>
+              <p className={`${bodyText} mt-4 max-w-xl`}>
+                Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Certified technicians do the work.
+              </p>
+              <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
+            </div>
+            <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+              <QuoteForm id="about-quote-form" />
+            </div>
+          </div>
+        </section>
+      </main>
       <Footer />
+      <StickyMobileBar scrollTo="about-quote" />
     </div>
   );
 };

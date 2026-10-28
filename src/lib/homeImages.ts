@@ -28,3 +28,12 @@ export const SERVICES_CARPET_PRELOAD_HREF = "/images/home/carpet-768.avif";
 export const SERVICES_CARPET_AVIF_SRCSET = homeImages.carpet.widths
   .map((width) => `/images/home/carpet-${width}.avif ${width}w`)
   .join(", ");
+
+/** Matches the about-page story photo (van) and its preload. */
+export const ABOUT_STORY_SIZES = "(min-width: 1024px) 560px, 100vw";
+
+export const ABOUT_STORY_PRELOAD_HREF = "/images/home/van-768.avif";
+
+export const ABOUT_STORY_AVIF_SRCSET = homeImages.van.widths
+  .map((width) => `/images/home/van-${width}.avif ${width}w`)
+  .join(", ");

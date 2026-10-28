@@ -25,7 +25,13 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const onHome = isCurrentPath(location.pathname, "/");
-  const quoteHref = onHome ? "#hero-quote" : isCurrentPath(location.pathname, "/services") ? "#services-quote" : null;
+  const quoteHref = onHome
+    ? "#hero-quote"
+    : isCurrentPath(location.pathname, "/services")
+      ? "#services-quote"
+      : isCurrentPath(location.pathname, "/about")
+        ? "#about-quote"
+        : null;
 
   const quote = quoteHref ? (
     <a href={quoteHref} className={quoteClass} onClick={() => setMobileOpen(false)}>

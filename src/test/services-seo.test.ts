@@ -73,6 +73,7 @@ describe("services SEO", () => {
     expect(homeHead).not.toContain("carpet-768.avif");
 
     const aboutHead = renderSeoHead(getSeo("/about"));
-    expect(aboutHead).not.toContain('rel="preload" as="image"');
+    expect(aboutHead).not.toContain("carpet-768.avif");
+    expect(aboutHead).not.toContain("hero-1200.avif");
   });
 });
