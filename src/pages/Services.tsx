@@ -13,6 +13,12 @@ const services = [
     icon: Home,
     title: "Professional Carpet Cleaning",
     desc: "Our expert carpet cleaning eliminates dirt, dust, allergens, and contaminants, restoring your carpets to their best condition.",
+    more: {
+      href: "/blog/carpet-cleaning-allergies-indoor-air-quality/",
+      lead: " Read how ",
+      anchor: "carpet cleaning and allergies",
+      tail: " affect the air in your home.",
+    },
     image: serviceCarpet,
     details: [
       "Deep steam extraction technology",
@@ -49,6 +55,12 @@ const services = [
     icon: Building2,
     title: "Commercial Carpet Cleaning",
     desc: "Flexible, cost-effective commercial cleaning solutions for businesses of all sizes across Chicago and surrounding areas.",
+    more: {
+      href: "/blog/commercial-carpet-cleaning-business/",
+      lead: " See why ",
+      anchor: "commercial carpet cleaning for your business",
+      tail: " keeps lobbies and work areas presentable.",
+    },
     image: vanHouse,
     details: [
       "After-hours scheduling",
@@ -108,7 +120,18 @@ const Services = () => {
                   </div>
                   <h2 className="font-heading font-bold text-2xl text-foreground">{service.title}</h2>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.desc}
+                  {"more" in service && service.more && (
+                    <>
+                      {service.more.lead}
+                      <a href={service.more.href} className="text-accent hover:underline font-medium">
+                        {service.more.anchor}
+                      </a>
+                      {service.more.tail}
+                    </>
+                  )}
+                </p>
                 <ul className="space-y-2">
                   {service.details.map((d) => (
                     <li key={d} className="flex items-center gap-2 text-foreground text-sm">

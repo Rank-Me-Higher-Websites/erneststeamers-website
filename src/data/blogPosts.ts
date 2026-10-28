@@ -8,6 +8,8 @@ import blogCommercial from "@/assets/blog-commercial.jpg";
 export interface BlogPost {
   slug: string;
   title: string;
+  /** Document `<title>` when it should differ from the visible H1. */
+  metaTitle?: string;
   metaDescription: string;
   excerpt: string;
   image: string;
@@ -22,6 +24,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "carpet-cleaning-tips-homeowners",
     title: "5 Carpet Cleaning Tips Every Homeowner Should Know",
+    metaTitle: "Carpet Cleaning Tips for Homeowners | Ernest Steamers",
     metaDescription:
       "Learn 5 expert carpet cleaning tips from Ernest Steamers to keep your carpets fresh between professional cleanings. Serving Chicago & Chicagoland.",
     excerpt:
@@ -34,6 +37,8 @@ export const blogPosts: BlogPost[] = [
     content: `## Why Carpet Maintenance Matters
 
 Your carpet is one of the largest surfaces in your home — and one of the most overlooked when it comes to regular maintenance. Over time, dirt, dust, allergens, and bacteria build up deep within the fibers, even if the surface looks clean. Without proper care, carpet fibers break down faster, colors fade, and your indoor air quality suffers.
+
+If sneezing sticks around between vacuumings, [carpet cleaning for allergies](/blog/carpet-cleaning-allergies-indoor-air-quality/) shows how trapped dust and dander affect the air you breathe.
 
 At Ernest Steamers, we've been professionally cleaning carpets across Chicago and the Chicagoland suburbs for over a decade. Here are five tips we share with every customer to help keep their carpets in top shape between professional cleanings.
 
@@ -137,6 +142,7 @@ Even if your carpets have years of pet damage, professional treatment can make a
   {
     slug: "steam-cleaning-vs-dry-cleaning-carpet",
     title: "Steam Cleaning vs. Dry Cleaning: Which Is Better for Your Carpet?",
+    metaTitle: "Steam Cleaning vs. Dry Cleaning Carpet | Ernest Steamers",
     metaDescription:
       "Steam cleaning vs dry cleaning carpet — which is better? Ernest Steamers compares both methods to help you choose the right carpet cleaning for your Chicago home.",
     excerpt:
@@ -197,6 +203,8 @@ Dry cleaning uses chemical compounds or very low moisture (VLM) methods to clean
 
 For most homes and businesses, **hot water extraction (steam cleaning) is the superior choice**. It's the only method that truly deep-cleans your carpet, removes allergens, and meets manufacturer warranty requirements.
 
+Shops and offices with steady foot traffic can see why [commercial carpet cleaning](/blog/commercial-carpet-cleaning-business/) matters beyond a one-time deep clean.
+
 Dry cleaning can be useful for:
 - Quick-turnaround commercial maintenance (e.g., hotel lobbies between guests)
 - Delicate fibers that can't tolerate moisture
@@ -213,6 +221,7 @@ Combined with our non-toxic, eco-friendly cleaning solutions, we deliver a deep 
   {
     slug: "upholstery-cleaning-benefits",
     title: "Why You Should Clean Your Upholstery More Often Than You Think",
+    metaTitle: "Upholstery Cleaning Benefits | Ernest Steamers",
     metaDescription:
       "Discover why regular upholstery cleaning improves indoor air quality, extends furniture life, and removes hidden allergens. Ernest Steamers serves Chicago & suburbs.",
     excerpt:
@@ -278,6 +287,7 @@ Quality furniture is an investment. A single sofa can cost $1,000 to $5,000 or m
   {
     slug: "carpet-cleaning-allergies-indoor-air-quality",
     title: "Carpet Cleaning & Allergies: How Clean Carpets Improve Your Health",
+    metaTitle: "Carpet Cleaning and Allergies | Ernest Steamers",
     metaDescription:
       "Learn how dirty carpets trigger allergies and asthma. Ernest Steamers explains how professional carpet cleaning improves indoor air quality in Chicago homes.",
     excerpt:
@@ -353,6 +363,7 @@ Our eco-friendly, non-toxic cleaning process is specifically designed to be safe
   {
     slug: "commercial-carpet-cleaning-business",
     title: "Commercial Carpet Cleaning: Why It Matters for Your Business",
+    metaTitle: "Commercial Carpet Cleaning | Ernest Steamers",
     metaDescription:
       "Learn why commercial carpet cleaning is essential for your Chicago business. Ernest Steamers explains how clean carpets impact first impressions and employee health.",
     excerpt:
