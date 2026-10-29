@@ -25,6 +25,27 @@ export const PHONE_SCHEMA = `+1-${trackingArea}-${trackingPrefix}-${trackingLine
 export const PHONE_ALT_DISPLAY = "630-830-9867";
 export const EMAIL = "info@erneststeamers.com";
 
+/**
+ * Business hours. Visible copy and every LocalBusiness
+ * openingHoursSpecification read this list.
+ */
+export const BUSINESS_HOURS = [
+  {
+    label: "Monday–Friday",
+    hours: "7:00 AM–9:00 PM",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "07:00",
+    closes: "21:00",
+  },
+  {
+    label: "Saturday–Sunday",
+    hours: "7:00 AM–5:00 PM",
+    dayOfWeek: ["Saturday", "Sunday"],
+    opens: "07:00",
+    closes: "17:00",
+  },
+] as const;
+
 export const PRIMARY_LOCATION = {
   id: "bartlett",
   name: "Ernest Steamers",

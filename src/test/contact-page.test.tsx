@@ -117,4 +117,53 @@ describe("contact page", () => {
     const emails = `${head}\n${html}`.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g) ?? [];
     expect([...new Set(emails)]).toEqual(["info@erneststeamers.com"]);
   });
+
+  it("prerenders Monday–Friday and Saturday–Sunday hours on the contact page and every LocalBusiness node", () => {
+    const { html, head } = prerender("/contact/");
+    expect(html).toContain("Monday–Friday");
+    expect(html).toContain("7:00 AM–9:00 PM");
+    expect(html).toContain("Saturday–Sunday");
+    expect(html).toContain("7:00 AM–5:00 PM");
+    expect(html).not.toContain("7 am to 7 pm");
+    expect(html).not.toContain("9 am to 3 pm");
+
+    const blocks = [...head.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((match) =>
+      JSON.parse(match[1]) as unknown,
+    );
+    const nodes: Array<Record<string, unknown>> = [];
+    const walk = (value: unknown) => {
+      if (Array.isArray(value)) {
+        value.forEach(walk);
+        return;
+      }
+      if (!value || typeof value !== "object") return;
+      nodes.push(value as Record<string, unknown>);
+      for (const child of Object.values(value as Record<string, unknown>)) walk(child);
+    };
+    blocks.forEach(walk);
+
+    const hours = [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "07:00",
+        closes: "21:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "07:00",
+        closes: "17:00",
+      },
+    ];
+    const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
+    expect(businesses.length).toBeGreaterThanOrEqual(2);
+    for (const business of businesses) {
+      expect(business.openingHoursSpecification).toEqual(hours);
+    }
+    expect(head).toContain('"opens":"07:00","closes":"21:00"');
+    expect(head).toContain('"opens":"07:00","closes":"17:00"');
+    expect(head).not.toContain('"closes":"19:00"');
+    expect(head).not.toContain('"closes":"15:00"');
+  });
 });

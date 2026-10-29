@@ -16,6 +16,7 @@ import { faqs } from "@/data/faqs";
 import { franklinParkFaqs } from "@/data/franklinParkPage";
 import { serviceAreasDescription, serviceAreasTitle } from "@/data/serviceAreas";
 import {
+  BUSINESS_HOURS,
   NAP,
   PRIMARY_LOCATION,
   SECONDARY_OFFICES,
@@ -126,20 +127,12 @@ export type SeoMeta = {
   image?: string;
 };
 
-const OPENING_HOURS = [
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "07:00",
-    closes: "19:00",
-  },
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: "Saturday",
-    opens: "09:00",
-    closes: "15:00",
-  },
-];
+const OPENING_HOURS = BUSINESS_HOURS.map((span) => ({
+  "@type": "OpeningHoursSpecification" as const,
+  dayOfWeek: [...span.dayOfWeek],
+  opens: span.opens,
+  closes: span.closes,
+}));
 
 function postalAddress(location: { street: string; city: string; region: string; postalCode: string }) {
   return {
