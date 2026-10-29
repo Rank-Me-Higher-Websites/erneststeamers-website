@@ -39,6 +39,11 @@ describe("contact SEO", () => {
     expect(address.streetAddress).toBe("1018 Hummingbird Way");
     expect(address.postalCode).toBe("60103");
     expect(main?.telephone).toBe("+1-630-403-0180");
+    expect(main?.email).toBe("info@erneststeamers.com");
+    const franklin = nodes.find(
+      (node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business",
+    );
+    expect(franklin?.email).toBe("info@erneststeamers.com");
   });
 
   it("is in the prerender list and does not reuse the noindex funnel title", () => {

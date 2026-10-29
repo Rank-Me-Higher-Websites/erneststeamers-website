@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { render as prerender } from "@/entry-server";
 import Contact from "@/pages/Contact";
 
 const leadFields = ["name", "phone", "email", "address", "service", "rooms", "squareFootage", "preferredDate", "message", "website"];
@@ -82,5 +83,38 @@ describe("contact page", () => {
       if (base === "/" || base.includes(".")) continue;
       expect(base.endsWith("/"), href).toBe(true);
     }
+  });
+
+  it("prerenders the contact page and LocalBusiness schema with info@erneststeamers.com", () => {
+    const { html, head } = prerender("/contact/");
+    expect(html).toContain("mailto:info@erneststeamers.com");
+    expect(html).toContain("info@erneststeamers.com");
+    expect(head).toContain('"email":"info@erneststeamers.com"');
+
+    const blocks = [...head.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((match) =>
+      JSON.parse(match[1]) as unknown,
+    );
+    expect(blocks.length).toBeGreaterThan(0);
+
+    const nodes: Array<Record<string, unknown>> = [];
+    const walk = (value: unknown) => {
+      if (Array.isArray(value)) {
+        value.forEach(walk);
+        return;
+      }
+      if (!value || typeof value !== "object") return;
+      nodes.push(value as Record<string, unknown>);
+      for (const child of Object.values(value as Record<string, unknown>)) walk(child);
+    };
+    blocks.forEach(walk);
+
+    const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
+    expect(businesses.length).toBeGreaterThanOrEqual(2);
+    for (const business of businesses) {
+      expect(business.email).toBe("info@erneststeamers.com");
+    }
+
+    const emails = `${head}\n${html}`.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g) ?? [];
+    expect([...new Set(emails)]).toEqual(["info@erneststeamers.com"]);
   });
 });
