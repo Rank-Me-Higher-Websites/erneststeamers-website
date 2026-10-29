@@ -58,13 +58,13 @@ describe("Franklin Park SEO", () => {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "07:00",
-        closes: "19:00",
+        closes: "21:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "15:00",
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "07:00",
+        closes: "17:00",
       },
     ]);
 
@@ -72,6 +72,7 @@ describe("Franklin Park SEO", () => {
     const mainAddress = main?.address as { streetAddress: string; postalCode: string };
     expect(mainAddress.streetAddress).toBe("1018 Hummingbird Way");
     expect(mainAddress.postalCode).toBe("60103");
+    expect(main?.openingHoursSpecification).toEqual(franklin?.openingHoursSpecification);
 
     const page = nodes.find((node) => node["@type"] === "WebPage");
     expect(page?.description).toBe(seo.description);

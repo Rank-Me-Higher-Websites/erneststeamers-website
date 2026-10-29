@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucide-react";
 import {
+  BUSINESS_HOURS,
   EMAIL,
   PHONE_ALT_DISPLAY,
   PHONE_DISPLAY,
@@ -140,27 +141,15 @@ const Footer = () => {
             </h3>
             <div className="w-6 lg:w-8 h-0.5 bg-accent mb-2 lg:mb-4" />
             <ul className="space-y-1.5 lg:space-y-3">
-              <li className="flex items-start gap-1.5 lg:gap-2">
-                <Clock className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-accent font-semibold text-[11px] lg:text-sm">Monday to Friday</p>
-                  <p className="text-primary-foreground/70 text-[11px] lg:text-sm">7 am to 7 pm</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-1.5 lg:gap-2">
-                <Clock className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-accent font-semibold text-[11px] lg:text-sm">Saturday</p>
-                  <p className="text-primary-foreground/70 text-[11px] lg:text-sm">9 am to 3 pm</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-1.5 lg:gap-2">
-                <Clock className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-accent font-semibold text-[11px] lg:text-sm">Sunday</p>
-                  <p className="text-primary-foreground/70 text-[11px] lg:text-sm">Closed</p>
-                </div>
-              </li>
+              {BUSINESS_HOURS.map((span) => (
+                <li key={span.label} className="flex items-start gap-1.5 lg:gap-2">
+                  <Clock className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-accent font-semibold text-[11px] lg:text-sm">{span.label}</p>
+                    <p className="text-primary-foreground/70 text-[11px] lg:text-sm">{span.hours}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

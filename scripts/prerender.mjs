@@ -127,7 +127,7 @@ function extractJsonLd(file, html) {
   return blocks;
 }
 
-function assertJsonLd(file, html, { primary, offices, sister, requireOffices }) {
+function assertJsonLd(file, html, { primary, offices, sister, requireOffices, openingHours }) {
   const blocks = extractJsonLd(file, html);
   const nodes = [];
   for (const block of blocks) walk(block, (node) => nodes.push(node));
@@ -150,6 +150,9 @@ function assertJsonLd(file, html, { primary, offices, sister, requireOffices }) 
     }
     if (types.some((type) => type === "LocalBusiness") && node.email !== primary.email) {
       throw new Error(`${file}: LocalBusiness is missing email ${primary.email}`);
+    }
+    if (types.some((type) => type === "LocalBusiness") && JSON.stringify(node.openingHoursSpecification) !== JSON.stringify(openingHours)) {
+      throw new Error(`${file}: LocalBusiness opening hours do not match BUSINESS_HOURS`);
     }
     const serialized = JSON.stringify(node);
     if (serialized.includes("270-6228") || serialized.includes("Diehl")) {
@@ -270,9 +273,15 @@ try {
   const manifest = JSON.parse(readFileSync("dist/.vite/manifest.json", "utf8"));
   const { render } = await vite.ssrLoadModule("/src/entry-server.tsx");
   const { getPrerenderPaths } = await vite.ssrLoadModule("/src/seo.ts");
-  const { PRIMARY_LOCATION, SECONDARY_OFFICES, SISTER_COMPANY } = await vite.ssrLoadModule(
+  const { BUSINESS_HOURS, PRIMARY_LOCATION, SECONDARY_OFFICES, SISTER_COMPANY } = await vite.ssrLoadModule(
     "/src/data/locations.ts",
   );
+  const openingHours = BUSINESS_HOURS.map((span) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [...span.dayOfWeek],
+    opens: span.opens,
+    closes: span.closes,
+  }));
   for (const office of SECONDARY_OFFICES) {
     H1_SNIPPET[bareRoute(office.path)] = office.h1;
   }
@@ -309,6 +318,7 @@ try {
       offices: SECONDARY_OFFICES,
       sister: SISTER_COMPANY,
       requireOffices: true,
+      openingHours,
     });
     if (titles.has(title)) {
       throw new Error(`duplicate title "${title}" on ${route} and ${titles.get(title)}`);
@@ -327,6 +337,7 @@ try {
     offices: SECONDARY_OFFICES,
     sister: SISTER_COMPANY,
     requireOffices: false,
+    openingHours,
   });
   if (!notFound.includes('href="https://erneststeamers.com/404/"')) {
     throw new Error("dist/404.html is missing its canonical");
