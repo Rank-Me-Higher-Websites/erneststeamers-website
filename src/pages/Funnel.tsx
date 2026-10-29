@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucide-react";
 import logo from "@/assets/logo.png";
 import {
+  EMAIL,
   PHONE_ALT_DISPLAY,
   PHONE_DISPLAY,
   PRIMARY_LOCATION,
@@ -111,8 +112,8 @@ const FunnelFooter = () => {
             <ul className="space-y-1.5 lg:space-y-2.5">
               <li className="flex items-start gap-1.5 lg:gap-2">
                 <Mail className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@erneststeamers.com" className="text-primary-foreground/70 hover:text-accent text-xs lg:text-sm transition-colors">
-                  info@erneststeamers.com
+                <a href={`mailto:${EMAIL}`} className="text-primary-foreground/70 hover:text-accent text-xs lg:text-sm transition-colors">
+                  {EMAIL}
                 </a>
               </li>
               <li className="flex items-start gap-1.5 lg:gap-2">

@@ -145,6 +145,12 @@ function assertJsonLd(file, html, { primary, offices, sister, requireOffices }) 
     if (typeof node.telephone === "string" && node.telephone !== primary.phoneSchema) {
       throw new Error(`${file}: unexpected telephone ${node.telephone}`);
     }
+    if (typeof node.email === "string" && node.email !== primary.email) {
+      throw new Error(`${file}: unexpected email ${node.email}`);
+    }
+    if (types.some((type) => type === "LocalBusiness") && node.email !== primary.email) {
+      throw new Error(`${file}: LocalBusiness is missing email ${primary.email}`);
+    }
     const serialized = JSON.stringify(node);
     if (serialized.includes("270-6228") || serialized.includes("Diehl")) {
       throw new Error(`${file}: JSON-LD includes a disallowed phone or address`);
@@ -306,6 +312,9 @@ try {
     });
     if (titles.has(title)) {
       throw new Error(`duplicate title "${title}" on ${route} and ${titles.get(title)}`);
+    }
+    if (bareRoute(route) === "/contact" && !page.includes(`mailto:${PRIMARY_LOCATION.email}`)) {
+      throw new Error(`${file}: contact page is missing mailto:${PRIMARY_LOCATION.email}`);
     }
     titles.set(title, route);
     console.log(`prerendered ${route}`);
