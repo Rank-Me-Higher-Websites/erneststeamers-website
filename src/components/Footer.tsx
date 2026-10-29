@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucide-react";
-import { PRIMARY_LOCATION, SECONDARY_OFFICES, SISTER_COMPANY, mapsEmbedSrc } from "@/data/locations";
+import {
+  PHONE_ALT_DISPLAY,
+  PHONE_DISPLAY,
+  PRIMARY_LOCATION,
+  SECONDARY_OFFICES,
+  SISTER_COMPANY,
+  mapsEmbedSrc,
+  phoneTelHref,
+} from "@/data/locations";
 
 const quickLinks = [
   { label: "Home", path: "/" },
@@ -22,9 +30,10 @@ const Footer = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
           <div className="col-span-2 sm:col-span-1">
             <img src={logo} alt="Ernest Steamers" width={283} height={67} className="mb-2 h-10 w-auto lg:mb-4 lg:h-14" />
-            <a href="tel:+16308309867" className="block font-heading font-bold text-primary-foreground text-base lg:text-xl mb-2 lg:mb-3">
-              630-830-9867
+            <a href={phoneTelHref()} className="block font-heading font-bold text-primary-foreground text-base lg:text-xl">
+              {PHONE_DISPLAY}
             </a>
+            <p className="mb-2 text-xs text-primary-foreground/70 lg:mb-3 lg:text-sm">{`alt ${PHONE_ALT_DISPLAY}`}</p>
             <ul className="space-y-1.5 lg:space-y-2.5">
               <li className="flex items-start gap-1.5 lg:gap-2">
                 <Mail className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />

@@ -29,13 +29,13 @@ describe("contact page", () => {
     expect(mainText).toContain("Bartlett, IL 60103");
     expect(mainText).toContain("10549 Crown Rd #4");
     expect(mainText).toContain("Franklin Park, IL 60131");
-    expect(mainText).toContain("630-830-9867");
+    expect(mainText).toContain("(630) 403-0180");
     expect(mainText).toContain("info@erneststeamers.com");
     expect(mainText).toContain("What happens next");
     expect(mainText).not.toMatch(banned);
 
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
-    expect(container.querySelectorAll("a[href='tel:+16308309867']").length).toBeGreaterThan(0);
+    expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
     expect(container.querySelector("a[href='/contact/']")).toBeTruthy();
     expect(container.querySelector("a[href='/locations/franklin-park/']")).toBeTruthy();
     expect(container.querySelector("a[href='/services/']")).toBeTruthy();
@@ -73,7 +73,7 @@ describe("contact page", () => {
     expect(form?.getAttribute("action")).toBeNull();
 
     const bar = container.querySelector("[data-testid='bar-sticky-mobile']");
-    expect(bar?.textContent).toContain("Call 630-830-9867");
+    expect(bar?.textContent).toContain("Call (630) 403-0180");
     expect(bar?.textContent).not.toMatch(/Get a quote/i);
 
     for (const link of container.querySelectorAll("a[href^='/']")) {

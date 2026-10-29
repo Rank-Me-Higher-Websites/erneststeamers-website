@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import InlineQuoteCta from "@/components/blog/InlineQuoteCta";
 import { bodyText, focusRing } from "@/components/home/ui";
 import { firstThirdIndex, parseBlocks, type Block } from "@/lib/blogContent";
-import { phoneTelHref } from "@/data/locations";
+import { PHONE_ALT_DISPLAY, PHONE_SCHEMA, phoneTelHref } from "@/data/locations";
+
+function nationalDigits(value: string) {
+  return value.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
+}
 
 function normalizeHref(href: string): string {
-  const digits = href.replace(/\D/g, "");
-  if (href.startsWith("tel:") && digits.endsWith("6308309867")) return phoneTelHref();
+  if (!href.startsWith("tel:")) return href;
+  const digits = nationalDigits(href);
+  if (digits === nationalDigits(PHONE_SCHEMA) || digits === nationalDigits(PHONE_ALT_DISPLAY)) return phoneTelHref();
   return href;
 }
 

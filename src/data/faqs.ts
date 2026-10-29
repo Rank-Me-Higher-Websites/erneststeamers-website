@@ -1,7 +1,9 @@
+import { PHONE_DISPLAY } from "@/data/locations";
+
 export const faqs = [
   {
     q: "How much does carpet cleaning cost?",
-    a: "Pricing depends on the size of the area and the type of cleaning required. Most residential jobs start at $99. Call us at 630-830-9867 for a free, no-obligation quote tailored to your home.",
+    a: `Pricing depends on the size of the area and the type of cleaning required. Most residential jobs start at $99. Call us at ${PHONE_DISPLAY} for a free, no-obligation quote tailored to your home.`,
   },
   {
     q: "How long does the carpet take to dry?",

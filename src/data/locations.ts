@@ -6,8 +6,23 @@
  * read it. Also add each office path to public/sitemap.xml (the build checks).
  */
 
-export const PHONE_DISPLAY = "630-830-9867";
-export const PHONE_SCHEMA = "+1-630-830-9867";
+/**
+ * Call-tracking number. Display text, tel: links, and LocalBusiness
+ * telephone are all derived from this one national number.
+ */
+const TRACKING_NATIONAL = "6304030180";
+const trackingArea = TRACKING_NATIONAL.slice(0, 3);
+const trackingPrefix = TRACKING_NATIONAL.slice(3, 6);
+const trackingLine = TRACKING_NATIONAL.slice(6);
+
+export const PHONE_DISPLAY = `(${trackingArea}) ${trackingPrefix}-${trackingLine}`;
+export const PHONE_SCHEMA = `+1-${trackingArea}-${trackingPrefix}-${trackingLine}`;
+
+/**
+ * Direct office line. The footer may list it as an alternate.
+ * It is not a click-to-call target and not the schema telephone.
+ */
+export const PHONE_ALT_DISPLAY = "630-830-9867";
 export const EMAIL = "info@erneststeamers.com";
 
 export const PRIMARY_LOCATION = {
@@ -90,10 +105,8 @@ export const SECONDARY_OFFICES: readonly SecondaryOffice[] = [
     phoneSchema: PHONE_SCHEMA,
     email: EMAIL,
     title: "Carpet Cleaning in Franklin Park, IL | Ernest Steamers",
-    description:
-      "Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call 630-830-9867.",
-    metaDescription:
-      "Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call 630-830-9867 for a quote.",
+    description: `Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call ${PHONE_DISPLAY}.`,
+    metaDescription: `Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call ${PHONE_DISPLAY} for a quote.`,
     intro: "Carpet, rug, and upholstery steam cleaning for Franklin Park and nearby suburbs.",
     details:
       "The Franklin Park office provides carpet, rug, and upholstery steam cleaning for homes and businesses.",

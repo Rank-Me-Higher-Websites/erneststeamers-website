@@ -15,11 +15,11 @@ const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,
 const contactFaqs = [
   {
     q: "How much does carpet cleaning cost?",
-    a: "Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. Call 630-830-9867 or send the form for a quote.",
+    a: `Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. Call ${PHONE_DISPLAY} or send the form for a quote.`,
   },
   {
     q: "Which areas do you clean?",
-    a: "We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in Franklin Park. Call 630-830-9867 to ask about your town.",
+    a: `We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in Franklin Park. Call ${PHONE_DISPLAY} to ask about your town.`,
   },
   {
     q: "What should I prepare for a quote?",

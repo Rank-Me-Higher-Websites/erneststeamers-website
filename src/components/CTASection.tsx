@@ -1,4 +1,5 @@
 import QuoteFormDialog from "./QuoteFormDialog";
+import { phoneTelHref } from "@/data/locations";
 
 const CTASection = () => {
   return (
@@ -13,7 +14,7 @@ const CTASection = () => {
           </p>
           <div className="flex gap-2 lg:gap-3 justify-center">
             <a
-              href="tel:+16308309867"
+              href={phoneTelHref()}
               className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2 lg:px-8 lg:py-3 rounded-lg text-sm lg:text-base transition-all"
             >
               CALL NOW

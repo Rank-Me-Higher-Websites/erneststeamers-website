@@ -1,5 +1,6 @@
 import { useId, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { inputClass } from "@/components/home/ui";
+import { PHONE_DISPLAY } from "@/data/locations";
 
 export const SERVICE_OPTIONS = [
   "Carpet Cleaning",
@@ -77,7 +78,7 @@ export default function QuoteForm({
       setFormData({ ...initialFormData, service: defaultService });
       onSubmitted?.();
     } catch {
-      setError("Something went wrong. Please try again or call 630-830-9867.");
+      setError(`Something went wrong. Please try again or call ${PHONE_DISPLAY}.`);
     } finally {
       setSubmitting(false);
     }

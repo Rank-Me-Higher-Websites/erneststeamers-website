@@ -1,9 +1,10 @@
+import { PHONE_DISPLAY } from "@/data/locations";
 import { serviceRegions } from "@/data/serviceAreas";
 
 export const franklinParkFaqs = [
   {
     q: "How much does carpet cleaning cost?",
-    a: "Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. Upholstery, area rugs, tile and grout, and commercial carpet are quoted for that job. Call 630-830-9867 for a quote.",
+    a: `Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. Upholstery, area rugs, tile and grout, and commercial carpet are quoted for that job. Call ${PHONE_DISPLAY} for a quote.`,
   },
   {
     q: "What services does the Franklin Park office offer?",
@@ -11,7 +12,7 @@ export const franklinParkFaqs = [
   },
   {
     q: "How do I request a quote from this office?",
-    a: "Call 630-830-9867 or send the form on this page. Include the service and the address. We confirm the details before the visit is scheduled.",
+    a: `Call ${PHONE_DISPLAY} or send the form on this page. Include the service and the address. We confirm the details before the visit is scheduled.`,
   },
 ];
 
@@ -32,6 +33,6 @@ export const franklinParkParagraphs = [
   "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Certified technicians clean the rugs you include in the visit and walk the space with you when the work is finished. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition.",
   "Tile and grout cleaning covers tile floors and the grout lines between the tiles. Certified technicians clean the floor area you put on the quote, whether that is a kitchen, a bathroom, an entry, or another tiled room. The visit is a fit when dirt has settled in the grout and you want that floor cleaned in place. Tile and grout is quoted for the floor size and the condition.",
   "Commercial carpet cleaning is for offices, lobbies, and other business spaces. Certified technicians clean the carpeted areas you list with hot-water extraction, the same method used in homes. The visit is a fit when a business wants those areas cleaned and then walked through before we leave. Commercial carpet is quoted for the space and its condition.",
-  "Call 630-830-9867 or send the form on this page. Tell us the service and the service address, and which rooms or pieces to clean. You can add the approximate size, a date you prefer, and a note about the condition. We look at those details and confirm the quote before the visit is scheduled. On the visit, certified technicians clean and walk the finished work with you.",
+  `Call ${PHONE_DISPLAY} or send the form on this page. Tell us the service and the service address, and which rooms or pieces to clean. You can add the approximate size, a date you prefer, and a note about the condition. We look at those details and confirm the quote before the visit is scheduled. On the visit, certified technicians clean and walk the finished work with you.`,
   "Nearby towns already listed with this office are Chicago, Des Plaines, Elmhurst, and Niles. The Chicago and Cook County group on the service areas page also includes Franklin Park, Wheeling, Morton Grove, Arlington Hts, Mt Prospect, and Skokie. Those chips link to the service areas page. This office does not publish a separate page for each town.",
 ];

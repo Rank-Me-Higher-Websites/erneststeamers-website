@@ -1,3 +1,4 @@
+import { PHONE_DISPLAY, phoneTelHref } from "@/data/locations";
 import type { BlogImageName } from "@/lib/blogImages";
 
 export const BLOG_TOPICS = ["Carpets", "Pet stains", "Upholstery", "Commercial", "Health"] as const;
@@ -28,7 +29,7 @@ export const blogPosts: BlogPost[] = [
     title: "5 Carpet Cleaning Tips Every Homeowner Should Know",
     metaTitle: "Carpet Cleaning Tips for Homeowners | Ernest Steamers",
     metaDescription:
-      "Five carpet cleaning tips for homeowners in Chicago and the suburbs, from Ernest Steamers in Bartlett, IL. Call 630-830-9867.",
+      `Five carpet cleaning tips for homeowners in Chicago and the suburbs, from Ernest Steamers in Bartlett, IL. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Keeping your carpets looking fresh between professional cleanings doesn't have to be hard. From quick spot-treatment tricks to vacuuming schedules, here are five tips that extend the life of your carpet and keep your home feeling clean.",
     image: "carpet-tips",
@@ -84,13 +85,13 @@ At Ernest Steamers, we use truck-mounted hot water extraction equipment that del
 
 These five simple habits can extend the life of your carpet by years and keep your home healthier. But when it's time for a deep clean, trust the professionals.
 
-**Ernest Steamers proudly serves Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call us at [630-830-9867](tel:+16308309867) or request a free quote today.`,
+**Ernest Steamers proudly serves Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call us at [${PHONE_DISPLAY}](${phoneTelHref()}) or request a free quote today.`,
   },
   {
     slug: "remove-pet-stains-odors",
     title: "How to Remove Pet Stains & Odors for Good",
     metaDescription:
-      "Pet stains and odors on carpet: what to do before a professional clean, from Ernest Steamers in Bartlett, IL. Call 630-830-9867.",
+      `Pet stains and odors on carpet: what to do before a professional clean, from Ernest Steamers in Bartlett, IL. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Pet accidents happen — but they don't have to leave a permanent mark. Learn why store-bought cleaners often fall short and how professional steam extraction eliminates stains and odors at the source.",
     image: "pet-stains",
@@ -145,14 +146,14 @@ Between professional cleanings, here's how to minimize pet-related carpet damage
 
 Even if your carpets have years of pet damage, professional treatment can make a dramatic difference. We've restored carpets that homeowners were ready to replace — saving them thousands of dollars.
 
-**Ernest Steamers serves pet owners across Chicago, Naperville, Arlington Heights, Evanston, Orland Park, and all surrounding suburbs.** Call [630-830-9867](tel:+16308309867) for a free estimate.`,
+**Ernest Steamers serves pet owners across Chicago, Naperville, Arlington Heights, Evanston, Orland Park, and all surrounding suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for a free estimate.`,
   },
   {
     slug: "steam-cleaning-vs-dry-cleaning-carpet",
     title: "Steam Cleaning vs. Dry Cleaning: Which Is Better for Your Carpet?",
     metaTitle: "Steam Cleaning vs. Dry Cleaning Carpet | Ernest Steamers",
     metaDescription:
-      "Steam cleaning versus dry cleaning for carpet, compared for Chicago-area homes by Ernest Steamers in Bartlett. Call 630-830-9867.",
+      `Steam cleaning versus dry cleaning for carpet, compared for Chicago-area homes by Ernest Steamers in Bartlett. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Not all carpet cleaning methods are created equal. We break down the pros and cons of hot water extraction (steam cleaning) vs. dry cleaning so you can make an informed decision.",
     image: "steam-vs-dry",
@@ -227,14 +228,14 @@ We exclusively use truck-mounted hot water extraction equipment because it deliv
 
 Combined with our non-toxic, eco-friendly cleaning solutions, we deliver a deep clean that's safe for children, pets, and the environment.
 
-**Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) or request your free quote today.`,
+**Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
   },
   {
     slug: "upholstery-cleaning-benefits",
     title: "Why You Should Clean Your Upholstery More Often Than You Think",
     metaTitle: "Upholstery Cleaning Benefits | Ernest Steamers",
     metaDescription:
-      "Why sofas and chairs collect dust, and how upholstery cleaning helps homes in Chicago and the suburbs. Call 630-830-9867.",
+      `Why sofas and chairs collect dust, and how upholstery cleaning helps homes in Chicago and the suburbs. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Your couch collects dust, allergens, and bacteria every single day. Regular upholstery cleaning improves air quality and extends the life of your furniture.",
     image: "upholstery",
@@ -296,14 +297,14 @@ We recommend professional upholstery cleaning:
 
 Quality upholstery is a real investment. Regular professional cleaning protects that investment by preventing permanent staining, fiber degradation, and odor buildup.
 
-**Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) for your free estimate.`,
+**Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for your free estimate.`,
   },
   {
     slug: "carpet-cleaning-allergies-indoor-air-quality",
     title: "Carpet Cleaning & Allergies: How Clean Carpets Improve Your Health",
     metaTitle: "Carpet Cleaning and Allergies | Ernest Steamers",
     metaDescription:
-      "How carpet holds dust, dander, and pollen in Chicago-area homes, and how cleaning can help reduce them. Call 630-830-9867.",
+      `How carpet holds dust, dander, and pollen in Chicago-area homes, and how cleaning can help reduce them. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Dirty carpets are one of the biggest triggers for indoor allergies. Dust mites, pet dander, and pollen get trapped in carpet fibers. Here's how professional cleaning can dramatically reduce symptoms.",
     image: "allergies",
@@ -375,14 +376,14 @@ In addition to professional carpet cleaning every 6 months, we recommend:
 
 Our eco-friendly, non-toxic cleaning process is specifically designed to be safe for allergy and asthma sufferers — including children and the elderly. We use residue-free solutions that won't trigger chemical sensitivities.
 
-**Serving allergy sufferers across Chicago, Naperville, Evanston, Schaumburg, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) or request your free quote today.`,
+**Serving allergy sufferers across Chicago, Naperville, Evanston, Schaumburg, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
   },
   {
     slug: "commercial-carpet-cleaning-business",
     title: "Commercial Carpet Cleaning: Why It Matters for Your Business",
     metaTitle: "Commercial Carpet Cleaning | Ernest Steamers",
     metaDescription:
-      "Commercial carpet cleaning for offices and shops across Chicago and the suburbs, from Ernest Steamers. Call 630-830-9867.",
+      `Commercial carpet cleaning for offices and shops across Chicago and the suburbs, from Ernest Steamers. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "First impressions count. Clean carpets in your office or retail space signal professionalism and care. We explain how routine commercial cleaning protects your investment.",
     image: "commercial",
@@ -468,7 +469,7 @@ Ernest Steamers provides commercial carpet cleaning for businesses across Chicag
 
 Your carpet is one of the first things people notice — and one of the last things many businesses think about cleaning. Don't let dirty floors undermine your professional image.
 
-**Ernest Steamers serves businesses across Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [630-830-9867](tel:+16308309867) for a free commercial estimate.`,
+**Ernest Steamers serves businesses across Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for a free commercial estimate.`,
   },
 ];
 

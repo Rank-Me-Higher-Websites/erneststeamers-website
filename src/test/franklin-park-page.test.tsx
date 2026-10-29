@@ -57,7 +57,7 @@ describe("Franklin Park page", () => {
     expect(mainText).toContain("starts at $99");
     expect(mainText).toContain("10549 Crown Rd #4");
     expect(mainText).toContain("Franklin Park, IL 60131");
-    expect(mainText).toContain("630-830-9867");
+    expect(mainText).toContain("(630) 403-0180");
     expect(mainText).toContain("info@erneststeamers.com");
     expect(mainText).toContain("1018 Hummingbird Way");
     expect(mainText).toContain("Bartlett, IL 60103");
@@ -72,7 +72,7 @@ describe("Franklin Park page", () => {
     }
 
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
-    expect(container.querySelectorAll("a[href='tel:+16308309867']").length).toBeGreaterThan(0);
+    expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
 
     const nearby = franklinNearbyLabels(SECONDARY_OFFICES[0].nearby);
     const chips = [...(document.getElementById("nearby-heading")?.closest("section")?.querySelectorAll("a") ?? [])];

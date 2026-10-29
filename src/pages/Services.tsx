@@ -11,6 +11,7 @@ import AreaTeaser from "@/components/home/AreaTeaser";
 import HowItWorks from "@/components/home/HowItWorks";
 import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
+import { PHONE_DISPLAY } from "@/data/locations";
 import { SERVICES_CARPET_SIZES } from "@/lib/homeImages";
 import { serviceBlocks, serviceFaqs, type CopyPart } from "@/data/servicesPage";
 
@@ -24,7 +25,7 @@ function AreasAnswer() {
       <Link to="/service-areas/" className={linkClass}>
         service areas page
       </Link>{" "}
-      for the town list, or call 630-830-9867 to ask about your town.
+      for the town list, or call {PHONE_DISPLAY} to ask about your town.
     </>
   );
 }
@@ -187,7 +188,7 @@ const Services = () => {
             <div>
               <h2 className={sectionTitle}>Request a quote</h2>
               <p className={`${bodyText} mt-4 max-w-xl`}>
-                Call 630-830-9867 or send the form. Carpet cleaning starts at $99. Certified technicians do the work.
+                Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Certified technicians do the work.
                 Choose the service and the address, and we will confirm the quote before scheduling.
               </p>
               <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />

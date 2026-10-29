@@ -8,11 +8,11 @@ describe("about SEO", () => {
     expect(seo.title).toBe("About Ernest Steamers | Carpet Cleaning in Bartlett, IL");
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description).toBe(
-      "Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call 630-830-9867.",
+      "Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call (630) 403-0180.",
     );
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);
-    expect(seo.description).toContain("630-830-9867");
+    expect(seo.description).toContain("(630) 403-0180");
     expect(seo.canonical).toBe("https://erneststeamers.com/about/");
   });
 
@@ -29,7 +29,7 @@ describe("about SEO", () => {
     const address = main?.address as { streetAddress: string; postalCode: string };
     expect(address.streetAddress).toBe("1018 Hummingbird Way");
     expect(address.postalCode).toBe("60103");
-    expect(main?.telephone).toBe("+1-630-830-9867");
+    expect(main?.telephone).toBe("+1-630-403-0180");
 
     const franklin = nodes.find((node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business");
     const franklinAddress = franklin?.address as { streetAddress: string; postalCode: string };

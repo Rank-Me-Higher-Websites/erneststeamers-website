@@ -50,13 +50,13 @@ describe("service areas page", () => {
     expect(words(mainText).length).toBeGreaterThanOrEqual(400);
     expect(mainText).toContain("Certified technicians");
     expect(mainText).toContain("starts at $99");
-    expect(mainText).toContain("630-830-9867");
+    expect(mainText).toContain("(630) 403-0180");
     expect(mainText).toContain("hot-water extraction");
     expect(mainText).not.toMatch(banned);
     expect(mainText).not.toMatch(hours);
 
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
-    expect(container.querySelectorAll("a[href='tel:+16308309867']").length).toBeGreaterThan(0);
+    expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
     expect(mainText).toContain("1018 Hummingbird Way");
     expect(mainText).toContain("Bartlett, IL 60103");
     expect(mainText).toContain("10549 Crown Rd #4");
