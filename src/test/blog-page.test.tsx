@@ -52,9 +52,9 @@ describe("blog index", () => {
     }
 
     for (const link of container.querySelectorAll('a[href^="tel:"]')) {
-      expect(link.getAttribute("href")).toBe("tel:+16308309867");
+      expect(link.getAttribute("href")).toBe("tel:+16304030180");
     }
-    expect(container.querySelectorAll('a[href="tel:+16308309867"]').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('a[href="tel:+16304030180"]').length).toBeGreaterThan(0);
     expect(container.innerHTML).not.toMatch(/aggregateRating|reviewCount|BlogPosting/);
 
     fireEvent.click(screen.getByRole("button", { name: "Health" }));
@@ -90,7 +90,7 @@ describe("blog post", () => {
     expect(photos.filter((photo) => photo.getAttribute("loading") === "lazy").length).toBe(photos.length - 1);
 
     for (const link of container.querySelectorAll('a[href^="tel:"]')) {
-      expect(link.getAttribute("href")).toBe("tel:+16308309867");
+      expect(link.getAttribute("href")).toBe("tel:+16304030180");
     }
     expect(container.innerHTML).not.toContain("tel:6308309867");
     expect(container.innerHTML).not.toMatch(/aggregateRating|reviewCount/);
@@ -172,9 +172,9 @@ describe("stored article copy", () => {
     expect(getPostBySlug("remove-pet-stains-odors")?.metaTitle).toBeUndefined();
 
     for (const post of blogPosts) {
-      expect(post.content).toContain("tel:+16308309867");
+      expect(post.content).toContain("tel:+16304030180");
       expect(post.content).not.toContain("tel:6308309867");
-      expect(post.content).toContain("[630-830-9867](tel:+16308309867)");
+      expect(post.content).toContain("[(630) 403-0180](tel:+16304030180)");
     }
 
     const table = parseBlocks(commercial?.content ?? "").find((block) => block.type === "table");

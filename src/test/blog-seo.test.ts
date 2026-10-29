@@ -18,7 +18,7 @@ describe("blog SEO", () => {
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);
-    expect(seo.description).toContain("630-830-9867");
+    expect(seo.description).toContain("(630) 403-0180");
     expect(seo.canonical).toBe("https://erneststeamers.com/blog/");
     expect(seo.image).toBe("https://erneststeamers.com/images/blog/carpet-tips.jpg");
 
@@ -36,7 +36,7 @@ describe("blog SEO", () => {
     const address = main?.address as { streetAddress: string; postalCode: string };
     expect(address.streetAddress).toBe("1018 Hummingbird Way");
     expect(address.postalCode).toBe("60103");
-    expect(main?.telephone).toBe("+1-630-830-9867");
+    expect(main?.telephone).toBe("+1-630-403-0180");
   });
 
   it("keeps each post title at 60 characters or fewer and emits Article schema", () => {
@@ -46,7 +46,7 @@ describe("blog SEO", () => {
       expect(seo.title.length).toBeLessThanOrEqual(60);
       expect(seo.description.length).toBeGreaterThanOrEqual(120);
       expect(seo.description.length).toBeLessThanOrEqual(155);
-      expect(seo.description).toContain("630-830-9867");
+      expect(seo.description).toContain("(630) 403-0180");
       expect(seo.canonical).toBe(`https://erneststeamers.com/blog/${post.slug}/`);
       expect(seo.ogType).toBe("article");
       expect(seo.image).toBe(`https://erneststeamers.com/images/blog/${post.image}.jpg`);

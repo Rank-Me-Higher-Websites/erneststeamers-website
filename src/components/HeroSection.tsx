@@ -1,5 +1,6 @@
 import { Shield, Award, Leaf, Star } from "lucide-react";
 import QuoteFormDialog from "./QuoteFormDialog";
+import { phoneTelHref } from "@/data/locations";
 
 const stats = [
   { value: "500+", label: "Happy Clients" },
@@ -63,7 +64,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="flex flex-wrap gap-2.5">
-              <a href="tel:+16308309867" className="inline-flex items-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-7 py-3.5 rounded-lg text-lg transition-all" data-testid="link-call-now">
+              <a href={phoneTelHref()} className="inline-flex items-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-7 py-3.5 rounded-lg text-lg transition-all" data-testid="link-call-now">
                 CALL NOW <span className="text-lg">→</span>
               </a>
               <QuoteFormDialog>
@@ -120,7 +121,7 @@ const HeroSection = () => {
           </p>
 
           <div className="flex gap-2.5">
-            <a href="tel:+16308309867" className="inline-flex items-center justify-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold py-3 rounded-xl text-sm transition-all flex-1" data-testid="link-call-now-mobile">
+            <a href={phoneTelHref()} className="inline-flex items-center justify-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold py-3 rounded-xl text-sm transition-all flex-1" data-testid="link-call-now-mobile">
               CALL NOW →
             </a>
             <QuoteFormDialog>

@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { PRIMARY_LOCATION, SECONDARY_OFFICES, SISTER_COMPANY, mapsEmbedSrc } from "@/data/locations";
+import {
+  PHONE_ALT_DISPLAY,
+  PHONE_DISPLAY,
+  PRIMARY_LOCATION,
+  SECONDARY_OFFICES,
+  SISTER_COMPANY,
+  mapsEmbedSrc,
+  phoneTelHref,
+} from "@/data/locations";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import HeroSection from "@/components/HeroSection";
 import TrustBadges from "@/components/TrustBadges";
@@ -18,9 +26,9 @@ const FunnelNav = () => (
     <div className="container max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
       <img src={logo} alt="Ernest Steamers" className="h-7" />
       <div className="flex items-center gap-3">
-        <a href="tel:+16308309867" className="flex items-center gap-1.5 text-foreground">
+        <a href={phoneTelHref()} className="flex items-center gap-1.5 text-foreground">
           <Phone className="w-3.5 h-3.5 text-foreground" />
-          <span className="text-xs font-semibold hidden sm:inline">630-830-9867</span>
+          <span className="text-xs font-semibold hidden sm:inline">{PHONE_DISPLAY}</span>
         </a>
         <QuoteFormDialog>
           <button className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1" data-testid="button-funnel-quote">
@@ -74,7 +82,7 @@ const FunnelCTA = () => (
           No hidden fees. No commitments. Just a transparent quote and incredible results.
         </p>
         <div className="flex gap-2 lg:gap-3 justify-center">
-          <a href="tel:+16308309867" className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2 lg:px-8 lg:py-3 rounded-lg text-sm lg:text-base transition-all">
+          <a href={phoneTelHref()} className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2 lg:px-8 lg:py-3 rounded-lg text-sm lg:text-base transition-all">
             CALL NOW
           </a>
           <QuoteFormDialog>
@@ -96,9 +104,10 @@ const FunnelFooter = () => {
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
           <div className="col-span-2 lg:col-span-1">
             <img src={logo} alt="Ernest Steamers" className="h-10 lg:h-14 mb-2 lg:mb-4" />
-            <a href="tel:+16308309867" className="block font-heading font-bold text-primary-foreground text-base lg:text-xl mb-2 lg:mb-3">
-              630-830-9867
+            <a href={phoneTelHref()} className="block font-heading font-bold text-primary-foreground text-base lg:text-xl">
+              {PHONE_DISPLAY}
             </a>
+            <p className="mb-2 text-xs text-primary-foreground/70 lg:mb-3 lg:text-sm">{`alt ${PHONE_ALT_DISPLAY}`}</p>
             <ul className="space-y-1.5 lg:space-y-2.5">
               <li className="flex items-start gap-1.5 lg:gap-2">
                 <Mail className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />

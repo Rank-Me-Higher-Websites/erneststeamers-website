@@ -20,14 +20,14 @@ describe("home page", () => {
     const text = container.textContent ?? "";
     expect(text).toContain("Starts at $99");
     expect(text).toContain("Certified technicians");
-    expect(text).toContain("630-830-9867");
+    expect(text).toContain("(630) 403-0180");
     expect(text).toContain("1018 Hummingbird Way");
     expect(text).toContain("10549 Crown Rd #4");
     expect(text).toContain("Recent jobs");
     expect(text).not.toMatch(/5\.0|4\.9|500\+|BBB|IICRC|★★★★★|Marcus T\.|Sarah K\.|David R\.|Alanas/);
 
     expect(container.querySelector("iframe[src*='mediadelivery']")).toBeNull();
-    expect(container.querySelectorAll("a[href='tel:+16308309867']").length).toBeGreaterThan(0);
+    expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
 
     const photos = [...container.querySelectorAll("picture img")];
     expect(photos.length).toBeGreaterThanOrEqual(8);

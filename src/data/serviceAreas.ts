@@ -1,3 +1,5 @@
+import { PHONE_DISPLAY } from "@/data/locations";
+
 /**
  * Towns and groups already published on /service-areas/.
  * Do not add towns. Aurora is in the LocalBusiness areaServed list and the
@@ -8,8 +10,7 @@
 
 export const serviceAreasTitle = "Service Areas | Chicago & Suburbs | Ernest Steamers";
 
-export const serviceAreasDescription =
-  "Carpet, rug and upholstery steam cleaning in Chicago, North Shore, DuPage and northwest suburbs. Based in Bartlett and Franklin Park. Call 630-830-9867.";
+export const serviceAreasDescription = `Carpet, rug and upholstery steam cleaning in Chicago, North Shore, DuPage and northwest suburbs. Based in Bartlett and Franklin Park. Call ${PHONE_DISPLAY}.`;
 
 export type ServiceRegion = {
   id: string;
@@ -107,6 +108,6 @@ export const serviceAreaParagraphs = [
   "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Certified technicians clean the rugs you include in the visit and walk the space with you when the work is finished. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition.",
   "Tile and grout cleaning covers tile floors and the grout lines between the tiles. Certified technicians clean the floor area you put on the quote, whether that is a kitchen, a bathroom, an entry, or another tiled room. The visit is a fit when dirt has settled in the grout and you want that floor cleaned in place. Tile and grout is quoted for the floor size and the condition.",
   "Commercial carpet cleaning is for offices, lobbies, and other business spaces in the towns on this page. Certified technicians clean the carpeted areas you list with hot-water extraction, the same method used in homes. The visit is a fit when a business wants those areas cleaned and then walked through before we leave. Commercial carpet is quoted for the space and its condition.",
-  "Request a quote by calling 630-830-9867 or by sending the form on this page. Tell us the service and the service address, and which rooms or pieces to clean. You can add the approximate size, a date you prefer, and a note about the condition. We look at those details and confirm the quote before the visit is scheduled. On the visit, certified technicians clean and walk the finished work with you.",
-  "The towns below are the ones already published for Ernest Steamers. They stay in four groups: Chicago and Cook County, DuPage County and the south suburbs, the North Shore, and northwest Lake and Cook counties. The same five services are available in every town in those groups. A town is plain text unless it has an office page. Franklin Park links to the Franklin Park office. If your town is not listed, call 630-830-9867 and we will tell you whether we can come to that address.",
+  `Request a quote by calling ${PHONE_DISPLAY} or by sending the form on this page. Tell us the service and the service address, and which rooms or pieces to clean. You can add the approximate size, a date you prefer, and a note about the condition. We look at those details and confirm the quote before the visit is scheduled. On the visit, certified technicians clean and walk the finished work with you.`,
+  `The towns below are the ones already published for Ernest Steamers. They stay in four groups: Chicago and Cook County, DuPage County and the south suburbs, the North Shore, and northwest Lake and Cook counties. The same five services are available in every town in those groups. A town is plain text unless it has an office page. Franklin Park links to the Franklin Park office. If your town is not listed, call ${PHONE_DISPLAY} and we will tell you whether we can come to that address.`,
 ];

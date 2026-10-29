@@ -9,7 +9,7 @@ describe("home SEO", () => {
     expect(seo.title).toBe("Carpet Cleaning in Chicago & Suburbs | Ernest Steamers");
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description).toBe(
-      "Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Certified technicians, carpet cleaning starts at $99. Call 630-830-9867.",
+      "Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Certified technicians, carpet cleaning starts at $99. Call (630) 403-0180.",
     );
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);
@@ -26,7 +26,7 @@ describe("home SEO", () => {
     const address = main?.address as { streetAddress: string; postalCode: string };
     expect(address.streetAddress).toBe("1018 Hummingbird Way");
     expect(address.postalCode).toBe("60103");
-    expect(main?.telephone).toBe("+1-630-830-9867");
+    expect(main?.telephone).toBe("+1-630-403-0180");
 
     const franklin = nodes.find((node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business");
     const franklinAddress = franklin?.address as { streetAddress: string; postalCode: string };

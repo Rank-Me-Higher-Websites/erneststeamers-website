@@ -1,3 +1,4 @@
+import { PHONE_DISPLAY } from "@/data/locations";
 import type { HomeImageName } from "@/lib/homeImages";
 
 /** Visible copy may state only "starts at $99" and "certified technicians". */
@@ -158,7 +159,7 @@ export const serviceBlocks: ServiceBlock[] = [
 export const serviceFaqs = [
   {
     q: "How much does carpet cleaning cost?",
-    a: "Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. Upholstery, area rugs, tile and grout, and commercial carpet are quoted for that job. Call 630-830-9867 for an exact quote.",
+    a: `Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. Upholstery, area rugs, tile and grout, and commercial carpet are quoted for that job. Call ${PHONE_DISPLAY} for an exact quote.`,
   },
   {
     q: "What should I prepare before the visit?",
@@ -166,6 +167,6 @@ export const serviceFaqs = [
   },
   {
     q: "Which areas do you clean?",
-    a: "We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in Franklin Park. See the service areas page for the town list, or call 630-830-9867 to ask about your town.",
+    a: `We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in Franklin Park. See the service areas page for the town list, or call ${PHONE_DISPLAY} to ask about your town.`,
   },
 ];

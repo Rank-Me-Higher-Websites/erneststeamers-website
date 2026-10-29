@@ -28,7 +28,7 @@ describe("services page", () => {
     const mainText = main?.textContent ?? "";
     expect(words(mainText).length).toBeGreaterThanOrEqual(400);
     expect(mainText).toContain("Certified technicians");
-    expect(mainText).toContain("630-830-9867");
+    expect(mainText).toContain("(630) 403-0180");
     expect(mainText).not.toMatch(banned);
 
     const pageText = container.textContent ?? "";
@@ -36,7 +36,7 @@ describe("services page", () => {
     expect(pageText).toContain("Bartlett, IL 60103");
     expect(pageText).toContain("Franklin Park office");
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
-    expect(container.querySelectorAll("a[href='tel:+16308309867']").length).toBeGreaterThan(0);
+    expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
 
     const allergies = container.querySelector("a[href='/blog/carpet-cleaning-allergies-indoor-air-quality/']");
     expect(allergies?.textContent).toBe("carpet cleaning and allergies");

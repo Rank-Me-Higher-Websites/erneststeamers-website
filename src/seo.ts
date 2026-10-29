@@ -85,14 +85,12 @@ const cityLabel = `${PRIMARY_LOCATION.city}, ${PRIMARY_LOCATION.region}`;
 const pages: Record<string, PageCopy> = {
   "/": {
     title: "Carpet Cleaning in Chicago & Suburbs | Ernest Steamers",
-    description:
-      "Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Certified technicians, carpet cleaning starts at $99. Call 630-830-9867.",
+    description: `Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Certified technicians, carpet cleaning starts at $99. Call ${NAP.phoneDisplay}.`,
     faq: true,
   },
   "/services": {
     title: "Carpet, Rug & Upholstery Cleaning Services | Ernest Steamers",
-    description:
-      "Carpet, upholstery, area rug, tile & grout and commercial carpet cleaning in Chicago and suburbs. Carpet cleaning starts at $99. Call 630-830-9867.",
+    description: `Carpet, upholstery, area rug, tile & grout and commercial carpet cleaning in Chicago and suburbs. Carpet cleaning starts at $99. Call ${NAP.phoneDisplay}.`,
   },
   "/service-areas": {
     title: serviceAreasTitle,
@@ -100,18 +98,15 @@ const pages: Record<string, PageCopy> = {
   },
   "/about": {
     title: "About Ernest Steamers | Carpet Cleaning in Bartlett, IL",
-    description:
-      "Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call 630-830-9867.",
+    description: `Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call ${NAP.phoneDisplay}.`,
   },
   "/contact": {
     title: "Free Carpet Cleaning Quote | Ernest Steamers",
-    description:
-      "Request a free carpet, rug or upholstery cleaning quote from Ernest Steamers in Chicago & suburbs. Starts at $99. Call 630-830-9867.",
+    description: `Request a free carpet, rug or upholstery cleaning quote from Ernest Steamers in Chicago & suburbs. Starts at $99. Call ${NAP.phoneDisplay}.`,
   },
   "/blog": {
     title: "Carpet Cleaning Blog | Ernest Steamers",
-    description:
-      "Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Bartlett, IL. Practical tips for Chicago-area homes. Call 630-830-9867.",
+    description: `Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Bartlett, IL. Practical tips for Chicago-area homes. Call ${NAP.phoneDisplay}.`,
   },
   "/funnel": {
     title: "Carpet Cleaning Quote Request | Ernest Steamers",

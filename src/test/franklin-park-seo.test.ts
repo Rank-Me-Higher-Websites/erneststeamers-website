@@ -9,11 +9,11 @@ describe("Franklin Park SEO", () => {
     expect(seo.title).toBe("Carpet Cleaning in Franklin Park, IL | Ernest Steamers");
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description).toBe(
-      "Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call 630-830-9867 for a quote.",
+      "Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call (630) 403-0180 for a quote.",
     );
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);
-    expect(seo.description).toContain("630-830-9867");
+    expect(seo.description).toContain("(630) 403-0180");
     expect(seo.canonical).toBe("https://erneststeamers.com/locations/franklin-park/");
   });
 
@@ -27,10 +27,10 @@ describe("Franklin Park SEO", () => {
     const franklin = nodes.find((node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business");
     expect(franklin?.name).toBe("Ernest Steamers Franklin Park");
     expect(franklin?.url).toBe("https://erneststeamers.com/locations/franklin-park/");
-    expect(franklin?.telephone).toBe("+1-630-830-9867");
+    expect(franklin?.telephone).toBe("+1-630-403-0180");
     expect(franklin?.email).toBe("info@erneststeamers.com");
     expect(franklin?.description).toBe(
-      "Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call 630-830-9867.",
+      "Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call (630) 403-0180.",
     );
     const address = franklin?.address as {
       streetAddress: string;
