@@ -26,7 +26,9 @@ describe("blog index", () => {
       </MemoryRouter>,
     );
 
-    expect([...container.querySelectorAll("h1")].map((node) => node.textContent)).toEqual(["Blog"]);
+    expect([...container.querySelectorAll("h1")].map((node) => node.textContent)).toEqual([
+      "Carpet Cleaning Tips & Guides",
+    ]);
     expect(container.textContent).toContain("1018 Hummingbird Way");
     expect(container.textContent).toContain("Bartlett, IL 60103");
     expect(container.querySelector('a[href="/locations/franklin-park/"]')).toBeTruthy();
@@ -167,6 +169,11 @@ describe("stored article copy", () => {
     expect(commercial?.content).not.toMatch(/50%|\$3 to \$12|billions of dollars/);
     expect(upholstery?.content).toContain("Quality upholstery is a real investment.");
     expect(upholstery?.content).not.toContain("$1,000");
+    const claims = blogPosts.map((post) => `${post.excerpt}\n${post.content}`).join("\n");
+    expect(claims).not.toMatch(
+      /200,000|4,000 times|toilet seat|Kills Dust Mites|150–200|antimicrobial|12 to 18 months|residue-free|eco-friendly|non-toxic|safe for kids and pets|safe for children|best results|6–12 hours|1–2 hours|4–6 hours|thousands of dollars|UV Light|far more concentrated|deepest clean available|far superior|warranty|enzyme/i,
+    );
+
     expect(tips?.title).toBe("5 Carpet Cleaning Tips Every Homeowner Should Know");
     expect(tips?.metaTitle).toBe("Carpet Cleaning Tips for Homeowners | Ernest Steamers");
     expect(getPostBySlug("remove-pet-stains-odors")?.metaTitle).toBeUndefined();

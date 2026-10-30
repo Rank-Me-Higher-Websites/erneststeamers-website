@@ -25,6 +25,22 @@ describe("home page", () => {
     expect(text).toContain("10549 Crown Rd #4");
     expect(text).toContain("Recent jobs");
     expect(text).not.toMatch(/5\.0|4\.9|500\+|BBB|IICRC|★★★★★|Marcus T\.|Sarah K\.|David R\.|Alanas/);
+    expect(container.querySelector('footer a[href="/blog/"]')).toBeTruthy();
+    expect(container.querySelector('footer a[href="/about/"]')).toBeTruthy();
+    expect(container.querySelector('footer a[href="/services/#carpet"]')).toBeTruthy();
+    expect(container.querySelector('footer a[href="/services/#upholstery"]')).toBeTruthy();
+    expect(container.querySelector('footer a[href="/services/#tile-grout"]')?.textContent).toContain("Tile & Grout Cleaning");
+    expect(container.querySelector('footer a[href="/services/#commercial"]')).toBeTruthy();
+    expect(container.querySelector('footer a[href="/services/#rugs"]')).toBeTruthy();
+    expect(container.querySelector('footer a[href="/blog/remove-pet-stains-odors/"]')?.textContent).toContain(
+      "Pet Stain/Odor Removal",
+    );
+    expect(container.querySelector("footer")).not.toBeNull();
+    expect(container.querySelector("footer")?.innerHTML ?? "").not.toContain('href="#"');
+    expect(container.querySelector("footer")?.innerHTML ?? "").not.toContain("/#about");
+    expect(text).not.toContain("Stain Cleaning");
+    expect(text).not.toContain("HSdigital");
+    expect(text).not.toContain("Privacy Policy");
 
     expect(container.querySelector("iframe[src*='mediadelivery']")).toBeNull();
     expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);

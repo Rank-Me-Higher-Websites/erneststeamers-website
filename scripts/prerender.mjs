@@ -11,7 +11,7 @@ const H1_SNIPPET = {
   "/service-areas": "Service Areas",
   "/about": "About Ernest Steamers",
   "/contact": "Get a Free Carpet Cleaning Quote",
-  "/blog": "Blog",
+  "/blog": "Carpet Cleaning Tips & Guides",
   "/funnel": "Expert Carpet Cleaning in Chicago",
 };
 
@@ -26,7 +26,7 @@ const BANNED_HTML = [
 ];
 
 function hasHeading(html, text) {
-  const flat = html.replace(/\s+/g, " ");
+  const flat = html.replace(/\s+/g, " ").replace(/&amp;/g, "&");
   return new RegExp(`<h1[^>]*>[^<]*${text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[^<]*</h1>`).test(flat);
 }
 
@@ -222,6 +222,25 @@ function assertJsonLd(file, html, { primary, offices, sister, requireOffices, op
   }
 }
 
+/** Cloudflare Email Address Obfuscation rewrites bare mailto links. */
+function protectEmails(html) {
+  return html.replace(
+    /<a\b[^>]*\bhref="mailto:[^"]*"[^>]*>[\s\S]*?<\/a>/gi,
+    (anchor) => `<!--email_off-->${anchor}<!--/email_off-->`,
+  );
+}
+
+function assertEmail(file, html) {
+  const email = "info@erneststeamers.com";
+  if (!html.includes(email)) throw new Error(`${file}: missing ${email}`);
+  if (html.includes("email-protection")) throw new Error(`${file}: contains email-protection`);
+  const withoutScripts = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  const unprotected = withoutScripts.replace(/<!--email_off-->[\s\S]*?<!--\/email_off-->/g, "");
+  if (unprotected.includes(email) || unprotected.includes("mailto:")) {
+    throw new Error(`${file}: email or mailto left outside email_off`);
+  }
+}
+
 function assertPage(file, html, { route, h1, required, offices }) {
   const problems = [];
   if (html.includes("<!--seo-->")) problems.push("seo marker was not replaced");
@@ -300,9 +319,11 @@ try {
 
   for (const route of routes) {
     const { html, head } = await render(route);
-    const page = template
-      .replace("<!--seo-->", head)
-      .replace('<div id="root"></div>', `<div id="root">${rewriteAssets(html, manifest)}</div>`);
+    const page = protectEmails(
+      template
+        .replace("<!--seo-->", head)
+        .replace('<div id="root"></div>', `<div id="root">${rewriteAssets(html, manifest)}</div>`),
+    );
     const file = outputPath(route);
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, page);
@@ -313,6 +334,7 @@ try {
       offices: SECONDARY_OFFICES,
     });
     assertTrailingSlashRoutes(file, page);
+    assertEmail(file, page);
     assertJsonLd(file, page, {
       primary: PRIMARY_LOCATION,
       offices: SECONDARY_OFFICES,
@@ -332,6 +354,7 @@ try {
 
   const notFound = readFileSync("dist/404.html", "utf8");
   assertPage("dist/404.html", notFound, { route: null, h1: "Page not found", required, offices: [] });
+  assertEmail("dist/404.html", notFound);
   assertJsonLd("dist/404.html", notFound, {
     primary: PRIMARY_LOCATION,
     offices: SECONDARY_OFFICES,

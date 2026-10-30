@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
-import { Mail, MapPin, Clock, Facebook, Linkedin, Instagram } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
 import {
   BUSINESS_HOURS,
   EMAIL,
@@ -18,9 +18,18 @@ const quickLinks = [
   { label: "Services", path: "/services/" },
   { label: "Service Areas", path: "/service-areas/" },
   ...SECONDARY_OFFICES.map((office) => ({ label: `${office.city} Office`, path: office.path })),
-  { label: "About Us", path: "/#about" },
-  { label: "Blog", path: "#" },
+  { label: "About Us", path: "/about/" },
+  { label: "Blog", path: "/blog/" },
   { label: "Contact", path: "/contact/" },
+];
+
+const serviceLinks = [
+  { label: "Carpet Cleaning", path: "/services/#carpet" },
+  { label: "Upholstery Cleaning", path: "/services/#upholstery" },
+  { label: "Tile & Grout Cleaning", path: "/services/#tile-grout" },
+  { label: "Commercial Carpet Cleaning", path: "/services/#commercial" },
+  { label: "Area Rug Cleaning", path: "/services/#rugs" },
+  { label: "Pet Stain/Odor Removal", path: "/blog/remove-pet-stains-odors/" },
 ];
 
 const Footer = () => {
@@ -69,24 +78,6 @@ const Footer = () => {
             >
               {`Sister company: ${SISTER_COMPANY.name}`}
             </a>
-            <div className="flex items-center gap-2 mt-2 lg:mt-4">
-              {(
-                [
-                  { label: "Facebook", Icon: Facebook },
-                  { label: "LinkedIn", Icon: Linkedin },
-                  { label: "Instagram", Icon: Instagram },
-                ] as const
-              ).map(({ label, Icon }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary-foreground/15 transition-colors hover:bg-accent"
-                >
-                  <Icon className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>
@@ -95,21 +86,13 @@ const Footer = () => {
             </h3>
             <div className="w-6 lg:w-8 h-0.5 bg-accent mb-2 lg:mb-4" />
             <ul className="space-y-1 lg:space-y-2">
-              {[
-                "Carpet Cleaning",
-                "Upholstery Cleaning",
-                "Tile And Grout Cleaning",
-                "Stain Cleaning",
-                "Commercial Carpet Cleaning",
-                "Area Rug Cleaning",
-                "Pet Stain/Odor Removal",
-              ].map((service) => (
-                <li key={service}>
+              {serviceLinks.map((service) => (
+                <li key={service.label}>
                   <Link
-                    to="/services/"
+                    to={service.path}
                     className="inline-flex min-h-8 items-center gap-1 py-1 text-sm text-primary-foreground/80 transition-colors hover:text-accent"
                   >
-                    <span className="text-accent text-[10px] lg:text-xs">›</span> {service}
+                    <span className="text-accent text-[10px] lg:text-xs">›</span> {service.label}
                   </Link>
                 </li>
               ))}
@@ -169,19 +152,9 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-primary-foreground/10 bg-primary">
-        <div className="container max-w-7xl mx-auto px-3 lg:px-4 py-3 lg:py-4 flex flex-col sm:flex-row items-center justify-between gap-2 lg:gap-3">
-          <div className="flex items-center gap-3 lg:gap-4">
-            <a href="#" className="inline-flex min-h-8 items-center text-sm text-accent underline">
-              Privacy Policy
-            </a>
-            <span className="text-primary-foreground/40">|</span>
-            <a href="#" className="inline-flex min-h-8 items-center text-sm text-accent underline">
-              Terms & Conditions
-            </a>
-          </div>
+        <div className="container max-w-7xl mx-auto px-3 lg:px-4 py-3 lg:py-4 text-center">
           <p className="text-xs text-primary-foreground/80 lg:text-sm">
-            © Copyright Ernest Steamers. All rights reserved – Website by{" "}
-            <a href="#" className="text-accent underline">HSdigital</a> {currentYear}
+            © Copyright Ernest Steamers. All rights reserved {currentYear}
           </p>
         </div>
       </div>

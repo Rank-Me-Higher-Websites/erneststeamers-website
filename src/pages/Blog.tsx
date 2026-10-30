@@ -48,7 +48,7 @@ const Blog = () => {
       <main>
         <section className="bg-white px-4 pb-4 pt-12 lg:pt-16">
           <div className="mx-auto max-w-6xl">
-            <h1 className={sectionTitle}>Blog</h1>
+            <h1 className={sectionTitle}>Carpet Cleaning Tips &amp; Guides</h1>
             <p className={`${bodyText} mt-3 max-w-2xl`}>
               Carpet, upholstery, and pet-stain cleaning guides for Chicago-area homes.
             </p>
