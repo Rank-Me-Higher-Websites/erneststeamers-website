@@ -2,66 +2,79 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://erneststeamers.com/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/services/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/service-areas/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/locations/franklin-park/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/about/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/contact/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners/</loc>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/remove-pet-stains-odors/</loc>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/steam-cleaning-vs-dry-cleaning-carpet/</loc>
+    <lastmod>2026-02-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/upholstery-cleaning-benefits/</loc>
+    <lastmod>2026-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/carpet-cleaning-allergies-indoor-air-quality/</loc>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://erneststeamers.com/blog/commercial-carpet-cleaning-business/</loc>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

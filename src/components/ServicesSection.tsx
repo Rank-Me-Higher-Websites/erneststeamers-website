@@ -5,27 +5,27 @@ const services = [
   {
     icon: Home,
     title: "Professional Carpet Cleaning",
-    desc: "Our expert carpet cleaning eliminates dirt, dust, allergens, and contaminants, restoring your carpets to their best condition.",
+    desc: "Ernest Steamers cleans wall-to-wall carpet in houses and apartments across Chicago and the suburbs. Certified technicians use hot-water extraction, also called steam cleaning.",
   },
   {
     icon: Sofa,
     title: "Upholstery Cleaning",
-    desc: "Advanced deep-cleaning methods remove stains, embedded dirt, and allergens—restoring sofas, chairs, and ottomans to like-new condition.",
+    desc: "Upholstery cleaning covers the fabric furniture that stays in the room, including sofas, chairs, sectionals, and ottomans. Certified technicians clean the pieces you list.",
   },
   {
     icon: Layers,
     title: "Area Rug Cleaning",
-    desc: "Top-rated area rug cleaning restores Persian, Oriental, and synthetic rugs by removing dirt, stains, and odors.",
+    desc: "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Certified technicians clean the rugs you include in the visit.",
   },
   {
     icon: Building2,
     title: "Commercial Carpet Cleaning",
-    desc: "Flexible, cost-effective commercial cleaning solutions for businesses of all sizes across Chicago and surrounding areas.",
+    desc: "Commercial carpet cleaning is for offices, lobbies, and other business spaces in Chicago and the suburbs. Certified technicians clean the carpeted areas you list with hot-water extraction.",
   },
   {
     icon: Grid3X3,
     title: "Tile and Grout Cleaning",
-    desc: "Professional tile and grout cleaning restores your floors by effectively removing dirt, grime, and stains.",
+    desc: "Tile and grout cleaning covers tile floors and the grout lines between the tiles. Certified technicians clean the floor area you put on the quote.",
   },
 ];
 

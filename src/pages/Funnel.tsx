@@ -14,10 +14,8 @@ import {
 } from "@/data/locations";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import HeroSection from "@/components/HeroSection";
-import TrustBadges from "@/components/TrustBadges";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ServicesSection from "@/components/ServicesSection";
-import SocialProof from "@/components/SocialProof";
 import FAQSection from "@/components/FAQSection";
 import StickyMobileBar from "@/components/StickyMobileBar";
 import cleaningAction from "@/assets/cleaning-action.png";
@@ -81,7 +79,7 @@ const FunnelCTA = () => (
           Get Your <span className="text-accent-yellow">Free Estimate</span> Today
         </h2>
         <p className="text-primary-foreground/70 text-xs lg:text-base mb-3 lg:mb-6 max-w-lg mx-auto">
-          No hidden fees. No commitments. Just a transparent quote and incredible results.
+          Request a quote and we confirm the price before scheduling.
         </p>
         <div className="flex gap-2 lg:gap-3 justify-center">
           <a href={phoneTelHref()} className="bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-5 py-2 lg:px-8 lg:py-3 rounded-lg text-sm lg:text-base transition-all">
@@ -158,7 +156,7 @@ const FunnelFooter = () => {
             </h3>
             <div className="w-6 lg:w-8 h-0.5 bg-accent mb-2 lg:mb-4" />
             <ul className="space-y-1 lg:space-y-2">
-              {["Carpet Cleaning", "Upholstery Cleaning", "Tile And Grout Cleaning", "Stain Cleaning", "Commercial Carpet Cleaning", "Area Rug Cleaning", "Pet Stain/Odor Removal"].map((service) => (
+              {["Carpet Cleaning", "Upholstery Cleaning", "Tile & Grout Cleaning", "Commercial Carpet Cleaning", "Area Rug Cleaning", "Pet Stain/Odor Removal"].map((service) => (
                 <li key={service} className="text-primary-foreground/70 text-[11px] lg:text-sm flex items-center gap-1">
                   <span className="text-accent text-[10px] lg:text-xs">›</span> {service}
                 </li>
@@ -202,8 +200,7 @@ const FunnelFooter = () => {
       <div className="border-t border-primary-foreground/10 bg-primary">
         <div className="container max-w-7xl mx-auto px-3 lg:px-4 py-3 lg:py-4 text-center">
           <p className="text-primary-foreground/50 text-[10px] lg:text-xs">
-            © Copyright Ernest Steamers. All rights reserved – Website by{" "}
-            <span className="text-accent">HSdigital</span> {currentYear}
+            © Copyright Ernest Steamers. All rights reserved {currentYear}
           </p>
         </div>
       </div>
@@ -216,11 +213,9 @@ const Funnel = () => {
     <div className="min-h-screen bg-background pb-20 lg:pb-0">
       <FunnelNav />
       <HeroSection />
-      <TrustBadges />
       <FunnelAbout />
       <WhyChooseUs />
       <ServicesSection />
-      <SocialProof />
       <FAQSection />
       <FunnelCTA />
       <FunnelFooter />

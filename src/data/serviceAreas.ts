@@ -2,8 +2,8 @@ import { PHONE_DISPLAY } from "@/data/locations";
 
 /**
  * Towns and groups already published on /service-areas/.
- * Do not add towns. Aurora is in the LocalBusiness areaServed list and the
- * homepage FAQ only — it is not in these groups, so it stays off this page.
+ * Do not add towns. Aurora is in the LocalBusiness areaServed list only.
+ * It is not in these groups and not in the homepage FAQ, so it stays off this page.
  * Groupings are unchanged, including St Charles and Orland Park under
  * "DuPage County & South Suburbs".
  */

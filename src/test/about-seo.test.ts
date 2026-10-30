@@ -50,7 +50,10 @@ describe("about SEO", () => {
     expect(head).not.toContain("hero-1200.avif");
     expect(head).not.toContain("carpet-768.avif");
     expect(head).toContain('property="og:image" content="https://erneststeamers.com/images/home/og.jpg"');
+    expect(head).toContain('property="og:image:width" content="1200"');
+    expect(head).toContain('property="og:image:height" content="630"');
+    expect(head).toContain('property="og:locale" content="en_US"');
     expect(head).toContain('name="twitter:image" content="https://erneststeamers.com/images/home/og.jpg"');
-    expect(head).not.toMatch(/property="og:image" content="[^"]*apple-touch-icon\.png"/);
+    expect(head).not.toMatch(/apple-touch-icon\.png/);
   });
 });

@@ -30,6 +30,7 @@ export { NAP };
 export const SITE = "https://erneststeamers.com";
 
 const MAIN_BUSINESS_ID = `${SITE}/#business`;
+const OG_SHARE = `${SITE}/images/home/og.jpg`;
 
 const AREA_SERVED = [
   "Chicago",
@@ -177,7 +178,7 @@ function localBusiness() {
     url: `${SITE}/`,
     telephone: NAP.phoneSchema,
     email: NAP.email,
-    image: `${SITE}/apple-touch-icon.png`,
+    image: OG_SHARE,
     description:
       "Carpet, rug, and upholstery steam cleaning for homes and businesses in Chicago and the suburbs.",
     address: postalAddress(PRIMARY_LOCATION),
@@ -196,7 +197,7 @@ function secondaryBusinesses() {
     url: absoluteRoute(office.path),
     telephone: office.phoneSchema,
     email: office.email,
-    image: `${SITE}/apple-touch-icon.png`,
+    image: OG_SHARE,
     description: office.description,
     address: postalAddress(office),
     parentOrganization: { "@id": MAIN_BUSINESS_ID },
@@ -206,10 +207,20 @@ function secondaryBusinesses() {
   }));
 }
 
+function websiteNode() {
+  return {
+    "@type": "WebSite",
+    "@id": `${SITE}/#website`,
+    url: `${SITE}/`,
+    name: NAP.name,
+    publisher: { "@id": MAIN_BUSINESS_ID },
+  };
+}
+
 function graph(nodes: Record<string, unknown>[]): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
-    "@graph": [localBusiness(), ...secondaryBusinesses(), ...nodes],
+    "@graph": [websiteNode(), localBusiness(), ...secondaryBusinesses(), ...nodes],
   };
 }
 
@@ -376,15 +387,6 @@ export function getSeo(pathname: string): SeoMeta {
   const canonical = absoluteRoute(path);
   const pageType = path === "/about" ? "AboutPage" : path === "/contact" ? "ContactPage" : "WebPage";
   const nodes = [pageNode({ title: copy.title, description: copy.description, canonical }, pageType)];
-  if (path === "/") {
-    nodes.unshift({
-      "@type": "WebSite",
-      "@id": `${SITE}/#website`,
-      url: `${SITE}/`,
-      name: NAP.name,
-      publisher: { "@id": MAIN_BUSINESS_ID },
-    } as unknown as ReturnType<typeof pageNode>);
-  }
   if (path === "/services") {
     nodes.push({
       "@type": "BreadcrumbList",
@@ -484,8 +486,11 @@ function escapeAttr(value: string): string {
 
 function shareImage(seo: SeoMeta): string {
   if (seo.image) return seo.image;
-  if (seo.canonical === `${SITE}/` || seo.canonical === `${SITE}/about/`) return `${SITE}/images/home/og.jpg`;
-  return `${SITE}/apple-touch-icon.png`;
+  return OG_SHARE;
+}
+
+function isOgShare(image: string): boolean {
+  return image === OG_SHARE;
 }
 
 function lcpImage(canonical: string) {
@@ -552,6 +557,13 @@ export function renderSeoHead(seo: SeoMeta): string {
     `<meta property="og:type" content="${seo.ogType}" />`,
     `<meta property="og:url" content="${escapeAttr(seo.canonical)}" />`,
     `<meta property="og:image" content="${escapeAttr(image)}" />`,
+    ...(isOgShare(image)
+      ? [
+          `<meta property="og:image:width" content="1200" />`,
+          `<meta property="og:image:height" content="630" />`,
+        ]
+      : []),
+    `<meta property="og:locale" content="en_US" />`,
     `<meta property="og:site_name" content="${escapeAttr(NAP.name)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(seo.title)}" />`,
@@ -561,6 +573,10 @@ export function renderSeoHead(seo: SeoMeta): string {
   ]
     .filter(Boolean)
     .join("\n    ");
+}
+
+function removeMeta(attr: "name" | "property", key: string) {
+  document.head.querySelector(`meta[${attr}="${key}"]`)?.remove();
 }
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {
@@ -606,6 +622,14 @@ export function applySeoToDocument(seo: SeoMeta) {
   upsertMeta("property", "og:type", seo.ogType);
   upsertMeta("property", "og:url", seo.canonical);
   upsertMeta("property", "og:image", image);
+  if (isOgShare(image)) {
+    upsertMeta("property", "og:image:width", "1200");
+    upsertMeta("property", "og:image:height", "630");
+  } else {
+    removeMeta("property", "og:image:width");
+    removeMeta("property", "og:image:height");
+  }
+  upsertMeta("property", "og:locale", "en_US");
   upsertMeta("property", "og:site_name", NAP.name);
   upsertMeta("name", "twitter:card", "summary_large_image");
   upsertMeta("name", "twitter:title", seo.title);

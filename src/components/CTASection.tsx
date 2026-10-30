@@ -10,7 +10,7 @@ const CTASection = () => {
             Get Your <span className="text-accent-yellow">Free Estimate</span> Today
           </h2>
           <p className="text-primary-foreground/70 text-xs lg:text-base mb-3 lg:mb-6 max-w-lg mx-auto">
-            No hidden fees. No commitments. Just a transparent quote and incredible results.
+            Request a quote and we confirm the price before scheduling.
           </p>
           <div className="flex gap-2 lg:gap-3 justify-center">
             <a

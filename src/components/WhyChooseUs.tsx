@@ -5,9 +5,9 @@ import QuoteFormDialog from "@/components/QuoteFormDialog";
 
 const reasons = [
   "We utilize advanced, professional-grade equipment and innovative techniques to deliver a deep, thorough carpet clean.",
-  "Our certified technicians are extensively trained and highly experienced in residential and commercial carpet cleaning.",
+  "Our certified technicians clean residential and commercial carpet.",
   "We deliver high-quality home maintenance services with precision, efficiency, and professional expertise.",
-  "Every service is backed by our 100% satisfaction guarantee for quality and reliability you can trust.",
+  "We clean the rooms you list and walk through the work when it is finished.",
   "We provide steam cleaning, upholstery cleaning, area rug cleaning, tile and grout cleaning, and commercial carpet care throughout Chicagoland.",
 ];
 
@@ -18,7 +18,7 @@ const WhyChooseUs = () => {
         <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-start">
           <div>
             <h2 className="font-heading font-bold text-xl lg:text-4xl text-primary-foreground mb-1.5 lg:mb-3">
-              Searching for a Trusted Carpet Cleaning Service in Chicago, IL?
+              Searching for a Carpet Cleaning Service in Chicago, IL?
             </h2>
             <p className="text-primary-foreground/90 font-semibold text-sm lg:text-base mb-3 lg:mb-6">
               Why Choose Ernest Steamers? Here Are Just a Few Reasons:
