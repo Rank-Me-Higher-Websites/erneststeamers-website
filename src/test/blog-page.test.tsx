@@ -1,10 +1,28 @@
+import { renderToString } from "react-dom/server";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { StaticRouter } from "react-router-dom/server";
 import { describe, expect, it, vi } from "vitest";
+import { AppProviders, AppRoutes } from "@/App";
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import { parseBlocks } from "@/lib/blogContent";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
+import { getSeo, renderSeoHead } from "@/seo";
+
+function words(value: string): string[] {
+  return value
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#39;|&#x27;/gi, "'")
+    .replace(/&quot;/g, '"')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+}
 
 const leadFields = ["name", "phone", "email", "address", "service", "rooms", "squareFootage", "preferredDate", "message", "website"];
 
@@ -33,6 +51,48 @@ describe("blog index", () => {
     expect(container.textContent).toContain("Bartlett, IL 60103");
     expect(container.querySelector('a[href="/locations/franklin-park/"]')).toBeTruthy();
     expect(container.textContent).toContain("Need a quote? Carpet cleaning starts at $99");
+    expect(container.querySelectorAll("h1")).toHaveLength(1);
+
+    const intro = container.querySelector("#blog-intro");
+    expect(intro?.querySelector("a[href='/services/']")).toBeTruthy();
+    expect(intro?.querySelector("a[href='/service-areas/']")).toBeTruthy();
+    const introWords = words(intro?.textContent ?? "");
+    expect(introWords.length).toBeGreaterThanOrEqual(120);
+    expect(introWords.length).toBeLessThanOrEqual(150);
+
+    const summaries = [...container.querySelectorAll("[data-summary]")];
+    expect(summaries).toHaveLength(blogPosts.length);
+    for (const summary of summaries) {
+      const count = words(summary.textContent ?? "").length;
+      expect(count).toBeGreaterThanOrEqual(25);
+      expect(count).toBeLessThanOrEqual(40);
+    }
+
+    const topics = container.querySelector("#blog-topics");
+    expect(topics?.querySelector("h2")?.textContent).toBe("Topics");
+    expect(topics?.querySelectorAll("h1")).toHaveLength(0);
+    for (const post of blogPosts) {
+      expect(topics?.querySelector(`a[href="/blog/${post.slug}/"]`)).toBeTruthy();
+    }
+    expect(topics?.querySelector("a[href='/services/#carpet']")).toBeTruthy();
+    expect(topics?.querySelector("a[href='/services/#upholstery']")).toBeTruthy();
+    expect(topics?.querySelector("a[href='/services/#commercial']")).toBeTruthy();
+    const topicWords = words(topics?.textContent ?? "");
+    expect(topicWords.length).toBeGreaterThanOrEqual(80);
+    expect(topicWords.length).toBeLessThanOrEqual(100);
+
+    const pageHtml = `${renderSeoHead(getSeo("/blog/"))}\n${renderToString(
+      <AppProviders>
+        <StaticRouter location="/blog/">
+          <AppRoutes />
+        </StaticRouter>
+      </AppProviders>,
+    )}`;
+    const pageWords = words(pageHtml);
+    expect(pageWords.length).toBeGreaterThanOrEqual(600);
+    expect(pageWords.length).toBeLessThanOrEqual(700);
+    expect(pageWords.join("\n")).not.toMatch(/rating|review|years|guarantee|\b800\b/i);
+    expect(pageHtml).not.toContain("(800)");
 
     for (const post of blogPosts) {
       expect(screen.getByRole("heading", { name: post.title })).toBeTruthy();

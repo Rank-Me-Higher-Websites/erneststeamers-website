@@ -9,6 +9,27 @@ import PostCard from "@/components/blog/PostCard";
 import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
 import { BLOG_TOPICS, blogPosts, type BlogTopic } from "@/data/blogPosts";
 
+const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+
+function TextLink({ to, children }: { to: string; children: string }) {
+  return <Link to={to} className={linkClass}>{children}</Link>;
+}
+
+const POST_SUMMARIES: Record<string, string> = {
+  "carpet-cleaning-tips-homeowners":
+    "Vacuum busy rooms often, blot spills instead of rubbing, and keep outdoor soil at the door. Shift heavy furniture so the pile does not flatten in one spot. Hot-water extraction reaches dirt a vacuum leaves behind.",
+  "remove-pet-stains-odors":
+    "Pet urine can soak through the carpet into the padding, where a surface cleaner often does not reach. Blot a fresh accident. A visit pre-treats the spots and flushes them with hot-water extraction.",
+  "steam-cleaning-vs-dry-cleaning-carpet":
+    "Hot-water extraction pushes hot water into the carpet and vacuums the water and soil back out. Dry cleaning uses little moisture for a light refresh or a delicate fiber. The guide uses hot-water extraction for homes and businesses.",
+  "upholstery-cleaning-benefits":
+    "Sofas and chairs hold body oils, dust, dander, and crumbs that a wipe leaves behind. A visit checks the fabric, pre-treats stains, and uses hot-water extraction made for upholstery.",
+  "carpet-cleaning-allergies-indoor-air-quality":
+    "Carpet holds dust mites, pet dander, pollen, and other particles from the air. When it is overloaded, walking or vacuuming can send them back into the room. Hot-water extraction removes many of those allergens.",
+  "commercial-carpet-cleaning-business":
+    "Visitors notice stained or odorous carpet in an office or shop. Soil in the pile wears the fiber, and replacement costs more than cleaning. Appointments can be evenings, weekends, or early mornings.",
+};
+
 function QuoteBand({ heading, links = false }: { heading: string; links?: boolean }) {
   return (
     <section className="rounded-2xl bg-primary px-6 py-8 text-primary-foreground">
@@ -49,9 +70,24 @@ const Blog = () => {
         <section className="bg-white px-4 pb-4 pt-12 lg:pt-16">
           <div className="mx-auto max-w-6xl">
             <h1 className={sectionTitle}>Carpet Cleaning Tips &amp; Guides</h1>
-            <p className={`${bodyText} mt-3 max-w-2xl`}>
-              Carpet, upholstery, and pet-stain cleaning guides for Chicago-area homes.
-            </p>
+            <div id="blog-intro" className={`${bodyText} mt-4 max-w-3xl space-y-4`}>
+              <p>
+                These guides cover practical <TextLink to="/services/#carpet">carpet</TextLink>,{" "}
+                <TextLink to="/services/#rugs">rug</TextLink>, and{" "}
+                <TextLink to="/services/#upholstery">upholstery</TextLink> care for homes and businesses in the Chicago
+                western suburbs. They take the jobs people describe on a quote: everyday carpet care, pet stains and
+                odors, steam cleaning and dry cleaning, sofas and chairs, allergies and indoor air, and office or shop
+                carpet.
+              </p>
+              <p>
+                Read them before you book so you know what to describe. Home guides cover vacuuming, blotting a fresh
+                spill, and pet urine that can sink into the padding. The methods guide explains hot-water extraction,
+                which certified technicians use, and where a low-moisture clean still fits. Franklin Park and Bartlett
+                are among the towns served. The town list is on the <TextLink to="/service-areas/">service areas</TextLink>{" "}
+                page, and home and business work is on the <TextLink to="/services/">services</TextLink> page. Carpet
+                cleaning starts at $99.
+              </p>
+            </div>
             <div className="mt-6 flex gap-2 overflow-x-auto pb-2" role="toolbar" aria-label="Filter articles">
               {chips.map((chip) => {
                 const selected = filter === chip;
@@ -75,13 +111,60 @@ const Blog = () => {
 
         <section className="px-4 py-6" aria-label="Articles">
           <div className="mx-auto flex max-w-6xl flex-col gap-8">
-            {featured ? <PostCard post={featured} featured priority /> : null}
+            {featured ? (
+              <PostCard post={featured} featured priority summary={POST_SUMMARIES[featured.slug]} />
+            ) : null}
             <QuoteBand heading="Need a quote? Carpet cleaning starts at $99" />
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {grid.map((post) => (
-                <PostCard key={post.slug} post={post} />
+                <PostCard key={post.slug} post={post} summary={POST_SUMMARIES[post.slug]} />
               ))}
             </div>
+            <section
+              id="blog-topics"
+              aria-labelledby="blog-topics-heading"
+              className="rounded-2xl border border-border bg-[hsl(210,40%,98%)] px-6 py-8"
+            >
+              <h2 id="blog-topics-heading" className="font-heading text-2xl font-bold text-primary md:text-3xl">
+                Topics
+              </h2>
+              <div className="mt-5 space-y-5">
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-primary">Home care</h3>
+                  <p className={`${bodyText} mt-2`}>
+                    <TextLink to="/blog/carpet-cleaning-tips-homeowners/">Homeowner tips</TextLink>,{" "}
+                    <TextLink to="/blog/remove-pet-stains-odors/">pet stains and odors</TextLink>, and{" "}
+                    <TextLink to="/blog/carpet-cleaning-allergies-indoor-air-quality/">allergies</TextLink> cover
+                    vacuuming, fresh spills, urine in the padding, and dust and dander in carpet. The service page is{" "}
+                    <TextLink to="/services/#carpet">carpet cleaning</TextLink>.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-primary">Methods</h3>
+                  <p className={`${bodyText} mt-2`}>
+                    <TextLink to="/blog/steam-cleaning-vs-dry-cleaning-carpet/">Steam cleaning versus dry cleaning</TextLink>{" "}
+                    compares hot-water extraction with low-moisture cleaning. The service page is{" "}
+                    <TextLink to="/services/#carpet">carpet cleaning</TextLink>.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-primary">Upholstery</h3>
+                  <p className={`${bodyText} mt-2`}>
+                    The <TextLink to="/blog/upholstery-cleaning-benefits/">sofa and chair guide</TextLink> covers what
+                    fabric holds between cleanings and how a visit is planned. The service page is{" "}
+                    <TextLink to="/services/#upholstery">upholstery cleaning</TextLink>.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-primary">Commercial</h3>
+                  <p className={`${bodyText} mt-2`}>
+                    The <TextLink to="/blog/commercial-carpet-cleaning-business/">business guide</TextLink> covers
+                    offices and shops, soil that wears carpet, and visits around open hours. The service page is{" "}
+                    <TextLink to="/services/#commercial">commercial carpet cleaning</TextLink>.
+                  </p>
+                </div>
+              </div>
+            </section>
             <QuoteBand heading="Ready for a professional clean?" links />
           </div>
         </section>
