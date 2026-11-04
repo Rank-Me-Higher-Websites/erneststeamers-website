@@ -82,7 +82,7 @@ const Blog = () => {
               <p>
                 Read them before you book so you know what to describe. Home guides cover vacuuming, blotting a fresh
                 spill, and pet urine that can sink into the padding. The methods guide explains hot-water extraction,
-                which certified technicians use, and where a low-moisture clean still fits. Franklin Park and Bartlett
+                the method professional cleaners use, and where a low-moisture clean still fits. Franklin Park and Bartlett
                 are among the towns served. The town list is on the <TextLink to="/service-areas/">service areas</TextLink>{" "}
                 page, and home and business work is on the <TextLink to="/services/">services</TextLink> page. Carpet
                 cleaning starts at $99.
