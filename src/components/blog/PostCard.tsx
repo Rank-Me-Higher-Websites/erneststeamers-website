@@ -11,9 +11,11 @@ type PostCardProps = {
   heading?: "h2" | "h3";
   priority?: boolean;
   featured?: boolean;
+  /** Full index blurb. Related cards keep the short excerpt. */
+  summary?: string;
 };
 
-export default function PostCard({ post, heading = "h2", priority = false, featured = false }: PostCardProps) {
+export default function PostCard({ post, heading = "h2", priority = false, featured = false, summary }: PostCardProps) {
   const Title = heading;
   const href = `/blog/${post.slug}/`;
 
@@ -37,7 +39,9 @@ export default function PostCard({ post, heading = "h2", priority = false, featu
             {post.title}
           </Link>
         </Title>
-        <p className={bodyText}>{shortExcerpt(post.excerpt)}</p>
+        <p className={bodyText} data-summary={summary ? post.slug : undefined}>
+          {summary ?? shortExcerpt(post.excerpt)}
+        </p>
         <time dateTime={post.date} className="text-sm text-muted-foreground">
           {formatPostDate(post.date)}
         </time>
