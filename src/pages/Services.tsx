@@ -20,8 +20,8 @@ const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,
 function AreasAnswer() {
   return (
     <>
-      We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in
-      Franklin Park. See the{" "}
+      We clean homes and businesses in Chicago and the suburbs. The office is in Franklin Park. Bartlett is one of the
+      towns we serve. See the{" "}
       <Link to="/service-areas/" className={linkClass}>
         service areas page
       </Link>{" "}
@@ -101,11 +101,11 @@ const Services = () => {
 
         <div className="bg-white px-4 pb-4 pt-10 lg:pt-14">
           <p className={`${bodyText} mx-auto max-w-6xl`}>
-            Five services for homes and businesses in Chicago and the suburbs, from the Bartlett office and the{" "}
+            Five services for homes and businesses in Chicago and the suburbs, from the{" "}
             <Link to="/locations/franklin-park/" className={linkClass}>
               Franklin Park office
             </Link>
-            . Certified technicians do the cleaning. Carpet cleaning starts at $99. Upholstery, area rugs, tile and grout,
+            . Carpet cleaning starts at $99. Upholstery, area rugs, tile and grout,
             and commercial carpet are quoted for the rooms, the size, and the condition. The towns we cover are on the{" "}
             <Link to="/service-areas/" className={linkClass}>
               service areas

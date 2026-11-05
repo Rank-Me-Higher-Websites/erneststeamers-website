@@ -47,8 +47,10 @@ describe("blog index", () => {
     expect([...container.querySelectorAll("h1")].map((node) => node.textContent)).toEqual([
       "Carpet Cleaning Tips & Guides",
     ]);
-    expect(container.textContent).toContain("1018 Hummingbird Way");
-    expect(container.textContent).toContain("Bartlett, IL 60103");
+    expect(container.textContent).toContain("10549 Crown Rd #4");
+    expect(container.textContent).toContain("Franklin Park, IL 60131");
+    expect(container.textContent).not.toContain("Hummingbird");
+    expect(container.textContent).not.toContain("60103");
     expect(container.querySelector('a[href="/locations/franklin-park/"]')).toBeTruthy();
     expect(container.textContent).toContain("Need a quote? Carpet cleaning starts at $99");
     expect(container.querySelectorAll("h1")).toHaveLength(1);
@@ -142,8 +144,10 @@ describe("blog post", () => {
     expect(screen.getAllByRole("link", { name: "Read" })).toHaveLength(3);
     expect(screen.getByRole("link", { name: "Service details" }).getAttribute("href")).toBe("/services/#carpet");
     expect(container.textContent).toContain("By Ernest Steamers");
-    expect(container.textContent).toContain("1018 Hummingbird Way");
-    expect(container.textContent).toContain("Bartlett, IL 60103");
+    expect(container.textContent).toContain("10549 Crown Rd #4");
+    expect(container.textContent).toContain("Franklin Park, IL 60131");
+    expect(container.textContent).not.toContain("Hummingbird");
+    expect(container.textContent).not.toContain("60103");
     expect(container.querySelector('a[href="/locations/franklin-park/"]')).toBeTruthy();
 
     const photos = [...container.querySelectorAll("picture img")];

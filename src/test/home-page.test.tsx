@@ -21,8 +21,10 @@ describe("home page", () => {
     expect(text).toContain("Starts at $99");
     expect(text).toContain("Certified technicians");
     expect(text).toContain("(630) 403-0180");
-    expect(text).toContain("1018 Hummingbird Way");
+    expect(text).not.toContain("1018 Hummingbird Way");
+    expect(text).not.toContain("60103");
     expect(text).toContain("10549 Crown Rd #4");
+    expect(text).toContain("Franklin Park, IL 60131");
     expect(text).toContain("Recent jobs");
     expect(text).not.toMatch(/5\.0|4\.9|500\+|BBB|IICRC|★★★★★|Marcus T\.|Sarah K\.|David R\.|Alanas/);
     expect(container.querySelector('footer a[href="/blog/"]')).toBeTruthy();

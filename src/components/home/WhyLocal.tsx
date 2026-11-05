@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { bodyText, focusRing, sectionTitle } from "@/components/home/ui";
+import { PRIMARY_LOCATION, formatAddress } from "@/data/locations";
 
 const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
 
@@ -15,8 +16,7 @@ export default function WhyLocal() {
           <div className={`${bodyText} mt-4 space-y-4`}>
             <p>
               Ernest Steamers is a local steam cleaning crew for homes and businesses in Chicago and the suburbs. We clean
-              wall-to-wall carpet, area rugs, upholstery, and tile and grout. The main office is in Bartlett, and a second
-              office is in Franklin Park.
+              wall-to-wall carpet, area rugs, upholstery, and tile and grout. The office is in Franklin Park.
             </p>
             <p>
               Certified technicians clean carpet with hot-water extraction, also called steam cleaning. Carpet cleaning starts
@@ -24,15 +24,15 @@ export default function WhyLocal() {
               schedule.
             </p>
             <p>
-              The Bartlett office is at 1018 Hummingbird Way, Bartlett, IL 60103. The{" "}
+              The{" "}
               <Link to="/locations/franklin-park/" className={linkClass}>
                 Franklin Park office
               </Link>{" "}
-              is at 10549 Crown Rd #4, Franklin Park, IL 60131. See the towns on our{" "}
+              is at {formatAddress(PRIMARY_LOCATION)}. Bartlett is one of the towns on our{" "}
               <Link to="/service-areas/" className={linkClass}>
                 service areas
               </Link>{" "}
-              page, or read{" "}
+              page. Read{" "}
               <Link to="/blog/carpet-cleaning-tips-homeowners/" className={linkClass}>
                 carpet cleaning tips for homeowners
               </Link>

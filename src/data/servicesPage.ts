@@ -167,6 +167,6 @@ export const serviceFaqs = [
   },
   {
     q: "Which areas do you clean?",
-    a: `We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in Franklin Park. See the service areas page for the town list, or call ${PHONE_DISPLAY} to ask about your town.`,
+    a: `We clean homes and businesses in Chicago and the suburbs. The office is in Franklin Park. Bartlett is one of the towns we serve. See the service areas page for the town list, or call ${PHONE_DISPLAY} to ask about your town.`,
   },
 ];

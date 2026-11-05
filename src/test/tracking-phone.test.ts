@@ -34,8 +34,10 @@ describe("tracking phone on prerendered pages", () => {
       expect(html).not.toContain("800-270-6228");
       expect(html.split(`alt ${ALT}`).join("")).not.toContain(ALT);
 
-      expect(html).toContain("1018 Hummingbird Way");
-      expect(html).toContain("Bartlett, IL 60103");
+      expect(html).toContain("10549 Crown Rd #4");
+      expect(html).toContain("Franklin Park, IL 60131");
+      expect(html).not.toContain("Hummingbird");
+      expect(html).not.toContain("60103");
 
       const blocks = [...head.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((match) =>
         JSON.parse(match[1]),
@@ -48,10 +50,11 @@ describe("tracking phone on prerendered pages", () => {
       expect(serialized).toContain(`"telephone":"${SCHEMA}"`);
       expect(serialized).not.toContain(ALT);
       expect(serialized).not.toContain("270-6228");
-      expect(serialized).toContain("1018 Hummingbird Way");
-      expect(serialized).toContain("60103");
       expect(serialized).toContain("10549 Crown Rd #4");
       expect(serialized).toContain("60131");
+      expect(serialized).not.toContain("Hummingbird");
+      expect(serialized).not.toContain("60103");
+      expect(serialized).not.toContain("branchOf");
     });
   }
 });

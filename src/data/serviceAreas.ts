@@ -10,7 +10,7 @@ import { PHONE_DISPLAY } from "@/data/locations";
 
 export const serviceAreasTitle = "Service Areas | Chicago & Suburbs | Ernest Steamers";
 
-export const serviceAreasDescription = `Carpet, rug and upholstery steam cleaning in Chicago, North Shore, DuPage and northwest suburbs. Based in Bartlett and Franklin Park. Call ${PHONE_DISPLAY}.`;
+export const serviceAreasDescription = `Carpet, rug and upholstery steam cleaning in Chicago, North Shore, DuPage and northwest suburbs. Based in Franklin Park. Call ${PHONE_DISPLAY}.`;
 
 export type ServiceRegion = {
   id: string;
@@ -102,7 +102,7 @@ export const townPageHref: Readonly<Record<string, string>> = {
 };
 
 export const serviceAreaParagraphs = [
-  "Ernest Steamers steam cleans carpet, rugs, and upholstery for homes and businesses in Chicago and the suburbs. The main office is at 1018 Hummingbird Way, Bartlett, IL 60103. A second office is at 10549 Crown Rd #4, Franklin Park, IL 60131. Certified technicians do the cleaning. Carpet cleaning starts at $99. Upholstery, area rugs, tile and grout, and commercial carpet are quoted for the rooms, the size, and the condition.",
+  "Ernest Steamers steam cleans carpet, rugs, and upholstery for homes and businesses in Chicago and the suburbs. The office is at 10549 Crown Rd #4, Franklin Park, IL 60131. Bartlett is one of the towns served. Carpet cleaning starts at $99. Upholstery, area rugs, tile and grout, and commercial carpet are quoted for the rooms, the size, and the condition.",
   "Carpet cleaning covers wall-to-wall carpet in the rooms you list, including living rooms, hallways, bedrooms, and stairs. Certified technicians use hot-water extraction, also called steam cleaning, and they work through those rooms during the visit. Cleaning the carpet in place suits a home that wants those rooms done in one visit. The price for a carpet job depends on the rooms, the size, and the condition. We confirm an exact quote before the visit is scheduled.",
   "Upholstery cleaning covers fabric furniture that stays in the room, including sofas, chairs, sectionals, and ottomans. Certified technicians clean the pieces you list, working across seats, arms, and the front of the back cushions. It is a practical visit when those pieces are used every day and you want them cleaned at home. Upholstery is quoted for the pieces and their condition, and we confirm that quote before scheduling.",
   "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Certified technicians clean the rugs you include in the visit and walk the space with you when the work is finished. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition.",

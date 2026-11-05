@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
     title: "5 Carpet Cleaning Tips Every Homeowner Should Know",
     metaTitle: "Carpet Cleaning Tips for Homeowners | Ernest Steamers",
     metaDescription:
-      `Five carpet cleaning tips for homeowners in Chicago and the suburbs, from Ernest Steamers in Bartlett, IL. Call ${PHONE_DISPLAY}.`,
+      `Five carpet cleaning tips for homeowners in Chicago and the suburbs, from Ernest Steamers in Franklin Park, IL. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Keeping your carpets looking fresh between professional cleanings doesn't have to be hard. From quick spot treatment to vacuuming, here are five tips for everyday care.",
     image: "carpet-tips",
@@ -91,7 +91,7 @@ These five habits help with everyday care between professional visits. When it i
     slug: "remove-pet-stains-odors",
     title: "How to Remove Pet Stains & Odors for Good",
     metaDescription:
-      `Pet stains and odors on carpet: what to do before a professional clean, from Ernest Steamers in Bartlett, IL. Call ${PHONE_DISPLAY}.`,
+      `Pet stains and odors on carpet: what to do before a professional clean, from Ernest Steamers in Franklin Park, IL. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Pet accidents happen. Learn why store-bought cleaners often stay on the surface, and what a professional carpet visit includes.",
     image: "pet-stains",
@@ -153,7 +153,7 @@ If pet accidents have marked the carpet, tell us the rooms and the condition whe
     title: "Steam Cleaning vs. Dry Cleaning: Which Is Better for Your Carpet?",
     metaTitle: "Steam Cleaning vs. Dry Cleaning Carpet | Ernest Steamers",
     metaDescription:
-      `Steam cleaning versus dry cleaning for carpet, compared for Chicago-area homes by Ernest Steamers in Bartlett. Call ${PHONE_DISPLAY}.`,
+      `Steam cleaning versus dry cleaning for carpet, compared for Chicago-area homes by Ernest Steamers in Franklin Park. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "Not all carpet cleaning methods are created equal. We break down the pros and cons of hot water extraction (steam cleaning) vs. dry cleaning so you can make an informed decision.",
     image: "steam-vs-dry",

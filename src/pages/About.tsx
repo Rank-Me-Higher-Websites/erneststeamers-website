@@ -10,7 +10,7 @@ import Steps from "@/components/Steps";
 import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
 import { ABOUT_STORY_SIZES } from "@/lib/homeImages";
-import { PHONE_DISPLAY, PRIMARY_LOCATION, SECONDARY_OFFICES, formatAddress } from "@/data/locations";
+import { FRANKLIN_PARK_PAGE, PHONE_DISPLAY, PRIMARY_LOCATION, formatAddress } from "@/data/locations";
 
 const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
 
@@ -29,8 +29,6 @@ function focusQuoteForm() {
 }
 
 const About = () => {
-  const franklinPark = SECONDARY_OFFICES[0];
-
   return (
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
@@ -84,19 +82,19 @@ const About = () => {
               </h2>
               <div className={`${bodyText} mt-4 space-y-4`}>
                 <p>
-                  Ernest Steamers is based in Bartlett, IL, with a second office in Franklin Park. Certified technicians
-                  steam clean carpet, rugs, and upholstery for homes and businesses in Chicago and the suburbs.
+                  Ernest Steamers is based in Franklin Park, IL. We steam clean carpet, rugs, and upholstery for homes and
+                  businesses in Chicago and the suburbs.
                 </p>
                 <p>
                   Carpet cleaning starts at $99. The price for a job depends on the rooms, the size, and the condition. We
                   confirm a quote before the visit is scheduled.
                 </p>
                 <p>
-                  The Bartlett office is at {formatAddress(PRIMARY_LOCATION)}. The{" "}
-                  <Link to={franklinPark.path} className={linkClass}>
+                  The office is at {formatAddress(PRIMARY_LOCATION)}. See the{" "}
+                  <Link to={FRANKLIN_PARK_PAGE.path} className={linkClass}>
                     Franklin Park office
-                  </Link>{" "}
-                  is at {formatAddress(franklinPark)}. See the{" "}
+                  </Link>
+                  , the{" "}
                   <Link to="/services/" className={linkClass}>
                     cleaning services
                   </Link>
@@ -150,10 +148,10 @@ const About = () => {
         <section className="bg-white px-4 py-16 lg:py-24" aria-labelledby="offices-heading">
           <div className="mx-auto max-w-6xl">
             <h2 id="offices-heading" className={sectionTitle}>
-              Our offices
+              Our office
             </h2>
             <p className={`${bodyText} mt-3 max-w-2xl`}>
-              Two offices serve Chicago and the suburbs. Call {PHONE_DISPLAY} or request a quote online.
+              The Franklin Park office serves Chicago and the suburbs. Call {PHONE_DISPLAY} or request a quote online.
             </p>
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <OfficeCard
@@ -163,20 +161,10 @@ const About = () => {
                 region={PRIMARY_LOCATION.region}
                 postalCode={PRIMARY_LOCATION.postalCode}
                 primary
+                pageHref={FRANKLIN_PARK_PAGE.path}
                 image="van-setup"
                 imageAlt="Technician preparing the truck-mounted cleaner inside the Ernest Steamers van"
                 imageCaption="Setting up the van-mounted cleaner on a job."
-              />
-              <OfficeCard
-                name={franklinPark.name}
-                street={franklinPark.street}
-                city={franklinPark.city}
-                region={franklinPark.region}
-                postalCode={franklinPark.postalCode}
-                pageHref={franklinPark.path}
-                image="equipment"
-                imageAlt="Technician operating a truck-mounted carpet cleaning machine in the van"
-                imageCaption="Truck-mounted cleaner on a job."
               />
             </div>
           </div>

@@ -57,8 +57,9 @@ describe("service areas page", () => {
 
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
     expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
-    expect(mainText).toContain("1018 Hummingbird Way");
-    expect(mainText).toContain("Bartlett, IL 60103");
+    expect(mainText).not.toContain("1018 Hummingbird Way");
+    expect(mainText).not.toContain("60103");
+    expect(mainText).toContain("Bartlett");
     expect(mainText).toContain("10549 Crown Rd #4");
     expect(mainText).toContain("Franklin Park, IL 60131");
 
@@ -93,11 +94,9 @@ describe("service areas page", () => {
     expect(photos.some((photo) => (photo.getAttribute("src") ?? "").includes("/images/areas/"))).toBe(true);
 
     const directions = [...container.querySelectorAll("a[href*='google.com/maps/search']")];
-    expect(directions.length).toBeGreaterThanOrEqual(2);
+    expect(directions).toHaveLength(1);
     const hrefs = directions.map((link) => link.getAttribute("href") ?? "");
-    expect(hrefs.some((href) => href.includes(encodeURIComponent("1018 Hummingbird Way, Bartlett, IL 60103")))).toBe(
-      true,
-    );
+    expect(hrefs.some((href) => href.includes("Hummingbird") || href.includes("60103"))).toBe(false);
     expect(
       hrefs.some((href) => href.includes(encodeURIComponent("10549 Crown Rd #4, Franklin Park, IL 60131"))),
     ).toBe(true);

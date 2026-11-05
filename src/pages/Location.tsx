@@ -15,13 +15,7 @@ import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "
 import { SERVICES_CARPET_SIZES } from "@/lib/homeImages";
 import { serviceBlocks } from "@/data/servicesPage";
 import { franklinNearbyLabels, franklinParkFaqs, franklinParkParagraphs } from "@/data/franklinParkPage";
-import {
-  PRIMARY_LOCATION,
-  formatAddress,
-  getOfficeBySlug,
-  mapsDirectionsHref,
-  mapsEmbedSrc,
-} from "@/data/locations";
+import { formatAddress, getOfficeBySlug, mapsDirectionsHref, mapsEmbedSrc } from "@/data/locations";
 import NotFound from "./NotFound";
 
 const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
@@ -83,7 +77,7 @@ const LocationPage = () => {
               </h1>
               <p className={`${bodyText} mt-4 max-w-xl lg:text-lg`}>{formatAddress(office)}</p>
               <p className={`${bodyText} mt-3 max-w-xl`}>
-                Certified technicians. Carpet cleaning starts at $99. This office is a branch of the Bartlett location.
+                Carpet cleaning starts at $99.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a href="#franklin-park-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
@@ -238,21 +232,6 @@ const LocationPage = () => {
             </div>
           </section>
         ) : null}
-
-        <section className="bg-[hsl(210,40%,98%)] px-4 py-12" aria-labelledby="main-office-heading">
-          <div className="mx-auto max-w-6xl">
-            <h2 id="main-office-heading" className={sectionTitle}>
-              Main office: Bartlett
-            </h2>
-            <p className={`${bodyText} mt-3 max-w-2xl`}>
-              The main office is{" "}
-              <Link to="/service-areas/" className={linkClass}>
-                Bartlett
-              </Link>{" "}
-              at {formatAddress(PRIMARY_LOCATION)}. The {office.city} office is a branch of that location.
-            </p>
-          </div>
-        </section>
 
         <section id="franklin-park-quote" className="scroll-mt-24 border-t border-border bg-white px-4 py-16 lg:py-24">
           <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-2">

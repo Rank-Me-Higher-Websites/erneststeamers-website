@@ -17,22 +17,27 @@ describe("Franklin Park SEO", () => {
     expect(seo.canonical).toBe("https://erneststeamers.com/locations/franklin-park/");
   });
 
-  it("keeps the branch LocalBusiness and adds breadcrumb and FAQ schema, with no rating", () => {
+  it("keeps one Franklin Park LocalBusiness and adds breadcrumb and FAQ schema, with no rating", () => {
     const block = seo.jsonLd[0] as { "@graph": Array<Record<string, unknown>> };
     const nodes = block["@graph"];
     const serialized = JSON.stringify(seo.jsonLd);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue|"Review"/);
     expect(serialized).not.toMatch(/"geo"|latitude|longitude/);
+    expect(serialized).not.toMatch(/branchOf|department|Hummingbird|60103/);
+    expect(serialized).not.toContain("locations/franklin-park/#business");
 
-    const franklin = nodes.find((node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business");
-    expect(franklin?.name).toBe("Ernest Steamers Franklin Park");
-    expect(franklin?.url).toBe("https://erneststeamers.com/locations/franklin-park/");
-    expect(franklin?.telephone).toBe("+1-630-403-0180");
-    expect(franklin?.email).toBe("info@erneststeamers.com");
-    expect(franklin?.description).toBe(
-      "Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call (630) 403-0180.",
+    const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
+    expect(businesses).toHaveLength(1);
+    const main = businesses[0];
+    expect(main?.["@id"]).toBe("https://erneststeamers.com/#business");
+    expect(main?.name).toBe("Ernest Steamers");
+    expect(main?.url).toBe("https://erneststeamers.com/");
+    expect(main?.telephone).toBe("+1-630-403-0180");
+    expect(main?.email).toBe("info@erneststeamers.com");
+    expect(main?.description).toBe(
+      "Carpet, rug, and upholstery steam cleaning for homes and businesses in Chicago and the suburbs.",
     );
-    const address = franklin?.address as {
+    const address = main?.address as {
       streetAddress: string;
       addressLocality: string;
       addressRegion: string;
@@ -44,16 +49,11 @@ describe("Franklin Park SEO", () => {
       addressRegion: "IL",
       postalCode: "60131",
     });
-    expect((franklin?.branchOf as { "@id": string })["@id"]).toBe("https://erneststeamers.com/#business");
-    expect((franklin?.parentOrganization as { "@id": string })["@id"]).toBe("https://erneststeamers.com/#business");
-    expect((franklin?.areaServed as Array<{ name: string }>).map((city) => city.name)).toEqual([
-      "Franklin Park",
-      "Chicago",
-      "Des Plaines",
-      "Elmhurst",
-      "Niles",
-    ]);
-    expect(franklin?.openingHoursSpecification).toEqual([
+    const served = (main?.areaServed as Array<{ name: string }>).map((city) => city.name);
+    expect(served).toContain("Bartlett");
+    expect(served).toContain("Franklin Park");
+    expect(served).toContain("Aurora");
+    expect(main?.openingHoursSpecification).toEqual([
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -67,12 +67,6 @@ describe("Franklin Park SEO", () => {
         closes: "17:00",
       },
     ]);
-
-    const main = nodes.find((node) => node["@id"] === "https://erneststeamers.com/#business");
-    const mainAddress = main?.address as { streetAddress: string; postalCode: string };
-    expect(mainAddress.streetAddress).toBe("1018 Hummingbird Way");
-    expect(mainAddress.postalCode).toBe("60103");
-    expect(main?.openingHoursSpecification).toEqual(franklin?.openingHoursSpecification);
 
     const page = nodes.find((node) => node["@type"] === "WebPage");
     expect(page?.description).toBe(seo.description);

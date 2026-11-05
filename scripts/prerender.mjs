@@ -13,6 +13,7 @@ const H1_SNIPPET = {
   "/contact": "Get a Free Carpet Cleaning Quote",
   "/blog": "Carpet Cleaning Tips & Guides",
   "/funnel": "Expert Carpet Cleaning in Chicago",
+  "/locations/franklin-park": "Carpet and Upholstery Cleaning in Franklin Park, IL",
 };
 
 const BANNED_HTML = [
@@ -178,6 +179,12 @@ function assertJsonLd(file, html, { primary, offices, sister, requireOffices, op
   }
   if (main.telephone !== primary.phoneSchema) {
     throw new Error(`${file}: main telephone is not ${primary.phoneSchema}`);
+  }
+  if (offices.length === 0 && businesses.length !== 1) {
+    throw new Error(`${file}: expected exactly one LocalBusiness, found ${businesses.length}`);
+  }
+  if (offices.length === 0 && (main.department || main.branchOf)) {
+    throw new Error(`${file}: primary LocalBusiness declares a department or branchOf`);
   }
 
   const parent = main.parentOrganization;

@@ -9,7 +9,7 @@ const banned =
   /500\+|10\+|400\+|100%|5\.0|4\.9|BBB|IICRC|eco-friendly|non-toxic|satisfied|years in business|founder|testimonial|Insured|Bonded|Top-rated|same-day|24-hour|kids and pets|★★|aggregateRating/i;
 
 describe("about page", () => {
-  it("has one h1, two offices, real job photos, and no invented trust content", () => {
+  it("has one h1, the Franklin Park office, real job photos, and no invented trust content", () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/about/"]}>
         <About />
@@ -24,12 +24,12 @@ describe("about page", () => {
     const mainText = main?.textContent ?? "";
     expect(mainText).toContain("Our story");
     expect(mainText).toContain("What to expect");
-    expect(mainText).toContain("Our offices");
+    expect(mainText).toContain("Our office");
     expect(mainText).toContain("Certified technicians");
     expect(mainText).toContain("starts at $99");
     expect(mainText).toContain("Primary office");
-    expect(mainText).toContain("1018 Hummingbird Way");
-    expect(mainText).toContain("Bartlett, IL 60103");
+    expect(mainText).not.toContain("1018 Hummingbird Way");
+    expect(mainText).not.toContain("60103");
     expect(mainText).toContain("10549 Crown Rd #4");
     expect(mainText).toContain("Franklin Park, IL 60131");
     expect(mainText).toContain("(630) 403-0180");
@@ -44,9 +44,9 @@ describe("about page", () => {
     expect(container.querySelector("a[href='#about-quote']")).toBeTruthy();
 
     const directions = [...container.querySelectorAll("a[href*='google.com/maps/search']")];
-    expect(directions).toHaveLength(2);
+    expect(directions).toHaveLength(1);
     const hrefs = directions.map((link) => link.getAttribute("href") ?? "");
-    expect(hrefs.some((href) => href.includes(encodeURIComponent("1018 Hummingbird Way, Bartlett, IL 60103")))).toBe(true);
+    expect(hrefs.some((href) => href.includes(encodeURIComponent("Hummingbird")))).toBe(false);
     expect(hrefs.some((href) => href.includes(encodeURIComponent("10549 Crown Rd #4, Franklin Park, IL 60131")))).toBe(
       true,
     );
@@ -54,7 +54,7 @@ describe("about page", () => {
     expect(container.querySelectorAll("#what-to-expect ol > li")).toHaveLength(4);
 
     const photos = [...container.querySelectorAll("main picture img")];
-    expect(photos).toHaveLength(3);
+    expect(photos).toHaveLength(2);
     for (const photo of photos) {
       expect(photo.getAttribute("width")).toBeTruthy();
       expect(photo.getAttribute("height")).toBeTruthy();

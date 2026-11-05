@@ -9,7 +9,7 @@ import OfficeCard from "@/components/OfficeCard";
 import QuoteForm from "@/components/QuoteForm";
 import HowItWorks from "@/components/home/HowItWorks";
 import { bodyText, buttonOrange, buttonOutline, focusRing, inputClass, sectionTitle } from "@/components/home/ui";
-import { PHONE_DISPLAY, PRIMARY_LOCATION, SECONDARY_OFFICES, formatAddress } from "@/data/locations";
+import { FRANKLIN_PARK_PAGE, PHONE_DISPLAY, PRIMARY_LOCATION, formatAddress } from "@/data/locations";
 import {
   serviceAreaParagraphs,
   serviceRegions,
@@ -96,7 +96,6 @@ function RegionCard({
 }
 
 const ServiceAreas = () => {
-  const franklinPark = SECONDARY_OFFICES[0];
   const [query, setQuery] = useState("");
   const [openRegions, setOpenRegions] = useState(() => serviceRegions.map((_, index) => index === 0));
 
@@ -215,11 +214,11 @@ const ServiceAreas = () => {
         <section className="bg-white px-4 py-16 lg:py-24" aria-labelledby="offices-heading">
           <div className="mx-auto max-w-6xl">
             <h2 id="offices-heading" className={sectionTitle}>
-              Our offices
+              Our office
             </h2>
             <p className={`${bodyText} mt-3 max-w-2xl`}>
-              Bartlett is the main office, at {formatAddress(PRIMARY_LOCATION)}. Franklin Park is the branch office, at{" "}
-              {formatAddress(franklinPark)}. Call {PHONE_DISPLAY} or request a quote online.
+              The office is in Franklin Park, at {formatAddress(PRIMARY_LOCATION)}. Bartlett is on the town list. Call{" "}
+              {PHONE_DISPLAY} or request a quote online.
             </p>
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <OfficeCard
@@ -229,20 +228,10 @@ const ServiceAreas = () => {
                 region={PRIMARY_LOCATION.region}
                 postalCode={PRIMARY_LOCATION.postalCode}
                 primary
+                pageHref={FRANKLIN_PARK_PAGE.path}
                 image="van-setup"
                 imageAlt="Technician preparing the truck-mounted cleaner inside the Ernest Steamers van"
                 imageCaption="Setting up the van-mounted cleaner on a job."
-              />
-              <OfficeCard
-                name={franklinPark.name}
-                street={franklinPark.street}
-                city={franklinPark.city}
-                region={franklinPark.region}
-                postalCode={franklinPark.postalCode}
-                pageHref={franklinPark.path}
-                image="equipment"
-                imageAlt="Technician operating a truck-mounted carpet cleaning machine in the van"
-                imageCaption="Truck-mounted cleaner on a job."
               />
             </div>
           </div>
@@ -257,7 +246,7 @@ const ServiceAreas = () => {
               <Link to="/services/" className={`${buttonOutline} w-full sm:w-auto`}>
                 Cleaning services
               </Link>
-              <Link to={franklinPark.path} className={`${buttonOutline} w-full sm:w-auto`}>
+              <Link to={FRANKLIN_PARK_PAGE.path} className={`${buttonOutline} w-full sm:w-auto`}>
                 Franklin Park office
               </Link>
               <Link to="/blog/" className={`${buttonOutline} w-full sm:w-auto`}>
