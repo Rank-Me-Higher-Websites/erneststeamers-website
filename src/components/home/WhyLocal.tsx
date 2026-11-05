@@ -44,6 +44,10 @@ export default function WhyLocal() {
               <Link to="/blog/steam-cleaning-vs-dry-cleaning-carpet/" className={linkClass}>
                 steam cleaning compared with dry cleaning
               </Link>
+              . Find more practical cleaning advice in our{" "}
+              <Link to="/blog/" className={linkClass}>
+                cleaning guides
+              </Link>
               .
             </p>
           </div>

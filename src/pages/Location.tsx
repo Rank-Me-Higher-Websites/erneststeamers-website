@@ -164,7 +164,19 @@ const LocationPage = () => {
             </h2>
             <div className={`${bodyText} mt-4 max-w-3xl space-y-4`}>
               {paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                <p key={paragraph.slice(0, 40)}>
+                  {paragraph}
+                  {paragraph.startsWith("Upholstery cleaning covers") ? (
+                    <>
+                      {" "}
+                      Read{" "}
+                      <Link to="/blog/upholstery-cleaning-benefits/" className={linkClass}>
+                        when sofas and chairs need cleaning
+                      </Link>{" "}
+                      before listing furniture in your quote request.
+                    </>
+                  ) : null}
+                </p>
               ))}
               <p>
                 See the{" "}

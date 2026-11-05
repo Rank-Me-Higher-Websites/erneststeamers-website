@@ -45,7 +45,9 @@ export const serviceBlocks: ServiceBlock[] = [
         text: "steam cleaning compares with dry cleaning",
         href: "/blog/steam-cleaning-vs-dry-cleaning-carpet/",
       },
-      { text: "." },
+      { text: ". If the room also has a loose rug, see " },
+      { text: "area rug cleaning", href: "/services/#rugs" },
+      { text: " and include its size in the quote request." },
     ],
     included: [
       "Wall-to-wall carpet in the rooms you list",
@@ -70,7 +72,11 @@ export const serviceBlocks: ServiceBlock[] = [
         text: "upholstery cleaning benefits",
         href: "/blog/upholstery-cleaning-benefits/",
       },
-      { text: " for the questions homeowners ask before they book." },
+      {
+        text: " for the questions homeowners ask before they book. For wall-to-wall flooring in the same room, see our ",
+      },
+      { text: "carpet cleaning details", href: "/services/#carpet" },
+      { text: "." },
     ],
     included: [
       "Sofas, chairs, and other upholstered pieces you list",
