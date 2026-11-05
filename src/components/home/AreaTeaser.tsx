@@ -17,7 +17,7 @@ export default function AreaTeaser() {
           Service areas
         </h2>
         <p className={`${bodyText} mt-3 max-w-2xl`}>
-          We clean in Chicago and the suburbs from offices in Bartlett and Franklin Park.
+          We clean in Chicago and the suburbs from our Franklin Park office. Bartlett is one of the towns we serve.
         </p>
         <div className="mt-6">
           <AreaChips items={groups.map((label) => ({ label, href: "/service-areas/" }))} />

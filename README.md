@@ -2,9 +2,7 @@
 
 Carpet, rug, and upholstery steam-cleaning lead site for Chicago and the suburbs. The production build is static HTML for Cloudflare Pages. Quote requests go to n8n through a Pages Function.
 
-**NAP:** Ernest Steamers · (630) 403-0180 · 1018 Hummingbird Way, Bartlett, IL 60103
-
-Secondary office: 10549 Crown Rd #4, Franklin Park, IL 60131 (`/locations/franklin-park`). Sister company: [Ernest Windows](https://ernestwindows.com).
+**NAP:** Ernest Steamers · (630) 403-0180 · 10549 Crown Rd #4, Franklin Park, IL 60131 (`/locations/franklin-park`). Bartlett is a town served, not an office. Sister company: [Ernest Windows](https://ernestwindows.com).
 
 ## Build
 

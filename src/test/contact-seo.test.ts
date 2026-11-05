@@ -34,16 +34,16 @@ describe("contact SEO", () => {
     expect(crumbs.itemListElement[0].item).toBe("https://erneststeamers.com/");
     expect(crumbs.itemListElement[1].item).toBe("https://erneststeamers.com/contact/");
 
-    const main = nodes.find((node) => node["@id"] === "https://erneststeamers.com/#business");
+    const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
+    expect(businesses).toHaveLength(1);
+    const main = businesses[0];
     const address = main?.address as { streetAddress: string; postalCode: string };
-    expect(address.streetAddress).toBe("1018 Hummingbird Way");
-    expect(address.postalCode).toBe("60103");
+    expect(main?.["@id"]).toBe("https://erneststeamers.com/#business");
+    expect(address.streetAddress).toBe("10549 Crown Rd #4");
+    expect(address.postalCode).toBe("60131");
     expect(main?.telephone).toBe("+1-630-403-0180");
     expect(main?.email).toBe("info@erneststeamers.com");
-    const franklin = nodes.find(
-      (node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business",
-    );
-    expect(franklin?.email).toBe("info@erneststeamers.com");
+    expect(serialized).not.toMatch(/branchOf|Hummingbird|60103/);
   });
 
   it("is in the prerender list and does not reuse the noindex funnel title", () => {

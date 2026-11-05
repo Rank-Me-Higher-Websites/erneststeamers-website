@@ -17,6 +17,7 @@ const quickLinks = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services/" },
   { label: "Service Areas", path: "/service-areas/" },
+  { label: "Franklin Park Office", path: "/locations/franklin-park/" },
   ...SECONDARY_OFFICES.map((office) => ({ label: `${office.city} Office`, path: office.path })),
   { label: "About Us", path: "/about/" },
   { label: "Blog", path: "/blog/" },
@@ -147,7 +148,7 @@ const Footer = () => {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Ernest Steamers Bartlett location"
+          title="Ernest Steamers Franklin Park location"
         />
       </div>
 

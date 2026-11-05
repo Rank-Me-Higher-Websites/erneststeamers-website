@@ -32,8 +32,10 @@ describe("services page", () => {
     expect(mainText).not.toMatch(banned);
 
     const pageText = container.textContent ?? "";
-    expect(pageText).toContain("1018 Hummingbird Way");
-    expect(pageText).toContain("Bartlett, IL 60103");
+    expect(pageText).toContain("10549 Crown Rd #4");
+    expect(pageText).toContain("Franklin Park, IL 60131");
+    expect(pageText).not.toContain("Hummingbird");
+    expect(pageText).not.toContain("60103");
     expect(pageText).toContain("Franklin Park office");
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
     expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);

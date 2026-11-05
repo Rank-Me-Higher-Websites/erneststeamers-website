@@ -10,7 +10,7 @@ const banned =
   /500\+|10\+|400\+|100%|5\.0|4\.9|BBB|IICRC|eco-friendly|non-toxic|satisfied|years in business|founder|testimonial|Insured|Bonded|Top-rated|same-day|24-hour|kids and pets|★★|aggregateRating|7 am|9 am|Business Hours|Monday to Friday/i;
 
 describe("contact page", () => {
-  it("has one h1, a full quote form, both offices, and a click-to-call number", () => {
+  it("has one h1, a full quote form, the Franklin Park office, and a click-to-call number", () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/contact/"]}>
         <Contact />
@@ -26,8 +26,8 @@ describe("contact page", () => {
     expect(mainText).toContain("Certified technicians");
     expect(mainText).toContain("starts at $99");
     expect(mainText).toContain("Primary office");
-    expect(mainText).toContain("1018 Hummingbird Way");
-    expect(mainText).toContain("Bartlett, IL 60103");
+    expect(mainText).not.toContain("1018 Hummingbird Way");
+    expect(mainText).not.toContain("60103");
     expect(mainText).toContain("10549 Crown Rd #4");
     expect(mainText).toContain("Franklin Park, IL 60131");
     expect(mainText).toContain("(630) 403-0180");
@@ -44,9 +44,9 @@ describe("contact page", () => {
     expect(container.querySelector("a[href='#contact-quote']")).toBeTruthy();
 
     const directions = [...container.querySelectorAll("a[href*='google.com/maps/search']")];
-    expect(directions.length).toBeGreaterThanOrEqual(2);
+    expect(directions).toHaveLength(1);
     const hrefs = directions.map((link) => link.getAttribute("href") ?? "");
-    expect(hrefs.some((href) => href.includes(encodeURIComponent("1018 Hummingbird Way, Bartlett, IL 60103")))).toBe(true);
+    expect(hrefs.some((href) => href.includes("Hummingbird") || href.includes("60103"))).toBe(false);
     expect(hrefs.some((href) => href.includes(encodeURIComponent("10549 Crown Rd #4, Franklin Park, IL 60131")))).toBe(
       true,
     );
@@ -54,7 +54,7 @@ describe("contact page", () => {
     expect(container.querySelectorAll("[aria-labelledby='next-heading'] ol > li")).toHaveLength(3);
 
     const photos = [...container.querySelectorAll("main picture img")];
-    expect(photos).toHaveLength(2);
+    expect(photos).toHaveLength(1);
     for (const photo of photos) {
       expect(photo.getAttribute("width")).toBeTruthy();
       expect(photo.getAttribute("height")).toBeTruthy();
@@ -109,7 +109,7 @@ describe("contact page", () => {
     blocks.forEach(walk);
 
     const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
-    expect(businesses.length).toBeGreaterThanOrEqual(2);
+    expect(businesses).toHaveLength(1);
     for (const business of businesses) {
       expect(business.email).toBe("info@erneststeamers.com");
     }
@@ -157,7 +157,7 @@ describe("contact page", () => {
       },
     ];
     const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
-    expect(businesses.length).toBeGreaterThanOrEqual(2);
+    expect(businesses).toHaveLength(1);
     for (const business of businesses) {
       expect(business.openingHoursSpecification).toEqual(hours);
     }

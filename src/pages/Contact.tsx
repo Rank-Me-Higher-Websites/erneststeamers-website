@@ -8,7 +8,7 @@ import QuoteForm from "@/components/QuoteForm";
 import Steps from "@/components/Steps";
 import FaqAccordion from "@/components/FaqAccordion";
 import { bodyText, buttonOrange, focusRing, sectionTitle } from "@/components/home/ui";
-import { EMAIL, PHONE_DISPLAY, PRIMARY_LOCATION, SECONDARY_OFFICES } from "@/data/locations";
+import { EMAIL, FRANKLIN_PARK_PAGE, PHONE_DISPLAY, PRIMARY_LOCATION } from "@/data/locations";
 
 const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
 
@@ -19,7 +19,7 @@ const contactFaqs = [
   },
   {
     q: "Which areas do you clean?",
-    a: `We clean homes and businesses in Chicago and the suburbs. The main office is in Bartlett, and a second office is in Franklin Park. Call ${PHONE_DISPLAY} to ask about your town.`,
+    a: `We clean homes and businesses in Chicago and the suburbs. The office is in Franklin Park. Bartlett is one of the towns we serve. Call ${PHONE_DISPLAY} to ask about your town.`,
   },
   {
     q: "What should I prepare for a quote?",
@@ -28,8 +28,6 @@ const contactFaqs = [
 ];
 
 export default function Contact() {
-  const franklinPark = SECONDARY_OFFICES[0];
-
   return (
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
@@ -80,20 +78,10 @@ export default function Contact() {
                   region={PRIMARY_LOCATION.region}
                   postalCode={PRIMARY_LOCATION.postalCode}
                   primary
+                  pageHref={FRANKLIN_PARK_PAGE.path}
                   image="van-setup"
                   imageAlt="Technician preparing the truck-mounted cleaner inside the Ernest Steamers van"
                   imageCaption="Setting up the van-mounted cleaner on a job."
-                />
-                <OfficeCard
-                  name={franklinPark.name}
-                  street={franklinPark.street}
-                  city={franklinPark.city}
-                  region={franklinPark.region}
-                  postalCode={franklinPark.postalCode}
-                  pageHref={franklinPark.path}
-                  image="equipment"
-                  imageAlt="Technician operating a truck-mounted carpet cleaning machine in the van"
-                  imageCaption="Truck-mounted cleaner on a job."
                 />
               </aside>
             </div>

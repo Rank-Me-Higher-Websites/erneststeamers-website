@@ -32,11 +32,15 @@ describe("blog SEO", () => {
     }
 
     const block = seo.jsonLd[0] as { "@graph": Array<Record<string, unknown>> };
-    const main = block["@graph"].find((node) => node["@id"] === "https://erneststeamers.com/#business");
+    const businesses = block["@graph"].filter((node) => node["@type"] === "LocalBusiness");
+    expect(businesses).toHaveLength(1);
+    const main = businesses[0];
     const address = main?.address as { streetAddress: string; postalCode: string };
-    expect(address.streetAddress).toBe("1018 Hummingbird Way");
-    expect(address.postalCode).toBe("60103");
+    expect(main?.["@id"]).toBe("https://erneststeamers.com/#business");
+    expect(address.streetAddress).toBe("10549 Crown Rd #4");
+    expect(address.postalCode).toBe("60131");
     expect(main?.telephone).toBe("+1-630-403-0180");
+    expect(serialized).not.toMatch(/branchOf|Hummingbird|60103/);
   });
 
   it("keeps each post title at 60 characters or fewer and emits Article schema", () => {
@@ -62,11 +66,13 @@ describe("blog SEO", () => {
       expect(serialized).not.toContain("Person");
 
       const block = seo.jsonLd[0] as { "@graph": Array<Record<string, unknown>> };
-      const franklin = block["@graph"].find(
-        (node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business",
-      );
-      const franklinAddress = franklin?.address as { streetAddress: string };
-      expect(franklinAddress.streetAddress).toBe("10549 Crown Rd #4");
+      const businesses = block["@graph"].filter((node) => node["@type"] === "LocalBusiness");
+      expect(businesses).toHaveLength(1);
+      const address = businesses[0]?.address as { streetAddress: string; postalCode: string };
+      expect(businesses[0]?.["@id"]).toBe("https://erneststeamers.com/#business");
+      expect(address.streetAddress).toBe("10549 Crown Rd #4");
+      expect(address.postalCode).toBe("60131");
+      expect(serialized).not.toMatch(/branchOf|Hummingbird|60103/);
     }
   });
 });

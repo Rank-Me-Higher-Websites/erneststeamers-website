@@ -1,9 +1,15 @@
 /**
  * Business locations.
  *
- * The primary NAP is Bartlett. Secondary offices are added to this list:
- * the footer, location routes, prerender paths, and LocalBusiness nodes
- * read it. Also add each office path to public/sitemap.xml (the build checks).
+ * The primary NAP is Franklin Park: 10549 Crown Rd #4, Franklin Park, IL 60131.
+ * Bartlett is a town served, not an office. Do not add 1018 Hummingbird Way
+ * or a /locations/bartlett/ page.
+ *
+ * The Franklin Park page is the primary office page. It is one LocalBusiness,
+ * not a department or branch. Secondary offices, if any, are added to
+ * SECONDARY_OFFICES: the footer, location routes, prerender paths, and
+ * LocalBusiness nodes read it. Also add each office path to public/sitemap.xml
+ * (the build checks).
  */
 
 /**
@@ -47,12 +53,12 @@ export const BUSINESS_HOURS = [
 ] as const;
 
 export const PRIMARY_LOCATION = {
-  id: "bartlett",
+  id: "franklin-park",
   name: "Ernest Steamers",
-  street: "1018 Hummingbird Way",
-  city: "Bartlett",
+  street: "10549 Crown Rd #4",
+  city: "Franklin Park",
   region: "IL",
-  postalCode: "60103",
+  postalCode: "60131",
   country: "US",
   phoneDisplay: PHONE_DISPLAY,
   phoneSchema: PHONE_SCHEMA,
@@ -99,8 +105,7 @@ export type SecondaryOffice = {
   title: string;
   description: string;
   /**
-   * SERP description. When set, LocalBusiness.description stays `description`
-   * so the branch schema does not change.
+   * SERP description. When set, it is the page meta description.
    */
   metaDescription?: string;
   /** Hero sentence for the location page. */
@@ -110,30 +115,25 @@ export type SecondaryOffice = {
   nearby: readonly string[];
 };
 
-export const SECONDARY_OFFICES: readonly SecondaryOffice[] = [
-  {
-    id: "franklin-park",
-    slug: "franklin-park",
-    path: "/locations/franklin-park/",
-    h1: "Carpet and Upholstery Cleaning in Franklin Park, IL",
-    name: "Ernest Steamers Franklin Park",
-    street: "10549 Crown Rd #4",
-    city: "Franklin Park",
-    region: "IL",
-    postalCode: "60131",
-    country: "US",
-    phoneDisplay: PHONE_DISPLAY,
-    phoneSchema: PHONE_SCHEMA,
-    email: EMAIL,
-    title: "Carpet Cleaning in Franklin Park, IL | Ernest Steamers",
-    description: `Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call ${PHONE_DISPLAY}.`,
-    metaDescription: `Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call ${PHONE_DISPLAY} for a quote.`,
-    intro: "Carpet, rug, and upholstery steam cleaning for Franklin Park and nearby suburbs.",
-    details:
-      "The Franklin Park office provides carpet, rug, and upholstery steam cleaning for homes and businesses.",
-    nearby: ["Chicago", "Des Plaines", "Elmhurst", "Niles"],
-  },
-];
+/**
+ * Primary office page. Same NAP as PRIMARY_LOCATION. Not a second LocalBusiness.
+ */
+export const FRANKLIN_PARK_PAGE = {
+  slug: "franklin-park",
+  path: "/locations/franklin-park/",
+  h1: "Carpet and Upholstery Cleaning in Franklin Park, IL",
+  ...PRIMARY_LOCATION,
+  title: "Carpet Cleaning in Franklin Park, IL | Ernest Steamers",
+  description: `Carpet, rug, and upholstery steam cleaning at the Ernest Steamers office, 10549 Crown Rd #4, Franklin Park, IL 60131. Serving Franklin Park and nearby suburbs. Call ${PHONE_DISPLAY}.`,
+  metaDescription: `Carpet, rug and upholstery steam cleaning from our Franklin Park office, 10549 Crown Rd #4. Call ${PHONE_DISPLAY} for a quote.`,
+  intro: "Carpet, rug, and upholstery steam cleaning for Franklin Park and nearby suburbs.",
+  details:
+    "The Franklin Park office provides carpet, rug, and upholstery steam cleaning for homes and businesses.",
+  nearby: ["Chicago", "Des Plaines", "Elmhurst", "Niles"] as const,
+};
+
+/** Extra offices only. Bartlett is not an office. */
+export const SECONDARY_OFFICES: readonly SecondaryOffice[] = [];
 
 export function formatCityLine(location: { city: string; region: string; postalCode: string }) {
   return `${location.city}, ${location.region} ${location.postalCode}`;
@@ -180,6 +180,7 @@ export function joinList(items: readonly string[]) {
 }
 
 export function getOfficeBySlug(slug: string) {
+  if (slug === FRANKLIN_PARK_PAGE.slug) return FRANKLIN_PARK_PAGE;
   return SECONDARY_OFFICES.find((office) => office.slug === slug);
 }
 
@@ -190,5 +191,6 @@ function stripRouteSlash(path: string) {
 
 export function getOfficeByPath(path: string) {
   const key = stripRouteSlash(path);
+  if (stripRouteSlash(FRANKLIN_PARK_PAGE.path) === key) return FRANKLIN_PARK_PAGE;
   return SECONDARY_OFFICES.find((office) => stripRouteSlash(office.path) === key);
 }

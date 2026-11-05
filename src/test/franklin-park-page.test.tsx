@@ -3,7 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { franklinNearbyLabels, franklinParkFaqs } from "@/data/franklinParkPage";
 import { publishedTowns } from "@/data/serviceAreas";
-import { SECONDARY_OFFICES } from "@/data/locations";
+import { FRANKLIN_PARK_PAGE } from "@/data/locations";
 import { serviceBlocks } from "@/data/servicesPage";
 import LocationPage from "@/pages/Location";
 
@@ -59,9 +59,10 @@ describe("Franklin Park page", () => {
     expect(mainText).toContain("Franklin Park, IL 60131");
     expect(mainText).toContain("(630) 403-0180");
     expect(mainText).toContain("info@erneststeamers.com");
-    expect(mainText).toContain("1018 Hummingbird Way");
-    expect(mainText).toContain("Bartlett, IL 60103");
-    expect(mainText).toContain("branch");
+    expect(mainText).not.toContain("1018 Hummingbird Way");
+    expect(mainText).not.toContain("60103");
+    expect(mainText).not.toContain("Bartlett");
+    expect(mainText).not.toContain("branch");
     expect(mainText).toContain("Get A Free Quote");
     expect(mainText).not.toMatch(banned);
     expect(mainText).not.toMatch(hours);
@@ -74,7 +75,7 @@ describe("Franklin Park page", () => {
     expect(container.querySelector("a[href='tel:6308309867']")).toBeNull();
     expect(container.querySelectorAll("a[href='tel:+16304030180']").length).toBeGreaterThan(0);
 
-    const nearby = franklinNearbyLabels(SECONDARY_OFFICES[0].nearby);
+    const nearby = franklinNearbyLabels(FRANKLIN_PARK_PAGE.nearby);
     const chips = [...(document.getElementById("nearby-heading")?.closest("section")?.querySelectorAll("a") ?? [])];
     expect(chips.map((chip) => chip.textContent)).toEqual(nearby);
     for (const chip of chips) {

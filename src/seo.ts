@@ -17,6 +17,7 @@ import { franklinParkFaqs } from "@/data/franklinParkPage";
 import { serviceAreasDescription, serviceAreasTitle } from "@/data/serviceAreas";
 import {
   BUSINESS_HOURS,
+  FRANKLIN_PARK_PAGE,
   NAP,
   PRIMARY_LOCATION,
   SECONDARY_OFFICES,
@@ -99,8 +100,8 @@ const pages: Record<string, PageCopy> = {
     description: serviceAreasDescription,
   },
   "/about": {
-    title: "About Ernest Steamers | Carpet Cleaning in Bartlett, IL",
-    description: `Meet Ernest Steamers, a Bartlett, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call ${NAP.phoneDisplay}.`,
+    title: "About Ernest Steamers | Carpet Cleaning in Franklin Park, IL",
+    description: `Meet Ernest Steamers, a Franklin Park, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call ${NAP.phoneDisplay}.`,
   },
   "/contact": {
     title: "Free Carpet Cleaning Quote | Ernest Steamers",
@@ -108,7 +109,7 @@ const pages: Record<string, PageCopy> = {
   },
   "/blog": {
     title: "Carpet Cleaning Blog | Ernest Steamers",
-    description: `Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Bartlett, IL. Practical tips for Chicago-area homes. Call ${NAP.phoneDisplay}.`,
+    description: `Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Franklin Park, IL. Practical tips for Chicago-area homes. Call ${NAP.phoneDisplay}.`,
   },
   "/funnel": {
     title: "Carpet Cleaning Quote Request | Ernest Steamers",
@@ -183,7 +184,9 @@ function localBusiness() {
       "Carpet, rug, and upholstery steam cleaning for homes and businesses in Chicago and the suburbs.",
     address: postalAddress(PRIMARY_LOCATION),
     parentOrganization: sisterOrganization(),
-    department: SECONDARY_OFFICES.map((office) => ({ "@id": officeId(office.path) })),
+    ...(SECONDARY_OFFICES.length > 0
+      ? { department: SECONDARY_OFFICES.map((office) => ({ "@id": officeId(office.path) })) }
+      : {}),
     areaServed: AREA_SERVED.map((name) => ({ "@type": "City", name })),
     openingHoursSpecification: OPENING_HOURS,
   };
@@ -357,8 +360,9 @@ export function getSeo(pathname: string): SeoMeta {
   if (office) {
     const canonical = absoluteRoute(office.path);
     const description = office.metaDescription ?? office.description;
+    const aboutId = office.slug === FRANKLIN_PARK_PAGE.slug ? MAIN_BUSINESS_ID : officeId(office.path);
     const nodes = [
-      pageNode({ title: office.title, description, canonical }, "WebPage", officeId(office.path)),
+      pageNode({ title: office.title, description, canonical }, "WebPage", aboutId),
       {
         "@type": "BreadcrumbList",
         "@id": `${canonical}#breadcrumb`,
@@ -464,6 +468,7 @@ export function getPrerenderPaths(): string[] {
     "/about",
     "/contact",
     "/blog",
+    FRANKLIN_PARK_PAGE.path,
     ...SECONDARY_OFFICES.map((office) => office.path),
     "/funnel",
     ...blogPosts.map((post) => `/blog/${post.slug}`),

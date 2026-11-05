@@ -24,16 +24,15 @@ describe("services SEO", () => {
     const serialized = JSON.stringify(seo.jsonLd);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue|"Review"/);
 
-    const main = nodes.find((node) => node["@id"] === "https://erneststeamers.com/#business");
+    const businesses = nodes.filter((node) => node["@type"] === "LocalBusiness");
+    expect(businesses).toHaveLength(1);
+    const main = businesses[0];
     const address = main?.address as { streetAddress: string; postalCode: string };
-    expect(address.streetAddress).toBe("1018 Hummingbird Way");
-    expect(address.postalCode).toBe("60103");
+    expect(main?.["@id"]).toBe("https://erneststeamers.com/#business");
+    expect(address.streetAddress).toBe("10549 Crown Rd #4");
+    expect(address.postalCode).toBe("60131");
     expect(main?.telephone).toBe("+1-630-403-0180");
-
-    const franklin = nodes.find((node) => node["@id"] === "https://erneststeamers.com/locations/franklin-park/#business");
-    const franklinAddress = franklin?.address as { streetAddress: string; postalCode: string };
-    expect(franklinAddress.streetAddress).toBe("10549 Crown Rd #4");
-    expect(franklinAddress.postalCode).toBe("60131");
+    expect(serialized).not.toMatch(/branchOf|Hummingbird|60103/);
 
     const crumbs = nodes.find((node) => node["@type"] === "BreadcrumbList") as {
       itemListElement: Array<{ position: number; name: string; item: string }>;
