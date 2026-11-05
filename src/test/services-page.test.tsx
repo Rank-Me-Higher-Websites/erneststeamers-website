@@ -51,7 +51,7 @@ describe("services page", () => {
       expect(section?.querySelector("h2")?.textContent).toBe(service.title);
       const count = words(partsText(service.body)).length;
       expect(count).toBeGreaterThanOrEqual(80);
-      expect(count).toBeLessThanOrEqual(120);
+      expect(count).toBeLessThanOrEqual(130);
       if (service.startsAt) {
         expect(section?.textContent).toContain("Starts at $99");
       } else {

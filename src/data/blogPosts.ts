@@ -77,7 +77,7 @@ Heavy furniture creates permanent indentations in carpet fibers. Moving your fur
 
 ## 5. Schedule Professional Cleaning
 
-No matter how diligent you are with home maintenance, professional hot-water extraction reaches dirt that vacuums leave in the carpet. How often to book depends on the household, the traffic, and the condition of the carpet. Ask us when you request a quote.
+No matter how diligent you are with home maintenance, [professional hot-water extraction](/services/#carpet) reaches dirt that vacuums leave in the carpet. How often to book depends on the household, the traffic, and the condition of the carpet. Ask us when you request a quote.
 
 At Ernest Steamers, our technicians use truck-mounted hot water extraction. Carpet cleaning starts at $99.
 
@@ -85,7 +85,7 @@ At Ernest Steamers, our technicians use truck-mounted hot water extraction. Carp
 
 These five habits help with everyday care between professional visits. When it is time for a cleaning, request a quote and we confirm the price before scheduling.
 
-**Ernest Steamers proudly serves Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call us at [${PHONE_DISPLAY}](${phoneTelHref()}) or request a free quote today.`,
+**Ernest Steamers proudly serves Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Our [Franklin Park office](/locations/franklin-park/) serves Chicago-area homes; include your service address when requesting a quote. Call us at [${PHONE_DISPLAY}](${phoneTelHref()}) or request a free quote today.`,
   },
   {
     slug: "remove-pet-stains-odors",
@@ -144,7 +144,9 @@ Between professional cleanings, here's how to minimize pet-related carpet damage
 
 ## Tell Us About the Carpet
 
-If pet accidents have marked the carpet, tell us the rooms and the condition when you request a quote. Our technicians clean the areas you list.
+If pet accidents have marked the carpet, tell us the rooms and the condition when you request a quote for [carpet cleaning](/services/#carpet). Our technicians clean the areas you list.
+
+If the affected item is a rug rather than wall-to-wall carpet, see our [on-site area rug cleaning](/services/#rugs) details before requesting a quote.
 
 **Ernest Steamers serves pet owners across Chicago, Naperville, Arlington Heights, Evanston, Orland Park, and all surrounding suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for a free estimate.`,
   },
@@ -211,7 +213,7 @@ Dry cleaning uses chemical compounds or very low moisture (VLM) methods to clean
 - **Not as effective on stains** — limited ability to treat deep or set-in stains
 ## Which Method Should You Choose?
 
-For most homes and businesses, **hot water extraction (steam cleaning) is the method we use**. It reaches soil that stays in the carpet after vacuuming.
+For most homes and businesses, **hot water extraction (steam cleaning)** is [the method we use](/services/#carpet). It reaches soil that stays in the carpet after vacuuming.
 
 Shops and offices with steady foot traffic can see why [commercial carpet cleaning](/blog/commercial-carpet-cleaning-business/) matters beyond a one-time deep clean.
 
@@ -224,7 +226,7 @@ Dry cleaning can be useful for:
 
 We use truck-mounted hot water extraction. Our technicians run the equipment. Carpet cleaning starts at $99. Ask about the cleaning solution when you request a quote.
 
-**Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
+**Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Check our [Chicago-area service coverage](/service-areas/) before requesting a cleaning quote. Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
   },
   {
     slug: "upholstery-cleaning-benefits",
@@ -271,7 +273,7 @@ Hot water extraction reaches soil in the fabric that regular vacuuming can leave
 
 ## How Professional Upholstery Cleaning Works
 
-At Ernest Steamers, our upholstery cleaning process includes:
+At Ernest Steamers, our [upholstery cleaning](/services/#upholstery) process includes:
 
 1. **Fabric assessment** — We identify your fabric type and select the appropriate cleaning method and products.
 2. **Pre-treatment** — Stains and high-soil areas are pre-treated before the extraction pass.
@@ -293,7 +295,7 @@ How often to book depends on the household:
 
 Quality upholstery is a real investment. Regular professional cleaning protects that investment by preventing permanent staining, fiber degradation, and odor buildup.
 
-**Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for your free estimate.`,
+**Ernest Steamers provides professional upholstery cleaning across Chicago, Naperville, Schaumburg, Evanston, and all Chicagoland suburbs.** Tell us which furniture pieces need cleaning when you [request an upholstery quote](/contact/). Call [${PHONE_DISPLAY}](${phoneTelHref()}) for your free estimate.`,
   },
   {
     slug: "carpet-cleaning-allergies-indoor-air-quality",
@@ -358,7 +360,7 @@ Removing trapped dust and dander can help the air in the room.
 
 ## Tips for Allergy Sufferers
 
-In addition to professional carpet cleaning, we recommend:
+In addition to [professional carpet cleaning](/services/#carpet), we recommend:
 
 - **Use a HEPA-filter vacuum** and vacuum at least twice a week
 - **Keep indoor humidity from staying high** to discourage dust mites
@@ -369,7 +371,7 @@ In addition to professional carpet cleaning, we recommend:
 
 ## Breathe Easier with Ernest Steamers
 
-Our technicians clean the rooms you list. Ask about the cleaning solution when you request a quote.
+Our technicians clean the rooms you list. Ask about the cleaning solution when you request a quote. See our [service areas around Chicago](/service-areas/) and include the rooms you want cleaned in your quote request.
 
 **Serving allergy sufferers across Chicago, Naperville, Evanston, Schaumburg, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
   },
@@ -430,7 +432,7 @@ Cleaning frequency depends on your business type and foot traffic:
 
 ## Our Commercial Cleaning Process
 
-Ernest Steamers provides professional commercial carpet cleaning designed to minimize disruption to your business:
+Ernest Steamers provides professional [commercial carpet cleaning](/services/#commercial) designed to minimize disruption to your business:
 
 ### Flexible Scheduling
 We work around your schedule — evenings, weekends, and early mornings are all available. Your business operations don't need to stop for clean carpets.
@@ -464,7 +466,7 @@ Ernest Steamers provides commercial carpet cleaning for businesses across Chicag
 
 Your carpet is one of the first things people notice — and one of the last things many businesses think about cleaning. Don't let dirty floors undermine your professional image.
 
-**Ernest Steamers serves businesses across Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for a free commercial estimate.`,
+**Ernest Steamers serves businesses across Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Check the [areas we serve](/service-areas/) when planning cleaning for your business. Call [${PHONE_DISPLAY}](${phoneTelHref()}) for a free commercial estimate.`,
   },
 ];
 
