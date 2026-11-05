@@ -2,7 +2,8 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import ServiceAreas from "@/pages/ServiceAreas";
-import { publishedTowns, serviceRegions } from "@/data/serviceAreas";
+import { COVERAGE_MAP } from "@/components/CoverageMap";
+import { franklinParkOfficePoint, publishedTowns, serviceRegions, townCoordinates } from "@/data/serviceAreas";
 
 const leadFields = [
   "name",
@@ -49,7 +50,12 @@ describe("service areas page", () => {
     const mainText = main?.textContent ?? "";
     expect(words(mainText).length).toBeGreaterThanOrEqual(400);
     expect(mainText).toContain("Our technicians");
+    expect(mainText).not.toContain("Our technicians.");
     expect(mainText).toContain("starts at $99");
+    expect(mainText).toContain("How quoting works across towns");
+    expect(mainText).toContain("Marketing region");
+    expect(mainText).not.toContain("Bartlett office");
+    expect(mainText).toContain("not an Ernest Steamers office");
     expect(mainText).toContain("(630) 403-0180");
     expect(mainText).toContain("hot-water extraction");
     expect(mainText).not.toMatch(banned);
@@ -70,14 +76,18 @@ describe("service areas page", () => {
       const labels = [...(card?.querySelectorAll("li") ?? [])].map((item) => item.textContent);
       expect(labels).toEqual([...region.towns]);
       seen.push(...labels.filter((label): label is string => Boolean(label)));
-      const links = [...(card?.querySelectorAll("a") ?? [])];
+      const townLinks = [...(card?.querySelectorAll("ul a") ?? [])];
       if (region.towns.includes("Franklin Park")) {
-        expect(links.map((link) => link.textContent)).toEqual(["Franklin Park"]);
-        expect(links[0]?.getAttribute("href")).toBe("/locations/franklin-park/");
+        expect(townLinks.map((link) => link.textContent)).toEqual(["Franklin Park"]);
+        expect(townLinks[0]?.getAttribute("href")).toBe("/locations/franklin-park/");
       } else {
-        expect(links).toHaveLength(0);
+        expect(townLinks).toHaveLength(0);
       }
+      expect(card?.querySelector(`a[href='${region.serviceHref}']`)?.textContent).toBe(region.serviceLabel);
+      expect(region.access.split(/\s+/).filter(Boolean).length).toBeGreaterThanOrEqual(70);
     }
+    const accessCopy = serviceRegions.map((region) => region.access);
+    expect(new Set(accessCopy).size).toBe(accessCopy.length);
     expect(seen).toEqual([...publishedTowns]);
     expect(new Set(seen).size).toBe(seen.length);
 
@@ -101,12 +111,38 @@ describe("service areas page", () => {
       hrefs.some((href) => href.includes(encodeURIComponent("10549 Crown Rd #4, Franklin Park, IL 60131"))),
     ).toBe(true);
 
+    const map = container.querySelector("#coverage-map");
+    expect(map?.querySelector("path")).toBeNull();
+    expect(map?.querySelectorAll("[data-town]")).toHaveLength(publishedTowns.length);
+    expect(map?.querySelectorAll("[data-office='true']")).toHaveLength(1);
+    expect(map?.querySelector("[data-office='true']")?.getAttribute("data-town")).toBe("Franklin Park");
+    const yOf = (town: string) => Number(map?.querySelector(`[data-town="${town}"]`)?.getAttribute("data-y"));
+    const xOf = (town: string) => Number(map?.querySelector(`[data-town="${town}"]`)?.getAttribute("data-x"));
+    expect(yOf("Libertyville")).toBeLessThan(yOf("Orland Park"));
+    expect(xOf("Elgin")).toBeLessThan(xOf("Evanston"));
+    for (const town of publishedTowns) {
+      expect(townCoordinates[town], town).toBeTruthy();
+      expect(townCoordinates[town].lat).toBeGreaterThan(COVERAGE_MAP.minLat);
+      expect(townCoordinates[town].lat).toBeLessThan(COVERAGE_MAP.maxLat);
+      expect(townCoordinates[town].lon).toBeGreaterThan(COVERAGE_MAP.minLon);
+      expect(townCoordinates[town].lon).toBeLessThan(COVERAGE_MAP.maxLon);
+      const x = xOf(town);
+      const y = yOf(town);
+      expect(x).toBeGreaterThan(0);
+      expect(x).toBeLessThan(COVERAGE_MAP.width);
+      expect(y).toBeGreaterThan(0);
+      expect(y).toBeLessThan(COVERAGE_MAP.height);
+    }
+    expect(franklinParkOfficePoint.lat).toBeGreaterThan(COVERAGE_MAP.minLat);
+    expect(franklinParkOfficePoint.lat).toBeLessThan(COVERAGE_MAP.maxLat);
+
     const chicago = container.querySelector('[data-region="Chicago & Cook County"]');
     const town = (name: string) => [...(chicago?.querySelectorAll("li") ?? [])].find((item) => item.textContent === name);
     fireEvent.change(container.querySelector("#town-filter")!, { target: { value: "niles" } });
     expect(town("Niles")?.hasAttribute("hidden")).toBe(false);
     expect(town("Chicago")?.hasAttribute("hidden")).toBe(true);
     expect(town("Chicago")?.textContent).toBe("Chicago");
+    expect(container.querySelector("#areas-quote-form [name='address']")).toHaveProperty("value", "Niles, IL");
 
     const form = container.querySelector("#areas-quote-form");
     expect(form?.querySelector("[name='website']")?.closest("[aria-hidden='true']")).toBeTruthy();
@@ -140,6 +176,11 @@ describe("service areas page", () => {
     }
 
     expect(container.querySelector("a[href='/services/']")).toBeTruthy();
+    expect(main?.querySelector("a[href='/services/#carpet']")).toBeTruthy();
+    expect(main?.querySelector("a[href='/services/#upholstery']")).toBeTruthy();
+    expect(main?.querySelector("a[href='/services/#rugs']")).toBeTruthy();
+    expect(main?.querySelector("a[href='/services/#tile-grout']")).toBeTruthy();
+    expect(main?.querySelector("a[href='/services/#commercial']")).toBeTruthy();
     expect(container.querySelector("a[href='/blog/']")).toBeTruthy();
     expect(container.querySelector("a[href='/blog/carpet-cleaning-tips-homeowners/']")).toBeTruthy();
     expect(container.querySelector("a[href='#areas-quote']")).toBeTruthy();
@@ -149,6 +190,8 @@ describe("service areas page", () => {
       const base = href.split(/[?#]/)[0];
       if (base === "/" || base.includes(".")) continue;
       expect(base.endsWith("/"), href).toBe(true);
+      if (base.includes("/locations/")) expect(base).toBe("/locations/franklin-park/");
+      expect(base.toLowerCase().includes("bartlett")).toBe(false);
     }
   });
 });

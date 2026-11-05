@@ -7,11 +7,14 @@ import CallButton from "@/components/CallButton";
 import AreaChips from "@/components/AreaChips";
 import OfficeCard from "@/components/OfficeCard";
 import QuoteForm from "@/components/QuoteForm";
+import CoverageMap from "@/components/CoverageMap";
 import HowItWorks from "@/components/home/HowItWorks";
 import { bodyText, buttonOrange, buttonOutline, focusRing, inputClass, sectionTitle } from "@/components/home/ui";
 import { FRANKLIN_PARK_PAGE, PHONE_DISPLAY, PRIMARY_LOCATION, formatAddress } from "@/data/locations";
 import {
-  serviceAreaParagraphs,
+  marketingRegionNote,
+  publishedTowns,
+  quotingAcrossTowns,
   serviceRegions,
   townPageHref,
   type ServiceRegion,
@@ -20,6 +23,14 @@ import {
 const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
 
 const AREA_WIDTHS = [480, 768] as const;
+
+const serviceLinks = [
+  { label: "Carpet cleaning", href: "/services/#carpet" },
+  { label: "Upholstery cleaning", href: "/services/#upholstery" },
+  { label: "Area rug cleaning", href: "/services/#rugs" },
+  { label: "Tile and grout cleaning", href: "/services/#tile-grout" },
+  { label: "Commercial carpet cleaning", href: "/services/#commercial" },
+] as const;
 
 function focusQuoteForm() {
   window.setTimeout(() => {
@@ -53,11 +64,13 @@ function RegionCard({
   query,
   open,
   onToggle,
+  onSelectTown,
 }: {
   region: ServiceRegion;
   query: string;
   open: boolean;
   onToggle: (open: boolean) => void;
+  onSelectTown: (town: string) => void;
 }) {
   const needle = query.trim().toLowerCase();
   const visible = region.towns.filter((town) => needle.length === 0 || town.toLowerCase().includes(needle));
@@ -69,17 +82,27 @@ function RegionCard({
       className="rounded-2xl border border-border bg-white shadow-sm"
     >
       <summary
-        className={`flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 ${focusRing} [&::-webkit-details-marker]:hidden`}
+        className={`flex min-h-12 cursor-pointer list-none items-start justify-between gap-3 px-5 py-4 ${focusRing} [&::-webkit-details-marker]:hidden`}
       >
-        <h2 className="font-heading text-2xl font-bold text-primary">{region.region}</h2>
+        <span className="min-w-0">
+          <h2 className="font-heading text-2xl font-bold text-primary">{region.region}</h2>
+          <span className="mt-1 block text-sm font-semibold text-[hsl(174,62%,26%)]">Marketing region</span>
+        </span>
         <span aria-hidden="true" className="text-2xl font-bold leading-none text-[hsl(174,62%,26%)] lg:hidden">
           {open ? "–" : "+"}
         </span>
       </summary>
       <div className="px-5 pb-5">
         <AreaPhoto name={region.image} alt={region.alt} />
+        <p className={`${bodyText} mt-4`}>{region.access}</p>
+        <p className="mt-3">
+          <Link to={region.serviceHref} className={linkClass}>
+            {region.serviceLabel}
+          </Link>
+        </p>
         <div className="mt-4">
           <AreaChips
+            onSelect={onSelectTown}
             items={region.towns.map((town) => ({
               label: town,
               href: townPageHref[town],
@@ -98,6 +121,10 @@ function RegionCard({
 const ServiceAreas = () => {
   const [query, setQuery] = useState("");
   const [openRegions, setOpenRegions] = useState(() => serviceRegions.map((_, index) => index === 0));
+  const needle = query.trim().toLowerCase();
+  const matchedTowns = publishedTowns.filter((town) => needle.length > 0 && town.toLowerCase().includes(needle));
+  const selectedTown = matchedTowns.length === 1 ? matchedTowns[0] : "";
+  const addressPrefill = selectedTown ? `${selectedTown}, IL` : "";
 
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1024px)");
@@ -133,7 +160,8 @@ const ServiceAreas = () => {
               Service Areas in Chicago & the Suburbs
             </h1>
             <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Our technicians. Carpet cleaning starts at $99. Call {PHONE_DISPLAY} or request a quote.
+              Carpet, rug, upholstery, tile, and commercial carpet cleaning for the towns on this page. Carpet
+              cleaning starts at $99. Call {PHONE_DISPLAY} or request a quote. The office is in Franklin Park.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#areas-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
@@ -141,6 +169,22 @@ const ServiceAreas = () => {
               </a>
               <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
             </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-4 pb-10" aria-labelledby="coverage-map-heading">
+          <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2">
+            <div>
+              <h2 id="coverage-map-heading" className={sectionTitle}>
+                Listed towns
+              </h2>
+              <p className={`${bodyText} mt-4`}>{marketingRegionNote}</p>
+              <p className={`${bodyText} mt-4`}>
+                Search the list or open a group. Choosing a town puts that name on the quote form. Add the street
+                address there. We check the address against this list.
+              </p>
+            </div>
+            <CoverageMap />
           </div>
         </section>
 
@@ -168,6 +212,7 @@ const ServiceAreas = () => {
                 region={region}
                 query={query}
                 open={openRegions[index]}
+                onSelectTown={(town) => setQuery(town)}
                 onToggle={(next) =>
                   setOpenRegions((current) => {
                     if (current[index] === next) return current;
@@ -181,31 +226,37 @@ const ServiceAreas = () => {
           </div>
         </section>
 
-        <section className="bg-white px-4 py-16 lg:py-24" aria-labelledby="areas-services-heading">
+        <section className="bg-white px-4 py-16 lg:py-24" aria-labelledby="quoting-heading">
           <div className="mx-auto max-w-3xl">
-            <h2 id="areas-services-heading" className={sectionTitle}>
-              Services in these towns
+            <h2 id="quoting-heading" className={sectionTitle}>
+              How quoting works across towns
             </h2>
-            <div className={`${bodyText} mt-4 space-y-4`}>
-              {serviceAreaParagraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            <p className={`${bodyText} mt-4`}>{quotingAcrossTowns}</p>
+            <h3 className="mt-8 font-heading text-2xl font-bold text-primary">Services in these towns</h3>
+            <p className={`${bodyText} mt-3`}>
+              The same five services are available in every town listed above. Carpet cleaning starts at $99. The
+              other four are quoted from the rooms or pieces, the size, and the condition.
+            </p>
+            <ul className="mt-4 space-y-2">
+              {serviceLinks.map((service) => (
+                <li key={service.href}>
+                  <Link to={service.href} className={linkClass}>
+                    {service.label}
+                  </Link>
+                </li>
               ))}
-              <p>
-                See the{" "}
-                <Link to="/services/" className={linkClass}>
-                  cleaning services
-                </Link>
-                , the{" "}
-                <Link to="/locations/franklin-park/" className={linkClass}>
-                  Franklin Park office
-                </Link>
-                , and{" "}
-                <Link to="/blog/carpet-cleaning-tips-homeowners/" className={linkClass}>
-                  carpet cleaning tips for homeowners
-                </Link>
-                .
-              </p>
-            </div>
+            </ul>
+            <p className={`${bodyText} mt-4`}>
+              The{" "}
+              <Link to="/locations/franklin-park/" className={linkClass}>
+                Franklin Park office
+              </Link>{" "}
+              schedules the work. For care between visits, see{" "}
+              <Link to="/blog/carpet-cleaning-tips-homeowners/" className={linkClass}>
+                carpet cleaning tips for homeowners
+              </Link>
+              .
+            </p>
           </div>
         </section>
 
@@ -261,13 +312,25 @@ const ServiceAreas = () => {
             <div>
               <h2 className={sectionTitle}>Don&apos;t see your town?</h2>
               <p className={`${bodyText} mt-4 max-w-xl`}>
-                Call {PHONE_DISPLAY} and we will tell you whether we can come. Or send the form with the service
-                address. Carpet cleaning starts at $99. Our technicians do the work.
+                Send the service address on the form. We check it against the town list. A dot on the map, or a town
+                in a group, does not mean every surrounding address is covered. Carpet cleaning starts at $99.
               </p>
+              {selectedTown ? (
+                <p className={`${bodyText} mt-4 max-w-xl`}>
+                  The form starts with {selectedTown}, IL. Add the street address before you send it.
+                </p>
+              ) : (
+                <p className={`${bodyText} mt-4 max-w-xl`}>
+                  Choose a town in a group above to start the form with that town, then add the street.
+                </p>
+              )}
               <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
             </div>
             <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
-              <QuoteForm id="areas-quote-form" />
+              <p id="quote-coverage-note" className={`${bodyText} mb-4`}>
+                Coverage is the published town list, checked from the address you enter.
+              </p>
+              <QuoteForm id="areas-quote-form" addressPrefill={addressPrefill} describedBy="quote-coverage-note" />
             </div>
           </div>
         </section>

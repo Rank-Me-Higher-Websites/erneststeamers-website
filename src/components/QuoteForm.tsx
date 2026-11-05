@@ -1,4 +1,4 @@
-import { useId, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { inputClass } from "@/components/home/ui";
 import { PHONE_DISPLAY } from "@/data/locations";
 
@@ -26,6 +26,9 @@ const initialFormData = {
 type QuoteFormProps = {
   id?: string;
   defaultService?: string;
+  /** Town or address chosen elsewhere on the page. Fills an untouched address field. */
+  addressPrefill?: string;
+  describedBy?: string;
   compact?: boolean;
   heading?: string;
   onSubmitted?: () => void;
@@ -45,6 +48,8 @@ function Field({ id, label, children }: { id: string; label: string; children: R
 export default function QuoteForm({
   id,
   defaultService = "",
+  addressPrefill = "",
+  describedBy,
   compact = false,
   heading,
   onSubmitted,
@@ -52,7 +57,19 @@ export default function QuoteForm({
   const generatedId = useId().replace(/:/g, "");
   const formId = id ?? `quote-${generatedId}`;
   const [formData, setFormData] = useState({ ...initialFormData, service: defaultService });
+  const appliedPrefill = useRef<string | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(!compact);
+
+  useEffect(() => {
+    if (appliedPrefill.current === addressPrefill) return;
+    const previous = appliedPrefill.current;
+    appliedPrefill.current = addressPrefill;
+    setFormData((current) => {
+      const canReplace = current.address === "" || (previous !== null && current.address === previous);
+      if (!canReplace) return current;
+      return { ...current, address: addressPrefill };
+    });
+  }, [addressPrefill]);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -95,7 +112,13 @@ export default function QuoteForm({
   const extraId = `${formId}-extra`;
 
   return (
-    <form id={formId} onSubmit={handleSubmit} className="relative scroll-mt-24 space-y-3" aria-busy={submitting}>
+    <form
+      id={formId}
+      onSubmit={handleSubmit}
+      className="relative scroll-mt-24 space-y-3"
+      aria-busy={submitting}
+      aria-describedby={describedBy}
+    >
       {heading ? <h2 className="font-heading text-2xl font-bold text-primary">{heading}</h2> : null}
       <div aria-hidden="true" className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0">
         <label htmlFor={`${formId}-website`}>Website</label>
