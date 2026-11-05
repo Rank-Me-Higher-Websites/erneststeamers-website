@@ -88,7 +88,7 @@ const cityLabel = `${PRIMARY_LOCATION.city}, ${PRIMARY_LOCATION.region}`;
 const pages: Record<string, PageCopy> = {
   "/": {
     title: "Carpet Cleaning in Chicago & Suburbs | Ernest Steamers",
-    description: `Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Certified technicians, carpet cleaning starts at $99. Call ${NAP.phoneDisplay}.`,
+    description: `Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Our technicians, carpet cleaning starts at $99. Call ${NAP.phoneDisplay}.`,
     faq: true,
   },
   "/services": {

@@ -238,7 +238,7 @@ const LocationPage = () => {
             <div>
               <h2 className={sectionTitle}>Request a quote</h2>
               <p className={`${bodyText} mt-4 max-w-xl`}>
-                Call {office.phoneDisplay} or send the form. Carpet cleaning starts at $99. Certified technicians do the
+                Call {office.phoneDisplay} or send the form. Carpet cleaning starts at $99. Our technicians do the
                 work. The page address is sent with the request so we know it came from the {office.city} office.
               </p>
               <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />

@@ -3,7 +3,7 @@ import { sectionTitle } from "@/components/home/ui";
 
 const facts = [
   { icon: CircleDollarSign, label: "Starts at $99" },
-  { icon: BadgeCheck, label: "Certified technicians" },
+  { icon: BadgeCheck, label: "Our technicians" },
   { icon: MapPin, label: "Chicago & suburbs" },
   { icon: Phone, label: "Call or request a quote online" },
 ];

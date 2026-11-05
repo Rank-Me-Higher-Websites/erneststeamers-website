@@ -133,7 +133,7 @@ const ServiceAreas = () => {
               Service Areas in Chicago & the Suburbs
             </h1>
             <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Certified technicians. Carpet cleaning starts at $99. Call {PHONE_DISPLAY} or request a quote.
+              Our technicians. Carpet cleaning starts at $99. Call {PHONE_DISPLAY} or request a quote.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#areas-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
@@ -262,7 +262,7 @@ const ServiceAreas = () => {
               <h2 className={sectionTitle}>Don&apos;t see your town?</h2>
               <p className={`${bodyText} mt-4 max-w-xl`}>
                 Call {PHONE_DISPLAY} and we will tell you whether we can come. Or send the form with the service
-                address. Carpet cleaning starts at $99. Certified technicians do the work.
+                address. Carpet cleaning starts at $99. Our technicians do the work.
               </p>
               <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
             </div>

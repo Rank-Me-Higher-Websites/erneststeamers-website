@@ -79,7 +79,7 @@ Heavy furniture creates permanent indentations in carpet fibers. Moving your fur
 
 No matter how diligent you are with home maintenance, professional hot-water extraction reaches dirt that vacuums leave in the carpet. How often to book depends on the household, the traffic, and the condition of the carpet. Ask us when you request a quote.
 
-At Ernest Steamers, certified technicians use truck-mounted hot water extraction. Carpet cleaning starts at $99.
+At Ernest Steamers, our technicians use truck-mounted hot water extraction. Carpet cleaning starts at $99.
 
 ## Keep Your Carpets Looking Their Best
 
@@ -144,7 +144,7 @@ Between professional cleanings, here's how to minimize pet-related carpet damage
 
 ## Tell Us About the Carpet
 
-If pet accidents have marked the carpet, tell us the rooms and the condition when you request a quote. Certified technicians clean the areas you list.
+If pet accidents have marked the carpet, tell us the rooms and the condition when you request a quote. Our technicians clean the areas you list.
 
 **Ernest Steamers serves pet owners across Chicago, Naperville, Arlington Heights, Evanston, Orland Park, and all surrounding suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) for a free estimate.`,
   },
@@ -222,7 +222,7 @@ Dry cleaning can be useful for:
 
 ## Why Ernest Steamers Uses Steam Cleaning
 
-We use truck-mounted hot water extraction. Certified technicians run the equipment. Carpet cleaning starts at $99. Ask about the cleaning solution when you request a quote.
+We use truck-mounted hot water extraction. Our technicians run the equipment. Carpet cleaning starts at $99. Ask about the cleaning solution when you request a quote.
 
 **Serving Chicago, Naperville, Schaumburg, Evanston, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
   },
@@ -369,7 +369,7 @@ In addition to professional carpet cleaning, we recommend:
 
 ## Breathe Easier with Ernest Steamers
 
-Certified technicians clean the rooms you list. Ask about the cleaning solution when you request a quote.
+Our technicians clean the rooms you list. Ask about the cleaning solution when you request a quote.
 
 **Serving allergy sufferers across Chicago, Naperville, Evanston, Schaumburg, Orland Park, and all Chicagoland suburbs.** Call [${PHONE_DISPLAY}](${phoneTelHref()}) or request your free quote today.`,
   },

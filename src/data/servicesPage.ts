@@ -1,7 +1,7 @@
 import { PHONE_DISPLAY } from "@/data/locations";
 import type { HomeImageName } from "@/lib/homeImages";
 
-/** Visible copy may state only "starts at $99" and "certified technicians". */
+/** Visible copy may state only "starts at $99". */
 export type CopyPart = {
   text: string;
   href?: string;
@@ -34,7 +34,7 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: true,
     body: [
       {
-        text: "Ernest Steamers cleans wall-to-wall carpet in houses and apartments across Chicago and the suburbs. Certified technicians use hot-water extraction, also called steam cleaning, and they work through the rooms you list: living rooms, hallways, bedrooms, and stairs. Cleaning the carpet in place suits a home that wants those rooms done during one visit. Carpet cleaning starts at $99. The price for your job depends on the rooms, the size, and the condition, and we confirm an exact quote before the visit is scheduled. Read how ",
+        text: "Ernest Steamers cleans wall-to-wall carpet in houses and apartments across Chicago and the suburbs. Our technicians use hot-water extraction, also called steam cleaning, and they work through the rooms you list: living rooms, hallways, bedrooms, and stairs. Cleaning the carpet in place suits a home that wants those rooms done during one visit. Carpet cleaning starts at $99. The price for your job depends on the rooms, the size, and the condition, and we confirm an exact quote before the visit is scheduled. Read how ",
       },
       {
         text: "carpet cleaning and allergies",
@@ -49,7 +49,7 @@ export const serviceBlocks: ServiceBlock[] = [
     ],
     included: [
       "Wall-to-wall carpet in the rooms you list",
-      "Hot-water extraction by certified technicians",
+      "Hot-water extraction by our technicians",
       "A quote based on rooms, size, and condition",
       "A walkthrough of the rooms when the cleaning is finished",
     ],
@@ -64,7 +64,7 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Upholstery cleaning covers the fabric furniture that stays in the room, including sofas, chairs, sectionals, and ottomans. Certified technicians clean the pieces you list, working across seats, arms, and the front of the back cushions. It is a practical visit when those pieces are used every day and you want them cleaned at home. Upholstery is quoted for the pieces and their condition, and we confirm that quote before scheduling. Read the guide to ",
+        text: "Upholstery cleaning covers the fabric furniture that stays in the room, including sofas, chairs, sectionals, and ottomans. Our technicians clean the pieces you list, working across seats, arms, and the front of the back cushions. It is a practical visit when those pieces are used every day and you want them cleaned at home. Upholstery is quoted for the pieces and their condition, and we confirm that quote before scheduling. Read the guide to ",
       },
       {
         text: "upholstery cleaning benefits",
@@ -74,7 +74,7 @@ export const serviceBlocks: ServiceBlock[] = [
     ],
     included: [
       "Sofas, chairs, and other upholstered pieces you list",
-      "Cleaning by certified technicians",
+      "Cleaning by our technicians",
       "A quote based on the pieces and their condition",
       "A walkthrough when the cleaning is finished",
     ],
@@ -89,7 +89,7 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Certified technicians clean the rugs you include in the visit and walk the space with you when the work is finished. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition. If pets share the room, the guide to ",
+        text: "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Our technicians clean the rugs you include in the visit and walk the space with you when the work is finished. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition. If pets share the room, the guide to ",
       },
       {
         text: "pet stains and odors",
@@ -99,7 +99,7 @@ export const serviceBlocks: ServiceBlock[] = [
     ],
     included: [
       "Area rugs cleaned in the room during the visit",
-      "Cleaning by certified technicians",
+      "Cleaning by our technicians",
       "A quote based on the rug's size and condition",
       "A walkthrough when the cleaning is finished",
     ],
@@ -114,7 +114,7 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Tile and grout cleaning covers tile floors and the grout lines between the tiles. Certified technicians clean the floor area you put on the quote, whether that is a kitchen, a bathroom, an entry, or another tiled room in the home. The visit is a fit when dirt has settled in the grout and you want that floor cleaned in place. Tile and grout is quoted for the floor size and the condition. If the same home also has wall-to-wall carpet, the ",
+        text: "Tile and grout cleaning covers tile floors and the grout lines between the tiles. Our technicians clean the floor area you put on the quote, whether that is a kitchen, a bathroom, an entry, or another tiled room in the home. The visit is a fit when dirt has settled in the grout and you want that floor cleaned in place. Tile and grout is quoted for the floor size and the condition. If the same home also has wall-to-wall carpet, the ",
       },
       {
         text: "carpet cleaning tips for homeowners",
@@ -124,7 +124,7 @@ export const serviceBlocks: ServiceBlock[] = [
     ],
     included: [
       "Tile floors and the grout lines in the rooms you list",
-      "Cleaning by certified technicians",
+      "Cleaning by our technicians",
       "A quote based on the floor size and condition",
       "A walkthrough when the cleaning is finished",
     ],
@@ -139,7 +139,7 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Commercial carpet cleaning is for offices, lobbies, and other business spaces in Chicago and the suburbs. Certified technicians clean the carpeted areas you list with hot-water extraction, the same method we use in homes. The visit is a fit when a business wants those areas cleaned and then walked through before we leave. Commercial carpet is quoted for the space and its condition, and we confirm that quote before the visit is scheduled. See why ",
+        text: "Commercial carpet cleaning is for offices, lobbies, and other business spaces in Chicago and the suburbs. Our technicians clean the carpeted areas you list with hot-water extraction, the same method we use in homes. The visit is a fit when a business wants those areas cleaned and then walked through before we leave. Commercial carpet is quoted for the space and its condition, and we confirm that quote before the visit is scheduled. See why ",
       },
       {
         text: "commercial carpet cleaning for your business",
@@ -149,7 +149,7 @@ export const serviceBlocks: ServiceBlock[] = [
     ],
     included: [
       "Carpet in the offices, lobbies, or other spaces you list",
-      "Hot-water extraction by certified technicians",
+      "Hot-water extraction by our technicians",
       "A quote based on the space and its condition",
       "A walkthrough when the cleaning is finished",
     ],

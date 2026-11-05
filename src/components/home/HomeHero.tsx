@@ -25,10 +25,10 @@ export default function HomeHero() {
             Carpet, Rug & Upholstery Steam Cleaning in Chicago & the Suburbs
           </h1>
           <p className={`${bodyText} mt-4 hidden lg:block lg:text-lg`}>
-            Certified technicians. Carpet cleaning starts at $99.
+            Our technicians. Carpet cleaning starts at $99.
           </p>
           <ul className={`${bodyText} mt-4 list-disc space-y-1 pl-5 lg:hidden`}>
-            <li>Certified technicians</li>
+            <li>Our technicians</li>
             <li>Carpet cleaning starts at $99</li>
           </ul>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">

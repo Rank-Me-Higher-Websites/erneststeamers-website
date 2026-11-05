@@ -23,7 +23,7 @@ export const faqs = [
   },
   {
     q: "Can you remove tough stains and pet odors?",
-    a: "Our certified technicians clean tough stains, including wine, coffee, ink, and mud, and pet odors in the carpet.",
+    a: "Our technicians clean tough stains, including wine, coffee, ink, and mud, and pet odors in the carpet.",
   },
   {
     q: "Do I need to move my furniture?",

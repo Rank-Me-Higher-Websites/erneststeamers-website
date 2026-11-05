@@ -19,7 +19,7 @@ describe("home page", () => {
 
     const text = container.textContent ?? "";
     expect(text).toContain("Starts at $99");
-    expect(text).toContain("Certified technicians");
+    expect(text).toContain("Our technicians");
     expect(text).toContain("(630) 403-0180");
     expect(text).not.toContain("1018 Hummingbird Way");
     expect(text).not.toContain("60103");
