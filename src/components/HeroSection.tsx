@@ -16,7 +16,7 @@ const HeroSection = () => {
               Ernest Steamers delivers top-quality carpet cleaning services across Chicago and nearby suburbs, ensuring a deeper, longer-lasting clean.
             </p>
             <p className="text-primary-foreground font-semibold text-lg" data-testid="text-hero-offer">
-              Certified technicians. Carpet cleaning starts at $99.
+              Our technicians. Carpet cleaning starts at $99.
             </p>
             <div className="flex flex-wrap gap-2.5">
               <a href={phoneTelHref()} className="inline-flex items-center gap-1.5 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-7 py-3.5 rounded-lg text-lg transition-all" data-testid="link-call-now">
@@ -54,7 +54,7 @@ const HeroSection = () => {
           </p>
 
           <p className="text-primary-foreground font-semibold text-sm">
-            Certified technicians. Carpet cleaning starts at $99.
+            Our technicians. Carpet cleaning starts at $99.
           </p>
 
           <div className="flex gap-2.5">

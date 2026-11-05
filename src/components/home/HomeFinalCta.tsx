@@ -10,7 +10,7 @@ export default function HomeFinalCta() {
         <div>
           <h2 className={sectionTitle}>Ready for cleaner carpets?</h2>
           <p className={`${bodyText} mt-4 max-w-xl`}>
-            Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Certified technicians do the work.
+            Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Our technicians do the work.
           </p>
           <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
         </div>

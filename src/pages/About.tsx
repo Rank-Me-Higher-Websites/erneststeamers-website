@@ -52,7 +52,7 @@ const About = () => {
               About Ernest Steamers — Chicago-Area Carpet Cleaners
             </h1>
             <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Certified technicians. Carpet cleaning starts at $99.
+              Our technicians. Carpet cleaning starts at $99.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#about-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
@@ -133,7 +133,7 @@ const About = () => {
                   },
                   {
                     title: "Steam clean",
-                    body: "Certified technicians clean with hot-water extraction.",
+                    body: "Our technicians clean with hot-water extraction.",
                   },
                   {
                     title: "Walk the result",
@@ -207,7 +207,7 @@ const About = () => {
             <div>
               <h2 className={sectionTitle}>Request a quote</h2>
               <p className={`${bodyText} mt-4 max-w-xl`}>
-                Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Certified technicians do the work.
+                Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Our technicians do the work.
               </p>
               <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
             </div>

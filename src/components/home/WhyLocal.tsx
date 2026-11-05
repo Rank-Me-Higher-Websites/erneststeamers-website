@@ -19,7 +19,7 @@ export default function WhyLocal() {
               wall-to-wall carpet, area rugs, upholstery, and tile and grout. The office is in Franklin Park.
             </p>
             <p>
-              Certified technicians clean carpet with hot-water extraction, also called steam cleaning. Carpet cleaning starts
+              Our technicians clean carpet with hot-water extraction, also called steam cleaning. Carpet cleaning starts
               at $99. The price for a job depends on the rooms, the size, and the condition — get an exact quote before you
               schedule.
             </p>

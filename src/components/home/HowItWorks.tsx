@@ -23,7 +23,7 @@ export default function HowItWorks() {
               },
               {
                 title: "Steam clean and walkthrough",
-                body: "Certified technicians clean with hot-water extraction and walk the space with you.",
+                body: "Our technicians clean with hot-water extraction and walk the space with you.",
               },
             ]}
           />

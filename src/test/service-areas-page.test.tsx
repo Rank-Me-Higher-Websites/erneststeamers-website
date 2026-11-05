@@ -48,7 +48,7 @@ describe("service areas page", () => {
     const main = container.querySelector("main");
     const mainText = main?.textContent ?? "";
     expect(words(mainText).length).toBeGreaterThanOrEqual(400);
-    expect(mainText).toContain("Certified technicians");
+    expect(mainText).toContain("Our technicians");
     expect(mainText).toContain("starts at $99");
     expect(mainText).toContain("(630) 403-0180");
     expect(mainText).toContain("hot-water extraction");

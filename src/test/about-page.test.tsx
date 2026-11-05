@@ -25,7 +25,7 @@ describe("about page", () => {
     expect(mainText).toContain("Our story");
     expect(mainText).toContain("What to expect");
     expect(mainText).toContain("Our office");
-    expect(mainText).toContain("Certified technicians");
+    expect(mainText).toContain("Our technicians");
     expect(mainText).toContain("starts at $99");
     expect(mainText).toContain("Primary office");
     expect(mainText).not.toContain("1018 Hummingbird Way");

@@ -5,7 +5,7 @@ import QuoteFormDialog from "@/components/QuoteFormDialog";
 
 const reasons = [
   "We utilize advanced, professional-grade equipment and innovative techniques to deliver a deep, thorough carpet clean.",
-  "Our certified technicians clean residential and commercial carpet.",
+  "Our technicians clean residential and commercial carpet.",
   "We deliver high-quality home maintenance services with precision, efficiency, and professional expertise.",
   "We clean the rooms you list and walk through the work when it is finished.",
   "We provide steam cleaning, upholstery cleaning, area rug cleaning, tile and grout cleaning, and commercial carpet care throughout Chicagoland.",

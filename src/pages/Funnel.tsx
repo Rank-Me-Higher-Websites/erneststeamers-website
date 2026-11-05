@@ -58,7 +58,7 @@ const FunnelAbout = () => (
             Ernest Steamers provides professional carpet cleaning in Chicago and surrounding suburbs. We specialize in residential and commercial carpet cleaning, upholstery cleaning, area rug cleaning, tile and grout cleaning, and stain removal.
           </p>
           <p className="text-primary-foreground/80 text-xs lg:text-sm leading-relaxed mb-3 lg:mb-6">
-            Our certified technicians use industry-grade equipment to deliver deep, effective cleaning that extends the life of your carpets and flooring.
+            Our technicians use industry-grade equipment to deliver deep, effective cleaning that extends the life of your carpets and flooring.
           </p>
           <QuoteFormDialog>
             <button className="inline-flex items-center gap-2 bg-cta-orange hover-cta-orange text-primary-foreground font-heading font-bold px-4 py-2 lg:px-6 lg:py-3 rounded-lg text-sm lg:text-base transition-all">

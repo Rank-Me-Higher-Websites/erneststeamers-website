@@ -51,7 +51,7 @@ export default function Contact() {
               Get a Free Carpet Cleaning Quote
             </h1>
             <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Certified technicians. Carpet cleaning starts at $99. Tell us about your space, or call {PHONE_DISPLAY}.
+              Our technicians. Carpet cleaning starts at $99. Tell us about your space, or call {PHONE_DISPLAY}.
             </p>
             <div className="mt-6 lg:hidden">
               <CallButton className={`${buttonOrange} w-full`} />
@@ -63,7 +63,7 @@ export default function Contact() {
               <aside className="flex flex-col gap-4 lg:col-span-5">
                 <div className="rounded-2xl border border-border bg-[hsl(210,40%,98%)] p-5">
                   <h2 className="font-heading text-2xl font-bold text-primary">Call or email</h2>
-                  <p className={`${bodyText} mt-2`}>Certified technicians. Carpet cleaning starts at $99.</p>
+                  <p className={`${bodyText} mt-2`}>Our technicians. Carpet cleaning starts at $99.</p>
                   <div className="mt-4 hidden lg:block">
                     <CallButton className={`${buttonOrange} w-full`} />
                   </div>
@@ -107,7 +107,7 @@ export default function Contact() {
                   },
                   {
                     title: "Steam clean and walkthrough",
-                    body: "Certified technicians clean the space and walk it with you.",
+                    body: "Our technicians clean the space and walk it with you.",
                   },
                 ]}
               />
