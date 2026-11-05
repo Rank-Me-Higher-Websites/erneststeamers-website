@@ -3,8 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { Phone, Menu, X } from "lucide-react";
 import QuoteFormDialog from "./QuoteFormDialog";
-import { HeaderSisterCompanyBar } from "./SisterCompanyLinks";
-import { PHONE_DISPLAY, phoneTelHref } from "@/data/locations";
+import { PHONE_DISPLAY, WINDOWS_FRANCHISE_URL, phoneTelHref } from "@/data/locations";
 import { focusRing } from "@/components/home/ui";
 
 const navLinks = [
@@ -22,6 +21,25 @@ function isCurrentPath(pathname: string, path: string) {
 }
 
 const quoteClass = `inline-flex min-h-12 items-center gap-1 rounded-lg bg-cta-orange px-3 font-heading text-sm font-bold text-[hsl(216,50%,12%)] transition hover:brightness-95 sm:px-4 ${focusRing}`;
+
+const desktopNavClass = `text-sm font-semibold text-foreground transition-colors hover:text-primary ${focusRing}`;
+const mobileNavClass = `flex min-h-12 items-center border-b border-foreground/10 text-base font-semibold text-foreground ${focusRing}`;
+
+function FranchiseNavLink({ className, testId, onClick }: { className: string; testId: string; onClick?: () => void }) {
+  return (
+    <a
+      href={WINDOWS_FRANCHISE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-testid={testId}
+      onClick={onClick}
+      className={className}
+    >
+      Franchise
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -65,13 +83,14 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.path}
-                className={`text-sm font-semibold text-foreground transition-colors hover:text-primary ${focusRing} ${
+                className={`${desktopNavClass} ${
                   isCurrentPath(location.pathname, link.path) ? "underline underline-offset-4" : ""
                 }`}
               >
                 {link.label}
               </Link>
             ))}
+            <FranchiseNavLink className={desktopNavClass} testId="nav-franchise-link" />
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-2">
@@ -101,7 +120,6 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <HeaderSisterCompanyBar />
       {mobileOpen && (
         <div className="space-y-1 px-4 pb-4 md:hidden" style={{ backgroundColor: "hsl(36, 100%, 55%)" }}>
           {navLinks.map((link) => (
@@ -109,11 +127,16 @@ const Navbar = () => {
               key={link.label}
               to={link.path}
               onClick={() => setMobileOpen(false)}
-              className={`flex min-h-12 items-center border-b border-foreground/10 text-base font-semibold text-foreground ${focusRing}`}
+              className={mobileNavClass}
             >
               {link.label}
             </Link>
           ))}
+          <FranchiseNavLink
+            className={mobileNavClass}
+            testId="nav-franchise-link-mobile"
+            onClick={() => setMobileOpen(false)}
+          />
         </div>
       )}
     </nav>
