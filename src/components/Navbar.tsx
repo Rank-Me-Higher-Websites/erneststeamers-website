@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { Phone, Menu, X } from "lucide-react";
 import QuoteFormDialog from "./QuoteFormDialog";
+import { HeaderSisterCompanyBar } from "./SisterCompanyLinks";
 import { PHONE_DISPLAY, phoneTelHref } from "@/data/locations";
 import { focusRing } from "@/components/home/ui";
 
@@ -100,6 +101,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      <HeaderSisterCompanyBar />
       {mobileOpen && (
         <div className="space-y-1 px-4 pb-4 md:hidden" style={{ backgroundColor: "hsl(36, 100%, 55%)" }}>
           {navLinks.map((link) => (

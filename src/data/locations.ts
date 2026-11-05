@@ -86,6 +86,13 @@ export const SISTER_COMPANY = {
   id: "https://ernestwindows.com/#organization",
 } as const;
 
+/**
+ * Public franchise destination linked from the Ernest Windows header.
+ * The main menu item labeled "Franchise" on https://ernestwindows.com
+ * opens this URL in a new tab. Link it only — do not copy fees or claims.
+ */
+export const WINDOWS_FRANCHISE_URL = "https://ernestwindowsfranchise.com/";
+
 export type SecondaryOffice = {
   id: string;
   slug: string;
