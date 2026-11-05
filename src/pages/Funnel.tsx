@@ -8,10 +8,10 @@ import {
   PHONE_DISPLAY,
   PRIMARY_LOCATION,
   SECONDARY_OFFICES,
-  SISTER_COMPANY,
   mapsEmbedSrc,
   phoneTelHref,
 } from "@/data/locations";
+import { HeaderSisterCompanyBar, SisterCompanyFooterLinks } from "@/components/SisterCompanyLinks";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import HeroSection from "@/components/HeroSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -37,6 +37,7 @@ const FunnelNav = () => (
         </QuoteFormDialog>
       </div>
     </div>
+    <HeaderSisterCompanyBar />
   </nav>
 );
 
@@ -134,13 +135,7 @@ const FunnelFooter = () => {
                 </li>
               ))}
             </ul>
-            <a
-              href={SISTER_COMPANY.url}
-              className="inline-block mt-2 lg:mt-3 text-accent hover:text-primary-foreground text-xs lg:text-sm transition-colors"
-              rel="noopener noreferrer"
-            >
-              {`Sister company: ${SISTER_COMPANY.name}`}
-            </a>
+            <SisterCompanyFooterLinks />
             <div className="flex items-center gap-2 mt-2 lg:mt-4">
               {[Facebook, Linkedin, Instagram].map((Icon, i) => (
                 <span key={i} className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center">

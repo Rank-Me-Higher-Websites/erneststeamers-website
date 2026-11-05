@@ -8,10 +8,10 @@ import {
   PHONE_DISPLAY,
   PRIMARY_LOCATION,
   SECONDARY_OFFICES,
-  SISTER_COMPANY,
   mapsEmbedSrc,
   phoneTelHref,
 } from "@/data/locations";
+import { SisterCompanyFooterLinks } from "./SisterCompanyLinks";
 
 const quickLinks = [
   { label: "Home", path: "/" },
@@ -72,13 +72,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            <a
-              href={SISTER_COMPANY.url}
-              className="inline-block mt-2 lg:mt-3 text-accent hover:text-primary-foreground text-xs lg:text-sm transition-colors"
-              rel="noopener noreferrer"
-            >
-              {`Sister company: ${SISTER_COMPANY.name}`}
-            </a>
+            <SisterCompanyFooterLinks />
           </div>
 
           <div>
