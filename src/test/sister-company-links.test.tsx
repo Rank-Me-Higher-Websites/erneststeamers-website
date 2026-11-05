@@ -62,6 +62,21 @@ describe("franchise link in the existing navigation", () => {
     expect(document.body.textContent).not.toContain("(800)");
     expect(document.body.innerHTML).not.toContain("tel:+18002706228");
     expect(screen.getAllByRole("link", { name: /\(630\) 403-0180/ }).length).toBeGreaterThan(0);
+
+    const desktop = screen.getByTestId("primary-nav");
+    expect(desktop.className).toContain("hidden");
+    expect(desktop.className).toContain("lg:flex");
+    expect(desktop.className).not.toContain("md:flex");
+    for (const link of desktop.querySelectorAll("a")) {
+      expect(link.className).toContain("whitespace-nowrap");
+      expect(link.className).toContain("shrink-0");
+    }
+    const row = screen.getByTestId("header-row");
+    expect(row.className).toContain("h-16");
+    expect(row.className).toContain("flex-nowrap");
+    const menuButton = screen.getByRole("button", { name: "Open menu" });
+    expect(menuButton.className).toContain("lg:hidden");
+    expect(menuButton.className).not.toContain("md:hidden");
   });
 
   it("lists Franchise with the other items in the mobile menu", () => {
@@ -78,12 +93,18 @@ describe("franchise link in the existing navigation", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
     expect(nav.querySelectorAll(":scope > div")).toHaveLength(2);
+    const menu = screen.getByTestId("mobile-menu");
+    expect(menu.className).toContain("overflow-y-auto");
+    expect(menu.className).toContain("max-h-[calc(100dvh-4rem)]");
+    expect(menu.className).toContain("lg:hidden");
+    for (const link of menu.querySelectorAll("a")) {
+      expect(link.className).toContain("whitespace-nowrap");
+    }
     const mobileFranchise = screen.getByTestId("nav-franchise-link-mobile");
     expectExternalLink(mobileFranchise, WINDOWS_FRANCHISE_URL);
     expect(mobileFranchise).toHaveAccessibleName(FRANCHISE_NAME);
-    const menu = mobileFranchise.parentElement;
     for (const label of ["Home", "Services", "Service Areas", "About Us", "Blog", "Contact"]) {
-      expect(menu?.textContent).toContain(label);
+      expect(menu.textContent).toContain(label);
     }
     expect(screen.getAllByRole("link", { name: "Services" })).toHaveLength(2);
 
