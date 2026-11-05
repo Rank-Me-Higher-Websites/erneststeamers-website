@@ -11,7 +11,7 @@ import {
   mapsEmbedSrc,
   phoneTelHref,
 } from "@/data/locations";
-import { HeaderSisterCompanyBar, SisterCompanyFooterLinks } from "@/components/SisterCompanyLinks";
+import { SisterCompanyFooterLinks } from "@/components/SisterCompanyLinks";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
 import HeroSection from "@/components/HeroSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -37,7 +37,6 @@ const FunnelNav = () => (
         </QuoteFormDialog>
       </div>
     </div>
-    <HeaderSisterCompanyBar />
   </nav>
 );
 
