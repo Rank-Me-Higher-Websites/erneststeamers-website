@@ -100,7 +100,7 @@ Carpet cleaning starts at $99. The price for your job depends on the rooms, the 
 
 ## Franklin Park and the towns around it
 
-Ernest Steamers is based in Franklin Park. The office is at 10549 Crown Rd #4, Franklin Park, IL 60131. Our [Franklin Park office](/locations/franklin-park/) is where a quote starts for homes in Franklin Park and the other Chicago-area towns we serve. Winter salt on those roads ends up on the same kind of entry carpet, hall, and stair runner.
+Winter road salt is a recurring entry-carpet problem across Franklin Park and the other Chicago-area towns we serve. Our [Franklin Park service-area page](/locations/franklin-park/) explains local coverage, and the quote form lets you describe the rooms and stains before we confirm the visit.
 
 Name the rooms when you request the visit, especially entries, halls, and stairs. If a loose rug took the slush instead of the wall-to-wall carpet, say that too so the quote matches the job.
 

@@ -230,7 +230,7 @@ describe("blog post", () => {
     expect(post.faqs).toHaveLength(2);
     expect(post.content).toContain("](/locations/franklin-park/)");
     expect(post.content).toContain("](/services/#carpet)");
-    expect(post.content).toContain("10549 Crown Rd #4, Franklin Park, IL 60131");
+    expect(post.content).not.toContain("10549 Crown Rd");
     expect(post.content).toContain("Carpet cleaning starts at $99.");
     expect(`${post.title}\n${post.excerpt}\n${post.content}\n${post.faqs?.map((item) => `${item.q} ${item.a}`).join("\n")}`).not.toMatch(
       /Hummingbird|60103|certified|1-800-270-6228|AggregateRating/i,
