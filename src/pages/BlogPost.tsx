@@ -82,6 +82,24 @@ const BlogPost = () => {
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
             <article className="min-w-0 max-w-[70ch]">
               <ArticleBody content={post.content} defaultService={post.serviceValue} />
+              {post.faqs && post.faqs.length > 0 ? (
+                <section aria-labelledby="article-faq-heading" className="mt-10">
+                  <h2
+                    id="article-faq-heading"
+                    className="mb-3 scroll-mt-28 font-heading text-2xl font-bold text-primary"
+                  >
+                    Questions
+                  </h2>
+                  <div className="space-y-6">
+                    {post.faqs.map((item) => (
+                      <div key={item.q}>
+                        <h3 className="font-heading text-xl font-bold text-primary">{item.q}</h3>
+                        <p className={`mt-2 ${bodyText}`}>{item.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
             </article>
             <aside className="hidden lg:block">
               <div className="sticky top-24 space-y-6">

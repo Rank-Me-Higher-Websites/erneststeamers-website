@@ -215,6 +215,48 @@ describe("blog post", () => {
     expect(upholstery.container.textContent).not.toContain("$1,000");
     expect(upholstery.container.querySelector('a[href="/services/#upholstery"]')).toBeTruthy();
   });
+
+  it("publishes the winter salt and slush guide with two visible questions", () => {
+    const post = getPostBySlug("winter-salt-slush-carpet-care");
+    if (!post) throw new Error("missing post");
+    const editorial = post.content
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[#*`|]/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    expect(editorial.length).toBeGreaterThanOrEqual(600);
+    expect(post.title.length).toBeLessThanOrEqual(60);
+    expect(post.faqs).toHaveLength(2);
+    expect(post.content).toContain("](/locations/franklin-park/)");
+    expect(post.content).toContain("](/services/#carpet)");
+    expect(post.content).toContain("10549 Crown Rd #4, Franklin Park, IL 60131");
+    expect(post.content).toContain("Carpet cleaning starts at $99.");
+    expect(`${post.title}\n${post.excerpt}\n${post.content}\n${post.faqs?.map((item) => `${item.q} ${item.a}`).join("\n")}`).not.toMatch(
+      /Hummingbird|60103|certified|1-800-270-6228|AggregateRating/i,
+    );
+
+    const { container } = renderPost(post.slug);
+    expect([...container.querySelectorAll("h1")].map((node) => node.textContent)).toEqual([post.title]);
+    expect(container.querySelectorAll("h1")).toHaveLength(1);
+    expect(container.querySelector('a[href="/locations/franklin-park/"]')).toBeTruthy();
+    expect(container.querySelector('a[href="/services/#carpet"]')).toBeTruthy();
+    for (const faq of post.faqs ?? []) {
+      expect(container.textContent).toContain(faq.q);
+      expect(container.textContent).toContain(faq.a);
+    }
+
+    expect(getPostBySlug("carpet-cleaning-tips-homeowners")?.content).toContain(
+      "](/blog/winter-salt-slush-carpet-care/)",
+    );
+    expect(getPostBySlug("steam-cleaning-vs-dry-cleaning-carpet")?.content).toContain(
+      "](/blog/winter-salt-slush-carpet-care/)",
+    );
+    expect(getPostBySlug("carpet-cleaning-tips-homeowners")?.content).toContain("](/services/#carpet)");
+    expect(getPostBySlug("carpet-cleaning-tips-homeowners")?.content).toContain("](/locations/franklin-park/)");
+    expect(getPostBySlug("steam-cleaning-vs-dry-cleaning-carpet")?.content).toContain("](/services/#carpet)");
+    expect(getPostBySlug("steam-cleaning-vs-dry-cleaning-carpet")?.content).toContain("](/blog/commercial-carpet-cleaning-business/)");
+  });
 });
 
 describe("stored article copy", () => {
