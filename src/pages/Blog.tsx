@@ -16,16 +16,18 @@ function TextLink({ to, children }: { to: string; children: string }) {
 }
 
 const POST_SUMMARIES: Record<string, string> = {
+  "winter-salt-slush-carpet-care":
+    "Road salt and slush sit in the yarn and the pad. Blot the liquid, skip a heavy rinse, and call when the entry stays gritty.",
   "carpet-cleaning-tips-homeowners":
-    "Vacuum busy rooms often, blot spills instead of rubbing, and keep outdoor soil at the door. Shift heavy furniture so the pile does not flatten in one spot. Hot-water extraction reaches dirt a vacuum leaves behind.",
+    "Vacuum busy rooms, blot spills instead of rubbing, and keep soil at the door. Move heavy furniture so the pile does not flatten. Extraction reaches dirt a vacuum leaves behind.",
   "remove-pet-stains-odors":
     "Pet urine can soak through the carpet into the padding, where a surface cleaner often does not reach. Blot a fresh accident. A visit pre-treats the spots and flushes them with hot-water extraction.",
   "steam-cleaning-vs-dry-cleaning-carpet":
-    "Hot-water extraction pushes hot water into the carpet and vacuums the water and soil back out. Dry cleaning uses little moisture for a light refresh or a delicate fiber. The guide uses hot-water extraction for homes and businesses.",
+    "Hot-water extraction pushes hot water into the carpet and vacuums soil back out. Dry cleaning uses little moisture for a light refresh. The guide uses hot-water extraction for homes.",
   "upholstery-cleaning-benefits":
     "Sofas and chairs hold body oils, dust, dander, and crumbs that a wipe leaves behind. A visit checks the fabric, pre-treats stains, and uses hot-water extraction made for upholstery.",
   "carpet-cleaning-allergies-indoor-air-quality":
-    "Carpet holds dust mites, pet dander, pollen, and other particles from the air. When it is overloaded, walking or vacuuming can send them back into the room. Hot-water extraction removes many of those allergens.",
+    "Carpet holds dust mites, pet dander, pollen, and other particles. When it is overloaded, walking can send them back into the room. Hot-water extraction removes many of those allergens.",
   "commercial-carpet-cleaning-business":
     "Visitors notice stained or odorous carpet in an office or shop. Soil in the pile wears the fiber, and replacement costs more than cleaning. Appointments can be evenings, weekends, or early mornings.",
 };
@@ -75,9 +77,8 @@ const Blog = () => {
                 These guides cover practical <TextLink to="/services/#carpet">carpet</TextLink>,{" "}
                 <TextLink to="/services/#rugs">rug</TextLink>, and{" "}
                 <TextLink to="/services/#upholstery">upholstery</TextLink> care for homes and businesses in the Chicago
-                western suburbs. They take the jobs people describe on a quote: everyday carpet care, pet stains and
-                odors, steam cleaning and dry cleaning, sofas and chairs, allergies and indoor air, and office or shop
-                carpet.
+                western suburbs. They take the jobs people describe on a quote: everyday care, pet stains, winter salt
+                and slush, steam and dry cleaning, sofas, allergies, and shop carpet.
               </p>
               <p>
                 Read them before you book so you know what to describe. Home guides cover vacuuming, blotting a fresh
@@ -133,9 +134,10 @@ const Blog = () => {
                   <h3 className="font-heading text-xl font-bold text-primary">Home care</h3>
                   <p className={`${bodyText} mt-2`}>
                     <TextLink to="/blog/carpet-cleaning-tips-homeowners/">Homeowner tips</TextLink>,{" "}
-                    <TextLink to="/blog/remove-pet-stains-odors/">pet stains and odors</TextLink>, and{" "}
+                    <TextLink to="/blog/remove-pet-stains-odors/">pet stains and odors</TextLink>,{" "}
+                    <TextLink to="/blog/winter-salt-slush-carpet-care/">winter salt and slush</TextLink>, and{" "}
                     <TextLink to="/blog/carpet-cleaning-allergies-indoor-air-quality/">allergies</TextLink> cover
-                    vacuuming, fresh spills, urine in the padding, and dust and dander in carpet. The service page is{" "}
+                    vacuuming, fresh spills, and dust in carpet. The service page is{" "}
                     <TextLink to="/services/#carpet">carpet cleaning</TextLink>.
                   </p>
                 </div>

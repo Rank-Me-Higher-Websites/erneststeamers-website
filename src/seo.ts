@@ -239,9 +239,13 @@ function breadcrumbNode(items: { name: string; item: string }[]) {
   };
 }
 
-function articleNode(post: (typeof blogPosts)[number], canonical: string) {
+function articleNode(
+  post: (typeof blogPosts)[number],
+  canonical: string,
+  type: "Article" | "BlogPosting" = "Article",
+) {
   return {
-    "@type": "Article",
+    "@type": type,
     headline: post.title,
     description: post.metaDescription,
     image: `${SITE}${blogImageSrc(post.image)}`,
@@ -335,6 +339,7 @@ export function getSeo(pathname: string): SeoMeta {
     const schemaTitle = `${post.title} | Ernest Steamers`;
     const title = post.metaTitle ?? schemaTitle;
     const description = post.metaDescription;
+    const articleType = post.faqs?.length ? "BlogPosting" : "Article";
     return {
       title,
       description,
@@ -350,7 +355,8 @@ export function getSeo(pathname: string): SeoMeta {
             { name: "Blog", item: absoluteRoute("/blog") },
             { name: post.title, item: canonical },
           ]),
-          articleNode(post, canonical),
+          articleNode(post, canonical, articleType),
+          ...(post.faqs?.length ? [faqNodeFrom(post.faqs)] : []),
         ]),
       ],
     };

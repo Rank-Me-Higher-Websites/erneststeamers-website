@@ -21,9 +21,91 @@ export interface BlogPost {
   /** Existing `/api/leads` service option string. */
   serviceValue: string;
   content: string;
+  /** Visible questions. When set, the post emits FAQPage and BlogPosting schema. */
+  faqs?: { q: string; a: string }[];
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "winter-salt-slush-carpet-care",
+    title: "Winter Salt and Slush on Carpet",
+    metaDescription:
+      `What road salt and slush do to carpet fibers and pads, and when to book a steam clean. Ernest Steamers, Franklin Park. Call ${PHONE_DISPLAY}.`,
+    excerpt:
+      "Road salt and slush settle in carpet fibers and the pad. Here is what to blot at home, what not to soak, and when a steam clean is the next step.",
+    image: "carpet-tips",
+    imageAlt: "Beige living room carpet in a before-and-after split, with a cleaning wand visible",
+    date: "2026-11-06",
+    topic: "Carpets",
+    author: "Ernest Steamers",
+    serviceHref: "/services/#carpet",
+    serviceLabel: "Carpet cleaning",
+    serviceValue: "Carpet Cleaning",
+    faqs: [
+      {
+        q: "Can I rinse road salt out of carpet with water?",
+        a: "Blot the slush and loose crystals with a dry towel, then vacuum. A cloth that is only damp can lift a white film. Do not pour water on the spot. Extra water can push salt into the pad. If the area stays gritty or the film returns, book a professional clean.",
+      },
+      {
+        q: "When should I book a steam clean for salt and slush?",
+        a: "Book when the entry stays gritty after vacuuming, a white film keeps returning, or slush soaked through toward the pad. Hot-water extraction flushes dissolved salt from the fibers. Carpet cleaning starts at $99. Dry time depends on the carpet, the airflow, and the room.",
+      },
+    ],
+    content: `Road salt and gray slush do not stop at the doormat. Shoes, boots, stroller wheels, and pet paws carry the mix onto wall-to-wall carpet, stair runners, and the pad under them. The spot may look like a dark smear while it is wet and a pale film after it dries. This guide explains what that residue does to the fiber and the pad, what you can safely do at home, and when it is time to book a professional steam clean.
+
+## How salt and slush get into the carpet
+
+A winter trip from the car to the door is enough. Rock salt crystals cling to a shoe tread. Melting snow turns them into salty water. Sand, cinders, and a thin film of road oil ride along in the same slush. The first steps inside press that mix into the yarn at the entry, then farther down the hall if shoes stay on.
+
+The face of the carpet is only the top of the problem. Yarn is a bundle of fibers with space between the strands. Water moves through those spaces toward the backing. A vacuum lifts loose grit that is sitting on top. It does not dissolve salt that has already dried inside the yarn, and it does not pull liquid back out of the pad.
+
+## What salt does to carpet fibers
+
+Carpet fiber in most homes is nylon, polyester, olefin (also called polypropylene), or a blend. Salt does not dissolve those fibers. What it does is stay in the yarn after the water leaves. On a damp day the crystals can pull moisture from the air, so a spot that looked dry can feel cool again. Soil sticks to that damp yarn. Foot traffic then grinds the grit against the fiber. That abrasion dulls the color in a busy entry and mats the pile flat along the path people walk.
+
+Dried salt can also make the yarn stiff. A stiff tuft fuzzes more easily when a beater bar hits it. If you see a white crust, lift it with a dry blot and a slow vacuum pass. Scrubbing spreads the crystals and roughs up the pile.
+
+Some sidewalk products are dyed blue, green, or pink so people can see where they landed. Those dyes, and rust-colored slush from the street, can leave a tint in the fiber. The tint is separate from the white salt film. Do not pour bleach on it. Bleach can change the carpet dye, and the salt is still in the yarn.
+
+## What slush does to the pad
+
+Under the carpet is a pad, the cushion the backing rests on. Slush that is walked in, or water that someone pours on a salty spot, can pass through the backing and into that pad. The pad holds liquid longer than the face yarn. The surface can feel dry to your hand while the cushion underneath is still wet.
+
+Salt in the pad does not disappear when the face yarn looks cleaner. As the pad dries, salt can move back up into the yarn. That is a common reason a white ring or a gritty feel returns a day or two after a home rinse. Adding a lot of water makes the path longer. The salt travels deeper, toward the tack strip and the floor at the edge of the room.
+
+Notice an entry that feels spongy, stays cool, or smells musty after a storm. Those are signs the pad took on water. How long the area takes to dry depends on the carpet, the pad, the airflow, and how wet it got. There is no single dry time that fits every room.
+
+## What you can safely do at home
+
+Work while the slush is still wet, and keep any water you add to a minimum. The goal is to lift what you can without soaking the pad.
+
+- **Blot, do not rub.** Press a dry towel onto the spot and step on the towel so it takes up the slush. Rubbing pushes the salt deeper and can spread it.
+- **Lift loose crystals.** When the spot is no longer dripping, vacuum slowly. If your vacuum has a beater bar, turn it off for this pass so it does not beat a stiff tuft. Empty the canister afterward so the salt does not sit there.
+- **Use a cloth that is only damp.** If a white film remains, mist the cloth, not the carpet, and blot. Wring the cloth until it does not drip.
+- **Do not soak the spot.** Do not pour water, club soda, or a bucket of rinse water onto the carpet. That over-wets the pad and gives the salt a path downward.
+- **Skip bleach and strong store mixes on a salt film.** They are not a substitute for dissolving the salt and extracting it, and some of them can affect the dye.
+- **Stop the next load at the door.** A mat with a waterproof back catches slush before it reaches the wall-to-wall carpet. Take boots off. Shake the mat outside so the salt does not fall back onto the floor.
+
+Repeat the dry blot after the next storm. Salt builds through the season. One wipe does not clear a winter of foot traffic. If you want a spot cleaner between visits, ask what to use and name the fiber if you know it.
+
+## When to call for a professional steam clean
+
+Call when the entry still feels gritty after you vacuum, when a white film keeps coming back, or when slush soaked a path past the mat. Also call if a boot tray overflowed, a melted snow pile sat on the carpet, or a home rinse left the area squishy.
+
+[Carpet cleaning](/services/#carpet) at Ernest Steamers uses hot-water extraction, often called steam cleaning. The machine uses hot water and strong suction. A pre-treatment loosens the film on the yarn. The hot water dissolves salt that a dry vacuum left behind. The vacuum pass pulls that water, and the soil in it, back out of the yarn. Tell us about rust-colored tints or dyed deicer so the visit matches what you see. Whether a tint comes out depends on the fiber and how long the spot has been there. We do not promise that every tint will leave.
+
+Dry time is not a number we can set before we see the rooms. A hall with a fan running dries differently from a cold entry where the door opens all afternoon. We describe what to expect for your rooms when we confirm the quote. Keep foot traffic off the cleaned path until it feels dry, and run a household fan if you have one.
+
+Carpet cleaning starts at $99. The price for your job depends on the rooms, the size, and the condition. We confirm the quote before we schedule.
+
+## Franklin Park and the towns around it
+
+Winter road salt is a recurring entry-carpet problem across Franklin Park and the other Chicago-area towns we serve. Our [Franklin Park service-area page](/locations/franklin-park/) explains local coverage, and the quote form lets you describe the rooms and stains before we confirm the visit.
+
+Name the rooms when you request the visit, especially entries, halls, and stairs. If a loose rug took the slush instead of the wall-to-wall carpet, say that too so the quote matches the job.
+
+Call [${PHONE_DISPLAY}](${phoneTelHref()}) or send a quote request. Describe the salt, the slush, and whether the pad still feels wet.`,
+  },
   {
     slug: "carpet-cleaning-tips-homeowners",
     title: "5 Carpet Cleaning Tips Every Homeowner Should Know",
@@ -68,6 +150,8 @@ If the stain persists, call us and describe the stain when you request a quote.
 ## 3. Use Doormats and Remove Shoes
 
 Much of the dirt in carpet is tracked in on shoes. Placing quality doormats at every entrance and adopting a no-shoes policy indoors can dramatically reduce the amount of soil tracked onto your carpets.
+
+Winter weather adds road salt and slush to that soil. [What road salt and slush do to carpet](/blog/winter-salt-slush-carpet-care/) covers the fiber, the pad, and how to blot without soaking the spot.
 
 ## 4. Rearrange Furniture Periodically
 
@@ -211,6 +295,9 @@ Dry cleaning uses chemical compounds or very low moisture (VLM) methods to clean
 - **Surface-level only** — cannot reach deep dirt in the carpet pad
 - **Chemical residue** — many dry methods leave powder or chemical residue in the fibers
 - **Not as effective on stains** — limited ability to treat deep or set-in stains
+
+Dried road salt is one of those set-in spots a surface clean leaves behind. [Winter salt and slush on carpet](/blog/winter-salt-slush-carpet-care/) explains what the crystals do and when hot-water extraction is the right next step.
+
 ## Which Method Should You Choose?
 
 For most homes and businesses, **hot water extraction (steam cleaning)** is [the method we use](/services/#carpet). It reaches soil that stays in the carpet after vacuuming.
