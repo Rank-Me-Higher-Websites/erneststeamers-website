@@ -45,13 +45,28 @@ describe("services page", () => {
     const commercial = container.querySelector("a[href='/blog/commercial-carpet-cleaning-business/']");
     expect(commercial?.textContent).toBe("commercial carpet cleaning for your business");
 
+    const rugs = document.getElementById("rugs");
+    expect(rugs?.querySelector("a[href='/blog/remove-pet-stains-odors/']")?.textContent).toBe("pet stains and odors");
+    expect(rugs?.querySelector("a[href='/blog/winter-salt-slush-carpet-care/']")?.textContent).toBe(
+      "winter salt and slush",
+    );
+    expect(rugs?.querySelectorAll("a[href^='/']")).toHaveLength(2);
+
+    const tile = document.getElementById("tile-grout");
+    expect(tile?.querySelector("a[href='/blog/carpet-cleaning-tips-homeowners/']")?.textContent).toBe(
+      "carpet cleaning tips for homeowners",
+    );
+    expect(tile?.querySelector("a[href='/service-areas/']")?.textContent).toBe("service areas");
+    expect(tile?.querySelectorAll("a[href^='/']")).toHaveLength(2);
+
     expect(serviceBlocks.map((service) => service.service)).toEqual([...SERVICE_OPTIONS]);
     for (const service of serviceBlocks) {
       const section = document.getElementById(service.id);
       expect(section?.querySelector("h2")?.textContent).toBe(service.title);
       const count = words(partsText(service.body)).length;
-      expect(count).toBeGreaterThanOrEqual(80);
-      expect(count).toBeLessThanOrEqual(130);
+      const deepened = service.id === "rugs" || service.id === "tile-grout";
+      expect(count).toBeGreaterThanOrEqual(deepened ? 220 : 80);
+      expect(count).toBeLessThanOrEqual(deepened ? 260 : 130);
       if (service.startsAt) {
         expect(section?.textContent).toContain("Starts at $99");
       } else {
