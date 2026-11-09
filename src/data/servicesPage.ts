@@ -136,7 +136,7 @@ export const serviceBlocks: ServiceBlock[] = [
         href: "/blog/carpet-cleaning-tips-homeowners/",
       },
       {
-        text: " cover everyday care between visits. Name the rooms and the floor size when you request the quote, and describe the condition of the grout. That is what the quote is based on. Our technicians clean the tile and the grout lines in those rooms, then walk the floor with you when the work is finished. Move fragile items and small belongings out of the work area before we arrive. We confirm the details with you before the visit is scheduled. Call when dirt has settled in the grout and you want the floor cleaned in place. A kitchen, a bathroom, or an entry can be the whole visit. Tile and grout cleaning for entries is listed for towns on the ",
+        text: " cover everyday care between visits. Name the rooms and the floor size when you request the quote, and describe the condition of the grout. That is what the quote is based on. Our technicians clean the tile and the grout lines in those rooms. Move fragile items and small belongings out of the work area before we arrive. We confirm the details with you before the visit is scheduled. Call when dirt has settled in the grout and you want the floor cleaned in place. A kitchen, a bathroom, or an entry can be the whole visit. Tile and grout cleaning for entries is listed for towns on the ",
       },
       {
         text: "service areas",
