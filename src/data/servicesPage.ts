@@ -101,7 +101,16 @@ export const serviceBlocks: ServiceBlock[] = [
         text: "pet stains and odors",
         href: "/blog/remove-pet-stains-odors/",
       },
-      { text: " describes what you can do between visits." },
+      {
+        text: " describes what you can do between visits. Tell us the size and the condition of every rug you want cleaned in the room. That is what the quote is based on. Move fragile items and small belongings off those rugs before we arrive. The included work is those rugs, cleaned in the room during the visit. Our technicians do the work. Call when you want the rug cleaned at home and it can remain in the room. An entry rug is a common reason to call. In the towns we serve, sidewalk salt and lake-effect slush land on entry rugs and in the first room past the door. If a loose rug took that slush, name the rug on the quote. Read ",
+      },
+      {
+        text: "winter salt and slush",
+        href: "/blog/winter-salt-slush-carpet-care/",
+      },
+      {
+        text: " for what that residue does on the way indoors. This on-site cleaning is for homes in Chicago and the suburbs. We confirm the details with you before the visit is scheduled.",
+      },
     ],
     included: [
       "Area rugs cleaned in the room during the visit",
@@ -126,7 +135,16 @@ export const serviceBlocks: ServiceBlock[] = [
         text: "carpet cleaning tips for homeowners",
         href: "/blog/carpet-cleaning-tips-homeowners/",
       },
-      { text: " cover everyday care between visits." },
+      {
+        text: " cover everyday care between visits. Name the rooms and the floor size when you request the quote, and describe the condition of the grout. That is what the quote is based on. Our technicians clean the tile and the grout lines in those rooms, then walk the floor with you when the work is finished. Move fragile items and small belongings out of the work area before we arrive. We confirm the details with you before the visit is scheduled. Call when dirt has settled in the grout and you want the floor cleaned in place. A kitchen, a bathroom, or an entry can be the whole visit. Tile and grout cleaning for entries is listed for towns on the ",
+      },
+      {
+        text: "service areas",
+        href: "/service-areas/",
+      },
+      {
+        text: " page. Winter grit collects in the mudroom in towns we serve. If that room has tile, put it on the quote. Tile and grout cleaning is for homes in Chicago and the suburbs.",
+      },
     ],
     included: [
       "Tile floors and the grout lines in the rooms you list",
