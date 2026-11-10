@@ -95,7 +95,7 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Our technicians clean the rugs you include in the visit and walk the space with you when the work is finished. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition. If pets share the room, the guide to ",
+        text: "Area rug cleaning is for rugs that remain in the home, such as a living-room rug, a hallway runner, or a bedroom rug. Our technicians clean the rugs you include in the visit. On-site cleaning is a fit when the rug can stay in the room for the appointment. Each rug is quoted from its size and condition. If pets share the room, the guide to ",
       },
       {
         text: "pet stains and odors",
@@ -116,7 +116,6 @@ export const serviceBlocks: ServiceBlock[] = [
       "Area rugs cleaned in the room during the visit",
       "Cleaning by our technicians",
       "A quote based on the rug's size and condition",
-      "A walkthrough when the cleaning is finished",
     ],
   },
   {
