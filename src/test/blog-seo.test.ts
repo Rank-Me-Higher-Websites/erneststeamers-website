@@ -3,6 +3,7 @@ import { blogPosts } from "@/data/blogPosts";
 import { getSeo } from "@/seo";
 
 const currentTitles: Record<string, string> = {
+  "how-often-clean-tile-grout": "How Often to Clean Tile and Grout | Ernest Steamers",
   "winter-salt-slush-carpet-care": "Winter Salt and Slush on Carpet | Ernest Steamers",
   "carpet-cleaning-tips-homeowners": "Carpet Cleaning Tips for Homeowners | Ernest Steamers",
   "remove-pet-stains-odors": "How to Remove Pet Stains & Odors for Good | Ernest Steamers",
@@ -21,7 +22,7 @@ describe("blog SEO", () => {
     expect(seo.description.length).toBeLessThanOrEqual(155);
     expect(seo.description).toContain("(630) 403-0180");
     expect(seo.canonical).toBe("https://erneststeamers.com/blog/");
-    expect(seo.image).toBe("https://erneststeamers.com/images/blog/carpet-tips.jpg");
+    expect(seo.image).toBe("https://erneststeamers.com/images/blog/equipment.jpg");
 
     const serialized = JSON.stringify(seo.jsonLd);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue|BlogPosting|"Review"/);

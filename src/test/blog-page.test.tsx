@@ -92,7 +92,7 @@ describe("blog index", () => {
     )}`;
     const pageWords = words(pageHtml);
     expect(pageWords.length).toBeGreaterThanOrEqual(600);
-    expect(pageWords.length).toBeLessThanOrEqual(700);
+    expect(pageWords.length).toBeLessThanOrEqual(760);
     expect(pageWords.join("\n")).not.toMatch(/rating|review|years|guarantee|\b800\b/i);
     expect(pageHtml).not.toContain("(800)");
 
@@ -257,6 +257,45 @@ describe("blog post", () => {
     expect(getPostBySlug("steam-cleaning-vs-dry-cleaning-carpet")?.content).toContain("](/services/#carpet)");
     expect(getPostBySlug("steam-cleaning-vs-dry-cleaning-carpet")?.content).toContain("](/blog/commercial-carpet-cleaning-business/)");
   });
+
+  it("publishes the tile and grout frequency guide without a phone number in the body", () => {
+    const post = getPostBySlug("how-often-clean-tile-grout");
+    if (!post) throw new Error("missing post");
+    const editorial = post.content
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[#*`|]/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    expect(editorial.length).toBeGreaterThanOrEqual(800);
+    expect(editorial.length).toBeLessThanOrEqual(1100);
+    expect(post.title).toBe("How Often to Clean Tile and Grout in Chicago-Area Homes");
+    expect(post.metaTitle).toBe("How Often to Clean Tile and Grout | Ernest Steamers");
+    expect(post.metaTitle.length).toBeLessThanOrEqual(65);
+    expect(post.faqs).toBeUndefined();
+    expect(post.content).toContain("](/services/#tile-grout)");
+    expect(post.content).toContain("](/blog/winter-salt-slush-carpet-care/)");
+    expect(post.content).toContain("](/contact/)");
+    expect(post.content).not.toMatch(/\$\d/);
+    expect(post.image).toBe("equipment");
+    expect(post.imageAlt).toBe("Ernest Steamers technician setting up the truck-mounted cleaning unit in the van");
+    const copy = `${post.title}\n${post.excerpt}\n${post.content}`;
+    expect(copy).not.toMatch(
+      /walkthrough|walk the space|walk-through|certified|certification|guarantee|Franklin Park|Bartlett|Crown Rd|Hummingbird|60103|AggregateRating/i,
+    );
+
+    const { container } = renderPost(post.slug);
+    expect([...container.querySelectorAll("h1")].map((node) => node.textContent)).toEqual([post.title]);
+    expect(container.querySelectorAll("h1")).toHaveLength(1);
+    const article = container.querySelector("article");
+    expect(article?.querySelector("a[href='/services/#tile-grout']")).toBeTruthy();
+    expect(article?.querySelector("a[href='/blog/winter-salt-slush-carpet-care/']")).toBeTruthy();
+    expect(article?.querySelector("a[href='/contact/']")).toBeTruthy();
+    expect(article?.textContent ?? "").not.toMatch(
+      /franklin park|bartlett|crown rd|hummingbird|certified|walkthrough/i,
+    );
+    expect(container.querySelector("select[name='service']")).toHaveValue("Tile & Grout Cleaning");
+  });
 });
 
 describe("stored article copy", () => {
@@ -285,8 +324,12 @@ describe("stored article copy", () => {
     expect(getPostBySlug("remove-pet-stains-odors")?.metaTitle).toBeUndefined();
 
     for (const post of blogPosts) {
-      expect(post.content).toContain("tel:+16304030180");
       expect(post.content).not.toContain("tel:6308309867");
+      if (post.slug === "how-often-clean-tile-grout") {
+        expect(post.content).not.toMatch(/\(\d{3}\)\s*\d{3}-\d{4}|\b\d{3}[-.]\d{3}[-.]\d{4}\b|tel:/);
+        continue;
+      }
+      expect(post.content).toContain("tel:+16304030180");
       expect(post.content).toContain("[(630) 403-0180](tel:+16304030180)");
     }
 

@@ -142,8 +142,13 @@ export const serviceBlocks: ServiceBlock[] = [
         href: "/service-areas/",
       },
       {
-        text: " page. Winter grit collects in the mudroom in towns we serve. If that room has tile, put it on the quote. Tile and grout cleaning is for homes in Chicago and the suburbs.",
+        text: " page. Winter grit collects in the mudroom in towns we serve. If that room has tile, put it on the quote. Tile and grout cleaning is for homes in Chicago and the suburbs. For a room-by-room guide, read ",
       },
+      {
+        text: "how often to clean tile and grout",
+        href: "/blog/how-often-clean-tile-grout/",
+      },
+      { text: "." },
     ],
     included: [
       "Tile floors and the grout lines in the rooms you list",

@@ -1,7 +1,7 @@
 import { PHONE_DISPLAY, phoneTelHref } from "@/data/locations";
 import type { BlogImageName } from "@/lib/blogImages";
 
-export const BLOG_TOPICS = ["Carpets", "Pet stains", "Upholstery", "Commercial", "Health"] as const;
+export const BLOG_TOPICS = ["Carpets", "Tile", "Pet stains", "Upholstery", "Commercial", "Health"] as const;
 export type BlogTopic = (typeof BLOG_TOPICS)[number];
 
 export interface BlogPost {
@@ -26,6 +26,83 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "how-often-clean-tile-grout",
+    title: "How Often to Clean Tile and Grout in Chicago-Area Homes",
+    metaTitle: "How Often to Clean Tile and Grout | Ernest Steamers",
+    metaDescription:
+      `How often to clean tile and grout by room: kitchens, bathrooms, entries, and mudrooms in Chicago and the suburbs. Call ${PHONE_DISPLAY}.`,
+    excerpt:
+      "How often tile and grout need cleaning depends on the room and the traffic. Kitchens, bathrooms, entryways, and mudrooms each collect different soil, and winter salt sits in the lines.",
+    image: "equipment",
+    imageAlt: "Ernest Steamers technician setting up the truck-mounted cleaning unit in the van",
+    date: "2026-11-11",
+    topic: "Tile",
+    author: "Ernest Steamers",
+    serviceHref: "/services/#tile-grout",
+    serviceLabel: "Tile & grout cleaning",
+    serviceValue: "Tile & Grout Cleaning",
+    content: `Tile and grout do not collect soil the same way in every room. A kitchen picks up grease and crumbs. A bathroom picks up soap and moisture. An entry and a mudroom pick up what shoes bring in, and in winter that includes salt and slush. How often to clean depends on the room and the traffic. This guide is for homeowners in Chicago and the suburbs.
+
+## How often to clean by room and traffic
+
+There is no single schedule for every house. A spare bath needs less attention than a kitchen where the family cooks. The tile face can look fine while the lines hold the soil.
+
+### Kitchen
+
+A kitchen floor takes spills, cooking splash, and crumbs. If you cook most days, wipe the tile often so food does not sit in the joints. A damp cloth handles a fresh splash. Grease can leave a dull film in the lines by the stove and the sink even when the tile looks wiped. When those lines stay darker than the tile after your usual wipe, the kitchen is ready for more than a mop. A household that cooks daily reaches that point sooner than one that cooks now and then.
+
+### Bathrooms
+
+Bathrooms add soap and standing moisture. The shower floor and the tile by the sink take the most of it. A bath used every morning shows dark joints sooner than a guest bath that sits quiet. Wipe the floor when you clean the room, with a cloth that is only damp. If that wipe does not lift the color in the lines, soil is sitting in the grout, and a busy bath is due before a little-used bath in the same house.
+
+### Entryways
+
+The first tiled room inside the door takes shoes, stroller wheels, and pet paws. In dry weather the load is dust and fine grit that settles in the grout. Sweep an entry with steady traffic more often than a quiet side door, several times during a busy week. In winter the same entry takes salt and slush, and the lines can look gray or white after the tile is wiped. Include that entry on a quote when the joints look gritty. Tile and grout cleaning for entries is listed for towns on the service areas page.
+
+### Mudrooms
+
+Winter grit collects in the mudroom in the towns we serve. Boots and wet paws drop sand and salt in a small room, so the mess stays in one place. A mudroom that is the family door can need the same attention as the front entry. If that room has tile, put it on the quote. A coat corner with little traffic can wait longer.
+
+## How winter salt and slush affect tile and grout
+
+Road salt and gray slush do not stop at the door. Shoes carry crystals and salty water onto the tile. The water dries, and what remains can sit in the grout as a white film or as grit you feel underfoot. The tile face often wipes clean. The joint is where the residue stays. Sand in the slush is ground into those lines.
+
+[What road salt and slush do to carpet](/blog/winter-salt-slush-carpet-care/) covers the fiber and the pad when the entry is carpet. On tile, keep any water you add to a minimum. Do not pour rinse water on a salty entry. Extra water can carry salt along the lines. Blot the slush with a dry towel, then sweep the crystals once they are dry. A mat at the door catches the next load. One wipe does not clear a winter of foot traffic in Chicago and the suburbs.
+
+## Simple care between visits
+
+Between professional visits, lift loose soil without flooding the floor.
+
+- **Sweep or vacuum loose grit** in the kitchen, the entry, and the mudroom so it is not ground into the lines.
+- **Blot a fresh spill.** Press a towel on juice, muddy water, or a pet accident. A wide wipe spreads it into more joints.
+- **Use a mop that is damp, not dripping.** Wring it until it does not drip.
+- **Wipe a kitchen splash the day it happens,** and wipe the bathroom when you clean the room.
+- **Keep a mat at each outside door** and leave outdoor shoes at the entry. Shake the mat outside so salt does not fall back on the tile.
+
+These habits slow the buildup until you book. They are not a stand-in for a professional visit when the lines are holding soil.
+
+## Signs it is time for a professional cleaning
+
+Book when a regular wipe no longer keeps the joints even with the tile.
+
+- The grout stays dark after your usual wipe, in the kitchen or in a bath used every day.
+- A white film or a gritty feel returns in the entry after you sweep.
+- Winter salt has marked the mudroom or the first tiled room inside the door.
+- The lines in a busy room look dingy next to a room with little traffic.
+
+One busy room is enough reason to ask for a quote. Describe the rooms and what you see.
+
+## What professional tile and grout cleaning includes
+
+[Tile and grout cleaning](/services/#tile-grout) covers tile floors and the grout lines between the tiles. Our technicians clean the floor area you put on the quote, whether that is a kitchen, a bathroom, an entry, or another tiled room in the home. The visit is a fit when dirt has settled in the grout and you want that floor cleaned in place.
+
+Tile and grout is quoted for the floor size and the condition. Name the rooms and the floor size when you request the quote, and describe the condition of the grout. That is what the quote is based on. Our technicians clean the tile and the grout lines in those rooms. Move fragile items and small belongings out of the work area before we arrive. We confirm the details with you before the visit is scheduled.
+
+Call when dirt has settled in the grout and you want the floor cleaned in place. A kitchen, a bathroom, or an entry can be the whole visit. A mudroom with tile can be included the same way. Tile and grout cleaning is for homes in Chicago and the suburbs.
+
+Send the rooms, the floor size, and the condition of the grout through the [contact form](/contact/).`,
+  },
   {
     slug: "winter-salt-slush-carpet-care",
     title: "Winter Salt and Slush on Carpet",

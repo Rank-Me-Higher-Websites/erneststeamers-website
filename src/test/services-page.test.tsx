@@ -57,7 +57,10 @@ describe("services page", () => {
       "carpet cleaning tips for homeowners",
     );
     expect(tile?.querySelector("a[href='/service-areas/']")?.textContent).toBe("service areas");
-    expect(tile?.querySelectorAll("a[href^='/']")).toHaveLength(2);
+    expect(tile?.querySelector("a[href='/blog/how-often-clean-tile-grout/']")?.textContent).toBe(
+      "how often to clean tile and grout",
+    );
+    expect(tile?.querySelectorAll("a[href^='/']")).toHaveLength(3);
 
     expect(serviceBlocks.map((service) => service.service)).toEqual([...SERVICE_OPTIONS]);
     for (const service of serviceBlocks) {

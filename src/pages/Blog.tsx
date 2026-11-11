@@ -16,6 +16,8 @@ function TextLink({ to, children }: { to: string; children: string }) {
 }
 
 const POST_SUMMARIES: Record<string, string> = {
+  "how-often-clean-tile-grout":
+    "Kitchens, baths, entries, and mudrooms collect different soil in tile and grout. Sweep grit, blot spills, and book a visit when the lines stay dark after a regular wipe.",
   "winter-salt-slush-carpet-care":
     "Road salt and slush sit in the yarn and the pad. Blot the liquid, skip a heavy rinse, and call when the entry stays gritty.",
   "carpet-cleaning-tips-homeowners":
@@ -135,8 +137,9 @@ const Blog = () => {
                   <p className={`${bodyText} mt-2`}>
                     <TextLink to="/blog/carpet-cleaning-tips-homeowners/">Homeowner tips</TextLink>,{" "}
                     <TextLink to="/blog/remove-pet-stains-odors/">pet stains and odors</TextLink>,{" "}
-                    <TextLink to="/blog/winter-salt-slush-carpet-care/">winter salt and slush</TextLink>, and{" "}
-                    <TextLink to="/blog/carpet-cleaning-allergies-indoor-air-quality/">allergies</TextLink> cover
+                    <TextLink to="/blog/winter-salt-slush-carpet-care/">winter salt and slush</TextLink>,{" "}
+                    <TextLink to="/blog/carpet-cleaning-allergies-indoor-air-quality/">allergies</TextLink>, and{" "}
+                    <TextLink to="/blog/how-often-clean-tile-grout/">tile and grout</TextLink> cover
                     vacuuming, fresh spills, and dust in carpet. The service page is{" "}
                     <TextLink to="/services/#carpet">carpet cleaning</TextLink>.
                   </p>
