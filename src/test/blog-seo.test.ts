@@ -22,7 +22,7 @@ describe("blog SEO", () => {
     expect(seo.description.length).toBeLessThanOrEqual(155);
     expect(seo.description).toContain("(630) 403-0180");
     expect(seo.canonical).toBe("https://erneststeamers.com/blog/");
-    expect(seo.image).toBe("https://erneststeamers.com/images/blog/upholstery.jpg");
+    expect(seo.image).toBe("https://erneststeamers.com/images/blog/equipment.jpg");
 
     const serialized = JSON.stringify(seo.jsonLd);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue|BlogPosting|"Review"/);

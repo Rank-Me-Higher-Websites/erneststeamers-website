@@ -5,6 +5,7 @@ export const blogImages = {
   upholstery: { width: 800, height: 512, widths: [480, 800] },
   allergies: { width: 800, height: 512, widths: [480, 800] },
   commercial: { width: 800, height: 512, widths: [480, 800] },
+  equipment: { width: 800, height: 512, widths: [480, 800] },
 } as const;
 
 export type BlogImageName = keyof typeof blogImages;

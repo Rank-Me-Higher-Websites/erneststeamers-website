@@ -277,7 +277,8 @@ describe("blog post", () => {
     expect(post.content).toContain("](/blog/winter-salt-slush-carpet-care/)");
     expect(post.content).toContain("](/contact/)");
     expect(post.content).not.toMatch(/\$\d/);
-    expect(post.image).toBe("upholstery");
+    expect(post.image).toBe("equipment");
+    expect(post.imageAlt).toBe("Ernest Steamers technician setting up the truck-mounted cleaning unit in the van");
     const copy = `${post.title}\n${post.excerpt}\n${post.content}`;
     expect(copy).not.toMatch(
       /walkthrough|walk the space|walk-through|certified|certification|guarantee|Franklin Park|Bartlett|Crown Rd|Hummingbird|60103|AggregateRating/i,

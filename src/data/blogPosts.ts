@@ -34,8 +34,8 @@ export const blogPosts: BlogPost[] = [
       `How often to clean tile and grout by room: kitchens, bathrooms, entries, and mudrooms in Chicago and the suburbs. Call ${PHONE_DISPLAY}.`,
     excerpt:
       "How often tile and grout need cleaning depends on the room and the traffic. Kitchens, bathrooms, entryways, and mudrooms each collect different soil, and winter salt sits in the lines.",
-    image: "upholstery",
-    imageAlt: "Light fabric sofa with pillows beside a window, with a rug on hardwood floors",
+    image: "equipment",
+    imageAlt: "Ernest Steamers technician setting up the truck-mounted cleaning unit in the van",
     date: "2026-11-11",
     topic: "Tile",
     author: "Ernest Steamers",
