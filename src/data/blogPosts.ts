@@ -42,7 +42,7 @@ export const blogPosts: BlogPost[] = [
     serviceHref: "/services/#tile-grout",
     serviceLabel: "Tile & grout cleaning",
     serviceValue: "Tile & Grout Cleaning",
-    content: `Tile and grout do not collect soil the same way in every room. A kitchen picks up grease and crumbs. A bathroom picks up soap and moisture. An entry and a mudroom pick up what shoes bring in, and in winter that includes salt and slush. How often to clean depends on the room and the traffic. This guide is for homeowners in Chicago and the suburbs.
+    content: `Tile and grout do not collect soil the same way in every room. A kitchen picks up grease and crumbs. A bathroom picks up soap and moisture. An entry and a mudroom pick up what shoes bring in, and in winter that includes salt and slush. How often to clean depends on the room and the traffic. This guide is for homeowners in Chicago and the suburbs. How often [carpet in a busy shop](/blog/commercial-carpet-cleaning-business/) is cleaned depends on the space and the traffic.
 
 ## How often to clean by room and traffic
 
@@ -238,7 +238,7 @@ Heavy furniture creates permanent indentations in carpet fibers. Moving your fur
 
 ## 5. Schedule Professional Cleaning
 
-No matter how diligent you are with home maintenance, [professional hot-water extraction](/services/#carpet) reaches dirt that vacuums leave in the carpet. How often to book depends on the household, the traffic, and the condition of the carpet. Ask us when you request a quote.
+No matter how diligent you are with home maintenance, [professional hot-water extraction](/services/#carpet) reaches dirt that vacuums leave in the carpet. How often to book depends on the household, the traffic, and the condition of the carpet. [Workplace carpet with steady foot traffic](/blog/commercial-carpet-cleaning-business/) is cleaned on a schedule that follows the space and the traffic. Ask us when you request a quote.
 
 At Ernest Steamers, our technicians use truck-mounted hot water extraction. Carpet cleaning starts at $99.
 
@@ -487,7 +487,7 @@ When carpets aren't properly maintained, they reach a saturation point where the
 
 Dirty carpet can hold particles that settle out of the air. Here's what's commonly found:
 
-- **Dust mites** — microscopic creatures that feed on dead skin cells and thrive in warm, humid environments
+- **Dust mites** — microscopic creatures that feed on dead skin cells and thrive in warm, humid environments and in [upholstered sofas and chairs](/blog/upholstery-cleaning-benefits/)
 - **Dust mite waste** — a common allergen
 - **Pet dander** — tiny flakes of skin from cats, dogs, and other animals
 - **Pollen** — tracked in from outdoors on shoes and clothing
