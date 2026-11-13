@@ -66,7 +66,14 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Upholstery cleaning covers the fabric furniture that stays in the room, including sofas, chairs, sectionals, and ottomans. Our technicians clean the pieces you list, working across seats, arms, and the front of the back cushions. It is a practical visit when those pieces are used every day and you want them cleaned at home. Upholstery is quoted for the pieces and their condition, and we confirm that quote before scheduling. Read the guide to ",
+        text: "Upholstery cleaning covers the fabric furniture that stays in the room, including ",
+      },
+      {
+        text: "sofas, chairs, sectionals, and ottomans",
+        href: "/blog/upholstery-cleaning-benefits/",
+      },
+      {
+        text: ". Our technicians clean the pieces you list, working across seats, arms, and the front of the back cushions. It is a practical visit when those pieces are used every day and you want them cleaned at home. Upholstery is quoted for the pieces and their condition, and we confirm that quote before scheduling. Read the guide to ",
       },
       {
         text: "upholstery cleaning benefits",
@@ -167,7 +174,14 @@ export const serviceBlocks: ServiceBlock[] = [
     startsAt: false,
     body: [
       {
-        text: "Commercial carpet cleaning is for offices, lobbies, and other business spaces in Chicago and the suburbs. Our technicians clean the carpeted areas you list with hot-water extraction, the same method we use in homes. The visit is a fit when a business wants those areas cleaned and then walked through before we leave. Commercial carpet is quoted for the space and its condition, and we confirm that quote before the visit is scheduled. See why ",
+        text: "Commercial carpet cleaning is for ",
+      },
+      {
+        text: "offices, lobbies, and other business spaces",
+        href: "/blog/commercial-carpet-cleaning-business/",
+      },
+      {
+        text: " in Chicago and the suburbs. Our technicians clean the carpeted areas you list with hot-water extraction, the same method we use in homes. The visit is a fit when a business wants those areas cleaned and then walked through before we leave. Commercial carpet is quoted for the space and its condition, and we confirm that quote before the visit is scheduled. See why ",
       },
       {
         text: "commercial carpet cleaning for your business",
