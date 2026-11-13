@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 import ServiceCard from "@/components/ServiceCard";
-import { bodyText, sectionTitle } from "@/components/home/ui";
+import { bodyText, focusRing, sectionTitle } from "@/components/home/ui";
+
+const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
 
 const services = [
   {
@@ -13,7 +16,15 @@ const services = [
   },
   {
     title: "Upholstery Cleaning",
-    description: "Cleaning for sofas, chairs, and other upholstered furniture.",
+    description: (
+      <>
+        Cleaning for{" "}
+        <Link to="/blog/upholstery-cleaning-benefits/" className={linkClass}>
+          sofas, chairs, and other upholstered furniture
+        </Link>
+        .
+      </>
+    ),
     href: "/services/#upholstery",
     image: "upholstery" as const,
     alt: "Technician cleaning a light sofa with an upholstery wand and blue hose",
@@ -37,7 +48,15 @@ const services = [
   },
   {
     title: "Commercial Carpet Cleaning",
-    description: "Carpet cleaning for offices, lobbies, and other commercial spaces.",
+    description: (
+      <>
+        Carpet cleaning for{" "}
+        <Link to="/blog/commercial-carpet-cleaning-business/" className={linkClass}>
+          offices, lobbies, and other commercial spaces
+        </Link>
+        .
+      </>
+    ),
     href: "/services/#commercial",
     image: "equipment" as const,
     alt: "Technician operating a truck-mounted carpet cleaning machine in the van",
