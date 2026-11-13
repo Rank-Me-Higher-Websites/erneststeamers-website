@@ -382,7 +382,7 @@ For most homes and businesses, **hot water extraction (steam cleaning)** is [the
 Shops and offices with steady foot traffic can see why [commercial carpet cleaning](/blog/commercial-carpet-cleaning-business/) matters beyond a one-time deep clean.
 
 Dry cleaning can be useful for:
-- Quick-turnaround commercial maintenance (e.g., hotel lobbies between guests)
+- Quick-turnaround [commercial maintenance](/blog/commercial-carpet-cleaning-business/) (e.g., hotel lobbies between guests)
 - Delicate fibers that can't tolerate moisture
 - Light surface refreshes between deep cleans
 
@@ -427,7 +427,7 @@ Not sure if it's time? Here are some telltale signs:
 ## Health Benefits of Clean Upholstery
 
 ### Improved Indoor Air Quality
-Every time you sit on a dirty couch, dust and allergens can be released into the air. Professional cleaning removes dust and particles from the fabric.
+Every time you sit on a dirty couch, [dust and allergens](/blog/carpet-cleaning-allergies-indoor-air-quality/) can be released into the air. Professional cleaning removes dust and particles from the fabric.
 
 ### Allergen Reduction
 Dust mites are one of the most common indoor allergens, and they thrive in upholstered furniture. Professional steam cleaning removes dust and the particles that collect with it.
@@ -557,14 +557,14 @@ Our technicians clean the rooms you list. Ask about the cleaning solution when y
     serviceValue: "Commercial Carpet Cleaning",
     content: `## First Impressions Start from the Ground Up
 
-When a client, customer, or potential partner walks into your business, they form an impression within seconds. And while you may focus on your lobby furniture, signage, and reception area, the condition of your carpet speaks volumes about your professionalism and attention to detail.
+When a client, customer, or potential partner walks into your business, they form an impression within seconds. And while you may focus on your [lobby furniture](/blog/upholstery-cleaning-benefits/), signage, and reception area, the condition of your carpet speaks volumes about your professionalism and attention to detail.
 
 Stained, worn, or odorous carpet sends a clear message: this business doesn't care about the details. On the other hand, clean, well-maintained carpet conveys professionalism, pride, and trustworthiness.
 
 ## The Business Case for Clean Carpets
 
 ### Employee Health and Productivity
-Commercial carpets in offices collect dust and allergens. Poor indoor air quality is associated with:
+Commercial carpets in offices collect dust and allergens. Poor [indoor air quality](/blog/carpet-cleaning-allergies-indoor-air-quality/) is associated with:
 
 - Increased sick days and absenteeism
 - Reduced concentration and productivity

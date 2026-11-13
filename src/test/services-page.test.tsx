@@ -42,8 +42,10 @@ describe("services page", () => {
 
     const allergies = container.querySelector("a[href='/blog/carpet-cleaning-allergies-indoor-air-quality/']");
     expect(allergies?.textContent).toBe("carpet cleaning and allergies");
-    const commercial = container.querySelector("a[href='/blog/commercial-carpet-cleaning-business/']");
-    expect(commercial?.textContent).toBe("commercial carpet cleaning for your business");
+    const commercial = [...container.querySelectorAll("a[href='/blog/commercial-carpet-cleaning-business/']")].find(
+      (link) => link.textContent === "commercial carpet cleaning for your business",
+    );
+    expect(commercial).toBeTruthy();
 
     const rugs = document.getElementById("rugs");
     expect(rugs?.querySelector("a[href='/blog/remove-pet-stains-odors/']")?.textContent).toBe("pet stains and odors");
