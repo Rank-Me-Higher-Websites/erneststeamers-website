@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { HomeImageName } from "@/lib/homeImages";
 import QuoteFormDialog from "@/components/QuoteFormDialog";
@@ -7,7 +8,7 @@ import { bodyText, buttonOrange, buttonOutline } from "@/components/home/ui";
 
 type ServiceCardProps = {
   title: string;
-  description: string;
+  description: ReactNode;
   href: string;
   image: HomeImageName;
   alt: string;

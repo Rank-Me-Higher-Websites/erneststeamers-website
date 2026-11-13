@@ -163,21 +163,37 @@ const LocationPage = () => {
               Services
             </h2>
             <div className={`${bodyText} mt-4 max-w-3xl space-y-4`}>
-              {paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>
-                  {paragraph}
-                  {paragraph.startsWith("Upholstery cleaning covers") ? (
-                    <>
-                      {" "}
-                      Read{" "}
-                      <Link to="/blog/upholstery-cleaning-benefits/" className={linkClass}>
-                        when sofas and chairs need cleaning
-                      </Link>{" "}
-                      before listing furniture in your quote request.
-                    </>
-                  ) : null}
-                </p>
-              ))}
+              {paragraphs.map((paragraph) => {
+                const commercialPhrase = "offices, lobbies, and other business spaces";
+                const commercialParts = paragraph.startsWith("Commercial carpet cleaning is for ")
+                  ? paragraph.split(commercialPhrase)
+                  : null;
+                return (
+                  <p key={paragraph.slice(0, 40)}>
+                    {commercialParts && commercialParts.length === 2 ? (
+                      <>
+                        {commercialParts[0]}
+                        <Link to="/blog/commercial-carpet-cleaning-business/" className={linkClass}>
+                          {commercialPhrase}
+                        </Link>
+                        {commercialParts[1]}
+                      </>
+                    ) : (
+                      paragraph
+                    )}
+                    {paragraph.startsWith("Upholstery cleaning covers") ? (
+                      <>
+                        {" "}
+                        Read{" "}
+                        <Link to="/blog/upholstery-cleaning-benefits/" className={linkClass}>
+                          when sofas and chairs need cleaning
+                        </Link>{" "}
+                        before listing furniture in your quote request.
+                      </>
+                    ) : null}
+                  </p>
+                );
+              })}
               <p>
                 See the{" "}
                 <Link to="/services/" className={linkClass}>
