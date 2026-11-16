@@ -52,7 +52,7 @@ const About = () => {
               About Ernest Steamers — Chicago-Area Carpet Cleaners
             </h1>
             <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Our technicians. Carpet cleaning starts at $99.
+              Carpet cleaning starts at $99.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#about-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
