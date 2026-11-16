@@ -24,13 +24,9 @@ export default function HomeHero() {
           <h1 className="font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-[3.25rem]">
             Carpet, Rug & Upholstery Steam Cleaning in Chicago & the Suburbs
           </h1>
-          <p className={`${bodyText} mt-4 hidden lg:block lg:text-lg`}>
-            Our technicians. Carpet cleaning starts at $99.
+          <p className={`${bodyText} mt-4 lg:text-lg`}>
+            Carpet cleaning starts at $99.
           </p>
-          <ul className={`${bodyText} mt-4 list-disc space-y-1 pl-5 lg:hidden`}>
-            <li>Our technicians</li>
-            <li>Carpet cleaning starts at $99</li>
-          </ul>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a href="#hero-quote" onClick={focusHeroForm} className={`${buttonOrange} w-full sm:w-auto`}>
               Get a Free Quote

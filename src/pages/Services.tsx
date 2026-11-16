@@ -70,7 +70,7 @@ const Services = () => {
               Carpet, Rug & Upholstery Cleaning Services
             </h1>
             <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Our technicians for homes and businesses in Chicago and the suburbs. Carpet cleaning starts at $99.
+              Steam cleaning for homes and businesses in Chicago and the suburbs. Carpet cleaning starts at $99.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#services-quote" className={`${buttonOrange} w-full sm:w-auto`}>
