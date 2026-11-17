@@ -339,7 +339,7 @@ export function getSeo(pathname: string): SeoMeta {
     const schemaTitle = `${post.title} | Ernest Steamers`;
     const title = post.metaTitle ?? schemaTitle;
     const description = post.metaDescription;
-    const articleType = post.faqs?.length ? "BlogPosting" : "Article";
+    const articleType = post.faqs?.length || post.asBlogPosting ? "BlogPosting" : "Article";
     return {
       title,
       description,
