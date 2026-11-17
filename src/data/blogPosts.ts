@@ -23,9 +23,69 @@ export interface BlogPost {
   content: string;
   /** Visible questions. When set, the post emits FAQPage and BlogPosting schema. */
   faqs?: { q: string; a: string }[];
+  /** Emits BlogPosting without FAQPage. FAQPage is still added only when `faqs` is set. */
+  asBlogPosting?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "how-long-carpet-takes-to-dry-after-steam-cleaning",
+    title: "How Long Carpet Takes to Dry After Steam Cleaning",
+    metaTitle: "How Long Carpet Takes to Dry | Ernest Steamers",
+    metaDescription:
+      `How long carpet takes to dry after steam cleaning depends on the carpet, the pad, airflow, and indoor heat. Call ${PHONE_DISPLAY}.`,
+    excerpt:
+      "How long carpet takes to dry after steam cleaning depends on the carpet, the pad, airflow, humidity, and indoor heat during a Chicago winter.",
+    image: "carpet-tips",
+    imageAlt: "Beige wall-to-wall carpet shown before and after cleaning, with a wand in the foreground",
+    date: "2026-11-17",
+    topic: "Carpets",
+    author: "Ernest Steamers",
+    serviceHref: "/services/#carpet",
+    serviceLabel: "Carpet cleaning",
+    serviceValue: "Carpet Cleaning",
+    asBlogPosting: true,
+    content: `How long carpet takes to dry after steam cleaning is not one number for every room. Hot-water extraction, often called steam cleaning, uses hot water and suction. The vacuum pulls much of that water back out. Moisture can remain in the yarn and, when the carpet was already wet or the pass was heavy, in the pad. What happens next depends on the carpet, the pad, the airflow, the humidity, and the heat in the room. This guide is for homeowners in Chicago and the suburbs.
+
+## What changes how long carpet takes to dry?
+
+The face of the carpet is only part of the drying. Yarn holds water between the strands. A low, open pile gives that water a shorter path into the air. A dense pile or a tall pile holds more of it. Under the carpet, the pad is a cushion. It holds liquid longer than the face yarn. The surface can feel dry to your hand while the cushion underneath is still damp. [What road salt and slush do to the pad](/blog/winter-salt-slush-carpet-care/) covers that path.
+
+Airflow matters as much as the fiber. The air sitting on the carpet can fill with moisture soon after cleaning, and evaporation slows when that air does not move. The International Sanitary Supply Association describes this in [How Long Does Carpeting Take to Dry?](https://www.issa.com/articles/how-long-does-carpeting-take-to-dry/). That article quotes Doug Heiferman, an IICRC trainer, on the need for enough airflow over the carpet. Air movers, he notes there, let drier air circulate so evaporation can improve. Humid weather, too much water left in the carpet, and a weak extraction pass are the reasons ISSA gives for a longer dry time.
+
+Any hour range you may hear is general industry guidance for cleaning that uses air movers. It is not a drying time for an Ernest Steamers visit. ISSA writes that technicians who use air movers can tell a customer the carpet should dry in three to six hours, and sometimes faster. A closed room, a humid day, or a pad that is still holding water can take longer than the face yarn. We do not name a dry time for your rooms before we see them.
+
+[Steam cleaning and a low-moisture clean](/blog/steam-cleaning-vs-dry-cleaning-carpet/) leave different amounts of water in the yarn. Less water often means the carpet is ready sooner. Hot-water extraction is the method we use for wall-to-wall carpet because the suction lifts soil a vacuum can leave behind. The visit is listed under [carpet cleaning](/services/#carpet).
+
+## How does a Chicago winter change drying?
+
+Winter changes the air in the house. It does not change the machine. A room that stays cold dries more slowly than a warm room. ISSA notes that turning up the heat, or the air conditioning in warm weather, can help a cleaned carpet dry. In a Chicago winter, indoor heat is the useful one.
+
+A furnace that is already running warms the rooms. Warm air can carry moisture away from the yarn when that air keeps moving. If the doors stay shut and no fan is running, the air above the carpet can stay damp even while the heat is on. An entry that opens to the outside through the afternoon stays cooler than an interior room, and the path by the door can lag behind the rest of the floor.
+
+Humidity still counts on a wet winter day. Slush, wet coats, and boots add moisture indoors. When the air in the house already feels damp, the carpet gives up water more slowly. Heat helps. It does not replace moving air.
+
+## What should you do after the cleaning visit?
+
+Give the carpet moving air, and keep weight and shoes off it while it is damp.
+
+- **Move air across the pile.** Point a household fan so the air travels over the carpet, not straight down into one spot. Leave interior doors open so damp air can leave the room. ISSA stresses airflow over the carpet because still air next to the yarn fills with moisture.
+- **Run the HVAC fan.** Set the thermostat fan to on so it circulates the whole time, not only while the furnace is actively heating. In a cold Chicago winter, leave the heat on. Turning the system off leaves the carpet in cool, still air.
+- **Keep foot traffic off.** ISSA notes that damp carpet resoils quickly, and that stepping from damp carpet onto a hard floor can make shoe soles slick. Stay off the cleaned rooms until the pile feels dry.
+- **Use blocks, tabs, or foil under the legs.** Wood legs and metal legs should not rest in the damp pile. Slide blocks, furniture tabs, or a small square of foil under each leg that was moved, and leave them there until the carpet feels dry.
+
+Do not pour more water on the carpet to blend a spot. Extra water is one of the reasons ISSA gives for a longer dry time. If an area was already soaked before the visit, say so when you book so the work matches the rooms.
+
+## When is a carpet that stays damp a problem?
+
+A longer dry time becomes a problem when the moisture stays. ISSA writes that carpets that take longer than 24 hours to dry can become a place where mold, mildew, and bacteria grow. That note is from the ISSA article linked above. It is not a deadline we set for your floor. A musty smell, a spongy step, or a spot that still feels cool the next day is a reason to get air moving and to tell us what you feel.
+
+The carpet can still feel wet after it looks dry. Press a clean towel on the spot. If the towel picks up water, the cushion is still holding it. Keep traffic off that area and keep a fan running. Salt and slush make this more likely at an entry, because water walked in before the cleaning can already be in the pad.
+
+Damp yarn also grabs fresh soil. Shoes put grit back into a pile that is still cool, and the path looks soiled again. Waiting until the carpet feels dry avoids that.
+
+[Carpet cleaning](/services/#carpet) at Ernest Steamers is hot-water extraction for the rooms you list. Carpet cleaning starts at $99. The price for your job depends on the rooms, the size, and the condition. We confirm the quote before we schedule. Name the rooms, and say whether any area is already wet, through the [contact form](/contact/).`,
+  },
   {
     slug: "how-often-clean-tile-grout",
     title: "How Often to Clean Tile and Grout in Chicago-Area Homes",
@@ -150,7 +210,7 @@ Under the carpet is a pad, the cushion the backing rests on. Slush that is walke
 
 Salt in the pad does not disappear when the face yarn looks cleaner. As the pad dries, salt can move back up into the yarn. That is a common reason a white ring or a gritty feel returns a day or two after a home rinse. Adding a lot of water makes the path longer. The salt travels deeper, toward the tack strip and the floor at the edge of the room.
 
-Notice an entry that feels spongy, stays cool, or smells musty after a storm. Those are signs the pad took on water. How long the area takes to dry depends on the carpet, the pad, the airflow, and how wet it got. There is no single dry time that fits every room.
+Notice an entry that feels spongy, stays cool, or smells musty after a storm. Those are signs the pad took on water. [How long the area takes to dry](/blog/how-long-carpet-takes-to-dry-after-steam-cleaning/) depends on the carpet, the pad, the airflow, and how wet it got. There is no single dry time that fits every room.
 
 ## What you can safely do at home
 
@@ -351,7 +411,7 @@ The result is a deep, thorough clean that reaches all the way to the carpet back
 - **Removes soil vacuuming misses** — extraction reaches soil a vacuum can leave behind
 
 ### Cons of Steam Cleaning
-- **Dry time varies** — drying depends on the carpet, the airflow, and the conditions in the room
+- **[Dry time varies](/blog/how-long-carpet-takes-to-dry-after-steam-cleaning/)** — drying depends on the carpet, the airflow, and the conditions in the room
 - **Requires professional equipment** — rental machines don't have the same suction
 - **Not ideal for delicate fibers** — some natural fibers like silk or sisal need special care
 

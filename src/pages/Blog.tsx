@@ -16,14 +16,16 @@ function TextLink({ to, children }: { to: string; children: string }) {
 }
 
 const POST_SUMMARIES: Record<string, string> = {
+  "how-long-carpet-takes-to-dry-after-steam-cleaning":
+    "Drying depends on the carpet, the pad, airflow, humidity, and indoor heat. Move air across the pile and keep traffic off until it feels dry.",
   "how-often-clean-tile-grout":
-    "Kitchens, baths, entries, and mudrooms collect different soil in tile and grout. Sweep grit, blot spills, and book a visit when the lines stay dark after a regular wipe.",
+    "Kitchens, baths, entries, and mudrooms collect different soil in tile and grout. Sweep grit, blot spills, and book a visit when the lines stay dark.",
   "winter-salt-slush-carpet-care":
     "Road salt and slush sit in the yarn and the pad. Blot the liquid, skip a heavy rinse, and call when the entry stays gritty.",
   "carpet-cleaning-tips-homeowners":
-    "Vacuum busy rooms, blot spills instead of rubbing, and keep soil at the door. Move heavy furniture so the pile does not flatten. Extraction reaches dirt a vacuum leaves behind.",
+    "Vacuum busy rooms, blot spills, and keep soil at the door. Move heavy furniture so the pile does not flatten. Extraction reaches dirt a vacuum leaves behind.",
   "remove-pet-stains-odors":
-    "Pet urine can soak through the carpet into the padding, where a surface cleaner often does not reach. Blot a fresh accident. A visit pre-treats the spots and flushes them with hot-water extraction.",
+    "Pet urine can soak through carpet into the padding, past a surface cleaner. Blot a fresh accident. A visit pre-treats the spots and extracts them.",
   "steam-cleaning-vs-dry-cleaning-carpet":
     "Hot-water extraction pushes hot water into the carpet and vacuums soil back out. Dry cleaning uses little moisture for a light refresh. The guide uses hot-water extraction for homes.",
   "upholstery-cleaning-benefits":
@@ -138,9 +140,10 @@ const Blog = () => {
                     <TextLink to="/blog/carpet-cleaning-tips-homeowners/">Homeowner tips</TextLink>,{" "}
                     <TextLink to="/blog/remove-pet-stains-odors/">pet stains and odors</TextLink>,{" "}
                     <TextLink to="/blog/winter-salt-slush-carpet-care/">winter salt and slush</TextLink>,{" "}
-                    <TextLink to="/blog/carpet-cleaning-allergies-indoor-air-quality/">allergies</TextLink>, and{" "}
-                    <TextLink to="/blog/how-often-clean-tile-grout/">tile and grout</TextLink> cover
-                    vacuuming, fresh spills, and dust in carpet. The service page is{" "}
+                    <TextLink to="/blog/carpet-cleaning-allergies-indoor-air-quality/">allergies</TextLink>,{" "}
+                    <TextLink to="/blog/how-often-clean-tile-grout/">tile and grout</TextLink>, and{" "}
+                    <TextLink to="/blog/how-long-carpet-takes-to-dry-after-steam-cleaning/">drying time</TextLink> cover
+                    fresh spills, vacuuming, and dust in the home. The service page is{" "}
                     <TextLink to="/services/#carpet">carpet cleaning</TextLink>.
                   </p>
                 </div>
@@ -156,7 +159,7 @@ const Blog = () => {
                   <h3 className="font-heading text-xl font-bold text-primary">Upholstery</h3>
                   <p className={`${bodyText} mt-2`}>
                     The <TextLink to="/blog/upholstery-cleaning-benefits/">sofa and chair guide</TextLink> covers what
-                    fabric holds between cleanings and how a visit is planned. The service page is{" "}
+                    fabric holds between cleanings. The service page is{" "}
                     <TextLink to="/services/#upholstery">upholstery cleaning</TextLink>.
                   </p>
                 </div>
@@ -164,7 +167,7 @@ const Blog = () => {
                   <h3 className="font-heading text-xl font-bold text-primary">Commercial</h3>
                   <p className={`${bodyText} mt-2`}>
                     The <TextLink to="/blog/commercial-carpet-cleaning-business/">business guide</TextLink> covers
-                    offices and shops, soil that wears carpet, and visits around open hours. The service page is{" "}
+                    offices, shops, soil, and visits around open hours. The service page is{" "}
                     <TextLink to="/services/#commercial">commercial carpet cleaning</TextLink>.
                   </p>
                 </div>

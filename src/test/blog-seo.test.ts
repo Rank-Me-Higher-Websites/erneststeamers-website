@@ -3,6 +3,7 @@ import { blogPosts } from "@/data/blogPosts";
 import { getSeo } from "@/seo";
 
 const currentTitles: Record<string, string> = {
+  "how-long-carpet-takes-to-dry-after-steam-cleaning": "How Long Carpet Takes to Dry | Ernest Steamers",
   "how-often-clean-tile-grout": "How Often to Clean Tile and Grout | Ernest Steamers",
   "winter-salt-slush-carpet-care": "Winter Salt and Slush on Carpet | Ernest Steamers",
   "carpet-cleaning-tips-homeowners": "Carpet Cleaning Tips for Homeowners | Ernest Steamers",
@@ -22,7 +23,7 @@ describe("blog SEO", () => {
     expect(seo.description.length).toBeLessThanOrEqual(155);
     expect(seo.description).toContain("(630) 403-0180");
     expect(seo.canonical).toBe("https://erneststeamers.com/blog/");
-    expect(seo.image).toBe("https://erneststeamers.com/images/blog/equipment.jpg");
+    expect(seo.image).toBe("https://erneststeamers.com/images/blog/carpet-tips.jpg");
 
     const serialized = JSON.stringify(seo.jsonLd);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue|BlogPosting|"Review"/);
@@ -70,6 +71,11 @@ describe("blog SEO", () => {
         expect(faq.mainEntity).toHaveLength(2);
         expect(faq.mainEntity.map((item) => item.name)).toEqual(post.faqs?.map((item) => item.q));
         expect(faq.mainEntity.map((item) => item.acceptedAnswer.text)).toEqual(post.faqs?.map((item) => item.a));
+      } else if (post.slug === "how-long-carpet-takes-to-dry-after-steam-cleaning") {
+        expect(serialized).toContain('"@type":"BlogPosting"');
+        expect(serialized).toContain('"@type":"BreadcrumbList"');
+        expect(serialized).not.toContain("FAQPage");
+        expect(serialized).not.toContain('"@type":"Article"');
       } else {
         expect(serialized).not.toContain("BlogPosting");
         expect(serialized).not.toContain("FAQPage");

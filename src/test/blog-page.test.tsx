@@ -296,6 +296,60 @@ describe("blog post", () => {
     );
     expect(container.querySelector("select[name='service']")).toHaveValue("Tile & Grout Cleaning");
   });
+
+  it("publishes the carpet drying guide with sourced times and two inbound links", () => {
+    const post = getPostBySlug("how-long-carpet-takes-to-dry-after-steam-cleaning");
+    if (!post) throw new Error("missing post");
+    const editorial = post.content
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[#*`|]/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    expect(editorial.length).toBeGreaterThanOrEqual(800);
+    expect(editorial.length).toBeLessThanOrEqual(1100);
+    expect(post.title).toBe("How Long Carpet Takes to Dry After Steam Cleaning");
+    expect(post.title.length).toBeLessThanOrEqual(60);
+    expect(post.metaTitle).toBe("How Long Carpet Takes to Dry | Ernest Steamers");
+    expect(post.metaTitle.length).toBeLessThanOrEqual(60);
+    expect(post.metaDescription.length).toBeLessThanOrEqual(155);
+    expect(post.faqs).toBeUndefined();
+    expect(post.asBlogPosting).toBe(true);
+    expect(post.image).toBe("carpet-tips");
+    const h2s = parseBlocks(post.content).filter((block) => block.type === "h2");
+    expect(h2s.length).toBeGreaterThanOrEqual(3);
+    expect(h2s.length).toBeLessThanOrEqual(5);
+    expect(post.content).toContain("](/services/#carpet)");
+    expect(post.content).toContain("](/blog/steam-cleaning-vs-dry-cleaning-carpet/)");
+    expect(post.content).toContain("](/blog/winter-salt-slush-carpet-care/)");
+    expect(post.content).toContain("https://www.issa.com/articles/how-long-does-carpeting-take-to-dry/");
+    expect(post.content).toContain("Carpet cleaning starts at $99.");
+    const copy = `${post.title}\n${post.excerpt}\n${post.content}`;
+    expect(copy).not.toMatch(
+      /walkthrough|walk the space|walk-through|certified|certification|guarantee|Franklin Park|Bartlett|Crown Rd|Hummingbird|60103|AggregateRating/i,
+    );
+
+    const dryingHref = "/blog/how-long-carpet-takes-to-dry-after-steam-cleaning/";
+    const steam = getPostBySlug("steam-cleaning-vs-dry-cleaning-carpet");
+    const winter = getPostBySlug("winter-salt-slush-carpet-care");
+    expect(steam?.content.split(dryingHref).length).toBe(2);
+    expect(winter?.content.split(dryingHref).length).toBe(2);
+    expect(steam?.content).toContain(`**[Dry time varies](${dryingHref})**`);
+    expect(winter?.content).toContain(`[How long the area takes to dry](${dryingHref})`);
+
+    const { container } = renderPost(post.slug);
+    expect([...container.querySelectorAll("h1")].map((node) => node.textContent)).toEqual([post.title]);
+    expect(container.querySelectorAll("h1")).toHaveLength(1);
+    const article = container.querySelector("article");
+    expect(article?.querySelector("a[href='/services/#carpet']")).toBeTruthy();
+    expect(article?.querySelector("a[href='/blog/steam-cleaning-vs-dry-cleaning-carpet/']")).toBeTruthy();
+    expect(article?.querySelector("a[href='/blog/winter-salt-slush-carpet-care/']")).toBeTruthy();
+    expect(article?.querySelector("a[href='https://www.issa.com/articles/how-long-does-carpeting-take-to-dry/']")).toBeTruthy();
+    expect(article?.textContent ?? "").not.toMatch(
+      /franklin park|bartlett|crown rd|hummingbird|certified|walkthrough/i,
+    );
+    expect(container.querySelector("select[name='service']")).toHaveValue("Carpet Cleaning");
+  });
 });
 
 describe("stored article copy", () => {
@@ -325,7 +379,7 @@ describe("stored article copy", () => {
 
     for (const post of blogPosts) {
       expect(post.content).not.toContain("tel:6308309867");
-      if (post.slug === "how-often-clean-tile-grout") {
+      if (post.slug === "how-often-clean-tile-grout" || post.slug === "how-long-carpet-takes-to-dry-after-steam-cleaning") {
         expect(post.content).not.toMatch(/\(\d{3}\)\s*\d{3}-\d{4}|\b\d{3}[-.]\d{3}[-.]\d{4}\b|tel:/);
         continue;
       }
