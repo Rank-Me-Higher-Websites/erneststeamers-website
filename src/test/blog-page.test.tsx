@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { AppProviders, AppRoutes } from "@/App";
+import { render as renderBuiltPage } from "@/entry-server";
 import { blogPosts, getPostBySlug } from "@/data/blogPosts";
 import { parseBlocks } from "@/lib/blogContent";
 import Blog from "@/pages/Blog";
@@ -214,6 +215,30 @@ describe("blog post", () => {
     expect(upholstery.container.textContent).toContain("Quality upholstery is a real investment.");
     expect(upholstery.container.textContent).not.toContain("$1,000");
     expect(upholstery.container.querySelector('a[href="/services/#upholstery"]')).toBeTruthy();
+  });
+
+  it("renders Dry time varies as a link on the built steam-vs-dry page", () => {
+    const { html } = renderBuiltPage("/blog/steam-cleaning-vs-dry-cleaning-carpet/");
+    const container = document.createElement("div");
+    container.innerHTML = html;
+    expect(html).toMatch(
+      /<a\b[^>]*href="\/blog\/how-long-carpet-takes-to-dry-after-steam-cleaning\/"[^>]*>Dry time varies<\/a>/,
+    );
+    const link = [...container.querySelectorAll("a")].find(
+      (anchor) =>
+        anchor.getAttribute("href") === "/blog/how-long-carpet-takes-to-dry-after-steam-cleaning/" &&
+        anchor.textContent === "Dry time varies",
+    );
+    expect(link?.textContent).toBe("Dry time varies");
+    expect(link?.parentElement?.tagName).toBe("STRONG");
+    expect(container.textContent ?? "").not.toContain("](");
+
+    for (const post of blogPosts) {
+      const built = renderBuiltPage(`/blog/${post.slug}/`);
+      const page = document.createElement("div");
+      page.innerHTML = built.html;
+      expect(page.textContent ?? "").not.toContain("](");
+    }
   });
 
   it("publishes the winter salt and slush guide with two visible questions", () => {
