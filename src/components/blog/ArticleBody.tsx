@@ -41,7 +41,7 @@ export function renderInline(text: string, keyPrefix: string): ReactNode[] {
     } else if (match[3]) {
       nodes.push(
         <strong key={`${keyPrefix}-${count}`} className="font-semibold text-foreground">
-          {match[3]}
+          {renderInline(match[3], `${keyPrefix}-${count}`)}
         </strong>,
       );
     }
