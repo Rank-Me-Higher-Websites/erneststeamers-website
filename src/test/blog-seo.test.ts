@@ -10,7 +10,7 @@ const currentTitles: Record<string, string> = {
   "remove-pet-stains-odors": "How to Remove Pet Stains & Odors for Good | Ernest Steamers",
   "steam-cleaning-vs-dry-cleaning-carpet": "Steam Cleaning vs. Dry Cleaning Carpet | Ernest Steamers",
   "upholstery-cleaning-benefits": "Upholstery Cleaning Benefits | Ernest Steamers",
-  "carpet-cleaning-allergies-indoor-air-quality": "Carpet Cleaning and Allergies | Ernest Steamers",
+  "carpet-cleaning-allergies-indoor-air-quality": "How Carpet Cleaning Reduces Allergies | Ernest Steamers",
   "commercial-carpet-cleaning-business": "Commercial Carpet Cleaning | Ernest Steamers",
 };
 
@@ -76,6 +76,16 @@ describe("blog SEO", () => {
         expect(serialized).toContain('"@type":"BreadcrumbList"');
         expect(serialized).not.toContain("FAQPage");
         expect(serialized).not.toContain('"@type":"Article"');
+      } else if (post.slug === "carpet-cleaning-allergies-indoor-air-quality") {
+        expect(serialized).toContain('"@type":"BlogPosting"');
+        expect(serialized).toContain('"@type":"FAQPage"');
+        expect(serialized).not.toContain('"@type":"Article"');
+        const faq = block["@graph"].find((node) => node["@type"] === "FAQPage") as {
+          mainEntity: Array<{ name: string; acceptedAnswer: { text: string } }>;
+        };
+        expect(faq.mainEntity).toHaveLength(3);
+        expect(faq.mainEntity.map((item) => item.name)).toEqual(post.faqs?.map((item) => item.q));
+        expect(faq.mainEntity.map((item) => item.acceptedAnswer.text)).toEqual(post.faqs?.map((item) => item.a));
       } else {
         expect(serialized).not.toContain("BlogPosting");
         expect(serialized).not.toContain("FAQPage");

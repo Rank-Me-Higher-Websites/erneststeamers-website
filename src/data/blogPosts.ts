@@ -523,10 +523,10 @@ Quality upholstery is a real investment. Regular professional cleaning protects 
   },
   {
     slug: "carpet-cleaning-allergies-indoor-air-quality",
-    title: "Carpet Cleaning & Allergies: How Clean Carpets Improve Your Health",
-    metaTitle: "Carpet Cleaning and Allergies | Ernest Steamers",
+    title: "How Carpet Cleaning Reduces Allergies",
+    metaTitle: "How Carpet Cleaning Reduces Allergies | Ernest Steamers",
     metaDescription:
-      `How carpet holds dust, dander, and pollen in Chicago-area homes, and how cleaning can help reduce them. Call ${PHONE_DISPLAY}.`,
+      `See how hot-water extraction removes dust, dander and pollen held in carpet, for Chicago-area homes. Call ${PHONE_DISPLAY} today.`,
     excerpt:
       "Dirty carpets are one of the biggest triggers for indoor allergies. Dust mites, pet dander, and pollen get trapped in carpet fibers. Here's how professional cleaning can dramatically reduce symptoms.",
     image: "allergies",
@@ -537,11 +537,29 @@ Quality upholstery is a real investment. Regular professional cleaning protects 
     serviceHref: "/services/#carpet",
     serviceLabel: "Carpet cleaning",
     serviceValue: "Carpet Cleaning",
+    faqs: [
+      {
+        q: "How does carpet cleaning reduce allergies?",
+        a: "Carpet holds dust-mite debris, pet dander, and pollen in the pile. Hot-water extraction lifts those particles out with hot water and suction. Vacuum between cleans. This can help reduce allergens in the carpet.",
+      },
+      {
+        q: "How often should allergy sufferers have carpets cleaned?",
+        a: "There is no single schedule for a professional clean in every home. Book when vacuuming no longer keeps surface dust down, and sooner if pets or tracked-in pollen load the carpet. Vacuum between those visits. How often to book is general guidance for home care. The U.S. Environmental Protection Agency says to vacuum carpets every week and to use a HEPA-filter vacuum on carpet to reduce dust build-up: https://www.epa.gov/asthma/asthma-triggers-gain-control",
+      },
+      {
+        q: "Is steam cleaning better than dry cleaning for allergies?",
+        a: "Hot-water extraction flushes dust, dander, and pollen out of the carpet with hot water and suction. A dry method works mainly at the surface and leaves more of that soil in the pile. See how the methods differ: /blog/steam-cleaning-vs-dry-cleaning-carpet/",
+      },
+    ],
     content: `## The Connection Between Carpets and Allergies
 
 If you or your family members suffer from allergies, asthma, or respiratory issues, your carpet could be making things worse. Carpets act like a giant filter, trapping airborne particles as they settle. While this can actually be beneficial — keeping allergens out of the air you breathe — it only works if the carpet is regularly and thoroughly cleaned.
 
 When carpets aren't properly maintained, they reach a saturation point where they can no longer hold particles effectively. Walking, vacuuming, or even just air currents then release those trapped allergens back into your breathing zone.
+
+## How does carpet cleaning reduce allergies?
+
+Carpet holds allergens that settle into the pile. Dust-mite debris, pet dander, and pollen collect between the fibers. When people walk across the room, loose particles can rise from the surface. Hot-water extraction sends hot water into the yarn, and suction pulls that loosened debris out so less of it stays in the carpet. Vacuum between cleans. A regular vacuum picks up loose dust on the surface and keeps it from sitting in the pile until the next visit. This cleaning can help reduce allergens in the carpet. It is general home care, and one room can differ from another. Our [carpet cleaning services](/services/) cover the rooms you list for Chicago-area homes.
 
 ## What's Hiding in Your Carpet?
 
