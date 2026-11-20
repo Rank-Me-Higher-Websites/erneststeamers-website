@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -16,6 +17,36 @@ import { BLOG_HERO_SIZES } from "@/lib/blogImages";
 import { parseBlocks, readingMinutes } from "@/lib/blogContent";
 import { formatPostDate } from "@/lib/formatPostDate";
 import NotFound from "./NotFound";
+
+const faqLinkClass = `font-semibold text-primary underline underline-offset-2 ${focusRing}`;
+
+function FaqAnswer({ text }: { text: string }) {
+  const nodes: ReactNode[] = [];
+  const pattern = /https?:\/\/[^\s.]+(?:\.[^\s.]+)*|\/blog\/[a-z0-9-]+\//g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let count = 0;
+  while ((match = pattern.exec(text))) {
+    if (match.index > last) nodes.push(text.slice(last, match.index));
+    const href = match[0];
+    nodes.push(
+      href.startsWith("/") ? (
+        <Link key={count} to={href} className={faqLinkClass}>
+          {href}
+        </Link>
+      ) : (
+        <a key={count} href={href} className={faqLinkClass}>
+          {href}
+        </a>
+      ),
+    );
+    count += 1;
+    last = match.index + href.length;
+  }
+  if (count === 0) return text;
+  if (last < text.length) nodes.push(text.slice(last));
+  return <>{nodes}</>;
+}
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -94,7 +125,9 @@ const BlogPost = () => {
                     {post.faqs.map((item) => (
                       <div key={item.q}>
                         <h3 className="font-heading text-xl font-bold text-primary">{item.q}</h3>
-                        <p className={`mt-2 ${bodyText}`}>{item.a}</p>
+                        <p className={`mt-2 ${bodyText}`}>
+                          <FaqAnswer text={item.a} />
+                        </p>
                       </div>
                     ))}
                   </div>

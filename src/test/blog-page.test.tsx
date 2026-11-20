@@ -123,7 +123,7 @@ describe("blog index", () => {
     expect(container.innerHTML).not.toMatch(/aggregateRating|reviewCount|BlogPosting/);
 
     fireEvent.click(screen.getByRole("button", { name: "Health" }));
-    expect(screen.getByRole("heading", { name: "Carpet Cleaning & Allergies: How Clean Carpets Improve Your Health" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "How Carpet Cleaning Reduces Allergies" })).toBeTruthy();
     expect(screen.queryByRole("heading", { name: "5 Carpet Cleaning Tips Every Homeowner Should Know" })).toBeNull();
   });
 });
@@ -374,6 +374,79 @@ describe("blog post", () => {
       /franklin park|bartlett|crown rd|hummingbird|certified|walkthrough/i,
     );
     expect(container.querySelector("select[name='service']")).toHaveValue("Carpet Cleaning");
+  });
+
+  it("answers how carpet cleaning can reduce allergens and lists the same questions in the page and schema", () => {
+    const post = getPostBySlug("carpet-cleaning-allergies-indoor-air-quality");
+    if (!post) throw new Error("missing post");
+    expect(post.title).toBe("How Carpet Cleaning Reduces Allergies");
+    expect(post.title.length).toBeLessThanOrEqual(60);
+    expect(post.metaTitle).toBe("How Carpet Cleaning Reduces Allergies | Ernest Steamers");
+    expect(post.metaTitle.length).toBeLessThanOrEqual(60);
+    expect(post.metaDescription.length).toBeGreaterThanOrEqual(120);
+    expect(post.metaDescription.length).toBeLessThanOrEqual(155);
+    expect(post.metaDescription).toContain("(630) 403-0180");
+    expect(post.date).toBe("2026-01-15");
+    expect(post.faqs?.map((item) => item.q)).toEqual([
+      "How does carpet cleaning reduce allergies?",
+      "How often should allergy sufferers have carpets cleaned?",
+      "Is steam cleaning better than dry cleaning for allergies?",
+    ]);
+
+    const heading = "## How does carpet cleaning reduce allergies?";
+    const start = post.content.indexOf(heading);
+    expect(start).toBeGreaterThan(-1);
+    const introEnd = post.content.indexOf(heading);
+    expect(post.content.slice(0, introEnd)).toContain("## The Connection Between Carpets and Allergies");
+    expect(post.content.slice(0, introEnd)).not.toContain("\n## ");
+    const rest = post.content.slice(start + heading.length);
+    const next = rest.indexOf("\n## ");
+    const section = rest.slice(0, next);
+    const sectionWords = section
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[#*`|]/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    expect(sectionWords.length).toBeGreaterThanOrEqual(80);
+    expect(sectionWords.length).toBeLessThanOrEqual(150);
+    expect(section).toContain("can help reduce allergens in the carpet");
+    expect(section).toContain("[carpet cleaning services](/services/)");
+    expect(post.content.split("](/services/)").length).toBe(2);
+    expect(post.content).toContain("](/services/#carpet)");
+    expect(post.content).toContain("Hot-water extraction removes many allergens");
+
+    const added = `${post.title}\n${post.metaTitle}\n${post.metaDescription}\n${section}\n${post.faqs?.map((item) => `${item.q} ${item.a}`).join("\n")}`;
+    expect(added).not.toMatch(
+      /certified|walkthrough|guarantee|Hummingbird|60103|1-800-270-6228|AggregateRating|\b555\b|office|Crown Rd|Franklin Park/i,
+    );
+
+    const { container } = renderPost(post.slug);
+    const article = container.querySelector("article");
+    expect(article?.querySelector("h2")?.textContent).not.toBe("How does carpet cleaning reduce allergies?");
+    const answer = [...(article?.querySelectorAll("h2") ?? [])].find(
+      (node) => node.textContent === "How does carpet cleaning reduce allergies?",
+    );
+    expect(answer).toBeTruthy();
+    expect(article?.querySelectorAll("a[href='/services/']")).toHaveLength(1);
+    expect(article?.querySelector("a[href='/services/']")?.textContent).toBe("carpet cleaning services");
+    const steam = article?.querySelector("a[href='/blog/steam-cleaning-vs-dry-cleaning-carpet/']");
+    expect(steam?.textContent).toBe("/blog/steam-cleaning-vs-dry-cleaning-carpet/");
+    const epa = article?.querySelector("a[href='https://www.epa.gov/asthma/asthma-triggers-gain-control']");
+    expect(epa?.textContent).toBe("https://www.epa.gov/asthma/asthma-triggers-gain-control");
+    for (const faq of post.faqs ?? []) {
+      expect(container.textContent).toContain(faq.q);
+      expect(container.textContent).toContain(faq.a);
+    }
+
+    const seo = getSeo(`/blog/${post.slug}/`);
+    const block = seo.jsonLd[0] as { "@graph": Array<Record<string, unknown>> };
+    const faq = block["@graph"].find((node) => node["@type"] === "FAQPage") as {
+      mainEntity: Array<{ name: string; acceptedAnswer: { text: string } }>;
+    };
+    expect(faq.mainEntity.map((item) => item.name)).toEqual(post.faqs?.map((item) => item.q));
+    expect(faq.mainEntity.map((item) => item.acceptedAnswer.text)).toEqual(post.faqs?.map((item) => item.a));
+    expect(seo.canonical).toBe("https://erneststeamers.com/blog/carpet-cleaning-allergies-indoor-air-quality/");
   });
 });
 
