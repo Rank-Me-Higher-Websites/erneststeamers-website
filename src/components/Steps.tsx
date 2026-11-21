@@ -13,7 +13,7 @@ export default function Steps({ steps, columns = 3 }: { steps: StepItem[]; colum
     <ol className={`grid gap-6 ${columnClass[columns]}`}>
       {steps.map((step, index) => (
         <li key={step.title} className="rounded-2xl border border-border bg-white p-5">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[hsl(174,42%,94%)] font-heading text-xl font-bold text-[hsl(174,62%,22%)]">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[hsl(36,100%,89%)] font-heading text-xl font-bold text-[hsl(216,60%,22%)]">
             {index + 1}
           </span>
           <h3 className="mt-4 font-heading text-xl font-bold text-primary">{step.title}</h3>

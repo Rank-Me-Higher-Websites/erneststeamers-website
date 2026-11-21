@@ -12,10 +12,10 @@ export type FaqItem = {
 };
 
 export default function FaqAccordion({ items, defaultOpen = false }: { items: FaqItem[]; defaultOpen?: boolean }) {
-  const className = "grid items-start gap-3 lg:grid-cols-2";
+  const className = "grid items-start gap-x-8 lg:grid-cols-2";
   const list = items.map((item) => (
-    <AccordionItem key={item.q} value={item.q} className="rounded-xl border border-border bg-white px-4">
-      <AccordionTrigger className="min-h-12 text-left text-base font-semibold text-primary hover:no-underline">
+    <AccordionItem key={item.q} value={item.q} className="border-0 border-t border-border px-1">
+      <AccordionTrigger className="min-h-12 text-left text-base font-semibold text-primary hover:no-underline hover:text-foreground">
         {item.q}
       </AccordionTrigger>
       <AccordionContent className="text-base leading-relaxed text-[hsl(216,30%,26%)]">{item.a}</AccordionContent>

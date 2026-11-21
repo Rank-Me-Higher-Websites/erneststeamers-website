@@ -12,7 +12,7 @@ import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "
 import { ABOUT_STORY_SIZES } from "@/lib/homeImages";
 import { FRANKLIN_PARK_PAGE, PHONE_DISPLAY, PRIMARY_LOCATION, formatAddress } from "@/data/locations";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 const services = [
   { label: "Carpet Cleaning", href: "/services/#carpet", startsAt: true },
@@ -33,33 +33,39 @@ const About = () => {
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
       <main>
-        <section className="bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
-          <div className="mx-auto max-w-6xl">
-            <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
-                <li>
-                  <Link to="/" className={linkClass}>
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-primary">
-                  About
-                </li>
-              </ol>
-            </nav>
-            <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
-              About Ernest Steamers — Chicago-Area Carpet Cleaners
-            </h1>
-            <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Carpet cleaning starts at $99.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href="#about-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
-                Get a Quote
-              </a>
-              <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+        <section className="field-mast bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
+          <div className="mast-grid mx-auto max-w-6xl">
+            <div>
+              <nav aria-label="Breadcrumb">
+                <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
+                  <li>
+                    <Link to="/" className={linkClass}>
+                      Home
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="font-semibold text-primary">
+                    About
+                  </li>
+                </ol>
+              </nav>
+              <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
+                About Ernest Steamers — Chicago-Area Carpet Cleaners
+              </h1>
+              <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
+                Carpet cleaning starts at $99.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href="#about-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
+                  Get a Quote
+                </a>
+                <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+              </div>
             </div>
+            <figure className="mast-photo">
+              <ResponsiveImage name="van" alt="Ernest Steamers van outside a Chicago-area home" sizes={ABOUT_STORY_SIZES} priority />
+              <figcaption>Our van on a residential job</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -67,16 +73,15 @@ const About = () => {
           <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-12">
             <figure className="lg:col-span-6">
               <ResponsiveImage
-                name="van"
-                alt="Ernest Steamers van parked in the driveway of a brick house"
+                name="equipment"
+                alt="Technician operating the steam cleaning equipment in our van"
                 sizes={ABOUT_STORY_SIZES}
-                priority
                 className="aspect-[3/2] w-full rounded-2xl object-cover"
               />
-              <figcaption className={`${bodyText} mt-3`}>Ernest Steamers van on a residential job.</figcaption>
+              <figcaption className={`${bodyText} mt-3`}>The truck-mounted equipment our crew brings to each job.</figcaption>
             </figure>
             <div className="lg:col-span-6">
-              <p className="text-sm font-bold uppercase tracking-wide text-[hsl(174,62%,26%)]">About us</p>
+              <p className="text-sm font-bold uppercase tracking-wide text-[hsl(216,60%,22%)]">About us</p>
               <h2 id="story-heading" className={`${sectionTitle} mt-2`}>
                 Our story
               </h2>

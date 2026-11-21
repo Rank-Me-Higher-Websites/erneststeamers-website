@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import BlogImage from "@/components/blog/BlogImage";
 import { bodyText, focusRing } from "@/components/home/ui";
@@ -21,7 +22,7 @@ export default function PostCard({ post, heading = "h2", priority = false, featu
 
   return (
     <article
-      className={`flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm ${
+      className={`guide-card flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm ${
         featured ? "lg:grid lg:grid-cols-2" : ""
       }`}
     >
@@ -33,7 +34,7 @@ export default function PostCard({ post, heading = "h2", priority = false, featu
         className="aspect-video w-full object-cover"
       />
       <div className={`flex flex-1 flex-col gap-3 p-5 ${featured ? "lg:p-8" : ""}`}>
-        <p className="text-sm font-semibold uppercase tracking-wide text-[hsl(174,62%,26%)]">{post.topic}</p>
+        <p className="text-sm font-semibold uppercase tracking-wide text-[hsl(216,60%,22%)]">{post.topic}</p>
         <Title className={`font-heading font-bold leading-tight text-primary ${featured ? "text-2xl lg:text-3xl" : "text-xl"}`}>
           <Link to={href} className={focusRing}>
             {post.title}
@@ -46,7 +47,7 @@ export default function PostCard({ post, heading = "h2", priority = false, featu
           {formatPostDate(post.date)}
         </time>
         <Link to={href} className={`mt-auto inline-flex min-h-12 items-center font-heading text-base font-bold text-primary ${focusRing}`}>
-          Read
+          Read <ArrowUpRight size={16} aria-hidden="true" className="ml-2" />
         </Link>
       </div>
     </article>

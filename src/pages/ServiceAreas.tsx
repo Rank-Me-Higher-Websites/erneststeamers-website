@@ -1,3 +1,4 @@
+import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -20,7 +21,7 @@ import {
   type ServiceRegion,
 } from "@/data/serviceAreas";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 const AREA_WIDTHS = [480, 768] as const;
 
@@ -86,9 +87,9 @@ function RegionCard({
       >
         <span className="min-w-0">
           <h2 className="font-heading text-2xl font-bold text-primary">{region.region}</h2>
-          <span className="mt-1 block text-sm font-semibold text-[hsl(174,62%,26%)]">Marketing region</span>
+          <span className="mt-1 block text-sm font-semibold text-[hsl(216,60%,22%)]">Marketing region</span>
         </span>
-        <span aria-hidden="true" className="text-2xl font-bold leading-none text-[hsl(174,62%,26%)] lg:hidden">
+        <span aria-hidden="true" className="text-2xl font-bold leading-none text-[hsl(216,60%,22%)] lg:hidden">
           {open ? "–" : "+"}
         </span>
       </summary>
@@ -141,34 +142,40 @@ const ServiceAreas = () => {
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
       <main>
-        <section className="bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
-          <div className="mx-auto max-w-6xl">
-            <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
-                <li>
-                  <Link to="/" className={linkClass}>
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-primary">
-                  Service Areas
-                </li>
-              </ol>
-            </nav>
-            <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
-              Service Areas in Chicago & the Suburbs
-            </h1>
-            <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Carpet, rug, upholstery, tile, and commercial carpet cleaning for the towns on this page. Carpet
-              cleaning starts at $99. Call {PHONE_DISPLAY} or request a quote. The office is in Franklin Park.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href="#areas-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
-                Get a Quote
-              </a>
-              <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+        <section className="field-mast bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
+          <div className="mast-grid mx-auto max-w-6xl">
+            <div>
+              <nav aria-label="Breadcrumb">
+                <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
+                  <li>
+                    <Link to="/" className={linkClass}>
+                      Home
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="font-semibold text-primary">
+                    Service Areas
+                  </li>
+                </ol>
+              </nav>
+              <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
+                Service Areas in Chicago & the Suburbs
+              </h1>
+              <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
+                Carpet, rug, upholstery, tile, and commercial carpet cleaning for the towns on this page. Carpet
+                cleaning starts at $99. Call {PHONE_DISPLAY} or request a quote. The office is in Franklin Park.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href="#areas-quote" onClick={focusQuoteForm} className={`${buttonOrange} w-full sm:w-auto`}>
+                  Get a Quote
+                </a>
+                <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+              </div>
             </div>
+            <figure className="mast-photo">
+              <ResponsiveImage name="van-setup" alt="Technician preparing the van-mounted cleaner" sizes="(min-width: 900px) 480px, 100vw" priority />
+              <figcaption>On the road in Chicagoland</figcaption>
+            </figure>
           </div>
         </section>
 

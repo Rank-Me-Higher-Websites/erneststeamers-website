@@ -32,7 +32,7 @@ export default function OfficeCard({
 }: OfficeCardProps) {
   const office = { street, city, region, postalCode };
   const heading = pageHref ? (
-    <Link to={pageHref} className="underline decoration-[hsl(174,62%,26%)] underline-offset-4">
+    <Link to={pageHref} className="underline decoration-[hsl(216,60%,22%)] underline-offset-4">
       {city}
     </Link>
   ) : (
@@ -52,7 +52,7 @@ export default function OfficeCard({
       </figure>
       <div className="flex flex-1 flex-col gap-3 p-5 pt-3">
         {primary ? (
-          <p className="text-sm font-bold uppercase tracking-wide text-[hsl(174,62%,26%)]">Primary office</p>
+          <p className="text-sm font-bold uppercase tracking-wide text-[hsl(216,60%,22%)]">Primary office</p>
         ) : null}
         <h3 className="font-heading text-2xl font-bold text-primary">{heading}</h3>
         <p className="text-base font-semibold text-primary">{name}</p>

@@ -8,14 +8,14 @@ export default function HomeFinalCta() {
     <section id="contact" className="scroll-mt-20 bg-white px-4 py-16 lg:py-24">
       <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-2">
         <div>
-          <h2 className={sectionTitle}>Ready for cleaner carpets?</h2>
+          <h2 className={sectionTitle}>Request your cleaning</h2>
           <p className={`${bodyText} mt-4 max-w-xl`}>
-            Call {PHONE_DISPLAY} or send the form. Carpet cleaning starts at $99. Our technicians do the work.
+            Send your service, address and preferred date. Our technicians will confirm the price and scheduling with you. You can also call {PHONE_DISPLAY}.
           </p>
           <CallButton className={`${buttonOutline} mt-6 w-full sm:w-auto`} />
         </div>
         <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
-          <QuoteForm id="contact-quote" />
+          <div id="hero-quote" className="scroll-mt-24"><QuoteForm id="contact-quote" compact /></div>
         </div>
       </div>
     </section>

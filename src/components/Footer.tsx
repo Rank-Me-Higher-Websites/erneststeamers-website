@@ -57,7 +57,7 @@ const Footer = () => {
                 <MapPin className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-accent mt-0.5 flex-shrink-0" />
                 <span className="text-primary-foreground/70 text-xs lg:text-sm">
                   {PRIMARY_LOCATION.street},<br />
-                  {PRIMARY_LOCATION.city}, {PRIMARY_LOCATION.region} {PRIMARY_LOCATION.postalCode}
+                  {`${PRIMARY_LOCATION.city}, ${PRIMARY_LOCATION.region} ${PRIMARY_LOCATION.postalCode}`}
                 </span>
               </li>
               {SECONDARY_OFFICES.map((office) => (

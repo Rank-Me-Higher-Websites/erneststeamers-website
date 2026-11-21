@@ -22,7 +22,6 @@ import {
   PRIMARY_LOCATION,
   SECONDARY_OFFICES,
   SISTER_COMPANY,
-  formatAddress,
   getOfficeByPath,
 } from "@/data/locations";
 
@@ -82,13 +81,12 @@ type PageCopy = {
   faq?: boolean;
 };
 
-const primaryAddress = formatAddress(PRIMARY_LOCATION);
 const cityLabel = `${PRIMARY_LOCATION.city}, ${PRIMARY_LOCATION.region}`;
 
 const pages: Record<string, PageCopy> = {
   "/": {
     title: "Carpet Cleaning in Chicago & Suburbs | Ernest Steamers",
-    description: `Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Carpet cleaning starts at $99. Call ${NAP.phoneDisplay}.`,
+    description: `Book carpet steam cleaning from $99 in Chicago and the suburbs. Request a quote for rugs, sofas or tile from our Franklin Park crew. Call ${NAP.phoneDisplay}.`,
     faq: true,
   },
   "/services": {
@@ -104,11 +102,11 @@ const pages: Record<string, PageCopy> = {
     description: `Meet Ernest Steamers, a Franklin Park, IL carpet, rug and upholstery steam cleaning company serving Chicago and the suburbs. Call ${NAP.phoneDisplay}.`,
   },
   "/contact": {
-    title: "Free Carpet Cleaning Quote | Ernest Steamers",
-    description: `Request a free carpet, rug or upholstery cleaning quote from Ernest Steamers in Chicago & suburbs. Starts at $99. Call ${NAP.phoneDisplay}.`,
+    title: "Free Carpet Cleaning Quote in Chicago | Ernest Steamers",
+    description: `Request a free quote for carpet, rugs or upholstery in Chicago and the suburbs. Carpet cleaning starts at $99. Call ${NAP.phoneDisplay}.`,
   },
   "/blog": {
-    title: "Carpet Cleaning Blog | Ernest Steamers",
+    title: "Carpet Care Guides for Chicago Homes | Ernest Steamers",
     description: `Carpet, upholstery and pet-stain cleaning guides from Ernest Steamers in Franklin Park, IL. Practical tips for Chicago-area homes. Call ${NAP.phoneDisplay}.`,
   },
   "/funnel": {
@@ -318,7 +316,7 @@ function pageNode(
 function notFound(path: string): SeoMeta {
   const canonical = absoluteRoute(path);
   const title = "Page Not Found | Ernest Steamers";
-  const description = `That page is not on the Ernest Steamers site. Call ${NAP.phoneDisplay} for carpet, rug, and upholstery cleaning in Chicago and the suburbs. ${primaryAddress}.`;
+  const description = `Find Ernest Steamers cleaning services in Chicago and the suburbs, or call ${NAP.phoneDisplay} to request a quote.`;
   return {
     title,
     description,

@@ -6,7 +6,7 @@ export default function ArticleToc({ headings, showLabel = false }: { headings: 
   return (
     <nav aria-label="In this article">
       {showLabel ? (
-        <p className="font-heading text-sm font-bold uppercase tracking-wide text-[hsl(174,62%,26%)]">In this article</p>
+        <p className="font-heading text-sm font-bold uppercase tracking-wide text-[hsl(216,60%,22%)]">In this article</p>
       ) : null}
       <ol className={showLabel ? "mt-2" : ""}>
         {headings.map((heading) => (

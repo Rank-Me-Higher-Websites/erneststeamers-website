@@ -9,7 +9,7 @@ describe("home SEO", () => {
     expect(seo.title).toBe("Carpet Cleaning in Chicago & Suburbs | Ernest Steamers");
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description).toBe(
-      "Steam cleaning for carpet, rugs and upholstery in Chicago and the suburbs. Carpet cleaning starts at $99. Call (630) 403-0180.",
+      "Book carpet steam cleaning from $99 in Chicago and the suburbs. Request a quote for rugs, sofas or tile from our Franklin Park crew. Call (630) 403-0180.",
     );
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);

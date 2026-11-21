@@ -27,7 +27,7 @@ const QuoteFormDialog = ({ children, defaultService }: QuoteFormDialogProps) => 
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="mx-4 max-h-[85vh] overflow-y-auto rounded-xl sm:mx-auto sm:max-w-lg">
+      <DialogContent className="w-[calc(100%-2rem)] max-h-[85dvh] overflow-y-auto rounded-xl sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-heading text-2xl text-foreground">Get your free quote</DialogTitle>
           <DialogDescription className="text-base text-muted-foreground">
@@ -36,6 +36,7 @@ const QuoteFormDialog = ({ children, defaultService }: QuoteFormDialogProps) => 
         </DialogHeader>
         <QuoteForm
           key={`${defaultService ?? ""}-${formKey}`}
+          compact
           defaultService={defaultService}
           onSubmitted={() => {
             window.setTimeout(() => setOpen(false), 2500);

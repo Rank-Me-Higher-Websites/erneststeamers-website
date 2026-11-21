@@ -18,7 +18,7 @@ import { franklinNearbyLabels, franklinParkFaqs, franklinParkParagraphs } from "
 import { formatAddress, getOfficeBySlug, mapsDirectionsHref, mapsEmbedSrc } from "@/data/locations";
 import NotFound from "./NotFound";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 const serviceBlurbs: Record<string, string> = {
   carpet: "Wall-to-wall carpet cleaned with hot-water extraction in the rooms you list.",
@@ -49,7 +49,7 @@ const LocationPage = () => {
   return (
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-      <main>
+      <main className="office-page">
         <section className="bg-white px-4 pb-8 pt-8 lg:pb-12 lg:pt-14">
           <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2">
             <div>

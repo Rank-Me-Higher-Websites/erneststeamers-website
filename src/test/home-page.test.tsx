@@ -15,7 +15,7 @@ describe("home page", () => {
     );
 
     const headings = [...container.querySelectorAll("h1")].map((node) => node.textContent);
-    expect(headings).toEqual(["Carpet, Rug & Upholstery Steam Cleaning in Chicago & the Suburbs"]);
+    expect(headings).toEqual(["Deep cleaning for lived-in homes."]);
 
     const text = container.textContent ?? "";
     expect(text).toContain("Starts at $99");

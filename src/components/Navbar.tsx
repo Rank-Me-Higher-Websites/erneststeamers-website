@@ -20,7 +20,7 @@ function isCurrentPath(pathname: string, path: string) {
   return strip(pathname) === strip(path);
 }
 
-const quoteClass = `inline-flex min-h-12 shrink-0 items-center gap-1 whitespace-nowrap rounded-lg bg-cta-orange px-3 font-heading text-sm font-bold text-[hsl(216,50%,12%)] transition hover:brightness-95 sm:px-4 ${focusRing}`;
+const quoteClass = `inline-flex min-h-12 shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-cta-orange px-3 font-heading text-sm font-bold text-foreground transition hover:brightness-95 sm:px-4 ${focusRing}`;
 
 const desktopNavClass = `shrink-0 whitespace-nowrap text-sm font-semibold text-foreground transition-colors hover:text-primary ${focusRing}`;
 const mobileNavClass = `flex min-h-11 shrink-0 items-center whitespace-nowrap border-b border-foreground/10 text-base font-semibold text-foreground ${focusRing}`;
@@ -81,7 +81,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky top-0 z-50 bg-accent-yellow shadow-sm" style={{ backgroundColor: "hsl(36, 100%, 55%)" }}>
+    <nav className="sticky top-0 z-50 border-b border-border bg-accent-yellow">
       <div
         data-testid="header-row"
         className="container mx-auto flex h-16 max-w-7xl flex-nowrap items-center justify-between gap-1 px-2 min-[380px]:gap-2 min-[380px]:px-3 min-[480px]:px-4"
@@ -137,7 +137,6 @@ const Navbar = () => {
         <div
           data-testid="mobile-menu"
           className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain px-4 pb-2 lg:hidden"
-          style={{ backgroundColor: "hsl(36, 100%, 55%)" }}
         >
           {navLinks.map((link) => (
             <Link

@@ -10,7 +10,7 @@ import FaqAccordion from "@/components/FaqAccordion";
 import { bodyText, buttonOrange, focusRing, sectionTitle } from "@/components/home/ui";
 import { EMAIL, FRANKLIN_PARK_PAGE, PHONE_DISPLAY, PRIMARY_LOCATION } from "@/data/locations";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 const contactFaqs = [
   {
@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-      <main>
+      <main className="contact-page">
         <section className="bg-white px-4 pb-12 pt-8 lg:pb-16 lg:pt-14">
           <div className="mx-auto max-w-6xl">
             <nav aria-label="Breadcrumb">

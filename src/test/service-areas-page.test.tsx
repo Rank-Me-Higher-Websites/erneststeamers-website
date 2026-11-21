@@ -100,7 +100,8 @@ describe("service areas page", () => {
       expect(alt.length).toBeGreaterThan(10);
       expect(alt.length).toBeLessThanOrEqual(125);
     }
-    expect(photos.slice(0, 4).every((photo) => photo.getAttribute("loading") === "lazy")).toBe(true);
+    expect(photos[0].getAttribute("fetchpriority")).toBe("high");
+    expect(photos.slice(1).every((photo) => photo.getAttribute("loading") === "lazy")).toBe(true);
     expect(photos.some((photo) => (photo.getAttribute("src") ?? "").includes("/images/areas/"))).toBe(true);
 
     const directions = [...container.querySelectorAll("a[href*='google.com/maps/search']")];

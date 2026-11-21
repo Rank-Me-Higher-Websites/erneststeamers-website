@@ -5,10 +5,10 @@ describe("contact SEO", () => {
   const seo = getSeo("/contact/");
 
   it("keeps a short title, a description with the phone, and a trailing-slash canonical", () => {
-    expect(seo.title).toBe("Free Carpet Cleaning Quote | Ernest Steamers");
+    expect(seo.title).toBe("Free Carpet Cleaning Quote in Chicago | Ernest Steamers");
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description).toBe(
-      "Request a free carpet, rug or upholstery cleaning quote from Ernest Steamers in Chicago & suburbs. Starts at $99. Call (630) 403-0180.",
+      "Request a free quote for carpet, rugs or upholstery in Chicago and the suburbs. Carpet cleaning starts at $99. Call (630) 403-0180.",
     );
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);

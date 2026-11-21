@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /funnel
 
 Sitemap: https://erneststeamers.com/sitemap.xml

@@ -17,7 +17,7 @@ const currentTitles: Record<string, string> = {
 describe("blog SEO", () => {
   it("keeps the index title and uses Blog plus Article schema without ratings", () => {
     const seo = getSeo("/blog/");
-    expect(seo.title).toBe("Carpet Cleaning Blog | Ernest Steamers");
+    expect(seo.title).toBe("Carpet Care Guides for Chicago Homes | Ernest Steamers");
     expect(seo.title.length).toBeLessThanOrEqual(60);
     expect(seo.description.length).toBeGreaterThanOrEqual(120);
     expect(seo.description.length).toBeLessThanOrEqual(155);

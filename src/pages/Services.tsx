@@ -15,7 +15,7 @@ import { PHONE_DISPLAY } from "@/data/locations";
 import { SERVICES_CARPET_SIZES } from "@/lib/homeImages";
 import { serviceBlocks, serviceFaqs, type CopyPart } from "@/data/servicesPage";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 function AreasAnswer() {
   return (
@@ -51,33 +51,39 @@ const Services = () => {
     <div className="min-h-screen bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
       <main>
-        <section className="bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
-          <div className="mx-auto max-w-6xl">
-            <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
-                <li>
-                  <Link to="/" className={linkClass}>
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-primary">
-                  Services
-                </li>
-              </ol>
-            </nav>
-            <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
-              Carpet, Rug & Upholstery Cleaning Services
-            </h1>
-            <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
-              Steam cleaning for homes and businesses in Chicago and the suburbs. Carpet cleaning starts at $99.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href="#services-quote" className={`${buttonOrange} w-full sm:w-auto`}>
-                Get a Quote
-              </a>
-              <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+        <section className="field-mast bg-white px-4 pb-8 pt-8 lg:pb-10 lg:pt-14">
+          <div className="mast-grid mx-auto max-w-6xl">
+            <div>
+              <nav aria-label="Breadcrumb">
+                <ol className="flex flex-wrap items-center gap-2 text-base text-[hsl(216,30%,26%)]">
+                  <li>
+                    <Link to="/" className={linkClass}>
+                      Home
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="font-semibold text-primary">
+                    Services
+                  </li>
+                </ol>
+              </nav>
+              <h1 className="mt-4 max-w-4xl font-heading text-[1.75rem] font-bold leading-[1.15] text-primary sm:text-4xl lg:text-5xl">
+                Carpet, Rug & Upholstery Cleaning Services
+              </h1>
+              <p className={`${bodyText} mt-4 max-w-2xl lg:text-lg`}>
+                Steam cleaning for homes and businesses in Chicago and the suburbs. Carpet cleaning starts at $99.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href="#services-quote" className={`${buttonOrange} w-full sm:w-auto`}>
+                  Get a Quote
+                </a>
+                <CallButton className={`${buttonOutline} w-full sm:w-auto`} />
+              </div>
             </div>
+            <figure className="mast-photo">
+              <ResponsiveImage name="carpet" alt="A technician extracting soil from a living room carpet" sizes={SERVICES_CARPET_SIZES} priority />
+              <figcaption>Hot-water carpet extraction</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -123,14 +129,13 @@ const Services = () => {
             <article
               aria-labelledby={`${service.id}-heading`}
               tabIndex={-1}
-              className="mx-auto grid max-w-6xl items-center gap-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[hsl(174,62%,26%)] lg:grid-cols-2"
+              className="mx-auto grid max-w-6xl items-center gap-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[hsl(216,60%,22%)] lg:grid-cols-2"
             >
               <figure className={index % 2 === 1 ? "lg:order-2" : ""}>
                 <ResponsiveImage
                   name={service.image}
                   alt={service.alt}
                   sizes={SERVICES_CARPET_SIZES}
-                  priority={index === 0}
                   className="aspect-[3/2] w-full rounded-2xl object-cover"
                 />
               </figure>

@@ -206,12 +206,14 @@ const Funnel = () => {
   return (
     <div className="min-h-screen bg-background pb-20 lg:pb-0">
       <FunnelNav />
-      <HeroSection />
-      <FunnelAbout />
-      <WhyChooseUs />
-      <ServicesSection />
-      <FAQSection />
-      <FunnelCTA />
+      <main>
+        <HeroSection />
+        <FunnelAbout />
+        <WhyChooseUs />
+        <ServicesSection />
+        <FAQSection />
+        <FunnelCTA />
+      </main>
       <FunnelFooter />
       <StickyMobileBar />
     </div>

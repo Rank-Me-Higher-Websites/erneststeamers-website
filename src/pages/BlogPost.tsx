@@ -61,7 +61,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-white pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-      <main className="px-4 py-8 lg:py-12">
+      <main className="guide-story px-4 py-8 lg:py-12">
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
           <header>
             <nav aria-label="Breadcrumb">
@@ -85,7 +85,7 @@ const BlogPost = () => {
             </nav>
             <h1 className={`${sectionTitle} mt-4`}>{post.title}</h1>
             <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-muted-foreground">
-              <span className="font-semibold uppercase tracking-wide text-[hsl(174,62%,26%)]">{post.topic}</span>
+              <span className="font-semibold uppercase tracking-wide text-[hsl(216,60%,22%)]">{post.topic}</span>
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               <span>{minutes} min read</span>
               <span>By {post.author}</span>

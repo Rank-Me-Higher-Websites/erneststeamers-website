@@ -3,7 +3,7 @@ import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { bodyText, focusRing, sectionTitle } from "@/components/home/ui";
 import { PRIMARY_LOCATION, formatAddress } from "@/data/locations";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 export default function WhyLocal() {
   return (

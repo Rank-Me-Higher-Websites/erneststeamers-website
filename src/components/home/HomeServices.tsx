@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import ServiceCard from "@/components/ServiceCard";
-import { bodyText, focusRing, sectionTitle } from "@/components/home/ui";
+import { focusRing, sectionTitle } from "@/components/home/ui";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-primary underline-offset-4 ${focusRing}`;
 
 const services = [
   {
@@ -69,12 +69,10 @@ export default function HomeServices() {
     <section className="bg-white px-4 py-16 lg:py-24" aria-labelledby="services-heading">
       <div className="mx-auto max-w-6xl">
         <h2 id="services-heading" className={sectionTitle}>
-          Cleaning services
+          What needs cleaning?
         </h2>
-        <p className={`${bodyText} mt-3 max-w-2xl`}>
-          Carpet cleaning starts at $99. Other services are quoted for the rooms, size, and condition.
-        </p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+        <div className="service-index">
           {services.map((service) => (
             <ServiceCard key={service.service} {...service} />
           ))}

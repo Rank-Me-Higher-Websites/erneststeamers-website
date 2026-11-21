@@ -85,7 +85,7 @@ describe("services page", () => {
     }
 
     const photos = [...container.querySelectorAll("main picture img")];
-    expect(photos).toHaveLength(5);
+    expect(photos).toHaveLength(6);
     for (const photo of photos) {
       expect(photo.getAttribute("width")).toBeTruthy();
       expect(photo.getAttribute("height")).toBeTruthy();

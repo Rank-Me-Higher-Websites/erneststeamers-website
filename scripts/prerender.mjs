@@ -6,7 +6,7 @@ const SITE = "https://erneststeamers.com";
 const MAIN_ID = `${SITE}/#business`;
 
 const H1_SNIPPET = {
-  "/": "Upholstery Steam Cleaning in Chicago",
+  "/": "Deep cleaning for lived-in homes.",
   "/services": "Upholstery Cleaning Services",
   "/service-areas": "Service Areas",
   "/about": "About Ernest Steamers",
@@ -27,8 +27,8 @@ const BANNED_HTML = [
 ];
 
 function hasHeading(html, text) {
-  const flat = html.replace(/\s+/g, " ").replace(/&amp;/g, "&");
-  return new RegExp(`<h1[^>]*>[^<]*${text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[^<]*</h1>`).test(flat);
+  const heading = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? "";
+  return heading.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").includes(text);
 }
 
 function rewriteAssets(html, manifest) {
@@ -298,7 +298,7 @@ try {
   }
   const manifest = JSON.parse(readFileSync("dist/.vite/manifest.json", "utf8"));
   const { render } = await vite.ssrLoadModule("/src/entry-server.tsx");
-  const { getPrerenderPaths } = await vite.ssrLoadModule("/src/seo.ts");
+  const { getPrerenderPaths, getSeo } = await vite.ssrLoadModule("/src/seo.ts");
   const { BUSINESS_HOURS, PRIMARY_LOCATION, SECONDARY_OFFICES, SISTER_COMPANY } = await vite.ssrLoadModule(
     "/src/data/locations.ts",
   );
@@ -377,7 +377,7 @@ try {
 
   const staticFiles = {
     "dist/sitemap.xml": ["<urlset", "<loc>https://erneststeamers.com/</loc>", "https://erneststeamers.com/blog/carpet-cleaning-tips-homeowners/"],
-    "dist/robots.txt": ["User-agent:", "Disallow: /funnel", "Sitemap: https://erneststeamers.com/sitemap.xml"],
+    "dist/robots.txt": ["User-agent:", "Allow: /", "Sitemap: https://erneststeamers.com/sitemap.xml"],
     "dist/_headers": ["/sitemap.xml", "application/xml", "/robots.txt", "text/plain", "/assets/*"],
     "dist/_redirects": ["404.html"],
   };
@@ -390,15 +390,10 @@ try {
   }
   const sitemap = readFileSync("dist/sitemap.xml", "utf8");
   assertTrailingSlashRoutes("dist/sitemap.xml", sitemap);
-  for (const route of routes) {
-    const bare = bareRoute(route);
-    const loc = bare === "/" ? `${SITE}/` : `${SITE}${bare}/`;
-    const listed = sitemap.includes(`<loc>${loc}</loc>`);
-    if (bare === "/funnel") {
-      if (listed) throw new Error("sitemap should not list /funnel");
-      continue;
-    }
-    if (!listed) throw new Error(`sitemap is missing ${loc}`);
+  const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]).sort();
+  const expected = routes.map(getSeo).filter(page => page.robots.startsWith("index,")).map(page => page.canonical).sort();
+  if (JSON.stringify(listed) !== JSON.stringify(expected)) {
+    throw new Error("Sitemap entries must match all indexable canonical routes exactly once.");
   }
   console.log("sitemap routes ok");
   const redirects = readFileSync("dist/_redirects", "utf8");

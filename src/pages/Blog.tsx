@@ -9,7 +9,7 @@ import PostCard from "@/components/blog/PostCard";
 import { bodyText, buttonOrange, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
 import { BLOG_TOPICS, blogPosts, type BlogTopic } from "@/data/blogPosts";
 
-const linkClass = `font-semibold text-primary underline decoration-[hsl(174,62%,26%)] underline-offset-4 ${focusRing}`;
+const linkClass = `font-semibold text-primary underline decoration-[hsl(216,60%,22%)] underline-offset-4 ${focusRing}`;
 
 function TextLink({ to, children }: { to: string; children: string }) {
   return <Link to={to} className={linkClass}>{children}</Link>;
@@ -72,7 +72,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-white pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
       <Navbar />
-      <main>
+      <main className="guide-index">
         <section className="bg-white px-4 pb-4 pt-12 lg:pt-16">
           <div className="mx-auto max-w-6xl">
             <h1 className={sectionTitle}>Carpet Cleaning Tips &amp; Guides</h1>
@@ -89,7 +89,7 @@ const Blog = () => {
                 spill, and pet urine that can sink into the padding. The methods guide explains hot-water extraction,
                 the method professional cleaners use, and where a low-moisture clean still fits. Franklin Park and Bartlett
                 are among the towns served. The town list is on the <TextLink to="/service-areas/">service areas</TextLink>{" "}
-                page, and home and business work is on the <TextLink to="/services/">services</TextLink> page. Carpet
+                page, and other work is on the <TextLink to="/services/">services</TextLink> page. Carpet
                 cleaning starts at $99.
               </p>
             </div>

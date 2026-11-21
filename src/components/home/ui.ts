@@ -1,5 +1,5 @@
 export const focusRing =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(174,62%,26%)]";
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
 export const buttonOrange = `inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-cta-orange px-5 text-base font-heading font-bold text-[hsl(216,50%,12%)] transition hover:brightness-95 ${focusRing}`;
 

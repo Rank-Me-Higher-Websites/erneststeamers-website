@@ -6,7 +6,7 @@ export default function PricingBlock() {
     <section className="bg-white px-4 pb-16 lg:pb-24" aria-labelledby="pricing-heading">
       <div className="mx-auto max-w-6xl">
         <div className="rounded-3xl bg-primary px-6 py-10 text-primary-foreground lg:px-12 lg:py-14">
-          <p className="text-base font-semibold text-[hsl(174,45%,78%)]">Carpet cleaning</p>
+          <p className="text-base font-semibold text-[hsl(36,100%,74%)]">Carpet cleaning</p>
           <h2 id="pricing-heading" className="mt-2 font-heading text-3xl font-bold leading-tight lg:text-4xl">
             Carpet cleaning starts at $99
           </h2>

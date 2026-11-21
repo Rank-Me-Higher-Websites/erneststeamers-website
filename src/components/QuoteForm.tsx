@@ -115,7 +115,7 @@ export default function QuoteForm({
     <form
       id={formId}
       onSubmit={handleSubmit}
-      className="relative scroll-mt-24 space-y-3"
+      className="cleaning-request relative scroll-mt-24 space-y-3"
       aria-busy={submitting}
       aria-describedby={describedBy}
     >
@@ -132,75 +132,77 @@ export default function QuoteForm({
           onChange={handleChange}
         />
       </div>
-      <Field id={`${formId}-name`} label="Full name *">
-        <input
-          id={`${formId}-name`}
-          name="name"
-          required
-          autoComplete="name"
-          value={formData.name}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </Field>
-      <Field id={`${formId}-phone`} label="Phone *">
-        <input
-          id={`${formId}-phone`}
-          name="phone"
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          required
-          value={formData.phone}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </Field>
-      <Field id={`${formId}-email`} label="Email *">
-        <input
-          id={`${formId}-email`}
-          name="email"
-          type="email"
-          inputMode="email"
-          autoComplete="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </Field>
-      <Field id={`${formId}-address`} label="Service address *">
-        <input
-          id={`${formId}-address`}
-          name="address"
-          autoComplete="street-address"
-          required
-          value={formData.address}
-          onChange={handleChange}
-          className={inputClass}
-        />
-      </Field>
-      <Field id={`${formId}-service`} label="Service needed *">
-        <select
-          id={`${formId}-service`}
-          name="service"
-          required
-          value={formData.service}
-          onChange={handleChange}
-          className={inputClass}
-        >
-          <option value="">Select a service</option>
-          {SERVICE_OPTIONS.map((service) => (
-            <option key={service} value={service}>
-              {service}
-            </option>
-          ))}
-        </select>
-      </Field>
+      <div className="request-fields">
+        <Field id={`${formId}-name`} label="Full name *">
+          <input
+            id={`${formId}-name`}
+            name="name"
+            required
+            autoComplete="name"
+            value={formData.name}
+            onChange={handleChange}
+            className={inputClass}
+          />
+        </Field>
+        <Field id={`${formId}-phone`} label="Phone *">
+          <input
+            id={`${formId}-phone`}
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            value={formData.phone}
+            onChange={handleChange}
+            className={inputClass}
+          />
+        </Field>
+        <Field id={`${formId}-email`} label="Email *">
+          <input
+            id={`${formId}-email`}
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            className={inputClass}
+          />
+        </Field>
+        <Field id={`${formId}-address`} label="Service address *">
+          <input
+            id={`${formId}-address`}
+            name="address"
+            autoComplete="street-address"
+            required
+            value={formData.address}
+            onChange={handleChange}
+            className={inputClass}
+          />
+        </Field>
+        <Field id={`${formId}-service`} label="Service needed *">
+          <select
+            id={`${formId}-service`}
+            name="service"
+            required
+            value={formData.service}
+            onChange={handleChange}
+            className={inputClass}
+          >
+            <option value="">Select a service</option>
+            {SERVICE_OPTIONS.map((service) => (
+              <option key={service} value={service}>
+                {service}
+              </option>
+            ))}
+          </select>
+        </Field>
+      </div>
       {compact ? (
         <button
           type="button"
-          className="min-h-12 text-base font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(174,62%,26%)]"
+          className="min-h-12 text-base font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           aria-expanded={detailsOpen}
           aria-controls={extraId}
           onClick={() => setDetailsOpen((open) => !open)}
@@ -263,7 +265,7 @@ export default function QuoteForm({
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-cta-orange px-5 text-base font-heading font-bold text-[hsl(216,50%,12%)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(174,62%,26%)]"
+        className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-cta-orange px-5 text-base font-heading font-bold text-[hsl(216,50%,12%)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         {submitting ? "Sending…" : "Get my free quote"}
       </button>

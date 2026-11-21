@@ -10,10 +10,10 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
+    <main className="missing-page">
+      <div>
+        <h1 className="mb-4 text-4xl font-bold">Page not found</h1>
+        <p className="mb-4 text-xl text-muted-foreground">Try the homepage or call our Franklin Park office.</p>
         <p className="mb-4 text-muted-foreground">
           <strong>Ernest Steamers</strong>
           <br />
@@ -23,11 +23,11 @@ const NotFound = () => {
           <br />
           {formatAddress(PRIMARY_LOCATION)}
         </p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
+        <a href="/" className="book-clean">
           Return to Home
         </a>
       </div>
-    </div>
+    </main>
   );
 };
 

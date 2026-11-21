@@ -42,8 +42,8 @@ export default function WorkGallery() {
         <h2 id="work-heading" className={sectionTitle}>
           Recent jobs
         </h2>
-        <p className={`${bodyText} mt-3 max-w-2xl`}>Photos from Ernest Steamers jobs. Captions describe the work shown.</p>
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+        <p className={`${bodyText} mt-3 max-w-2xl`}>A closer look at the work, from the van to the living room.</p>
+        <ul className="job-gallery">
           {photos.map((photo) => (
             <li key={photo.caption}>
               <figure>
