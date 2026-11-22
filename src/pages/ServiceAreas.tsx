@@ -1,6 +1,6 @@
 import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
@@ -79,8 +79,9 @@ function RegionCard({
     <details
       open={open}
       onToggle={(event) => onToggle(event.currentTarget.open)}
+      id={region.id}
       data-region={region.region}
-      className="rounded-2xl border border-border bg-white shadow-sm"
+      className="scroll-mt-20 rounded-2xl border border-border bg-white shadow-sm"
     >
       <summary
         className={`flex min-h-12 cursor-pointer list-none items-start justify-between gap-3 px-5 py-4 ${focusRing} [&::-webkit-details-marker]:hidden`}
@@ -120,8 +121,16 @@ function RegionCard({
 }
 
 const ServiceAreas = () => {
+  const { hash } = useLocation();
   const [query, setQuery] = useState("");
   const [openRegions, setOpenRegions] = useState(() => serviceRegions.map((_, index) => index === 0));
+  useEffect(() => {
+    const index = serviceRegions.findIndex(region => `#${region.id}` === hash);
+    if (index >= 0) {
+      setOpenRegions(current => current.map((open, i) => open || i === index));
+    }
+  }, [hash]);
+
   const needle = query.trim().toLowerCase();
   const matchedTowns = publishedTowns.filter((town) => needle.length > 0 && town.toLowerCase().includes(needle));
   const selectedTown = matchedTowns.length === 1 ? matchedTowns[0] : "";

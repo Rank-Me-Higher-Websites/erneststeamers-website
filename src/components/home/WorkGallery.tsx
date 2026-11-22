@@ -1,17 +1,20 @@
+import { Link } from "react-router-dom";
 import type { HomeImageName } from "@/lib/homeImages";
 import ResponsiveImage from "@/components/home/ResponsiveImage";
 import { bodyText, sectionTitle } from "@/components/home/ui";
 
-const photos: { name: HomeImageName; alt: string; caption: string }[] = [
+const photos: { name: HomeImageName; alt: string; caption: string; guide?: { href: string; label: string } }[] = [
   {
     name: "carpet",
     alt: "Ernest Steamers technician steam cleaning a living room carpet with a wand",
     caption: "Living room carpet steam cleaning",
+    guide: { href: "/blog/how-long-carpet-takes-to-dry-after-steam-cleaning/", label: "How long does carpet take to dry?" },
   },
   {
     name: "upholstery",
     alt: "Technician cleaning a light sofa with an upholstery wand and blue hose",
     caption: "Sofa upholstery cleaning",
+    guide: { href: "/blog/upholstery-cleaning-benefits/", label: "When to clean sofa upholstery" },
   },
   {
     name: "rug",
@@ -27,6 +30,7 @@ const photos: { name: HomeImageName; alt: string; caption: string }[] = [
     name: "equipment",
     alt: "Technician operating a truck-mounted carpet cleaning machine in the van",
     caption: "Truck-mounted cleaner on a job",
+    guide: { href: "/blog/commercial-carpet-cleaning-business/", label: "Planning a commercial carpet clean" },
   },
   {
     name: "van-setup",
@@ -53,7 +57,9 @@ export default function WorkGallery() {
                   sizes="(min-width: 1024px) 360px, 50vw"
                   className="aspect-[3/2] w-full rounded-xl object-cover"
                 />
-                <figcaption className={`${bodyText} mt-2`}>{photo.caption}</figcaption>
+                <figcaption className={`${bodyText} mt-2`}>{photo.caption}
+                  {photo.guide && <Link to={photo.guide.href} className="block py-2 text-sm font-semibold text-primary underline underline-offset-4">{photo.guide.label}</Link>}
+                </figcaption>
               </figure>
             </li>
           ))}

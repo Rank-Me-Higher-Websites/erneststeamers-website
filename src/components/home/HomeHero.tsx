@@ -11,9 +11,9 @@ export default function HomeHero() {
   return (
     <section className="clean-hero">
       <div className="hero-copy">
-        <a className="hero-location" href="/service-areas/"><MapPin size={15} />Chicago &amp; suburbs</a>
-        <h1>Deep cleaning for <em>lived-in</em> homes.</h1>
-        <p>Carpet, rug and upholstery steam cleaning by our Franklin Park crew. Carpet cleaning starts at <strong>$99.</strong></p>
+        <a className="hero-location" href="/service-areas/"><MapPin size={15} />Serving Chicago &amp; the suburbs</a>
+        <h1>Carpet cleaning for <em>lived-in</em> homes.</h1>
+        <p>From the hallway runner to the family sofa, our Franklin Park crew steam cleans carpet, area rugs and upholstery. Carpet cleaning starts at <strong>$99.</strong></p>
         <QuoteFormDialog>
           <button type="button" className="book-clean">Request a cleaning <ArrowUpRight size={20} /></button>
         </QuoteFormDialog>

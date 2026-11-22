@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
-import ServiceRibbon from "@/components/home/ServiceRibbon";
 import HomeHero from "@/components/home/HomeHero";
 import HomeServices from "@/components/home/HomeServices";
 import WorkGallery from "@/components/home/WorkGallery";
@@ -15,7 +14,6 @@ const Index = () => {
       <Navbar />
       <main>
         <HomeHero />
-        <ServiceRibbon />
         <HomeServices />
         <WorkGallery />
         <AreaTeaser />

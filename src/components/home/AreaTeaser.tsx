@@ -2,12 +2,7 @@ import { Link } from "react-router-dom";
 import AreaChips from "@/components/AreaChips";
 import { bodyText, buttonOutline, focusRing, sectionTitle } from "@/components/home/ui";
 
-const groups = [
-  "Chicago & Cook County",
-  "DuPage County & South Suburbs",
-  "North Shore Neighborhoods",
-  "Northwest Lake & Cook Counties",
-];
+import { serviceRegions } from "@/data/serviceAreas";
 
 export default function AreaTeaser() {
   return (
@@ -20,7 +15,7 @@ export default function AreaTeaser() {
           We clean in Chicago and the suburbs from our Franklin Park office. Bartlett is one of the towns we serve.
         </p>
         <div className="mt-6">
-          <AreaChips items={groups.map((label) => ({ label, href: "/service-areas/" }))} />
+          <AreaChips items={serviceRegions.map(({ id, region }) => ({ label: region, href: `/service-areas/#${id}` }))} />
         </div>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link to="/locations/franklin-park/" className={`${buttonOutline} w-full sm:w-auto`}>

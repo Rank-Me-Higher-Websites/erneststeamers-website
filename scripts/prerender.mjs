@@ -6,7 +6,7 @@ const SITE = "https://erneststeamers.com";
 const MAIN_ID = `${SITE}/#business`;
 
 const H1_SNIPPET = {
-  "/": "Deep cleaning for lived-in homes.",
+  "/": "Carpet cleaning for lived-in homes.",
   "/services": "Upholstery Cleaning Services",
   "/service-areas": "Service Areas",
   "/about": "About Ernest Steamers",
