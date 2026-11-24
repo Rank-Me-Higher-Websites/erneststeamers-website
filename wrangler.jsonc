@@ -1,0 +1,29 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4/config-schema.json",
+  "name": "erneststeamers-website",
+  "account_id": "e8be0cb8f132e4efd6dfb9c25aaa420b",
+  // worker/main.js adds the ported Pages Function (/api/leads) and then hands off to
+  // the shared template in worker/index.js, which stays identical across sites.
+  "main": "worker/main.js",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    // `npm run build` = vite build + scripts/prerender.mjs -> dist/ (one index.html per route)
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Pages served /about -> /about/ and /about/index.html -> /about/ (308); main.js turns
+    // the asset layer's 307 into the same 308.
+    "html_handling": "auto-trailing-slash",
+    // unknown URLs -> dist/404.html with status 404, no SPA fallback (same as Pages)
+    "not_found_handling": "404-page",
+    "run_worker_first": true
+  },
+  "vars": {
+    "CANONICAL_HOST": "erneststeamers.com",
+    "ALIAS_HOSTS": "www.erneststeamers.com"
+  }
+  // Secret: N8N_LEAD_WEBHOOK (wrangler secret put N8N_LEAD_WEBHOOK) - same value as the Pages project.
+  // Custom hostnames are attached on swap day. Do not add routes here.
+}
